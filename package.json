@@ -1,13 +1,14 @@
 {
   "name": "@hosterai/js-client",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Hoster.AI javascript client",
-  "main": "client.js",
+  "main": "dist/client.js",
   "scripts": {
     "test": "jest",
     "openapi:generate:dev": "openapi-generator-cli generate -i http://localhost:3000/api-json -g typescript-node -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
     "openapi:generate:production": "openapi-generator-cli generate -i https://api.hoster.ai/api-json -g typescript-node -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
-    "npm:publish": "npm publish --access public"
+    "publish": "npm publish --access public",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -15,7 +16,8 @@
   },
   "files": [
     "dist",
-    "package.json"
+    "package.json",
+    "client.js"
   ],
   "keywords": [
     "hoster",

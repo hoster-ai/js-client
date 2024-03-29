@@ -156,7 +156,7 @@ describe("ApiClient", () => {
   it.only("Try to ban a user without permissions", async () => {
     return client
       .users()
-      .userBan("user1", "company1")
+      .ban("user1", "company1")
       .then((results) => {
         fail('Should not have been successful');
       })
