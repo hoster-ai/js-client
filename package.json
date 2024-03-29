@@ -5,8 +5,8 @@
   "main": "dist/api.js",
   "scripts": {
     "test": "jest",
-    "openapi:generate:dev": "openapi-generator-cli generate -i http://localhost:3000/api-json -g typescript-node -o ./openapi",
-    "openapi:generate:production": "openapi-generator-cli generate -i https://api.hoster.ai/api-json -g typescript-node -o ./openapi"
+    "openapi:generate:dev": "openapi-generator-cli generate -i http://localhost:3000/api-json -g typescript-node -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
+    "openapi:generate:production": "openapi-generator-cli generate -i https://api.hoster.ai/api-json -g typescript-node -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'"
   },
   "files": [
     "dist",
