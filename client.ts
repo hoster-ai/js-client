@@ -1,4 +1,4 @@
-import { HttpBearerAuth, AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, SettingsApi, TemplatesApi, TldsApi, UsersApi } from "./api";
+import { HttpBearerAuth, AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, SettingsApi, TemplatesApi, TldsApi, UsersApi } from "./openapi/api";
 
 export class ApiClient {
     private basePath: string;

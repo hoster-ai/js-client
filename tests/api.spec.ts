@@ -1,5 +1,5 @@
-import { AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, SettingsApi, TemplatesApi, TldsApi, UsersApi } from '../api';
-import { ApiClient } from '../client';
+import { ApiClient } from "../client";
+import { AddonsApi, AffiliatesApi, TemplatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, SettingsApi, TldsApi, UsersApi } from "../openapi/api";
 
 describe('ApiClient', () => {
   let client: ApiClient;
