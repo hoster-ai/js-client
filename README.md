@@ -27,7 +27,7 @@ client.setAccessToken('your access token');
 
 Then, you can use the client to interact with the API. For example, to get a list of addons:
 ```js
-const addons = await client.addons().listAddons();
+const addons = await client.addons().list();
 ```
 
 ## API

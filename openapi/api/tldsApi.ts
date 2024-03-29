@@ -15,11 +15,11 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Create200Response6 } from '../model/create200Response6';
 import { ErrorResponse } from '../model/errorResponse';
+import { Find200Response20 } from '../model/find200Response20';
 import { InvoiceGet200Response } from '../model/invoiceGet200Response';
-import { TldCreate200Response } from '../model/tldCreate200Response';
 import { TldDto } from '../model/tldDto';
-import { TldFind200Response } from '../model/tldFind200Response';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -97,94 +97,12 @@ export class TldsApi {
     }
 
     /**
-     * Creates a new tld .Returns a TldDto
-     * @summary Creates a tld
-     * @param companyId 
-     * @param tldDto 
-     */
-    public async tldCreate (companyId: string, tldDto: TldDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TldCreate200Response;  }> {
-        const localVarPath = this.basePath + '/tlds';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling tldCreate.');
-        }
-
-        // verify required parameter 'tldDto' is not null or undefined
-        if (tldDto === null || tldDto === undefined) {
-            throw new Error('Required parameter tldDto was null or undefined when calling tldCreate.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(tldDto, "TldDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: TldCreate200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "TldCreate200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * Deletes a certain tld .Returns null.
      * @summary Delete a tld
      * @param companyId 
      * @param id Tld id
      */
-    public async tldDelete (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async _delete (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
         const localVarPath = this.basePath + '/tlds/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -200,12 +118,12 @@ export class TldsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling tldDelete.');
+            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling tldDelete.');
+            throw new Error('Required parameter id was null or undefined when calling _delete.');
         }
 
         if (companyId !== undefined) {
@@ -261,14 +179,12 @@ export class TldsApi {
         });
     }
     /**
-     * Retrieves a list of all Tlds .Returns an arry of TldDto.
-     * @summary Get list of all tlds
+     * Creates a new tld .Returns a TldDto
+     * @summary Creates a tld
      * @param companyId 
-     * @param tld tld name
-     * @param currentPage current page
-     * @param perPage per Page 
+     * @param tldDto 
      */
-    public async tldFind (companyId: string, tld?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TldFind200Response;  }> {
+    public async create (companyId: string, tldDto: TldDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response6;  }> {
         const localVarPath = this.basePath + '/tlds';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -283,7 +199,91 @@ export class TldsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling tldFind.');
+            throw new Error('Required parameter companyId was null or undefined when calling create.');
+        }
+
+        // verify required parameter 'tldDto' is not null or undefined
+        if (tldDto === null || tldDto === undefined) {
+            throw new Error('Required parameter tldDto was null or undefined when calling create.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(tldDto, "TldDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response6;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create200Response6");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Retrieves a list of all Tlds .Returns an arry of TldDto.
+     * @summary Get list of all tlds
+     * @param companyId 
+     * @param tld tld name
+     * @param currentPage current page
+     * @param perPage per Page 
+     */
+    public async find (companyId: string, tld?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response20;  }> {
+        const localVarPath = this.basePath + '/tlds';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling find.');
         }
 
         if (companyId !== undefined) {
@@ -334,13 +334,13 @@ export class TldsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: TldFind200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Find200Response20;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "TldFind200Response");
+                            body = ObjectSerializer.deserialize(body, "Find200Response20");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -356,7 +356,7 @@ export class TldsApi {
      * @param companyId 
      * @param id ID
      */
-    public async tldGet (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TldCreate200Response;  }> {
+    public async get (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response6;  }> {
         const localVarPath = this.basePath + '/tlds/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -372,12 +372,12 @@ export class TldsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling tldGet.');
+            throw new Error('Required parameter companyId was null or undefined when calling get.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling tldGet.');
+            throw new Error('Required parameter id was null or undefined when calling get.');
         }
 
         if (companyId !== undefined) {
@@ -416,13 +416,13 @@ export class TldsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: TldCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response6;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "TldCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response6");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -439,7 +439,7 @@ export class TldsApi {
      * @param id Tld Id
      * @param tldDto 
      */
-    public async tldUpdate (companyId: string, id: string, tldDto: TldDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TldCreate200Response;  }> {
+    public async update (companyId: string, id: string, tldDto: TldDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response6;  }> {
         const localVarPath = this.basePath + '/tlds/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -455,17 +455,17 @@ export class TldsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling tldUpdate.');
+            throw new Error('Required parameter companyId was null or undefined when calling update.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling tldUpdate.');
+            throw new Error('Required parameter id was null or undefined when calling update.');
         }
 
         // verify required parameter 'tldDto' is not null or undefined
         if (tldDto === null || tldDto === undefined) {
-            throw new Error('Required parameter tldDto was null or undefined when calling tldUpdate.');
+            throw new Error('Required parameter tldDto was null or undefined when calling update.');
         }
 
         if (companyId !== undefined) {
@@ -505,13 +505,13 @@ export class TldsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: TldCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response6;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "TldCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response6");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

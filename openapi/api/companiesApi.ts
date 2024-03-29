@@ -15,10 +15,10 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
-import { CompanyCreate200Response } from '../model/companyCreate200Response';
 import { CompanyDto } from '../model/companyDto';
-import { CompanyFind200Response } from '../model/companyFind200Response';
+import { Create200Response } from '../model/create200Response';
 import { ErrorResponse } from '../model/errorResponse';
+import { Find200Response1 } from '../model/find200Response1';
 import { InvoiceGet200Response } from '../model/invoiceGet200Response';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -97,162 +97,11 @@ export class CompaniesApi {
     }
 
     /**
-     * Returns code 200 and a success message. Adds analytics to a company through params companyId and analyticsId.
-     * @summary Add company analytics id
-     * @param companyId A unique identifier for the company you wish to add analytics.
-     * @param analyticsId A unique identifier for the company\&#39;s analytics.
-     */
-    public async companyAddAnalyticsId (companyId: string, analyticsId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }> {
-        const localVarPath = this.basePath + '/companies/{companyId}/analytics/{analyticsId}'
-            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
-            .replace('{' + 'analyticsId' + '}', encodeURIComponent(String(analyticsId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling companyAddAnalyticsId.');
-        }
-
-        // verify required parameter 'analyticsId' is not null or undefined
-        if (analyticsId === null || analyticsId === undefined) {
-            throw new Error('Required parameter analyticsId was null or undefined when calling companyAddAnalyticsId.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CompanyCreate200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Creates a company.
-     * @summary Create a company
-     * @param companyDto 
-     */
-    public async companyCreate (companyDto: CompanyDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }> {
-        const localVarPath = this.basePath + '/companies';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyDto' is not null or undefined
-        if (companyDto === null || companyDto === undefined) {
-            throw new Error('Required parameter companyDto was null or undefined when calling companyCreate.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(companyDto, "CompanyDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CompanyCreate200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * 
      * @summary Delete company
      * @param companyId companyId
      */
-    public async companyDelete (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async _delete (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
         const localVarPath = this.basePath + '/companies/{companyId}'
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
         let localVarQueryParameters: any = {};
@@ -268,7 +117,7 @@ export class CompaniesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling companyDelete.');
+            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -320,306 +169,15 @@ export class CompaniesApi {
         });
     }
     /**
-     * Finds and returns an array of all the companies exists. Using the queries given paginates the result per page!
-     * @summary Get list of all companies User has permissions on
-     * @param perPage A number that indicates the companies shown per page
-     * @param currentPage Number that indicates the current page.
+     * Returns code 200 and a success message. Adds analytics to a company through params companyId and analyticsId.
+     * @summary Add company analytics id
+     * @param companyId A unique identifier for the company you wish to add analytics.
+     * @param analyticsId A unique identifier for the company\&#39;s analytics.
      */
-    public async companyFind (perPage?: number, currentPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CompanyFind200Response;  }> {
-        const localVarPath = this.basePath + '/companies';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        if (perPage !== undefined) {
-            localVarQueryParameters['perPage'] = ObjectSerializer.serialize(perPage, "number");
-        }
-
-        if (currentPage !== undefined) {
-            localVarQueryParameters['currentPage'] = ObjectSerializer.serialize(currentPage, "number");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: CompanyFind200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CompanyFind200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Returns a single company using as param companyUsername.
-     * @summary Get a company
-     * @param companyId A unique identifier for the company you wish to retrieve.
-     */
-    public async companyGet (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }> {
-        const localVarPath = this.basePath + '/companies/{companyId}'
-            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling companyGet.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CompanyCreate200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Returns a single company\'s info using as param companyId.
-     * @summary Get a company\'s Public Information
-     * @param companyId A unique identifier for the company you wish to retrieve.
-     */
-    public async companyGetInfo (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }> {
-        const localVarPath = this.basePath + '/companies/{companyId}/info'
-            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling companyGetInfo.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CompanyCreate200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Returns code 200 and a success message. Deletes analytics from a company through params companyId and analyticsId.
-     * @summary Remove company analytics
-     * @param companyId A unique identifier for the company you wish to remove analytics from.
-     */
-    public async companyRemoveAnalyticsId (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }> {
-        const localVarPath = this.basePath + '/companies/{companyId}/analytics'
-            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling companyRemoveAnalyticsId.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CompanyCreate200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Returns code 200, a success message and data.Detaches a integration from a company using params companyId and integrationId.
-     * @summary Detach service integration from company
-     * @param companyId A unique identifier for the company you want to detach the service from.
-     * @param integrationId A unique identifier for the integration that provides the service you wish to detach.
-     */
-    public async companyServiceIntegrationDetach (companyId: string, integrationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }> {
-        const localVarPath = this.basePath + '/companies/{companyId}/integration/detach/{integrationId}'
+    public async addAnalyticsId (companyId: string, analyticsId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response;  }> {
+        const localVarPath = this.basePath + '/companies/{companyId}/analytics/{analyticsId}'
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
-            .replace('{' + 'integrationId' + '}', encodeURIComponent(String(integrationId)));
+            .replace('{' + 'analyticsId' + '}', encodeURIComponent(String(analyticsId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -633,12 +191,12 @@ export class CompaniesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling companyServiceIntegrationDetach.');
+            throw new Error('Required parameter companyId was null or undefined when calling addAnalyticsId.');
         }
 
-        // verify required parameter 'integrationId' is not null or undefined
-        if (integrationId === null || integrationId === undefined) {
-            throw new Error('Required parameter integrationId was null or undefined when calling companyServiceIntegrationDetach.');
+        // verify required parameter 'analyticsId' is not null or undefined
+        if (analyticsId === null || analyticsId === undefined) {
+            throw new Error('Required parameter analyticsId was null or undefined when calling addAnalyticsId.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -673,92 +231,13 @@ export class CompaniesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CompanyCreate200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Returns code 200, a success message and data.Installs a service integration to a company using params companyId and integrationId.
-     * @summary Attach service integration to company
-     * @param companyId A unique identifier for the company you wish to attach the service.
-     * @param integrationId A unique identifier for the integration that provides the service.
-     */
-    public async companyServiceIntegrationInstall (companyId: string, integrationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }> {
-        const localVarPath = this.basePath + '/companies/{companyId}/integration/attach/{integrationId}'
-            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
-            .replace('{' + 'integrationId' + '}', encodeURIComponent(String(integrationId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling companyServiceIntegrationInstall.');
-        }
-
-        // verify required parameter 'integrationId' is not null or undefined
-        if (integrationId === null || integrationId === undefined) {
-            throw new Error('Required parameter integrationId was null or undefined when calling companyServiceIntegrationInstall.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: CompanyCreate200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CompanyCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -776,7 +255,7 @@ export class CompaniesApi {
      * @param roles An array that contains enums that indicates the role you wish to grant to the user.
      * @param requestBody 
      */
-    public async giveCompanyUserAccess (email: string, companyId: string, roles: Array<'SIMPLE_USER' | 'FULL_ACCESS' | 'SUPER_ADMIN' | 'ORDER_READ' | 'ORDER_WRITE' | 'ADDON_READ' | 'ADDON_WRITE' | 'AFFILIATE_READ' | 'AFFILIATE WRITE' | 'COMANY_READ' | 'COMANY WRITE' | 'TEMPLATE_READ' | 'TEMPLATE_WRITE' | 'COUPON_READ' | 'COUPON_WRITE' | 'DOMAIN_CATEGORY_READ' | 'DOMAIN_CATEGORY_WRITE' | 'DOMAIN_CONTACT_READ' | 'DOMAIN_CONTACT_WRITE' | 'DOMAIN_NAME_READ' | 'DOMAIN_NAME_WRITE' | 'INVOICE_CONTACT_READ' | 'INVOICE_CONTACT_WRITE' | 'INVOICE_READ' | 'INVOICE_WRITE' | 'IP_GROUPS_READ' | 'IP_GROUPS_WRITE' | 'IPS_READ' | 'IPS_WRITE' | 'ITEMS_READ' | 'ITEMS_WRITE' | 'ORDERS_READ' | 'ORDERS_WRITE' | 'PAYMENTS_READ' | 'PAYMENTS_WRITE' | 'POLICIES_READ' | 'POLICIES_WRITE' | 'PRODUCT_CATEGORIES_READ' | 'PRODUCT_CATEGORIES_WRITE' | 'PRODUCTS_READ' | 'PRODUCTS_WRITE' | 'SETTINGS_READ' | 'SETTINGS_WRITE' | 'INTEGRATIONS_READ' | 'INTEGRATIONS_WRITE' | 'TLDS_READ' | 'TLDS_WRITE' | 'USERS_READ' | 'USERS_WRITE' | 'ISSUES_WRITE' | 'ISSUES_READ'>, requestBody: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async addUserAccess (email: string, companyId: string, roles: Array<'SIMPLE_USER' | 'FULL_ACCESS' | 'SUPER_ADMIN' | 'ORDER_READ' | 'ORDER_WRITE' | 'ADDON_READ' | 'ADDON_WRITE' | 'AFFILIATE_READ' | 'AFFILIATE WRITE' | 'COMANY_READ' | 'COMANY WRITE' | 'TEMPLATE_READ' | 'TEMPLATE_WRITE' | 'COUPON_READ' | 'COUPON_WRITE' | 'DOMAIN_CATEGORY_READ' | 'DOMAIN_CATEGORY_WRITE' | 'DOMAIN_CONTACT_READ' | 'DOMAIN_CONTACT_WRITE' | 'DOMAIN_NAME_READ' | 'DOMAIN_NAME_WRITE' | 'INVOICE_CONTACT_READ' | 'INVOICE_CONTACT_WRITE' | 'INVOICE_READ' | 'INVOICE_WRITE' | 'IP_GROUPS_READ' | 'IP_GROUPS_WRITE' | 'IPS_READ' | 'IPS_WRITE' | 'ITEMS_READ' | 'ITEMS_WRITE' | 'ORDERS_READ' | 'ORDERS_WRITE' | 'PAYMENTS_READ' | 'PAYMENTS_WRITE' | 'POLICIES_READ' | 'POLICIES_WRITE' | 'PRODUCT_CATEGORIES_READ' | 'PRODUCT_CATEGORIES_WRITE' | 'PRODUCTS_READ' | 'PRODUCTS_WRITE' | 'SETTINGS_READ' | 'SETTINGS_WRITE' | 'INTEGRATIONS_READ' | 'INTEGRATIONS_WRITE' | 'TLDS_READ' | 'TLDS_WRITE' | 'USERS_READ' | 'USERS_WRITE' | 'ISSUES_WRITE' | 'ISSUES_READ'>, requestBody: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
         const localVarPath = this.basePath + '/companies/{companyId}/access/{email}'
             .replace('{' + 'email' + '}', encodeURIComponent(String(email)))
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
@@ -793,22 +272,22 @@ export class CompaniesApi {
 
         // verify required parameter 'email' is not null or undefined
         if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling giveCompanyUserAccess.');
+            throw new Error('Required parameter email was null or undefined when calling addUserAccess.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling giveCompanyUserAccess.');
+            throw new Error('Required parameter companyId was null or undefined when calling addUserAccess.');
         }
 
         // verify required parameter 'roles' is not null or undefined
         if (roles === null || roles === undefined) {
-            throw new Error('Required parameter roles was null or undefined when calling giveCompanyUserAccess.');
+            throw new Error('Required parameter roles was null or undefined when calling addUserAccess.');
         }
 
         // verify required parameter 'requestBody' is not null or undefined
         if (requestBody === null || requestBody === undefined) {
-            throw new Error('Required parameter requestBody was null or undefined when calling giveCompanyUserAccess.');
+            throw new Error('Required parameter requestBody was null or undefined when calling addUserAccess.');
         }
 
         if (roles !== undefined) {
@@ -865,12 +344,533 @@ export class CompaniesApi {
         });
     }
     /**
+     * Creates a company.
+     * @summary Create a company
+     * @param companyDto 
+     */
+    public async create (companyDto: CompanyDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response;  }> {
+        const localVarPath = this.basePath + '/companies';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyDto' is not null or undefined
+        if (companyDto === null || companyDto === undefined) {
+            throw new Error('Required parameter companyDto was null or undefined when calling create.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(companyDto, "CompanyDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Finds and returns an array of all the companies exists. Using the queries given paginates the result per page!
+     * @summary Get list of all companies User has permissions on
+     * @param perPage A number that indicates the companies shown per page
+     * @param currentPage Number that indicates the current page.
+     */
+    public async find (perPage?: number, currentPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response1;  }> {
+        const localVarPath = this.basePath + '/companies';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        if (perPage !== undefined) {
+            localVarQueryParameters['perPage'] = ObjectSerializer.serialize(perPage, "number");
+        }
+
+        if (currentPage !== undefined) {
+            localVarQueryParameters['currentPage'] = ObjectSerializer.serialize(currentPage, "number");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Find200Response1;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Find200Response1");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Returns a single company using as param companyUsername.
+     * @summary Get a company
+     * @param companyId A unique identifier for the company you wish to retrieve.
+     */
+    public async get (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response;  }> {
+        const localVarPath = this.basePath + '/companies/{companyId}'
+            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling get.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Returns a single company\'s info using as param companyId.
+     * @summary Get a company\'s Public Information
+     * @param companyId A unique identifier for the company you wish to retrieve.
+     */
+    public async info (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response;  }> {
+        const localVarPath = this.basePath + '/companies/{companyId}/info'
+            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling info.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Returns code 200, a success message and data.Installs a service integration to a company using params companyId and integrationId.
+     * @summary Attach service integration to company
+     * @param companyId A unique identifier for the company you wish to attach the service.
+     * @param integrationId A unique identifier for the integration that provides the service.
+     */
+    public async integrationInstall (companyId: string, integrationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response;  }> {
+        const localVarPath = this.basePath + '/companies/{companyId}/integration/attach/{integrationId}'
+            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
+            .replace('{' + 'integrationId' + '}', encodeURIComponent(String(integrationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling integrationInstall.');
+        }
+
+        // verify required parameter 'integrationId' is not null or undefined
+        if (integrationId === null || integrationId === undefined) {
+            throw new Error('Required parameter integrationId was null or undefined when calling integrationInstall.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Returns code 200, a success message and data.Detaches a integration from a company using params companyId and integrationId.
+     * @summary Detach service integration from company
+     * @param companyId A unique identifier for the company you want to detach the service from.
+     * @param integrationId A unique identifier for the integration that provides the service you wish to detach.
+     */
+    public async integrationUninstall (companyId: string, integrationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response;  }> {
+        const localVarPath = this.basePath + '/companies/{companyId}/integration/detach/{integrationId}'
+            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)))
+            .replace('{' + 'integrationId' + '}', encodeURIComponent(String(integrationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling integrationUninstall.');
+        }
+
+        // verify required parameter 'integrationId' is not null or undefined
+        if (integrationId === null || integrationId === undefined) {
+            throw new Error('Required parameter integrationId was null or undefined when calling integrationUninstall.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Returns code 200 and a success message. Deletes analytics from a company through params companyId and analyticsId.
+     * @summary Remove company analytics
+     * @param companyId A unique identifier for the company you wish to remove analytics from.
+     */
+    public async removeAnalyticsId (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response;  }> {
+        const localVarPath = this.basePath + '/companies/{companyId}/analytics'
+            .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling removeAnalyticsId.');
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
      * Returns code 200 and a success message. Deletes roles from a user.
      * @summary Remove user access to company
      * @param email The email that is associated the user.
      * @param companyId A unique identifier for the company you wish the user to remove access to.
      */
-    public async removeCompanyUserAccess (email: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async removeUserAccess (email: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
         const localVarPath = this.basePath + '/companies/{companyId}/access/{email}'
             .replace('{' + 'email' + '}', encodeURIComponent(String(email)))
             .replace('{' + 'companyId' + '}', encodeURIComponent(String(companyId)));
@@ -887,12 +887,12 @@ export class CompaniesApi {
 
         // verify required parameter 'email' is not null or undefined
         if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling removeCompanyUserAccess.');
+            throw new Error('Required parameter email was null or undefined when calling removeUserAccess.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling removeCompanyUserAccess.');
+            throw new Error('Required parameter companyId was null or undefined when calling removeUserAccess.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

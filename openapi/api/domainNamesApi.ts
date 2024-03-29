@@ -17,15 +17,15 @@ import http from 'http';
 /* tslint:disable:no-unused-locals */
 import { CatParameterDataDto } from '../model/catParameterDataDto';
 import { ChallengeParametersDataDto } from '../model/challengeParametersDataDto';
+import { CheckAvailability200Response } from '../model/checkAvailability200Response';
+import { CheckAvailabilitySockets200Response } from '../model/checkAvailabilitySockets200Response';
 import { ClaimsTokenDataDto } from '../model/claimsTokenDataDto';
 import { DomainBundleDto } from '../model/domainBundleDto';
 import { DomainCheckAvailabilityRequestDto } from '../model/domainCheckAvailabilityRequestDto';
-import { DomainNameCheckAvailability200Response } from '../model/domainNameCheckAvailability200Response';
-import { DomainNameCheckAvailabilitySockets200Response } from '../model/domainNameCheckAvailabilitySockets200Response';
-import { DomainNameFind200Response } from '../model/domainNameFind200Response';
-import { DomainNameGet200Response } from '../model/domainNameGet200Response';
 import { DonutsPriceCategoryDataDto } from '../model/donutsPriceCategoryDataDto';
 import { ErrorResponse } from '../model/errorResponse';
+import { Find200Response15 } from '../model/find200Response15';
+import { Get200Response3 } from '../model/get200Response3';
 import { IntendedUseParamsDataDto } from '../model/intendedUseParamsDataDto';
 import { PremiumPriceCategoryDataDto } from '../model/premiumPriceCategoryDataDto';
 import { ProxyServiceDataDto } from '../model/proxyServiceDataDto';
@@ -109,6 +109,242 @@ export class DomainNamesApi {
     }
 
     /**
+     * Receives the unique identifiers of a company(companyId) and a domain name(id) and then deletes it. It then returns success or not
+     * @summary Delete a domain name
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     */
+    public async _delete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling _delete.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) and exports all the domain names that belong to it. It then returns a csv file conataining the domain names.
+     * @summary Export domain names to csv file
+     * @param companyId The unique identifier of the company to export domains for.
+     */
+    public async _export (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/export';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling _export.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) and the domain name(id) that is in the process of being transferred and then accepts it. It then returns success or not
+     * @summary Accept domain name transfer
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain will be transferred to
+     */
+    public async acceptTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/transfer/accept'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling acceptTransfer.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling acceptTransfer.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
      * Receives the unique identifiers of a company(companyId) and a domain name(id). It then activates domain id shield and returns the updated domain information  
      * @summary Activate domain id shield
      * @param id Unique identifier of the domain name
@@ -148,6 +384,512 @@ export class DomainNamesApi {
 
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) and a domain name(id) that belongs to it and adds the bundle name to the domain. It then returns the updated information of that domain
+     * @summary Add a bundle to a domain name
+     * @param id The unique identifier of the domain name to add a bundle to.
+     * @param companyId The unique identifier of the company the domain belongs to.
+     * @param domainBundleDto 
+     */
+    public async addBundle (id: string, companyId: string, domainBundleDto: DomainBundleDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response3;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/bundle/add'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling addBundle.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling addBundle.');
+        }
+
+        // verify required parameter 'domainBundleDto' is not null or undefined
+        if (domainBundleDto === null || domainBundleDto === undefined) {
+            throw new Error('Required parameter domainBundleDto was null or undefined when calling addBundle.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(domainBundleDto, "DomainBundleDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Get200Response3;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Get200Response3");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) and the domain name(id) that is in the process of being transferred and then cancels it. It then returns success or not
+     * @summary Cancel domain name transfer
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     */
+    public async cancelTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/transfer/cancel'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling cancelTransfer.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling cancelTransfer.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) and a nuamber ofdomain names(id) to check availability for. It then returns an array whose each member shows whether or not a single domain name from the ones given is available or not
+     * @summary Check domain name availability
+     * @param companyId Unique identifier of the company requesting the check.
+     * @param domainCheckAvailabilityRequestDto 
+     */
+    public async checkAvailability (companyId: string, domainCheckAvailabilityRequestDto: DomainCheckAvailabilityRequestDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CheckAvailability200Response;  }> {
+        const localVarPath = this.basePath + '/domain-names/check-availability';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling checkAvailability.');
+        }
+
+        // verify required parameter 'domainCheckAvailabilityRequestDto' is not null or undefined
+        if (domainCheckAvailabilityRequestDto === null || domainCheckAvailabilityRequestDto === undefined) {
+            throw new Error('Required parameter domainCheckAvailabilityRequestDto was null or undefined when calling checkAvailability.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(domainCheckAvailabilityRequestDto, "DomainCheckAvailabilityRequestDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: CheckAvailability200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "CheckAvailability200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) and a nuamber of domain names(id) to check availability for. 
+     * @summary Check domain name availability and response with web sockets
+     * @param companyId Unique identifier of the company requesting the check
+     * @param domainCheckAvailabilityRequestDto 
+     */
+    public async checkAvailabilitySockets (companyId: string, domainCheckAvailabilityRequestDto: DomainCheckAvailabilityRequestDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CheckAvailabilitySockets200Response;  }> {
+        const localVarPath = this.basePath + '/domain-names/check-availability/web-sockets';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling checkAvailabilitySockets.');
+        }
+
+        // verify required parameter 'domainCheckAvailabilityRequestDto' is not null or undefined
+        if (domainCheckAvailabilityRequestDto === null || domainCheckAvailabilityRequestDto === undefined) {
+            throw new Error('Required parameter domainCheckAvailabilityRequestDto was null or undefined when calling checkAvailabilitySockets.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(domainCheckAvailabilityRequestDto, "DomainCheckAvailabilityRequestDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: CheckAvailabilitySockets200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "CheckAvailabilitySockets200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) and a domain name(id) that belongs to it and checks whether the domain is transferable. It then returns success or not
+     * @summary Check if domain is transferrable
+     * @param id The unique identifier of the domain name to check for transfer eligibility.
+     * @param companyId The unique identifier of the company the domain belongs to.
+     */
+    public async checkTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/transfer/check'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling checkTransfer.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling checkTransfer.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) and the domain name(id) to be claimed. It then returns success or not
+     * @summary Claim Domain name
+     * @param domain The domain name to be claimed.
+     * @param companyId The unique identifier of the company to claim the domain.
+     * @param document Proof of ownership document.
+     */
+    public async claim (domain: string, companyId: string, document: any, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{domain}/claim/upload'
+            .replace('{' + 'domain' + '}', encodeURIComponent(String(domain)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'domain' is not null or undefined
+        if (domain === null || domain === undefined) {
+            throw new Error('Required parameter domain was null or undefined when calling claim.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling claim.');
+        }
+
+        // verify required parameter 'document' is not null or undefined
+        if (document === null || document === undefined) {
+            throw new Error('Required parameter document was null or undefined when calling claim.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        if (document !== undefined) {
+            localVarQueryParameters['document'] = ObjectSerializer.serialize(document, "any");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
@@ -271,748 +1013,6 @@ export class DomainNamesApi {
         });
     }
     /**
-     * Receives the unique identifiers of a company(companyId) and the domain name(id) that is in the process of being transferred and then accepts it. It then returns success or not
-     * @summary Accept domain name transfer
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain will be transferred to
-     */
-    public async domainNameAcceptTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/transfer/accept'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameAcceptTransfer.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameAcceptTransfer.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) and a domain name(id) that belongs to it and adds the bundle name to the domain. It then returns the updated information of that domain
-     * @summary Add a bundle to a domain name
-     * @param id The unique identifier of the domain name to add a bundle to.
-     * @param companyId The unique identifier of the company the domain belongs to.
-     * @param domainBundleDto 
-     */
-    public async domainNameAddBundle (id: string, companyId: string, domainBundleDto: DomainBundleDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainNameGet200Response;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/bundle/add'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameAddBundle.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameAddBundle.');
-        }
-
-        // verify required parameter 'domainBundleDto' is not null or undefined
-        if (domainBundleDto === null || domainBundleDto === undefined) {
-            throw new Error('Required parameter domainBundleDto was null or undefined when calling domainNameAddBundle.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(domainBundleDto, "DomainBundleDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: DomainNameGet200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainNameGet200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) and the domain name(id) that is in the process of being transferred and then cancels it. It then returns success or not
-     * @summary Cancel domain name transfer
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     */
-    public async domainNameCancelTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/transfer/cancel'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameCancelTransfer.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameCancelTransfer.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) and a nuamber ofdomain names(id) to check availability for. It then returns an array whose each member shows whether or not a single domain name from the ones given is available or not
-     * @summary Check domain name availability
-     * @param companyId Unique identifier of the company requesting the check.
-     * @param domainCheckAvailabilityRequestDto 
-     */
-    public async domainNameCheckAvailability (companyId: string, domainCheckAvailabilityRequestDto: DomainCheckAvailabilityRequestDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainNameCheckAvailability200Response;  }> {
-        const localVarPath = this.basePath + '/domain-names/check-availability';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameCheckAvailability.');
-        }
-
-        // verify required parameter 'domainCheckAvailabilityRequestDto' is not null or undefined
-        if (domainCheckAvailabilityRequestDto === null || domainCheckAvailabilityRequestDto === undefined) {
-            throw new Error('Required parameter domainCheckAvailabilityRequestDto was null or undefined when calling domainNameCheckAvailability.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(domainCheckAvailabilityRequestDto, "DomainCheckAvailabilityRequestDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: DomainNameCheckAvailability200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainNameCheckAvailability200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) and a nuamber of domain names(id) to check availability for. 
-     * @summary Check domain name availability and response with web sockets
-     * @param companyId Unique identifier of the company requesting the check
-     * @param domainCheckAvailabilityRequestDto 
-     */
-    public async domainNameCheckAvailabilitySockets (companyId: string, domainCheckAvailabilityRequestDto: DomainCheckAvailabilityRequestDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainNameCheckAvailabilitySockets200Response;  }> {
-        const localVarPath = this.basePath + '/domain-names/check-availability/web-sockets';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameCheckAvailabilitySockets.');
-        }
-
-        // verify required parameter 'domainCheckAvailabilityRequestDto' is not null or undefined
-        if (domainCheckAvailabilityRequestDto === null || domainCheckAvailabilityRequestDto === undefined) {
-            throw new Error('Required parameter domainCheckAvailabilityRequestDto was null or undefined when calling domainNameCheckAvailabilitySockets.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(domainCheckAvailabilityRequestDto, "DomainCheckAvailabilityRequestDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: DomainNameCheckAvailabilitySockets200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainNameCheckAvailabilitySockets200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) and a domain name(id) that belongs to it and checks whether the domain is transferable. It then returns success or not
-     * @summary Check if domain is transferrable
-     * @param id The unique identifier of the domain name to check for transfer eligibility.
-     * @param companyId The unique identifier of the company the domain belongs to.
-     */
-    public async domainNameCheckTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/transfer/check'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameCheckTransfer.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameCheckTransfer.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) and the domain name(id) to be claimed. It then returns success or not
-     * @summary Claim Domain name
-     * @param domain The domain name to be claimed.
-     * @param companyId The unique identifier of the company to claim the domain.
-     * @param document Proof of ownership document.
-     */
-    public async domainNameClaim (domain: string, companyId: string, document: any, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{domain}/claim/upload'
-            .replace('{' + 'domain' + '}', encodeURIComponent(String(domain)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'domain' is not null or undefined
-        if (domain === null || domain === undefined) {
-            throw new Error('Required parameter domain was null or undefined when calling domainNameClaim.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameClaim.');
-        }
-
-        // verify required parameter 'document' is not null or undefined
-        if (document === null || document === undefined) {
-            throw new Error('Required parameter document was null or undefined when calling domainNameClaim.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        if (document !== undefined) {
-            localVarQueryParameters['document'] = ObjectSerializer.serialize(document, "any");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) and a domain name(id) and then deletes it. It then returns success or not
-     * @summary Delete a domain name
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     */
-    public async domainNameDelete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameDelete.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameDelete.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) and exports all the domain names that belong to it. It then returns a csv file conataining the domain names.
-     * @summary Export domain names to csv file
-     * @param companyId The unique identifier of the company to export domains for.
-     */
-    public async domainNameExport (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/export';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameExport.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      *  Recieves the unique identifier of a company(comapnyId) and returns all the domain names that belong to it. In the case of a domain name given as a query, The results will be sorted by the query
      * @summary Get list of all domain names
      * @param companyId The unique identifier of the company you wish to get domains for.
@@ -1020,7 +1020,7 @@ export class DomainNamesApi {
      * @param currentPage Specify the current page number for pagination.
      * @param perPage Specify the number of items per page for pagination.
      */
-    public async domainNameFind (companyId: string, domainName?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainNameFind200Response;  }> {
+    public async find (companyId: string, domainName?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response15;  }> {
         const localVarPath = this.basePath + '/domain-names';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -1035,7 +1035,7 @@ export class DomainNamesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameFind.');
+            throw new Error('Required parameter companyId was null or undefined when calling find.');
         }
 
         if (companyId !== undefined) {
@@ -1086,13 +1086,13 @@ export class DomainNamesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainNameFind200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Find200Response15;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainNameFind200Response");
+                            body = ObjectSerializer.deserialize(body, "Find200Response15");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1108,7 +1108,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name you wish to get.
      * @param companyId The unique identifier of the company the domain belongs to.
      */
-    public async domainNameGet (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainNameGet200Response;  }> {
+    public async get (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response3;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1124,12 +1124,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameGet.');
+            throw new Error('Required parameter id was null or undefined when calling get.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameGet.');
+            throw new Error('Required parameter companyId was null or undefined when calling get.');
         }
 
         if (companyId !== undefined) {
@@ -1168,13 +1168,13 @@ export class DomainNamesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainNameGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Get200Response3;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainNameGet200Response");
+                            body = ObjectSerializer.deserialize(body, "Get200Response3");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1190,7 +1190,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name to lock.
      * @param companyId The unique identifier of the company the domain name belongs to.
      */
-    public async domainNameLock (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async lock (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/lock'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1206,12 +1206,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameLock.');
+            throw new Error('Required parameter id was null or undefined when calling lock.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameLock.');
+            throw new Error('Required parameter companyId was null or undefined when calling lock.');
         }
 
         if (companyId !== undefined) {
@@ -1271,7 +1271,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name to recall.
      * @param companyId The unique identifier of the company the domain belongs to.
      */
-    public async domainNameRecall (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async recall (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/recall'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1287,12 +1287,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameRecall.');
+            throw new Error('Required parameter id was null or undefined when calling recall.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameRecall.');
+            throw new Error('Required parameter companyId was null or undefined when calling recall.');
         }
 
         if (companyId !== undefined) {
@@ -1353,7 +1353,7 @@ export class DomainNamesApi {
      * @param companyId The unique identifier of the company the domainn belongs to.
      * @param bundleName The name of the bundle to remove from the domain name.
      */
-    public async domainNameRemoveBundle (id: string, companyId: string, bundleName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeBundle (id: string, companyId: string, bundleName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/bundle/remove'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1369,17 +1369,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameRemoveBundle.');
+            throw new Error('Required parameter id was null or undefined when calling removeBundle.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameRemoveBundle.');
+            throw new Error('Required parameter companyId was null or undefined when calling removeBundle.');
         }
 
         // verify required parameter 'bundleName' is not null or undefined
         if (bundleName === null || bundleName === undefined) {
-            throw new Error('Required parameter bundleName was null or undefined when calling domainNameRemoveBundle.');
+            throw new Error('Required parameter bundleName was null or undefined when calling removeBundle.');
         }
 
         if (companyId !== undefined) {
@@ -1443,7 +1443,7 @@ export class DomainNamesApi {
      * @param id Unique identifier of the domain name
      * @param companyId Unique identifier of the company the domain belongs to
      */
-    public async domainNameSendAuthCode (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async sendAuthCode (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/send-auth-code'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1459,12 +1459,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameSendAuthCode.');
+            throw new Error('Required parameter id was null or undefined when calling sendAuthCode.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameSendAuthCode.');
+            throw new Error('Required parameter companyId was null or undefined when calling sendAuthCode.');
         }
 
         if (companyId !== undefined) {
@@ -1524,7 +1524,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name to sync.
      * @param companyId The unique identifier of the company the domain belons to.
      */
-    public async domainNameSync (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async sync (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/sync'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1540,12 +1540,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameSync.');
+            throw new Error('Required parameter id was null or undefined when calling sync.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameSync.');
+            throw new Error('Required parameter companyId was null or undefined when calling sync.');
         }
 
         if (companyId !== undefined) {
@@ -1605,7 +1605,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name to unlock.
      * @param companyId The unique identifier of the company the domain name belongs to.
      */
-    public async domainNameUnlock (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async unlock (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/unlock'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1621,12 +1621,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainNameUnlock.');
+            throw new Error('Required parameter id was null or undefined when calling unlock.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainNameUnlock.');
+            throw new Error('Required parameter companyId was null or undefined when calling unlock.');
         }
 
         if (companyId !== undefined) {
@@ -1644,6 +1644,886 @@ export class DomainNamesApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and the additional parameters necessary for .cat domains. It then updates them and finally returns the updated domain information.
+     * @summary Update additional .cat information
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param catParameterDataDto 
+     */
+    public async updateAdditionalCat (id: string, companyId: string, catParameterDataDto: CatParameterDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/cat-parameter'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalCat.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalCat.');
+        }
+
+        // verify required parameter 'catParameterDataDto' is not null or undefined
+        if (catParameterDataDto === null || catParameterDataDto === undefined) {
+            throw new Error('Required parameter catParameterDataDto was null or undefined when calling updateAdditionalCat.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(catParameterDataDto, "CatParameterDataDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and the domain\'s challenges parameters. It then updates them and returns the updates domain information
+     * @summary Update additional domain challenge information
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param challengeParametersDataDto 
+     */
+    public async updateAdditionalChallenge (id: string, companyId: string, challengeParametersDataDto: ChallengeParametersDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/challenge-parameter'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalChallenge.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalChallenge.');
+        }
+
+        // verify required parameter 'challengeParametersDataDto' is not null or undefined
+        if (challengeParametersDataDto === null || challengeParametersDataDto === undefined) {
+            throw new Error('Required parameter challengeParametersDataDto was null or undefined when calling updateAdditionalChallenge.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(challengeParametersDataDto, "ChallengeParametersDataDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and te domain claims token. It then updates it and returns the updated domain data
+     * @summary Update additional claims token data
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param claimsTokenDataDto 
+     */
+    public async updateAdditionalClaimTokenData (id: string, companyId: string, claimsTokenDataDto: ClaimsTokenDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/claims-token'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalClaimTokenData.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalClaimTokenData.');
+        }
+
+        // verify required parameter 'claimsTokenDataDto' is not null or undefined
+        if (claimsTokenDataDto === null || claimsTokenDataDto === undefined) {
+            throw new Error('Required parameter claimsTokenDataDto was null or undefined when calling updateAdditionalClaimTokenData.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(claimsTokenDataDto, "ClaimsTokenDataDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and the Donuts Price Category the domain belongs to. It then updates it and then returns the updated domain information
+     * @summary Update additional donuts price category data
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param donutsPriceCategoryDataDto 
+     */
+    public async updateAdditionalDonutsPriceCategoryData (id: string, companyId: string, donutsPriceCategoryDataDto: DonutsPriceCategoryDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/donuts-price-category'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalDonutsPriceCategoryData.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalDonutsPriceCategoryData.');
+        }
+
+        // verify required parameter 'donutsPriceCategoryDataDto' is not null or undefined
+        if (donutsPriceCategoryDataDto === null || donutsPriceCategoryDataDto === undefined) {
+            throw new Error('Required parameter donutsPriceCategoryDataDto was null or undefined when calling updateAdditionalDonutsPriceCategoryData.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(donutsPriceCategoryDataDto, "DonutsPriceCategoryDataDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and the intended use information for the domain. It then updates them and returns the updated domain information.
+     * @summary Update additional intended use params data
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param intendedUseParamsDataDto 
+     */
+    public async updateAdditionalIntendedUseParamsDataDto (id: string, companyId: string, intendedUseParamsDataDto: IntendedUseParamsDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/intended-use-params'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalIntendedUseParamsDataDto.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalIntendedUseParamsDataDto.');
+        }
+
+        // verify required parameter 'intendedUseParamsDataDto' is not null or undefined
+        if (intendedUseParamsDataDto === null || intendedUseParamsDataDto === undefined) {
+            throw new Error('Required parameter intendedUseParamsDataDto was null or undefined when calling updateAdditionalIntendedUseParamsDataDto.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(intendedUseParamsDataDto, "IntendedUseParamsDataDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and the premium price category the domain belongs to. It then updates them and returns the updated domain information.
+     * @summary Update additional premium price category data
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param premiumPriceCategoryDataDto 
+     */
+    public async updateAdditionalPremiumPriceCategoryData (id: string, companyId: string, premiumPriceCategoryDataDto: PremiumPriceCategoryDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/premium-price-category'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalPremiumPriceCategoryData.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalPremiumPriceCategoryData.');
+        }
+
+        // verify required parameter 'premiumPriceCategoryDataDto' is not null or undefined
+        if (premiumPriceCategoryDataDto === null || premiumPriceCategoryDataDto === undefined) {
+            throw new Error('Required parameter premiumPriceCategoryDataDto was null or undefined when calling updateAdditionalPremiumPriceCategoryData.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(premiumPriceCategoryDataDto, "PremiumPriceCategoryDataDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and the proxy service information associated with the domain. It then updates them and returns the updated domain information.
+     * @summary Update additional proxy service data
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param proxyServiceDataDto 
+     */
+    public async updateAdditionalProxyServiceDataDto (id: string, companyId: string, proxyServiceDataDto: ProxyServiceDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/proxy-service'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalProxyServiceDataDto.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalProxyServiceDataDto.');
+        }
+
+        // verify required parameter 'proxyServiceDataDto' is not null or undefined
+        if (proxyServiceDataDto === null || proxyServiceDataDto === undefined) {
+            throw new Error('Required parameter proxyServiceDataDto was null or undefined when calling updateAdditionalProxyServiceDataDto.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(proxyServiceDataDto, "ProxyServiceDataDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and the smd file associated with the domain. It then updates it and returns the updated domain information.
+     * @summary Update additional sunrise data
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param sunriseDataDto 
+     */
+    public async updateAdditionalSunriseData (id: string, companyId: string, sunriseDataDto: SunriseDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/sunrise'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalSunriseData.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalSunriseData.');
+        }
+
+        // verify required parameter 'sunriseDataDto' is not null or undefined
+        if (sunriseDataDto === null || sunriseDataDto === undefined) {
+            throw new Error('Required parameter sunriseDataDto was null or undefined when calling updateAdditionalSunriseData.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(sunriseDataDto, "SunriseDataDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and the .uk direct information of the domain. It then updates them and returns the updated domain information.
+     * @summary Update additional uk direct data
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param uKDirectDataDto 
+     */
+    public async updateAdditionalUkDirectData (id: string, companyId: string, uKDirectDataDto: UKDirectDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/uk-direct'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalUkDirectData.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalUkDirectData.');
+        }
+
+        // verify required parameter 'uKDirectDataDto' is not null or undefined
+        if (uKDirectDataDto === null || uKDirectDataDto === undefined) {
+            throw new Error('Required parameter uKDirectDataDto was null or undefined when calling updateAdditionalUkDirectData.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(uKDirectDataDto, "UKDirectDataDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) a domain name(id) and the .xxx member info of the domain. It then updates them and returns the updated domain information.
+     * @summary Update additional xxx member data
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     * @param xXXMemberDataDto 
+     */
+    public async updateAdditionalxxxMemberData (id: string, companyId: string, xXXMemberDataDto: XXXMemberDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}/additional/xxx-member'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAdditionalxxxMemberData.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalxxxMemberData.');
+        }
+
+        // verify required parameter 'xXXMemberDataDto' is not null or undefined
+        if (xXXMemberDataDto === null || xXXMemberDataDto === undefined) {
+            throw new Error('Required parameter xXXMemberDataDto was null or undefined when calling updateAdditionalxxxMemberData.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PATCH',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(xXXMemberDataDto, "XXXMemberDataDto")
         };
 
         let authenticationPromise = Promise.resolve();
@@ -1863,7 +2743,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param newRegistrantCode New registrant code
      */
-    public async updateRegistrantCode (id: string, companyId: string, newRegistrantCode: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainNameGet200Response;  }> {
+    public async updateRegistrantCode (id: string, companyId: string, newRegistrantCode: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response3;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/contacts/registrant/{newRegistrantCode}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'newRegistrantCode' + '}', encodeURIComponent(String(newRegistrantCode)));
@@ -1929,13 +2809,13 @@ export class DomainNamesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainNameGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Get200Response3;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainNameGet200Response");
+                            body = ObjectSerializer.deserialize(body, "Get200Response3");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1997,886 +2877,6 @@ export class DomainNamesApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and the additional parameters necessary for .cat domains. It then updates them and finally returns the updated domain information.
-     * @summary Update additional .cat information
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param catParameterDataDto 
-     */
-    public async updateadditionalCat (id: string, companyId: string, catParameterDataDto: CatParameterDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/cat-parameter'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalCat.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalCat.');
-        }
-
-        // verify required parameter 'catParameterDataDto' is not null or undefined
-        if (catParameterDataDto === null || catParameterDataDto === undefined) {
-            throw new Error('Required parameter catParameterDataDto was null or undefined when calling updateadditionalCat.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(catParameterDataDto, "CatParameterDataDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and the domain\'s challenges parameters. It then updates them and returns the updates domain information
-     * @summary Update additional domain challenge information
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param challengeParametersDataDto 
-     */
-    public async updateadditionalChallenge (id: string, companyId: string, challengeParametersDataDto: ChallengeParametersDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/challenge-parameter'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalChallenge.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalChallenge.');
-        }
-
-        // verify required parameter 'challengeParametersDataDto' is not null or undefined
-        if (challengeParametersDataDto === null || challengeParametersDataDto === undefined) {
-            throw new Error('Required parameter challengeParametersDataDto was null or undefined when calling updateadditionalChallenge.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(challengeParametersDataDto, "ChallengeParametersDataDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and te domain claims token. It then updates it and returns the updated domain data
-     * @summary Update additional claims token data
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param claimsTokenDataDto 
-     */
-    public async updateadditionalClaimTokenData (id: string, companyId: string, claimsTokenDataDto: ClaimsTokenDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/claims-token'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalClaimTokenData.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalClaimTokenData.');
-        }
-
-        // verify required parameter 'claimsTokenDataDto' is not null or undefined
-        if (claimsTokenDataDto === null || claimsTokenDataDto === undefined) {
-            throw new Error('Required parameter claimsTokenDataDto was null or undefined when calling updateadditionalClaimTokenData.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(claimsTokenDataDto, "ClaimsTokenDataDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and the Donuts Price Category the domain belongs to. It then updates it and then returns the updated domain information
-     * @summary Update additional donuts price category data
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param donutsPriceCategoryDataDto 
-     */
-    public async updateadditionalDonutsPriceCategoryData (id: string, companyId: string, donutsPriceCategoryDataDto: DonutsPriceCategoryDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/donuts-price-category'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalDonutsPriceCategoryData.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalDonutsPriceCategoryData.');
-        }
-
-        // verify required parameter 'donutsPriceCategoryDataDto' is not null or undefined
-        if (donutsPriceCategoryDataDto === null || donutsPriceCategoryDataDto === undefined) {
-            throw new Error('Required parameter donutsPriceCategoryDataDto was null or undefined when calling updateadditionalDonutsPriceCategoryData.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(donutsPriceCategoryDataDto, "DonutsPriceCategoryDataDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and the intended use information for the domain. It then updates them and returns the updated domain information.
-     * @summary Update additional intended use params data
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param intendedUseParamsDataDto 
-     */
-    public async updateadditionalIntendedUseParamsDataDto (id: string, companyId: string, intendedUseParamsDataDto: IntendedUseParamsDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/intended-use-params'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalIntendedUseParamsDataDto.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalIntendedUseParamsDataDto.');
-        }
-
-        // verify required parameter 'intendedUseParamsDataDto' is not null or undefined
-        if (intendedUseParamsDataDto === null || intendedUseParamsDataDto === undefined) {
-            throw new Error('Required parameter intendedUseParamsDataDto was null or undefined when calling updateadditionalIntendedUseParamsDataDto.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(intendedUseParamsDataDto, "IntendedUseParamsDataDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and the premium price category the domain belongs to. It then updates them and returns the updated domain information.
-     * @summary Update additional premium price category data
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param premiumPriceCategoryDataDto 
-     */
-    public async updateadditionalPremiumPriceCategoryData (id: string, companyId: string, premiumPriceCategoryDataDto: PremiumPriceCategoryDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/premium-price-category'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalPremiumPriceCategoryData.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalPremiumPriceCategoryData.');
-        }
-
-        // verify required parameter 'premiumPriceCategoryDataDto' is not null or undefined
-        if (premiumPriceCategoryDataDto === null || premiumPriceCategoryDataDto === undefined) {
-            throw new Error('Required parameter premiumPriceCategoryDataDto was null or undefined when calling updateadditionalPremiumPriceCategoryData.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(premiumPriceCategoryDataDto, "PremiumPriceCategoryDataDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and the proxy service information associated with the domain. It then updates them and returns the updated domain information.
-     * @summary Update additional proxy service data
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param proxyServiceDataDto 
-     */
-    public async updateadditionalProxyServiceDataDto (id: string, companyId: string, proxyServiceDataDto: ProxyServiceDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/proxy-service'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalProxyServiceDataDto.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalProxyServiceDataDto.');
-        }
-
-        // verify required parameter 'proxyServiceDataDto' is not null or undefined
-        if (proxyServiceDataDto === null || proxyServiceDataDto === undefined) {
-            throw new Error('Required parameter proxyServiceDataDto was null or undefined when calling updateadditionalProxyServiceDataDto.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(proxyServiceDataDto, "ProxyServiceDataDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and the smd file associated with the domain. It then updates it and returns the updated domain information.
-     * @summary Update additional sunrise data
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param sunriseDataDto 
-     */
-    public async updateadditionalSunriseData (id: string, companyId: string, sunriseDataDto: SunriseDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/sunrise'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalSunriseData.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalSunriseData.');
-        }
-
-        // verify required parameter 'sunriseDataDto' is not null or undefined
-        if (sunriseDataDto === null || sunriseDataDto === undefined) {
-            throw new Error('Required parameter sunriseDataDto was null or undefined when calling updateadditionalSunriseData.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(sunriseDataDto, "SunriseDataDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and the .uk direct information of the domain. It then updates them and returns the updated domain information.
-     * @summary Update additional uk direct data
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param uKDirectDataDto 
-     */
-    public async updateadditionalUkDirectData (id: string, companyId: string, uKDirectDataDto: UKDirectDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/uk-direct'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalUkDirectData.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalUkDirectData.');
-        }
-
-        // verify required parameter 'uKDirectDataDto' is not null or undefined
-        if (uKDirectDataDto === null || uKDirectDataDto === undefined) {
-            throw new Error('Required parameter uKDirectDataDto was null or undefined when calling updateadditionalUkDirectData.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(uKDirectDataDto, "UKDirectDataDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) a domain name(id) and the .xxx member info of the domain. It then updates them and returns the updated domain information.
-     * @summary Update additional xxx member data
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     * @param xXXMemberDataDto 
-     */
-    public async updateadditionalxxxMemberData (id: string, companyId: string, xXXMemberDataDto: XXXMemberDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}/additional/xxx-member'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateadditionalxxxMemberData.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateadditionalxxxMemberData.');
-        }
-
-        // verify required parameter 'xXXMemberDataDto' is not null or undefined
-        if (xXXMemberDataDto === null || xXXMemberDataDto === undefined) {
-            throw new Error('Required parameter xXXMemberDataDto was null or undefined when calling updateadditionalxxxMemberData.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(xXXMemberDataDto, "XXXMemberDataDto")
         };
 
         let authenticationPromise = Promise.resolve();

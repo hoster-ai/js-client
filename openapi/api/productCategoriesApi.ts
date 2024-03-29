@@ -15,11 +15,11 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Create201Response5 } from '../model/create201Response5';
 import { ErrorResponse } from '../model/errorResponse';
+import { Find200Response17 } from '../model/find200Response17';
 import { InvoiceGet200Response } from '../model/invoiceGet200Response';
-import { ProductCategoryCreate201Response } from '../model/productCategoryCreate201Response';
 import { ProductCategoryDto } from '../model/productCategoryDto';
-import { ProductCategoryFind200Response } from '../model/productCategoryFind200Response';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -97,94 +97,12 @@ export class ProductCategoriesApi {
     }
 
     /**
-     *  Recieve the unique identifiers of a company(companyId) as well as the information needed for the creation of a product category. it the creates the product category and then returns the product category data as created
-     * @summary Creates a new product category
-     * @param companyId The ID of the company to create the product category for
-     * @param productCategoryDto 
-     */
-    public async productCategoryCreate (companyId: string, productCategoryDto: ProductCategoryDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProductCategoryCreate201Response;  }> {
-        const localVarPath = this.basePath + '/product-categories';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling productCategoryCreate.');
-        }
-
-        // verify required parameter 'productCategoryDto' is not null or undefined
-        if (productCategoryDto === null || productCategoryDto === undefined) {
-            throw new Error('Required parameter productCategoryDto was null or undefined when calling productCategoryCreate.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(productCategoryDto, "ProductCategoryDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: ProductCategoryCreate201Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "ProductCategoryCreate201Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      *  Recieve the unique identifiers of a company(companyId) and the product category(id) and deletes it. It then returns success or not
      * @summary Delete an product category
      * @param id Product Category ID
      * @param companyId The ID of the company to delete the product category from
      */
-    public async productCategoryDelete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async _delete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
         const localVarPath = this.basePath + '/product-categories/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -200,12 +118,12 @@ export class ProductCategoriesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling productCategoryDelete.');
+            throw new Error('Required parameter id was null or undefined when calling _delete.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling productCategoryDelete.');
+            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
         }
 
         if (companyId !== undefined) {
@@ -261,14 +179,12 @@ export class ProductCategoriesApi {
         });
     }
     /**
-     * Receive  the unique identifier of the company(companyId) and return all product categories associated with it. In the case of also recieving a query, these categories are filtered based on this query by title and/or description  
-     * @summary Get list of all product categories
-     * @param companyId The ID of the company to get product categories for
-     * @param query A search query to filter results by title and description
-     * @param currentPage The current page number
-     * @param perPage The number of items per page
+     *  Recieve the unique identifiers of a company(companyId) as well as the information needed for the creation of a product category. it the creates the product category and then returns the product category data as created
+     * @summary Creates a new product category
+     * @param companyId The ID of the company to create the product category for
+     * @param productCategoryDto 
      */
-    public async productCategoryFind (companyId: string, query?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProductCategoryFind200Response;  }> {
+    public async create (companyId: string, productCategoryDto: ProductCategoryDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response5;  }> {
         const localVarPath = this.basePath + '/product-categories';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -283,7 +199,91 @@ export class ProductCategoriesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling productCategoryFind.');
+            throw new Error('Required parameter companyId was null or undefined when calling create.');
+        }
+
+        // verify required parameter 'productCategoryDto' is not null or undefined
+        if (productCategoryDto === null || productCategoryDto === undefined) {
+            throw new Error('Required parameter productCategoryDto was null or undefined when calling create.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(productCategoryDto, "ProductCategoryDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create201Response5;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create201Response5");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receive  the unique identifier of the company(companyId) and return all product categories associated with it. In the case of also recieving a query, these categories are filtered based on this query by title and/or description  
+     * @summary Get list of all product categories
+     * @param companyId The ID of the company to get product categories for
+     * @param query A search query to filter results by title and description
+     * @param currentPage The current page number
+     * @param perPage The number of items per page
+     */
+    public async find (companyId: string, query?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response17;  }> {
+        const localVarPath = this.basePath + '/product-categories';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling find.');
         }
 
         if (companyId !== undefined) {
@@ -334,13 +334,13 @@ export class ProductCategoriesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ProductCategoryFind200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Find200Response17;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "ProductCategoryFind200Response");
+                            body = ObjectSerializer.deserialize(body, "Find200Response17");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -356,7 +356,7 @@ export class ProductCategoriesApi {
      * @param id  The ID of the product category belonging to the company
      * @param companyId The ID of the company to get product categories for
      */
-    public async productCategoryGet (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProductCategoryCreate201Response;  }> {
+    public async get (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response5;  }> {
         const localVarPath = this.basePath + '/product-categories/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -372,12 +372,12 @@ export class ProductCategoriesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling productCategoryGet.');
+            throw new Error('Required parameter id was null or undefined when calling get.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling productCategoryGet.');
+            throw new Error('Required parameter companyId was null or undefined when calling get.');
         }
 
         if (companyId !== undefined) {
@@ -416,13 +416,13 @@ export class ProductCategoriesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ProductCategoryCreate201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create201Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "ProductCategoryCreate201Response");
+                            body = ObjectSerializer.deserialize(body, "Create201Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -439,7 +439,7 @@ export class ProductCategoriesApi {
      * @param companyId The ID of the company to update the product category for
      * @param productCategoryDto 
      */
-    public async productCategoryUpdate (id: string, companyId: string, productCategoryDto: ProductCategoryDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProductCategoryCreate201Response;  }> {
+    public async update (id: string, companyId: string, productCategoryDto: ProductCategoryDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response5;  }> {
         const localVarPath = this.basePath + '/product-categories/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -455,17 +455,17 @@ export class ProductCategoriesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling productCategoryUpdate.');
+            throw new Error('Required parameter id was null or undefined when calling update.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling productCategoryUpdate.');
+            throw new Error('Required parameter companyId was null or undefined when calling update.');
         }
 
         // verify required parameter 'productCategoryDto' is not null or undefined
         if (productCategoryDto === null || productCategoryDto === undefined) {
-            throw new Error('Required parameter productCategoryDto was null or undefined when calling productCategoryUpdate.');
+            throw new Error('Required parameter productCategoryDto was null or undefined when calling update.');
         }
 
         if (companyId !== undefined) {
@@ -505,13 +505,13 @@ export class ProductCategoriesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ProductCategoryCreate201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create201Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "ProductCategoryCreate201Response");
+                            body = ObjectSerializer.deserialize(body, "Create201Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

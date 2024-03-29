@@ -15,12 +15,12 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { Create200Response4 } from '../model/create200Response4';
 import { ErrorResponse } from '../model/errorResponse';
+import { Find200Response14 } from '../model/find200Response14';
+import { Get200Response2 } from '../model/get200Response2';
 import { InvoiceGet200Response } from '../model/invoiceGet200Response';
-import { MakePayment200Response } from '../model/makePayment200Response';
 import { PaymentDto } from '../model/paymentDto';
-import { PaymentFind200Response } from '../model/paymentFind200Response';
-import { PaymentGet200Response } from '../model/paymentGet200Response';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -98,174 +98,12 @@ export class PaymentsApi {
     }
 
     /**
-     * Export a list of payments for the specified company.
-     * @summary export payments
-     * @param companyId The unique identifier of the company where the payments will be exported from.
-     * @param userId The unique identifier of the specific user of which the payments will be exporeted.
-     */
-    public async exportPayments (companyId: string, userId?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentFind200Response;  }> {
-        const localVarPath = this.basePath + '/payments/export';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling exportPayments.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        if (userId !== undefined) {
-            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: PaymentFind200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "PaymentFind200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Initiate a payment with the provided payment details and obtain a redirect URL for payment processing. Returns PaymentRedirectUrlDto object
-     * @summary make a payment 
-     * @param companyId The unique identifier of the company where the payment will be made.
-     * @param paymentDto Payment details for the payment request.
-     */
-    public async makePayment (companyId: string, paymentDto: PaymentDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MakePayment200Response;  }> {
-        const localVarPath = this.basePath + '/payments';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling makePayment.');
-        }
-
-        // verify required parameter 'paymentDto' is not null or undefined
-        if (paymentDto === null || paymentDto === undefined) {
-            throw new Error('Required parameter paymentDto was null or undefined when calling makePayment.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(paymentDto, "PaymentDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: MakePayment200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "MakePayment200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * Delete a payment record in the specified company.
      * @summary Delete a payment
      * @param id The unique identifier of the payment to be deleted.
      * @param companyId The unique identifier of the company where the payment exists.
      */
-    public async paymentDelete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async _delete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
         const localVarPath = this.basePath + '/payments/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -281,12 +119,12 @@ export class PaymentsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling paymentDelete.');
+            throw new Error('Required parameter id was null or undefined when calling _delete.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling paymentDelete.');
+            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
         }
 
         if (companyId !== undefined) {
@@ -342,21 +180,92 @@ export class PaymentsApi {
         });
     }
     /**
-     * Retrieve a list of payments based on various filtering parameters. Returns an array of PaymentDto objects
-     * @summary Get list of all payments
-     * @param companyId The unique identifier of the company for which payments will be retrieved.
-     * @param userId 
-     * @param type Filter payments by type.
-     * @param integration Filter payments by service integration ID or title.
-     * @param status Filter payments by status.
-     * @param fromValue Filter payments with values greater than or equal to this value.
-     * @param toValue Filter payments with values less than or equal to this value.
-     * @param fromDate Filter payments with dates on or after this date (in ISO 8601 format).
-     * @param toDate Filter payments with dates on or before this date (in ISO 8601 format).
-     * @param currentPage Specify the current page for paginated results.
-     * @param perPage Specify the number of items per page in the paginated results.
+     * Export a list of payments for the specified company.
+     * @summary export payments
+     * @param companyId The unique identifier of the company where the payments will be exported from.
+     * @param userId The unique identifier of the specific user of which the payments will be exporeted.
      */
-    public async paymentFind (companyId: string, userId: string, type?: 'ORDER' | 'CREDITS', integration?: string, status?: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'CANCEL' | 'ERROR', fromValue?: number, toValue?: number, fromDate?: any, toDate?: any, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentFind200Response;  }> {
+    public async _export (companyId: string, userId?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response14;  }> {
+        const localVarPath = this.basePath + '/payments/export';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling _export.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        if (userId !== undefined) {
+            localVarQueryParameters['userId'] = ObjectSerializer.serialize(userId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Find200Response14;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Find200Response14");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Initiate a payment with the provided payment details and obtain a redirect URL for payment processing. Returns PaymentRedirectUrlDto object
+     * @summary Create a payment 
+     * @param companyId The unique identifier of the company where the payment will be made.
+     * @param paymentDto Payment details for the payment request.
+     */
+    public async create (companyId: string, paymentDto: PaymentDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response4;  }> {
         const localVarPath = this.basePath + '/payments';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -371,12 +280,103 @@ export class PaymentsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling paymentFind.');
+            throw new Error('Required parameter companyId was null or undefined when calling create.');
+        }
+
+        // verify required parameter 'paymentDto' is not null or undefined
+        if (paymentDto === null || paymentDto === undefined) {
+            throw new Error('Required parameter paymentDto was null or undefined when calling create.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(paymentDto, "PaymentDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response4;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create200Response4");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Retrieve a list of payments based on various filtering parameters. Returns an array of PaymentDto objects
+     * @summary Get list of all payments
+     * @param companyId The unique identifier of the company for which payments will be retrieved.
+     * @param userId 
+     * @param type Filter payments by type.
+     * @param integration Filter payments by service integration ID or title.
+     * @param status Filter payments by status.
+     * @param fromValue Filter payments with values greater than or equal to this value.
+     * @param toValue Filter payments with values less than or equal to this value.
+     * @param fromDate Filter payments with dates on or after this date (in ISO 8601 format).
+     * @param toDate Filter payments with dates on or before this date (in ISO 8601 format).
+     * @param currentPage Specify the current page for paginated results.
+     * @param perPage Specify the number of items per page in the paginated results.
+     */
+    public async find (companyId: string, userId: string, type?: 'ORDER' | 'CREDITS', integration?: string, status?: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'CANCEL' | 'ERROR', fromValue?: number, toValue?: number, fromDate?: any, toDate?: any, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response14;  }> {
+        const localVarPath = this.basePath + '/payments';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling find.');
         }
 
         // verify required parameter 'userId' is not null or undefined
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling paymentFind.');
+            throw new Error('Required parameter userId was null or undefined when calling find.');
         }
 
         if (companyId !== undefined) {
@@ -455,13 +455,13 @@ export class PaymentsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: PaymentFind200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Find200Response14;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "PaymentFind200Response");
+                            body = ObjectSerializer.deserialize(body, "Find200Response14");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -477,7 +477,7 @@ export class PaymentsApi {
      * @param id The unique identifier of the payment.
      * @param companyId The unique identifier of the company for which the payment belongs.
      */
-    public async paymentGet (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentGet200Response;  }> {
+    public async get (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response2;  }> {
         const localVarPath = this.basePath + '/payments/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -493,12 +493,12 @@ export class PaymentsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling paymentGet.');
+            throw new Error('Required parameter id was null or undefined when calling get.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling paymentGet.');
+            throw new Error('Required parameter companyId was null or undefined when calling get.');
         }
 
         if (companyId !== undefined) {
@@ -537,13 +537,13 @@ export class PaymentsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: PaymentGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Get200Response2;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "PaymentGet200Response");
+                            body = ObjectSerializer.deserialize(body, "Get200Response2");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -560,7 +560,7 @@ export class PaymentsApi {
      * @param id The unique identifier of the payment to be updated.
      * @param paymentDto 
      */
-    public async updatePayment (companyId: string, id: string, paymentDto: PaymentDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PaymentGet200Response;  }> {
+    public async update (companyId: string, id: string, paymentDto: PaymentDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response2;  }> {
         const localVarPath = this.basePath + '/payments/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -576,17 +576,17 @@ export class PaymentsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updatePayment.');
+            throw new Error('Required parameter companyId was null or undefined when calling update.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updatePayment.');
+            throw new Error('Required parameter id was null or undefined when calling update.');
         }
 
         // verify required parameter 'paymentDto' is not null or undefined
         if (paymentDto === null || paymentDto === undefined) {
-            throw new Error('Required parameter paymentDto was null or undefined when calling updatePayment.');
+            throw new Error('Required parameter paymentDto was null or undefined when calling update.');
         }
 
         if (companyId !== undefined) {
@@ -626,13 +626,13 @@ export class PaymentsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: PaymentGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Get200Response2;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "PaymentGet200Response");
+                            body = ObjectSerializer.deserialize(body, "Get200Response2");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

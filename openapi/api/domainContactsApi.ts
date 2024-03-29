@@ -17,13 +17,13 @@ import http from 'http';
 /* tslint:disable:no-unused-locals */
 import { AfnicAdditionalDataDto } from '../model/afnicAdditionalDataDto';
 import { CatAdditionalDataDto } from '../model/catAdditionalDataDto';
+import { Create200Response5 } from '../model/create200Response5';
 import { DeAdditionalDataDto } from '../model/deAdditionalDataDto';
-import { DomainContactCreate200Response } from '../model/domainContactCreate200Response';
 import { DomainContactDto } from '../model/domainContactDto';
-import { DomainContactFind200Response } from '../model/domainContactFind200Response';
 import { ErrorResponse } from '../model/errorResponse';
 import { EsAdditionalDataDto } from '../model/esAdditionalDataDto';
 import { EuBeAdditionalDataDto } from '../model/euBeAdditionalDataDto';
+import { Find200Response19 } from '../model/find200Response19';
 import { InvoiceGet200Response } from '../model/invoiceGet200Response';
 import { ItAdditionalDataDto } from '../model/itAdditionalDataDto';
 import { LvAdditionalDataDto } from '../model/lvAdditionalDataDto';
@@ -108,94 +108,12 @@ export class DomainContactsApi {
     }
 
     /**
-     * Creates a new domain contact associated with a specific company based on the provided \'companyId\' path parameter. You should provide the details of the new domain contact in the request body using the \'DomainContactDto\'. This endpoint returns the domain contact data(\'DomainContactDto\') with a 201 status code upon success.
-     * @summary Creates a new domain contact
-     * @param companyId companyId
-     * @param domainContactDto 
-     */
-    public async domainContactCreate (companyId: string, domainContactDto: DomainContactDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
-        const localVarPath = this.basePath + '/domain-contacts';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainContactCreate.');
-        }
-
-        // verify required parameter 'domainContactDto' is not null or undefined
-        if (domainContactDto === null || domainContactDto === undefined) {
-            throw new Error('Required parameter domainContactDto was null or undefined when calling domainContactCreate.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(domainContactDto, "DomainContactDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * Deletes a domain contact associated with a specific company. Provide the \'id\' of the domain contact you want to delete and the \'companyId\' it belongs to as path parameters. This endpoint returns a success response with a 200 status code upon successful deletion.
      * @summary Delete an domain contact
      * @param id The ID of the domain contact to delete.
      * @param companyId The ID of the company associated with the domain contact.
      */
-    public async domainContactDelete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async _delete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -211,12 +129,12 @@ export class DomainContactsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainContactDelete.');
+            throw new Error('Required parameter id was null or undefined when calling _delete.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainContactDelete.');
+            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
         }
 
         if (companyId !== undefined) {
@@ -272,16 +190,12 @@ export class DomainContactsApi {
         });
     }
     /**
-     * Retrieves a list of domain contacts associated with a specific company based on the provided parameters. You can filter the results by name, street, postcode, organization, city, state, telephone, fax, or email using the \'query\' parameter. If you want to filter by the country code, you can use the \'country\' parameter. You can also paginate the results by specifying the \'currentPage\' and \'perPage\' parameters. This endpoint returns a list of domain contacts (type: DomainContactDto) associated with the specified company.
-     * @summary Get list of all domain contacts
-     * @param companyId The ID of the company for which you want to retrieve domain contacts.
-     * @param query A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
-     * @param country Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
-     * @param userId Filter by the ID of the parent domain contact. (Optional)
-     * @param currentPage The current page number for pagination. (Optional)
-     * @param perPage The number of items to display per page. (Optional)
+     * Creates a new domain contact associated with a specific company based on the provided \'companyId\' path parameter. You should provide the details of the new domain contact in the request body using the \'DomainContactDto\'. This endpoint returns the domain contact data(\'DomainContactDto\') with a 201 status code upon success.
+     * @summary Creates a new domain contact
+     * @param companyId companyId
+     * @param domainContactDto 
      */
-    public async domainContactFind (companyId: string, query?: string, country?: 'AF' | 'AL' | 'DZ' | 'AS' | 'AD' | 'AO' | 'AI' | 'AQ' | 'AG' | 'AR' | 'AM' | 'AW' | 'AU' | 'AT' | 'AZ' | 'BS' | 'BH' | 'BD' | 'BB' | 'BY' | 'BE' | 'BZ' | 'BJ' | 'BM' | 'BT' | 'BO' | 'BQ' | 'BA' | 'BW' | 'BV' | 'BR' | 'IO' | 'BN' | 'BG' | 'BF' | 'BI' | 'KH' | 'CM' | 'CA' | 'CV' | 'KY' | 'CF' | 'TD' | 'CL' | 'CN' | 'CX' | 'CC' | 'CO' | 'KM' | 'CG' | 'CD' | 'CK' | 'CR' | 'CI' | 'HR' | 'CU' | 'CW' | 'CY' | 'CZ' | 'DK' | 'DJ' | 'DM' | 'DO' | 'EC' | 'EG' | 'SV' | 'GQ' | 'ER' | 'EE' | 'ET' | 'FK' | 'FO' | 'FJ' | 'FI' | 'FR' | 'GF' | 'PF' | 'TF' | 'GA' | 'GM' | 'GE' | 'DE' | 'GH' | 'GI' | 'GR' | 'GL' | 'GD' | 'GP' | 'GU' | 'GT' | 'GG' | 'GN' | 'GW' | 'GY' | 'HT' | 'HM' | 'VA' | 'HN' | 'HK' | 'HU' | 'IS' | 'IN' | 'ID' | 'IR' | 'IQ' | 'IE' | 'IM' | 'IL' | 'IT' | 'JM' | 'JP' | 'JE' | 'JO' | 'KZ' | 'KE' | 'KI' | 'KP' | 'KR' | 'KW' | 'KG' | 'LA' | 'LV' | 'LB' | 'LS' | 'LR' | 'LY' | 'LI' | 'LT' | 'LU' | 'MO' | 'MK' | 'MG' | 'MW' | 'MY' | 'MV' | 'ML' | 'MT' | 'MH' | 'MQ' | 'MR' | 'MU' | 'TN' | 'TR' | 'TM' | 'TC' | 'TV' | 'UG' | 'UA' | 'AE' | 'GB' | 'US' | 'UM' | 'UY' | 'UZ' | 'VU' | 'VE' | 'VN' | 'VG' | 'VI' | 'WF' | 'EH' | 'YE' | 'ZM' | 'ZW' | 'YT' | 'MX' | 'FM' | 'MD' | 'MC' | 'MN' | 'ME' | 'MS' | 'MA' | 'MZ' | 'MM' | 'NA' | 'NR' | 'NP' | 'NL' | 'NC' | 'NZ' | 'NI' | 'NE' | 'NG' | 'NU' | 'NF' | 'MP' | 'NO' | 'OM' | 'PK' | 'PW' | 'PS' | 'PA' | 'PG' | 'PY' | 'PE' | 'PH' | 'PN' | 'PL' | 'PT' | 'PR' | 'QA' | 'RE' | 'RO' | 'RU' | 'RW' | 'BL' | 'SH' | 'KN' | 'LC' | 'MF' | 'PM' | 'VC' | 'WS' | 'SM' | 'ST' | 'SA' | 'SN' | 'RS' | 'SC' | 'SL' | 'SG' | 'SX' | 'SK' | 'SI' | 'SB' | 'SO' | 'ZA' | 'GS' | 'SS' | 'ES' | 'LK' | 'SD' | 'SR' | 'SJ' | 'SZ' | 'SE' | 'CH' | 'SY' | 'TW' | 'TJ' | 'TZ' | 'TH' | 'TL' | 'TG' | 'TK' | 'TO' | 'TT', userId?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactFind200Response;  }> {
+    public async create (companyId: string, domainContactDto: DomainContactDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -296,7 +210,93 @@ export class DomainContactsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainContactFind.');
+            throw new Error('Required parameter companyId was null or undefined when calling create.');
+        }
+
+        // verify required parameter 'domainContactDto' is not null or undefined
+        if (domainContactDto === null || domainContactDto === undefined) {
+            throw new Error('Required parameter domainContactDto was null or undefined when calling create.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(domainContactDto, "DomainContactDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Retrieves a list of domain contacts associated with a specific company based on the provided parameters. You can filter the results by name, street, postcode, organization, city, state, telephone, fax, or email using the \'query\' parameter. If you want to filter by the country code, you can use the \'country\' parameter. You can also paginate the results by specifying the \'currentPage\' and \'perPage\' parameters. This endpoint returns a list of domain contacts (type: DomainContactDto) associated with the specified company.
+     * @summary Get list of all domain contacts
+     * @param companyId The ID of the company for which you want to retrieve domain contacts.
+     * @param query A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
+     * @param country Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
+     * @param userId Filter by the ID of the parent domain contact. (Optional)
+     * @param currentPage The current page number for pagination. (Optional)
+     * @param perPage The number of items to display per page. (Optional)
+     */
+    public async find (companyId: string, query?: string, country?: 'AF' | 'AL' | 'DZ' | 'AS' | 'AD' | 'AO' | 'AI' | 'AQ' | 'AG' | 'AR' | 'AM' | 'AW' | 'AU' | 'AT' | 'AZ' | 'BS' | 'BH' | 'BD' | 'BB' | 'BY' | 'BE' | 'BZ' | 'BJ' | 'BM' | 'BT' | 'BO' | 'BQ' | 'BA' | 'BW' | 'BV' | 'BR' | 'IO' | 'BN' | 'BG' | 'BF' | 'BI' | 'KH' | 'CM' | 'CA' | 'CV' | 'KY' | 'CF' | 'TD' | 'CL' | 'CN' | 'CX' | 'CC' | 'CO' | 'KM' | 'CG' | 'CD' | 'CK' | 'CR' | 'CI' | 'HR' | 'CU' | 'CW' | 'CY' | 'CZ' | 'DK' | 'DJ' | 'DM' | 'DO' | 'EC' | 'EG' | 'SV' | 'GQ' | 'ER' | 'EE' | 'ET' | 'FK' | 'FO' | 'FJ' | 'FI' | 'FR' | 'GF' | 'PF' | 'TF' | 'GA' | 'GM' | 'GE' | 'DE' | 'GH' | 'GI' | 'GR' | 'GL' | 'GD' | 'GP' | 'GU' | 'GT' | 'GG' | 'GN' | 'GW' | 'GY' | 'HT' | 'HM' | 'VA' | 'HN' | 'HK' | 'HU' | 'IS' | 'IN' | 'ID' | 'IR' | 'IQ' | 'IE' | 'IM' | 'IL' | 'IT' | 'JM' | 'JP' | 'JE' | 'JO' | 'KZ' | 'KE' | 'KI' | 'KP' | 'KR' | 'KW' | 'KG' | 'LA' | 'LV' | 'LB' | 'LS' | 'LR' | 'LY' | 'LI' | 'LT' | 'LU' | 'MO' | 'MK' | 'MG' | 'MW' | 'MY' | 'MV' | 'ML' | 'MT' | 'MH' | 'MQ' | 'MR' | 'MU' | 'TN' | 'TR' | 'TM' | 'TC' | 'TV' | 'UG' | 'UA' | 'AE' | 'GB' | 'US' | 'UM' | 'UY' | 'UZ' | 'VU' | 'VE' | 'VN' | 'VG' | 'VI' | 'WF' | 'EH' | 'YE' | 'ZM' | 'ZW' | 'YT' | 'MX' | 'FM' | 'MD' | 'MC' | 'MN' | 'ME' | 'MS' | 'MA' | 'MZ' | 'MM' | 'NA' | 'NR' | 'NP' | 'NL' | 'NC' | 'NZ' | 'NI' | 'NE' | 'NG' | 'NU' | 'NF' | 'MP' | 'NO' | 'OM' | 'PK' | 'PW' | 'PS' | 'PA' | 'PG' | 'PY' | 'PE' | 'PH' | 'PN' | 'PL' | 'PT' | 'PR' | 'QA' | 'RE' | 'RO' | 'RU' | 'RW' | 'BL' | 'SH' | 'KN' | 'LC' | 'MF' | 'PM' | 'VC' | 'WS' | 'SM' | 'ST' | 'SA' | 'SN' | 'RS' | 'SC' | 'SL' | 'SG' | 'SX' | 'SK' | 'SI' | 'SB' | 'SO' | 'ZA' | 'GS' | 'SS' | 'ES' | 'LK' | 'SD' | 'SR' | 'SJ' | 'SZ' | 'SE' | 'CH' | 'SY' | 'TW' | 'TJ' | 'TZ' | 'TH' | 'TL' | 'TG' | 'TK' | 'TO' | 'TT', userId?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response19;  }> {
+        const localVarPath = this.basePath + '/domain-contacts';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling find.');
         }
 
         if (companyId !== undefined) {
@@ -355,13 +355,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactFind200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Find200Response19;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactFind200Response");
+                            body = ObjectSerializer.deserialize(body, "Find200Response19");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -377,7 +377,7 @@ export class DomainContactsApi {
      * @param id The ID of the domain contact.
      * @param companyId The ID of the company associated with the domain contact.
      */
-    public async domainContactGet (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async get (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -393,12 +393,12 @@ export class DomainContactsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainContactGet.');
+            throw new Error('Required parameter id was null or undefined when calling get.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainContactGet.');
+            throw new Error('Required parameter companyId was null or undefined when calling get.');
         }
 
         if (companyId !== undefined) {
@@ -437,13 +437,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -460,7 +460,7 @@ export class DomainContactsApi {
      * @param id The ID of the domain contact to update.
      * @param domainContactDto 
      */
-    public async domainContactUpdate (companyId: string, id: string, domainContactDto: DomainContactDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async update (companyId: string, id: string, domainContactDto: DomainContactDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -476,17 +476,17 @@ export class DomainContactsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainContactUpdate.');
+            throw new Error('Required parameter companyId was null or undefined when calling update.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainContactUpdate.');
+            throw new Error('Required parameter id was null or undefined when calling update.');
         }
 
         // verify required parameter 'domainContactDto' is not null or undefined
         if (domainContactDto === null || domainContactDto === undefined) {
-            throw new Error('Required parameter domainContactDto was null or undefined when calling domainContactUpdate.');
+            throw new Error('Required parameter domainContactDto was null or undefined when calling update.');
         }
 
         if (companyId !== undefined) {
@@ -526,13 +526,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -549,7 +549,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param afnicAdditionalDataDto 
      */
-    public async updateAfnicAdditionalData (id: string, companyId: string, afnicAdditionalDataDto: AfnicAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateAfnicAdditionalData (id: string, companyId: string, afnicAdditionalDataDto: AfnicAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/afnic'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -615,13 +615,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -638,7 +638,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param catAdditionalDataDto 
      */
-    public async updateCatAdditionalData (id: string, companyId: string, catAdditionalDataDto: CatAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateCatAdditionalData (id: string, companyId: string, catAdditionalDataDto: CatAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/cat'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -704,13 +704,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -727,7 +727,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param deAdditionalDataDto 
      */
-    public async updateDeAdditionalData (id: string, companyId: string, deAdditionalDataDto: DeAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateDeAdditionalData (id: string, companyId: string, deAdditionalDataDto: DeAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/de'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -793,13 +793,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -816,7 +816,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param esAdditionalDataDto 
      */
-    public async updateEsAdditionalData (id: string, companyId: string, esAdditionalDataDto: EsAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateEsAdditionalData (id: string, companyId: string, esAdditionalDataDto: EsAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/es'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -882,13 +882,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -905,7 +905,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param euBeAdditionalDataDto 
      */
-    public async updateEuBeAdditionalData (id: string, companyId: string, euBeAdditionalDataDto: EuBeAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateEuBeAdditionalData (id: string, companyId: string, euBeAdditionalDataDto: EuBeAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/eu-be'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -971,13 +971,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -994,7 +994,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param itAdditionalDataDto 
      */
-    public async updateItAdditionalData (id: string, companyId: string, itAdditionalDataDto: ItAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateItAdditionalData (id: string, companyId: string, itAdditionalDataDto: ItAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/it'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1060,13 +1060,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1083,7 +1083,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param lvAdditionalDataDto 
      */
-    public async updateLvAdditionalData (id: string, companyId: string, lvAdditionalDataDto: LvAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateLvAdditionalData (id: string, companyId: string, lvAdditionalDataDto: LvAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/lv'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1149,13 +1149,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1172,7 +1172,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param nlAdditionalDataDto 
      */
-    public async updateNlAdditionalData (id: string, companyId: string, nlAdditionalDataDto: NlAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateNlAdditionalData (id: string, companyId: string, nlAdditionalDataDto: NlAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/nl'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1238,13 +1238,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1261,7 +1261,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param proAdditionalDataDto 
      */
-    public async updateProAdditionalData (id: string, companyId: string, proAdditionalDataDto: ProAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateProAdditionalData (id: string, companyId: string, proAdditionalDataDto: ProAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/pro'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1327,13 +1327,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1350,7 +1350,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param ukAdditionalDataDto 
      */
-    public async updateUkAdditionalData (id: string, companyId: string, ukAdditionalDataDto: UkAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateUkAdditionalData (id: string, companyId: string, ukAdditionalDataDto: UkAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/uk'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1416,13 +1416,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1439,7 +1439,7 @@ export class DomainContactsApi {
      * @param companyId The ID of the company associated with the domain contact.
      * @param usAdditionalDataDto 
      */
-    public async updateUsAdditionalData (id: string, companyId: string, usAdditionalDataDto: UsAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }> {
+    public async updateUsAdditionalData (id: string, companyId: string, usAdditionalDataDto: UsAdditionalDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create200Response5;  }> {
         const localVarPath = this.basePath + '/domain-contacts/{id}/additional/us'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1505,13 +1505,13 @@ export class DomainContactsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainContactCreate200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create200Response5;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainContactCreate200Response");
+                            body = ObjectSerializer.deserialize(body, "Create200Response5");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

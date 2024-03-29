@@ -4,12 +4,9 @@ export * from './acceptedNotificationMethods';
 export * from './acceptedNotificationMethodsDto';
 export * from './actionFieldDto';
 export * from './addonDto';
-export * from './addonFind200Response';
 export * from './addonOptionsDto';
-export * from './affiliateCreate200Response';
 export * from './affiliateData';
 export * from './affiliateDto';
-export * from './affiliateFind200Response';
 export * from './afnicAdditionalDataDto';
 export * from './attachment';
 export * from './calculatedPriceDto';
@@ -17,17 +14,32 @@ export * from './catAdditionalDataDto';
 export * from './catParameterDataDto';
 export * from './challengeParametersDataDto';
 export * from './challengeQuestionAnswerDto';
+export * from './checkAvailability200Response';
+export * from './checkAvailabilitySockets200Response';
 export * from './claimsTokenDataDto';
-export * from './companyCreate200Response';
 export * from './companyDto';
-export * from './companyFind200Response';
 export * from './companyFindResponseDto';
 export * from './companyRolesDto';
 export * from './contactAdditionalDto';
 export * from './couponDto';
-export * from './couponFind200Response';
 export * from './couponProductsDto';
 export * from './couponTypeDto';
+export * from './create200Response';
+export * from './create200Response1';
+export * from './create200Response2';
+export * from './create200Response3';
+export * from './create200Response4';
+export * from './create200Response5';
+export * from './create200Response6';
+export * from './create200Response7';
+export * from './create201Response';
+export * from './create201Response1';
+export * from './create201Response2';
+export * from './create201Response3';
+export * from './create201Response4';
+export * from './create201Response5';
+export * from './create201Response6';
+export * from './create201Response7';
 export * from './currency';
 export * from './currencyDto';
 export * from './customAddonPricePolicies';
@@ -39,18 +51,10 @@ export * from './domainAdditionalDto';
 export * from './domainAvailabilityDto';
 export * from './domainAvailabilityWebsocketsDto';
 export * from './domainBundleDto';
-export * from './domainCategoryCreate201Response';
 export * from './domainCategoryDto';
-export * from './domainCategoryFind200Response';
 export * from './domainCheckAvailabilityRequestDto';
-export * from './domainContactCreate200Response';
 export * from './domainContactDto';
-export * from './domainContactFind200Response';
-export * from './domainNameCheckAvailability200Response';
-export * from './domainNameCheckAvailabilitySockets200Response';
 export * from './domainNameDto';
-export * from './domainNameFind200Response';
-export * from './domainNameGet200Response';
 export * from './domainPricesDto';
 export * from './donutsPriceCategoryDataDto';
 export * from './dynamicPriceDto';
@@ -59,75 +63,80 @@ export * from './emailPayloadDto';
 export * from './errorResponse';
 export * from './esAdditionalDataDto';
 export * from './euBeAdditionalDataDto';
+export * from './find200Response';
+export * from './find200Response1';
+export * from './find200Response10';
+export * from './find200Response11';
+export * from './find200Response12';
+export * from './find200Response13';
+export * from './find200Response14';
+export * from './find200Response15';
+export * from './find200Response16';
+export * from './find200Response17';
+export * from './find200Response18';
+export * from './find200Response19';
+export * from './find200Response2';
+export * from './find200Response20';
+export * from './find200Response21';
+export * from './find200Response22';
+export * from './find200Response3';
+export * from './find200Response4';
+export * from './find200Response5';
+export * from './find200Response6';
+export * from './find200Response7';
+export * from './find200Response8';
+export * from './find200Response9';
 export * from './freeTldDto';
+export * from './get200Response';
+export * from './get200Response1';
+export * from './get200Response2';
+export * from './get200Response3';
+export * from './getSettings200Response';
 export * from './integration';
-export * from './integrationCreate201Response';
 export * from './integrationDto';
-export * from './integrationFind200Response';
 export * from './integrationInfoResponseDto';
 export * from './intendedUseParamsDataDto';
-export * from './invoiceContactCreate200Response';
 export * from './invoiceContactDto';
-export * from './invoiceContactFind200Response';
 export * from './invoiceGet200Response';
-export * from './invoicesFind200Response';
 export * from './ipDto';
 export * from './ipGroupDto';
-export * from './ipGroupsCreate200Response';
-export * from './ipGroupsFind200Response';
 export * from './ipSettingsDto';
-export * from './ipsFind200Response';
-export * from './issueCreate201Response';
 export * from './issueDto';
-export * from './issueFind200Response';
 export * from './itAdditionalDataDto';
 export * from './itemAddonDto';
 export * from './itemAffiliateDto';
 export * from './itemCurrency';
 export * from './itemDto';
-export * from './itemFind200Response';
-export * from './itemGet200Response';
 export * from './itemUpdateDto';
 export * from './listActionDto';
 export * from './loginResponseDto';
 export * from './lvAdditionalDataDto';
-export * from './makePayment200Response';
-export * from './makePolicy200Response';
 export * from './menuItemDto';
 export * from './multilangTextDto';
 export * from './nameServerDto';
 export * from './nlAdditionalDataDto';
-export * from './orderCreate201Response';
 export * from './orderDto';
-export * from './orderFind200Response';
 export * from './paginatedResponse';
 export * from './paymentDto';
-export * from './paymentFind200Response';
-export * from './paymentGet200Response';
 export * from './paymentRedirectUrlResponseDto';
 export * from './paymentSubscriptionDto';
 export * from './persistentCart';
 export * from './policy';
 export * from './policyData';
 export * from './policyDto';
-export * from './policyFind200Response';
 export * from './premiumPriceCategoryDataDto';
 export * from './priceDto';
 export * from './pricePolicyDto';
 export * from './pricesDto';
 export * from './proAdditionalDataDto';
 export * from './productAffiliateDto';
-export * from './productCategoryCreate201Response';
 export * from './productCategoryDetails';
 export * from './productCategoryDetailsDto';
 export * from './productCategoryDto';
-export * from './productCategoryFind200Response';
 export * from './productCategoryTitle';
-export * from './productCreate201Response';
 export * from './productDetails';
 export * from './productDetailsDto';
 export * from './productDto';
-export * from './productFind200Response';
 export * from './productInformationDto';
 export * from './productTemplateDto';
 export * from './proxyServiceDataDto';
@@ -135,20 +144,14 @@ export * from './pushPayloadDto';
 export * from './registryContactsDto';
 export * from './settingOptionsDto';
 export * from './settings';
-export * from './settingsCreate201Response';
 export * from './settingsDto';
-export * from './settingsFind200Response';
 export * from './smsPayloadDto';
 export * from './sunriseDataDto';
 export * from './tabDto';
 export * from './taskDto';
-export * from './templateCreate201Response';
 export * from './templateData';
 export * from './templateDto';
-export * from './templateFind200Response';
-export * from './tldCreate200Response';
 export * from './tldDto';
-export * from './tldFind200Response';
 export * from './tldPolicyDto';
 export * from './uKDirectDataDto';
 export * from './ukAdditionalDataDto';
@@ -157,9 +160,6 @@ export * from './usAdditionalDataDto';
 export * from './userAddonPricePolicyDto';
 export * from './userBasketDto';
 export * from './userDto';
-export * from './userFind200Response';
-export * from './userGet200Response';
-export * from './userGetSettings200Response';
 export * from './userPricePolicyDto';
 export * from './value';
 export * from './xXXMemberDataDto';
@@ -181,12 +181,9 @@ import { AcceptedNotificationMethods } from './acceptedNotificationMethods';
 import { AcceptedNotificationMethodsDto } from './acceptedNotificationMethodsDto';
 import { ActionFieldDto } from './actionFieldDto';
 import { AddonDto } from './addonDto';
-import { AddonFind200Response } from './addonFind200Response';
 import { AddonOptionsDto } from './addonOptionsDto';
-import { AffiliateCreate200Response } from './affiliateCreate200Response';
 import { AffiliateData } from './affiliateData';
 import { AffiliateDto } from './affiliateDto';
-import { AffiliateFind200Response } from './affiliateFind200Response';
 import { AfnicAdditionalDataDto } from './afnicAdditionalDataDto';
 import { Attachment } from './attachment';
 import { CalculatedPriceDto } from './calculatedPriceDto';
@@ -194,17 +191,32 @@ import { CatAdditionalDataDto } from './catAdditionalDataDto';
 import { CatParameterDataDto } from './catParameterDataDto';
 import { ChallengeParametersDataDto } from './challengeParametersDataDto';
 import { ChallengeQuestionAnswerDto } from './challengeQuestionAnswerDto';
+import { CheckAvailability200Response } from './checkAvailability200Response';
+import { CheckAvailabilitySockets200Response } from './checkAvailabilitySockets200Response';
 import { ClaimsTokenDataDto } from './claimsTokenDataDto';
-import { CompanyCreate200Response } from './companyCreate200Response';
 import { CompanyDto } from './companyDto';
-import { CompanyFind200Response } from './companyFind200Response';
 import { CompanyFindResponseDto } from './companyFindResponseDto';
 import { CompanyRolesDto } from './companyRolesDto';
 import { ContactAdditionalDto } from './contactAdditionalDto';
 import { CouponDto } from './couponDto';
-import { CouponFind200Response } from './couponFind200Response';
 import { CouponProductsDto } from './couponProductsDto';
 import { CouponTypeDto } from './couponTypeDto';
+import { Create200Response } from './create200Response';
+import { Create200Response1 } from './create200Response1';
+import { Create200Response2 } from './create200Response2';
+import { Create200Response3 } from './create200Response3';
+import { Create200Response4 } from './create200Response4';
+import { Create200Response5 } from './create200Response5';
+import { Create200Response6 } from './create200Response6';
+import { Create200Response7 } from './create200Response7';
+import { Create201Response } from './create201Response';
+import { Create201Response1 } from './create201Response1';
+import { Create201Response2 } from './create201Response2';
+import { Create201Response3 } from './create201Response3';
+import { Create201Response4 } from './create201Response4';
+import { Create201Response5 } from './create201Response5';
+import { Create201Response6 } from './create201Response6';
+import { Create201Response7 } from './create201Response7';
 import { Currency } from './currency';
 import { CurrencyDto } from './currencyDto';
 import { CustomAddonPricePolicies } from './customAddonPricePolicies';
@@ -216,18 +228,10 @@ import { DomainAdditionalDto } from './domainAdditionalDto';
 import { DomainAvailabilityDto } from './domainAvailabilityDto';
 import { DomainAvailabilityWebsocketsDto } from './domainAvailabilityWebsocketsDto';
 import { DomainBundleDto } from './domainBundleDto';
-import { DomainCategoryCreate201Response } from './domainCategoryCreate201Response';
 import { DomainCategoryDto } from './domainCategoryDto';
-import { DomainCategoryFind200Response } from './domainCategoryFind200Response';
 import { DomainCheckAvailabilityRequestDto } from './domainCheckAvailabilityRequestDto';
-import { DomainContactCreate200Response } from './domainContactCreate200Response';
 import { DomainContactDto } from './domainContactDto';
-import { DomainContactFind200Response } from './domainContactFind200Response';
-import { DomainNameCheckAvailability200Response } from './domainNameCheckAvailability200Response';
-import { DomainNameCheckAvailabilitySockets200Response } from './domainNameCheckAvailabilitySockets200Response';
 import { DomainNameDto } from './domainNameDto';
-import { DomainNameFind200Response } from './domainNameFind200Response';
-import { DomainNameGet200Response } from './domainNameGet200Response';
 import { DomainPricesDto } from './domainPricesDto';
 import { DonutsPriceCategoryDataDto } from './donutsPriceCategoryDataDto';
 import { DynamicPriceDto } from './dynamicPriceDto';
@@ -236,75 +240,80 @@ import { EmailPayloadDto } from './emailPayloadDto';
 import { ErrorResponse } from './errorResponse';
 import { EsAdditionalDataDto } from './esAdditionalDataDto';
 import { EuBeAdditionalDataDto } from './euBeAdditionalDataDto';
+import { Find200Response } from './find200Response';
+import { Find200Response1 } from './find200Response1';
+import { Find200Response10 } from './find200Response10';
+import { Find200Response11 } from './find200Response11';
+import { Find200Response12 } from './find200Response12';
+import { Find200Response13 } from './find200Response13';
+import { Find200Response14 } from './find200Response14';
+import { Find200Response15 } from './find200Response15';
+import { Find200Response16 } from './find200Response16';
+import { Find200Response17 } from './find200Response17';
+import { Find200Response18 } from './find200Response18';
+import { Find200Response19 } from './find200Response19';
+import { Find200Response2 } from './find200Response2';
+import { Find200Response20 } from './find200Response20';
+import { Find200Response21 } from './find200Response21';
+import { Find200Response22 } from './find200Response22';
+import { Find200Response3 } from './find200Response3';
+import { Find200Response4 } from './find200Response4';
+import { Find200Response5 } from './find200Response5';
+import { Find200Response6 } from './find200Response6';
+import { Find200Response7 } from './find200Response7';
+import { Find200Response8 } from './find200Response8';
+import { Find200Response9 } from './find200Response9';
 import { FreeTldDto } from './freeTldDto';
+import { Get200Response } from './get200Response';
+import { Get200Response1 } from './get200Response1';
+import { Get200Response2 } from './get200Response2';
+import { Get200Response3 } from './get200Response3';
+import { GetSettings200Response } from './getSettings200Response';
 import { Integration } from './integration';
-import { IntegrationCreate201Response } from './integrationCreate201Response';
 import { IntegrationDto } from './integrationDto';
-import { IntegrationFind200Response } from './integrationFind200Response';
 import { IntegrationInfoResponseDto } from './integrationInfoResponseDto';
 import { IntendedUseParamsDataDto } from './intendedUseParamsDataDto';
-import { InvoiceContactCreate200Response } from './invoiceContactCreate200Response';
 import { InvoiceContactDto } from './invoiceContactDto';
-import { InvoiceContactFind200Response } from './invoiceContactFind200Response';
 import { InvoiceGet200Response } from './invoiceGet200Response';
-import { InvoicesFind200Response } from './invoicesFind200Response';
 import { IpDto } from './ipDto';
 import { IpGroupDto } from './ipGroupDto';
-import { IpGroupsCreate200Response } from './ipGroupsCreate200Response';
-import { IpGroupsFind200Response } from './ipGroupsFind200Response';
 import { IpSettingsDto } from './ipSettingsDto';
-import { IpsFind200Response } from './ipsFind200Response';
-import { IssueCreate201Response } from './issueCreate201Response';
 import { IssueDto } from './issueDto';
-import { IssueFind200Response } from './issueFind200Response';
 import { ItAdditionalDataDto } from './itAdditionalDataDto';
 import { ItemAddonDto } from './itemAddonDto';
 import { ItemAffiliateDto } from './itemAffiliateDto';
 import { ItemCurrency } from './itemCurrency';
 import { ItemDto } from './itemDto';
-import { ItemFind200Response } from './itemFind200Response';
-import { ItemGet200Response } from './itemGet200Response';
 import { ItemUpdateDto } from './itemUpdateDto';
 import { ListActionDto } from './listActionDto';
 import { LoginResponseDto } from './loginResponseDto';
 import { LvAdditionalDataDto } from './lvAdditionalDataDto';
-import { MakePayment200Response } from './makePayment200Response';
-import { MakePolicy200Response } from './makePolicy200Response';
 import { MenuItemDto } from './menuItemDto';
 import { MultilangTextDto } from './multilangTextDto';
 import { NameServerDto } from './nameServerDto';
 import { NlAdditionalDataDto } from './nlAdditionalDataDto';
-import { OrderCreate201Response } from './orderCreate201Response';
 import { OrderDto } from './orderDto';
-import { OrderFind200Response } from './orderFind200Response';
 import { PaginatedResponse } from './paginatedResponse';
 import { PaymentDto } from './paymentDto';
-import { PaymentFind200Response } from './paymentFind200Response';
-import { PaymentGet200Response } from './paymentGet200Response';
 import { PaymentRedirectUrlResponseDto } from './paymentRedirectUrlResponseDto';
 import { PaymentSubscriptionDto } from './paymentSubscriptionDto';
 import { PersistentCart } from './persistentCart';
 import { Policy } from './policy';
 import { PolicyData } from './policyData';
 import { PolicyDto } from './policyDto';
-import { PolicyFind200Response } from './policyFind200Response';
 import { PremiumPriceCategoryDataDto } from './premiumPriceCategoryDataDto';
 import { PriceDto } from './priceDto';
 import { PricePolicyDto } from './pricePolicyDto';
 import { PricesDto } from './pricesDto';
 import { ProAdditionalDataDto } from './proAdditionalDataDto';
 import { ProductAffiliateDto } from './productAffiliateDto';
-import { ProductCategoryCreate201Response } from './productCategoryCreate201Response';
 import { ProductCategoryDetails } from './productCategoryDetails';
 import { ProductCategoryDetailsDto } from './productCategoryDetailsDto';
 import { ProductCategoryDto } from './productCategoryDto';
-import { ProductCategoryFind200Response } from './productCategoryFind200Response';
 import { ProductCategoryTitle } from './productCategoryTitle';
-import { ProductCreate201Response } from './productCreate201Response';
 import { ProductDetails } from './productDetails';
 import { ProductDetailsDto } from './productDetailsDto';
 import { ProductDto } from './productDto';
-import { ProductFind200Response } from './productFind200Response';
 import { ProductInformationDto } from './productInformationDto';
 import { ProductTemplateDto } from './productTemplateDto';
 import { ProxyServiceDataDto } from './proxyServiceDataDto';
@@ -312,20 +321,14 @@ import { PushPayloadDto } from './pushPayloadDto';
 import { RegistryContactsDto } from './registryContactsDto';
 import { SettingOptionsDto } from './settingOptionsDto';
 import { Settings } from './settings';
-import { SettingsCreate201Response } from './settingsCreate201Response';
 import { SettingsDto } from './settingsDto';
-import { SettingsFind200Response } from './settingsFind200Response';
 import { SmsPayloadDto } from './smsPayloadDto';
 import { SunriseDataDto } from './sunriseDataDto';
 import { TabDto } from './tabDto';
 import { TaskDto } from './taskDto';
-import { TemplateCreate201Response } from './templateCreate201Response';
 import { TemplateData } from './templateData';
 import { TemplateDto } from './templateDto';
-import { TemplateFind200Response } from './templateFind200Response';
-import { TldCreate200Response } from './tldCreate200Response';
 import { TldDto } from './tldDto';
-import { TldFind200Response } from './tldFind200Response';
 import { TldPolicyDto } from './tldPolicyDto';
 import { UKDirectDataDto } from './uKDirectDataDto';
 import { UkAdditionalDataDto } from './ukAdditionalDataDto';
@@ -334,9 +337,6 @@ import { UsAdditionalDataDto } from './usAdditionalDataDto';
 import { UserAddonPricePolicyDto } from './userAddonPricePolicyDto';
 import { UserBasketDto } from './userBasketDto';
 import { UserDto } from './userDto';
-import { UserFind200Response } from './userFind200Response';
-import { UserGet200Response } from './userGet200Response';
-import { UserGetSettings200Response } from './userGetSettings200Response';
 import { UserPricePolicyDto } from './userPricePolicyDto';
 import { Value } from './value';
 import { XXXMemberDataDto } from './xXXMemberDataDto';
@@ -437,12 +437,9 @@ let typeMap: {[index: string]: any} = {
     "AcceptedNotificationMethodsDto": AcceptedNotificationMethodsDto,
     "ActionFieldDto": ActionFieldDto,
     "AddonDto": AddonDto,
-    "AddonFind200Response": AddonFind200Response,
     "AddonOptionsDto": AddonOptionsDto,
-    "AffiliateCreate200Response": AffiliateCreate200Response,
     "AffiliateData": AffiliateData,
     "AffiliateDto": AffiliateDto,
-    "AffiliateFind200Response": AffiliateFind200Response,
     "AfnicAdditionalDataDto": AfnicAdditionalDataDto,
     "Attachment": Attachment,
     "CalculatedPriceDto": CalculatedPriceDto,
@@ -450,17 +447,32 @@ let typeMap: {[index: string]: any} = {
     "CatParameterDataDto": CatParameterDataDto,
     "ChallengeParametersDataDto": ChallengeParametersDataDto,
     "ChallengeQuestionAnswerDto": ChallengeQuestionAnswerDto,
+    "CheckAvailability200Response": CheckAvailability200Response,
+    "CheckAvailabilitySockets200Response": CheckAvailabilitySockets200Response,
     "ClaimsTokenDataDto": ClaimsTokenDataDto,
-    "CompanyCreate200Response": CompanyCreate200Response,
     "CompanyDto": CompanyDto,
-    "CompanyFind200Response": CompanyFind200Response,
     "CompanyFindResponseDto": CompanyFindResponseDto,
     "CompanyRolesDto": CompanyRolesDto,
     "ContactAdditionalDto": ContactAdditionalDto,
     "CouponDto": CouponDto,
-    "CouponFind200Response": CouponFind200Response,
     "CouponProductsDto": CouponProductsDto,
     "CouponTypeDto": CouponTypeDto,
+    "Create200Response": Create200Response,
+    "Create200Response1": Create200Response1,
+    "Create200Response2": Create200Response2,
+    "Create200Response3": Create200Response3,
+    "Create200Response4": Create200Response4,
+    "Create200Response5": Create200Response5,
+    "Create200Response6": Create200Response6,
+    "Create200Response7": Create200Response7,
+    "Create201Response": Create201Response,
+    "Create201Response1": Create201Response1,
+    "Create201Response2": Create201Response2,
+    "Create201Response3": Create201Response3,
+    "Create201Response4": Create201Response4,
+    "Create201Response5": Create201Response5,
+    "Create201Response6": Create201Response6,
+    "Create201Response7": Create201Response7,
     "Currency": Currency,
     "CurrencyDto": CurrencyDto,
     "CustomAddonPricePolicies": CustomAddonPricePolicies,
@@ -472,18 +484,10 @@ let typeMap: {[index: string]: any} = {
     "DomainAvailabilityDto": DomainAvailabilityDto,
     "DomainAvailabilityWebsocketsDto": DomainAvailabilityWebsocketsDto,
     "DomainBundleDto": DomainBundleDto,
-    "DomainCategoryCreate201Response": DomainCategoryCreate201Response,
     "DomainCategoryDto": DomainCategoryDto,
-    "DomainCategoryFind200Response": DomainCategoryFind200Response,
     "DomainCheckAvailabilityRequestDto": DomainCheckAvailabilityRequestDto,
-    "DomainContactCreate200Response": DomainContactCreate200Response,
     "DomainContactDto": DomainContactDto,
-    "DomainContactFind200Response": DomainContactFind200Response,
-    "DomainNameCheckAvailability200Response": DomainNameCheckAvailability200Response,
-    "DomainNameCheckAvailabilitySockets200Response": DomainNameCheckAvailabilitySockets200Response,
     "DomainNameDto": DomainNameDto,
-    "DomainNameFind200Response": DomainNameFind200Response,
-    "DomainNameGet200Response": DomainNameGet200Response,
     "DomainPricesDto": DomainPricesDto,
     "DonutsPriceCategoryDataDto": DonutsPriceCategoryDataDto,
     "DynamicPriceDto": DynamicPriceDto,
@@ -492,75 +496,80 @@ let typeMap: {[index: string]: any} = {
     "ErrorResponse": ErrorResponse,
     "EsAdditionalDataDto": EsAdditionalDataDto,
     "EuBeAdditionalDataDto": EuBeAdditionalDataDto,
+    "Find200Response": Find200Response,
+    "Find200Response1": Find200Response1,
+    "Find200Response10": Find200Response10,
+    "Find200Response11": Find200Response11,
+    "Find200Response12": Find200Response12,
+    "Find200Response13": Find200Response13,
+    "Find200Response14": Find200Response14,
+    "Find200Response15": Find200Response15,
+    "Find200Response16": Find200Response16,
+    "Find200Response17": Find200Response17,
+    "Find200Response18": Find200Response18,
+    "Find200Response19": Find200Response19,
+    "Find200Response2": Find200Response2,
+    "Find200Response20": Find200Response20,
+    "Find200Response21": Find200Response21,
+    "Find200Response22": Find200Response22,
+    "Find200Response3": Find200Response3,
+    "Find200Response4": Find200Response4,
+    "Find200Response5": Find200Response5,
+    "Find200Response6": Find200Response6,
+    "Find200Response7": Find200Response7,
+    "Find200Response8": Find200Response8,
+    "Find200Response9": Find200Response9,
     "FreeTldDto": FreeTldDto,
+    "Get200Response": Get200Response,
+    "Get200Response1": Get200Response1,
+    "Get200Response2": Get200Response2,
+    "Get200Response3": Get200Response3,
+    "GetSettings200Response": GetSettings200Response,
     "Integration": Integration,
-    "IntegrationCreate201Response": IntegrationCreate201Response,
     "IntegrationDto": IntegrationDto,
-    "IntegrationFind200Response": IntegrationFind200Response,
     "IntegrationInfoResponseDto": IntegrationInfoResponseDto,
     "IntendedUseParamsDataDto": IntendedUseParamsDataDto,
-    "InvoiceContactCreate200Response": InvoiceContactCreate200Response,
     "InvoiceContactDto": InvoiceContactDto,
-    "InvoiceContactFind200Response": InvoiceContactFind200Response,
     "InvoiceGet200Response": InvoiceGet200Response,
-    "InvoicesFind200Response": InvoicesFind200Response,
     "IpDto": IpDto,
     "IpGroupDto": IpGroupDto,
-    "IpGroupsCreate200Response": IpGroupsCreate200Response,
-    "IpGroupsFind200Response": IpGroupsFind200Response,
     "IpSettingsDto": IpSettingsDto,
-    "IpsFind200Response": IpsFind200Response,
-    "IssueCreate201Response": IssueCreate201Response,
     "IssueDto": IssueDto,
-    "IssueFind200Response": IssueFind200Response,
     "ItAdditionalDataDto": ItAdditionalDataDto,
     "ItemAddonDto": ItemAddonDto,
     "ItemAffiliateDto": ItemAffiliateDto,
     "ItemCurrency": ItemCurrency,
     "ItemDto": ItemDto,
-    "ItemFind200Response": ItemFind200Response,
-    "ItemGet200Response": ItemGet200Response,
     "ItemUpdateDto": ItemUpdateDto,
     "ListActionDto": ListActionDto,
     "LoginResponseDto": LoginResponseDto,
     "LvAdditionalDataDto": LvAdditionalDataDto,
-    "MakePayment200Response": MakePayment200Response,
-    "MakePolicy200Response": MakePolicy200Response,
     "MenuItemDto": MenuItemDto,
     "MultilangTextDto": MultilangTextDto,
     "NameServerDto": NameServerDto,
     "NlAdditionalDataDto": NlAdditionalDataDto,
-    "OrderCreate201Response": OrderCreate201Response,
     "OrderDto": OrderDto,
-    "OrderFind200Response": OrderFind200Response,
     "PaginatedResponse": PaginatedResponse,
     "PaymentDto": PaymentDto,
-    "PaymentFind200Response": PaymentFind200Response,
-    "PaymentGet200Response": PaymentGet200Response,
     "PaymentRedirectUrlResponseDto": PaymentRedirectUrlResponseDto,
     "PaymentSubscriptionDto": PaymentSubscriptionDto,
     "PersistentCart": PersistentCart,
     "Policy": Policy,
     "PolicyData": PolicyData,
     "PolicyDto": PolicyDto,
-    "PolicyFind200Response": PolicyFind200Response,
     "PremiumPriceCategoryDataDto": PremiumPriceCategoryDataDto,
     "PriceDto": PriceDto,
     "PricePolicyDto": PricePolicyDto,
     "PricesDto": PricesDto,
     "ProAdditionalDataDto": ProAdditionalDataDto,
     "ProductAffiliateDto": ProductAffiliateDto,
-    "ProductCategoryCreate201Response": ProductCategoryCreate201Response,
     "ProductCategoryDetails": ProductCategoryDetails,
     "ProductCategoryDetailsDto": ProductCategoryDetailsDto,
     "ProductCategoryDto": ProductCategoryDto,
-    "ProductCategoryFind200Response": ProductCategoryFind200Response,
     "ProductCategoryTitle": ProductCategoryTitle,
-    "ProductCreate201Response": ProductCreate201Response,
     "ProductDetails": ProductDetails,
     "ProductDetailsDto": ProductDetailsDto,
     "ProductDto": ProductDto,
-    "ProductFind200Response": ProductFind200Response,
     "ProductInformationDto": ProductInformationDto,
     "ProductTemplateDto": ProductTemplateDto,
     "ProxyServiceDataDto": ProxyServiceDataDto,
@@ -568,20 +577,14 @@ let typeMap: {[index: string]: any} = {
     "RegistryContactsDto": RegistryContactsDto,
     "SettingOptionsDto": SettingOptionsDto,
     "Settings": Settings,
-    "SettingsCreate201Response": SettingsCreate201Response,
     "SettingsDto": SettingsDto,
-    "SettingsFind200Response": SettingsFind200Response,
     "SmsPayloadDto": SmsPayloadDto,
     "SunriseDataDto": SunriseDataDto,
     "TabDto": TabDto,
     "TaskDto": TaskDto,
-    "TemplateCreate201Response": TemplateCreate201Response,
     "TemplateData": TemplateData,
     "TemplateDto": TemplateDto,
-    "TemplateFind200Response": TemplateFind200Response,
-    "TldCreate200Response": TldCreate200Response,
     "TldDto": TldDto,
-    "TldFind200Response": TldFind200Response,
     "TldPolicyDto": TldPolicyDto,
     "UKDirectDataDto": UKDirectDataDto,
     "UkAdditionalDataDto": UkAdditionalDataDto,
@@ -590,9 +593,6 @@ let typeMap: {[index: string]: any} = {
     "UserAddonPricePolicyDto": UserAddonPricePolicyDto,
     "UserBasketDto": UserBasketDto,
     "UserDto": UserDto,
-    "UserFind200Response": UserFind200Response,
-    "UserGet200Response": UserGet200Response,
-    "UserGetSettings200Response": UserGetSettings200Response,
     "UserPricePolicyDto": UserPricePolicyDto,
     "Value": Value,
     "XXXMemberDataDto": XXXMemberDataDto,

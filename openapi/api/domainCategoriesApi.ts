@@ -15,10 +15,10 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
-import { DomainCategoryCreate201Response } from '../model/domainCategoryCreate201Response';
+import { Create201Response6 } from '../model/create201Response6';
 import { DomainCategoryDto } from '../model/domainCategoryDto';
-import { DomainCategoryFind200Response } from '../model/domainCategoryFind200Response';
 import { ErrorResponse } from '../model/errorResponse';
+import { Find200Response18 } from '../model/find200Response18';
 import { InvoiceGet200Response } from '../model/invoiceGet200Response';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -97,94 +97,12 @@ export class DomainCategoriesApi {
     }
 
     /**
-     * Creates a new domain category. Returns a DomainCategoryDto.
-     * @summary Creates a new domainCategory
-     * @param companyId companyId
-     * @param domainCategoryDto 
-     */
-    public async domainCategoryCreate (companyId: string, domainCategoryDto: DomainCategoryDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainCategoryCreate201Response;  }> {
-        const localVarPath = this.basePath + '/domain-categories';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainCategoryCreate.');
-        }
-
-        // verify required parameter 'domainCategoryDto' is not null or undefined
-        if (domainCategoryDto === null || domainCategoryDto === undefined) {
-            throw new Error('Required parameter domainCategoryDto was null or undefined when calling domainCategoryCreate.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(domainCategoryDto, "DomainCategoryDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: DomainCategoryCreate201Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainCategoryCreate201Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * Deletes a certain domain category. Returns a DomainCategoryDto.
      * @summary Delete a domainCategory
      * @param companyId companyId
      * @param id DomainCategory ID
      */
-    public async domainCategoryDelete (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async _delete (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
         const localVarPath = this.basePath + '/domain-categories/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -200,12 +118,12 @@ export class DomainCategoriesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainCategoryDelete.');
+            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainCategoryDelete.');
+            throw new Error('Required parameter id was null or undefined when calling _delete.');
         }
 
         if (companyId !== undefined) {
@@ -261,14 +179,12 @@ export class DomainCategoriesApi {
         });
     }
     /**
-     * Retrieves a list of all domain categories. Returns an array of DomainCategoryDto.
-     * @summary Get list of all domainCategories
+     * Creates a new domain category. Returns a DomainCategoryDto.
+     * @summary Creates a new domainCategory
      * @param companyId companyId
-     * @param description 
-     * @param currentPage current page
-     * @param perPage per Page 
+     * @param domainCategoryDto 
      */
-    public async domainCategoryFind (companyId: string, description?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainCategoryFind200Response;  }> {
+    public async create (companyId: string, domainCategoryDto: DomainCategoryDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response6;  }> {
         const localVarPath = this.basePath + '/domain-categories';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -283,7 +199,91 @@ export class DomainCategoriesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainCategoryFind.');
+            throw new Error('Required parameter companyId was null or undefined when calling create.');
+        }
+
+        // verify required parameter 'domainCategoryDto' is not null or undefined
+        if (domainCategoryDto === null || domainCategoryDto === undefined) {
+            throw new Error('Required parameter domainCategoryDto was null or undefined when calling create.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(domainCategoryDto, "DomainCategoryDto")
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: Create201Response6;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "Create201Response6");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Retrieves a list of all domain categories. Returns an array of DomainCategoryDto.
+     * @summary Get list of all domainCategories
+     * @param companyId companyId
+     * @param description 
+     * @param currentPage current page
+     * @param perPage per Page 
+     */
+    public async find (companyId: string, description?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response18;  }> {
+        const localVarPath = this.basePath + '/domain-categories';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling find.');
         }
 
         if (companyId !== undefined) {
@@ -334,13 +334,13 @@ export class DomainCategoriesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainCategoryFind200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Find200Response18;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainCategoryFind200Response");
+                            body = ObjectSerializer.deserialize(body, "Find200Response18");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -356,7 +356,7 @@ export class DomainCategoriesApi {
      * @param companyId companyId
      * @param id ID
      */
-    public async domainCategoryGet (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainCategoryCreate201Response;  }> {
+    public async get (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response6;  }> {
         const localVarPath = this.basePath + '/domain-categories/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -372,12 +372,12 @@ export class DomainCategoriesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainCategoryGet.');
+            throw new Error('Required parameter companyId was null or undefined when calling get.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainCategoryGet.');
+            throw new Error('Required parameter id was null or undefined when calling get.');
         }
 
         if (companyId !== undefined) {
@@ -416,13 +416,13 @@ export class DomainCategoriesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainCategoryCreate201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create201Response6;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainCategoryCreate201Response");
+                            body = ObjectSerializer.deserialize(body, "Create201Response6");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -439,7 +439,7 @@ export class DomainCategoriesApi {
      * @param id DomainCategory ID
      * @param domainCategoryDto 
      */
-    public async domainCategoryUpdate (companyId: string, id: string, domainCategoryDto: DomainCategoryDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainCategoryCreate201Response;  }> {
+    public async update (companyId: string, id: string, domainCategoryDto: DomainCategoryDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response6;  }> {
         const localVarPath = this.basePath + '/domain-categories/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -455,17 +455,17 @@ export class DomainCategoriesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling domainCategoryUpdate.');
+            throw new Error('Required parameter companyId was null or undefined when calling update.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling domainCategoryUpdate.');
+            throw new Error('Required parameter id was null or undefined when calling update.');
         }
 
         // verify required parameter 'domainCategoryDto' is not null or undefined
         if (domainCategoryDto === null || domainCategoryDto === undefined) {
-            throw new Error('Required parameter domainCategoryDto was null or undefined when calling domainCategoryUpdate.');
+            throw new Error('Required parameter domainCategoryDto was null or undefined when calling update.');
         }
 
         if (companyId !== undefined) {
@@ -505,13 +505,13 @@ export class DomainCategoriesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainCategoryCreate201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: Create201Response6;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "DomainCategoryCreate201Response");
+                            body = ObjectSerializer.deserialize(body, "Create201Response6");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
