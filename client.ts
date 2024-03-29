@@ -1,6 +1,10 @@
 import { HttpBearerAuth, AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, SettingsApi, TemplatesApi, TldsApi, UsersApi } from "./openapi/api";
 
-export class ApiClient {
+// This is the entrypoint for the openapi package
+export * from './openapi/api/apis';
+export * from './openapi/model/models';
+
+export class Client {
     private basePath: string;
     private httpBearerAuth: HttpBearerAuth;
   

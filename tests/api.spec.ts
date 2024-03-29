@@ -1,11 +1,11 @@
-import { ApiClient } from "../client";
+import { Client } from "../client";
 import { AddonsApi, AffiliatesApi, TemplatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, SettingsApi, TldsApi, UsersApi } from "../openapi/api";
 
 describe('ApiClient', () => {
-  let client: ApiClient;
+  let client: Client;
 
   beforeEach(() => {
-    client = new ApiClient('http://localhost:3000');
+    client = new Client('http://localhost:3000');
   });
 
   it('should create addons API', () => {

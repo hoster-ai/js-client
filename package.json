@@ -2,7 +2,7 @@
   "name": "@hosterai/client",
   "version": "1.0.2",
   "description": "Hoster.AI javascript client",
-  "main": "dist/api.js",
+  "main": "client.js",
   "scripts": {
     "test": "jest",
     "openapi:generate:dev": "openapi-generator-cli generate -i http://localhost:3000/api-json -g typescript-node -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
