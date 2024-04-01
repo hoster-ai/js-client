@@ -153,7 +153,7 @@ describe("ApiClient", () => {
     expect(api).toBeInstanceOf(UsersApi);
   });
 
-  it.only("Try to ban a user without permissions", async () => {
+  it("Try to ban a user without permissions", async () => {
     return client
       .users()
       .ban("user1", "company1")
