@@ -1,6 +1,8 @@
 # Hoster.AI JavaScript Client
 
-This is the JavaScript client for Hoster.AI. It provides an easy-to-use interface for interacting with the Hoster.AI API.
+# JavaScript Client for Hoster.AI
+
+This is the JavaScript client for Hoster.AI, providing an easy-to-use interface for interacting with the Hoster.AI API.
 
 ## Installation
 
@@ -12,11 +14,24 @@ npm install @hosterai/js-client
 
 ## Usage
 
-First, import the client:
+First, import the client using npm:
+
+```bash
+npm install @hosterai/js-client
+```
+
+Or if you prefer using yarn:
+
+```bash
+yarn add @hosterai/js-client
+```
+
+Then, import the client in your JavaScript file:
 
 ```js
 import { Client } from '@hosterai/js-client';
 ```
+
 
 Then, create a new instance of the client:
 
@@ -35,7 +50,7 @@ client.setAccessToken('your access token');
 Then, you can use the client to interact with the API. For example, to get a list of addons:
 
 ```js
-const addons = await client.addons().list();
+const addons = await client.addons().getAddon("id","testConmany");
 ```
 
 ## API
