@@ -67,6 +67,11 @@ Methods for managing add-ons.
 - `updateAddon(id: string, addon: AddonDto)`: Updates an existing addon.
 - `deleteAddon(id: string)`: Deletes an addon.
 
+Example:
+```js
+const addon = await client.addons().getAddon("addonId", "companyId");
+```
+
 ### Affiliates
 
 Methods for managing affiliates.
@@ -76,6 +81,11 @@ Methods for managing affiliates.
 - `createAffiliate(affiliate: AffiliateDto)`: Creates a new affiliate.
 - `updateAffiliate(id: string, affiliate: AffiliateDto)`: Updates an existing affiliate.
 - `deleteAffiliate(id: string)`: Deletes an affiliate.
+
+Example:
+```js
+const affiliates = await client.affiliates().listAffiliates();
+```
 
 ### Companies
 
@@ -87,6 +97,11 @@ Methods for managing companies.
 - `updateCompany(id: string, company: CompanyDto)`: Updates an existing company.
 - `deleteCompany(id: string)`: Deletes a company.
 
+Example:
+```js
+const company = await client.companies().getCompany("companyId");
+```
+
 ### Coupons
 
 Methods for managing coupons.
@@ -96,6 +111,11 @@ Methods for managing coupons.
 - `createCoupon(coupon: CouponDto)`: Creates a new coupon.
 - `updateCoupon(id: string, coupon: CouponDto)`: Updates an existing coupon.
 - `deleteCoupon(id: string)`: Deletes a coupon.
+
+Example:
+```js
+const coupon = await client.coupons().getCoupon("couponId");
+```
 
 ### Domain Categories
 
@@ -107,6 +127,11 @@ Methods for managing domain categories.
 - `updateDomainCategory(id: string, category: DomainCategoryDto)`: Updates an existing domain category.
 - `deleteDomainCategory(id: string)`: Deletes a domain category.
 
+Example:
+```js
+const categories = await client.domainCategories().listDomainCategories();
+```
+
 ### Domain Contacts
 
 Methods for managing domain contacts.
@@ -116,6 +141,11 @@ Methods for managing domain contacts.
 - `createDomainContact(contact: DomainContactDto)`: Creates a new domain contact.
 - `updateDomainContact(id: string, contact: DomainContactDto)`: Updates an existing domain contact.
 - `deleteDomainContact(id: string)`: Deletes a domain contact.
+
+Example:
+```js
+const contact = await client.domainContacts().getDomainContact("contactId");
+```
 
 ### Domain Names
 
@@ -127,6 +157,11 @@ Methods for managing domain names.
 - `transferDomain(domain: DomainDto)`: Transfers a domain.
 - `renewDomain(id: string, period: number)`: Renews a domain for a specified period.
 
+Example:
+```js
+const domains = await client.domainNames().listDomains();
+```
+
 ### IP Groups
 
 Methods for managing IP groups.
@@ -136,6 +171,11 @@ Methods for managing IP groups.
 - `createIpGroup(group: IpGroupDto)`: Creates a new IP group.
 - `updateIpGroup(id: string, group: IpGroupDto)`: Updates an existing IP group.
 - `deleteIpGroup(id: string)`: Deletes an IP group.
+
+Example:
+```js
+const ipGroup = await client.ipGroups().getIpGroup("groupId");
+```
 
 ### IPs
 
@@ -147,6 +187,11 @@ Methods for managing individual IPs.
 - `updateIp(id: string, ip: IpDto)`: Updates an existing IP.
 - `deleteIp(id: string)`: Deletes an IP.
 
+Example:
+```js
+const ips = await client.ips().listIps();
+```
+
 ### Integrations
 
 Methods for managing integrations.
@@ -156,6 +201,11 @@ Methods for managing integrations.
 - `createIntegration(integration: IntegrationDto)`: Creates a new integration.
 - `updateIntegration(id: string, integration: IntegrationDto)`: Updates an existing integration.
 - `deleteIntegration(id: string)`: Deletes an integration.
+
+Example:
+```js
+const integration = await client.integrations().getIntegration("integrationId");
+```
 
 ### Invoice Contacts
 
@@ -167,6 +217,11 @@ Methods for managing invoice contacts.
 - `updateInvoiceContact(id: string, contact: InvoiceContactDto)`: Updates an existing invoice contact.
 - `deleteInvoiceContact(id: string)`: Deletes an invoice contact.
 
+Example:
+```js
+const invoiceContacts = await client.invoiceContacts().listInvoiceContacts();
+```
+
 ### Invoices
 
 Methods for managing invoices.
@@ -176,6 +231,11 @@ Methods for managing invoices.
 - `createInvoice(invoice: InvoiceDto)`: Creates a new invoice.
 - `updateInvoice(id: string, invoice: InvoiceDto)`: Updates an existing invoice.
 - `deleteInvoice(id: string)`: Deletes an invoice.
+
+Example:
+```js
+const invoice = await client.invoices().getInvoice("invoiceId");
+```
 
 ### Issues
 
@@ -187,6 +247,11 @@ Methods for managing issues.
 - `updateIssue(id: string, issue: IssueDto)`: Updates an existing issue.
 - `deleteIssue(id: string)`: Deletes an issue.
 
+Example:
+```js
+const issues = await client.issues().listIssues();
+```
+
 ### Items
 
 Methods for managing items.
@@ -196,6 +261,11 @@ Methods for managing items.
 - `createItem(item: ItemDto)`: Creates a new item.
 - `updateItem(id: string, item: ItemDto)`: Updates an existing item.
 - `deleteItem(id: string)`: Deletes an item.
+
+Example:
+```js
+const item = await client.items().getItem("itemId");
+```
 
 ### Orders
 
@@ -207,6 +277,11 @@ Methods for managing orders.
 - `updateOrder(id: string, order: OrderDto)`: Updates an existing order.
 - `deleteOrder(id: string)`: Deletes an order.
 
+Example:
+```js
+const orders = await client.orders().listOrders();
+```
+
 ### Payments
 
 Methods for managing payments.
@@ -216,6 +291,11 @@ Methods for managing payments.
 - `createPayment(payment: PaymentDto)`: Creates a new payment.
 - `updatePayment(id: string, payment: PaymentDto)`: Updates an existing payment.
 - `deletePayment(id: string)`: Deletes a payment.
+
+Example:
+```js
+const payment = await client.payments().getPayment("paymentId");
+```
 
 ### Policies
 
@@ -227,6 +307,11 @@ Methods for managing policies.
 - `updatePolicy(id: string, policy: PolicyDto)`: Updates an existing policy.
 - `deletePolicy(id: string)`: Deletes a policy.
 
+Example:
+```js
+const policies = await client.policies().listPolicies();
+```
+
 ### Product Categories
 
 Methods for managing product categories.
@@ -236,6 +321,11 @@ Methods for managing product categories.
 - `createProductCategory(category: ProductCategoryDto)`: Creates a new product category.
 - `updateProductCategory(id: string, category: ProductCategoryDto)`: Updates an existing product category.
 - `deleteProductCategory(id: string)`: Deletes a product category.
+
+Example:
+```js
+const category = await client.productCategories().getProductCategory("categoryId");
+```
 
 ### Products
 
@@ -247,6 +337,11 @@ Methods for managing products.
 - `updateProduct(id: string, product: ProductDto)`: Updates an existing product.
 - `deleteProduct(id: string)`: Deletes a product.
 
+Example:
+```js
+const products = await client.products().listProducts();
+```
+
 ### Settings
 
 Methods for managing settings.
@@ -254,6 +349,11 @@ Methods for managing settings.
 - `getSetting(key: string)`: Retrieves a specific setting by key.
 - `listSettings()`: Lists all settings.
 - `updateSetting(key: string, value: string)`: Updates an existing setting.
+
+Example:
+```js
+const setting = await client.settings().getSetting("settingKey");
+```
 
 ### Templates
 
@@ -265,6 +365,11 @@ Methods for managing templates.
 - `updateTemplate(id: string, template: TemplateDto)`: Updates an existing template.
 - `deleteTemplate(id: string)`: Deletes a template.
 
+Example:
+```js
+const templates = await client.templates().listTemplates();
+```
+
 ### TLDs
 
 Methods for managing Top-Level Domains (TLDs).
@@ -275,6 +380,11 @@ Methods for managing Top-Level Domains (TLDs).
 - `updateTld(id: string, tld: TldDto)`: Updates an existing TLD.
 - `deleteTld(id: string)`: Deletes a TLD.
 
+Example:
+```js
+const tld = await client.tlds().getTld("tldId");
+```
+
 ### Users
 
 Methods for managing users.
@@ -284,6 +394,11 @@ Methods for managing users.
 - `createUser(user: UserDto)`: Creates a new user.
 - `updateUser(id: string, user: UserDto)`: Updates an existing user.
 - `deleteUser(id: string)`: Deletes a user.
+
+Example:
+```js
+const users = await client.users().listUsers();
+```
 
 Each of these methods returns a Promise that resolves with the requested data or rejects with an error if the request fails.
 
