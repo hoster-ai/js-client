@@ -16,7 +16,7 @@ export class IssueDto {
     /**
     * The unique identifier for the issue.
     */
-    'id': string;
+    'id'?: string;
     /**
     * The title of the issue.
     */

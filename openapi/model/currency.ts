@@ -16,10 +16,10 @@ import { RequestFile } from './models';
 * Currency user uses.
 */
 export class Currency {
-    'id': string;
-    'name': string;
-    'threeLetterCode': string;
-    'symbol': string;
+    'id'?: string;
+    'name'?: string;
+    'threeLetterCode'?: string;
+    'symbol'?: string;
 
     static discriminator: string | undefined = undefined;
 

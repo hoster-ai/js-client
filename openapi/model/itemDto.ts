@@ -50,9 +50,9 @@ export class ItemDto {
     /**
     * Status of the item
     */
-    'status': ItemDto.StatusEnum;
+    'status'?: ItemDto.StatusEnum;
     'productCategoryDetails'?: ProductCategoryDetails;
-    'productDetails': ProductDetails;
+    'productDetails'?: ProductDetails;
     /**
     * Addons associated with the item
     */
@@ -97,7 +97,7 @@ export class ItemDto {
     /**
     * Duration of the item\'s subscription in months
     */
-    'duration': ItemDto.DurationEnum;
+    'duration'?: ItemDto.DurationEnum;
     /**
     * Unique identifiers for items that are bundled with this item
     */
@@ -131,7 +131,7 @@ export class ItemDto {
     * Dates when the item was postponed
     */
     'timesPostponed'?: Array<Date>;
-    'meta': object;
+    'meta'?: object;
     /**
     * Date when the item was created
     */

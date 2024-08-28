@@ -17,15 +17,15 @@ import http from 'http';
 /* tslint:disable:no-unused-locals */
 import { CatParameterDataDto } from '../model/catParameterDataDto';
 import { ChallengeParametersDataDto } from '../model/challengeParametersDataDto';
-import { CheckAvailability200Response } from '../model/checkAvailability200Response';
-import { CheckAvailabilitySockets200Response } from '../model/checkAvailabilitySockets200Response';
+import { CheckDomainNameAvailability200Response } from '../model/checkDomainNameAvailability200Response';
+import { CheckDomainNameAvailabilitySockets200Response } from '../model/checkDomainNameAvailabilitySockets200Response';
 import { ClaimsTokenDataDto } from '../model/claimsTokenDataDto';
 import { DomainBundleDto } from '../model/domainBundleDto';
 import { DomainCheckAvailabilityRequestDto } from '../model/domainCheckAvailabilityRequestDto';
 import { DonutsPriceCategoryDataDto } from '../model/donutsPriceCategoryDataDto';
 import { ErrorResponse } from '../model/errorResponse';
-import { Find200Response15 } from '../model/find200Response15';
-import { Get200Response3 } from '../model/get200Response3';
+import { FindDomainNames200Response } from '../model/findDomainNames200Response';
+import { GetDomainName200Response } from '../model/getDomainName200Response';
 import { IntendedUseParamsDataDto } from '../model/intendedUseParamsDataDto';
 import { PremiumPriceCategoryDataDto } from '../model/premiumPriceCategoryDataDto';
 import { ProxyServiceDataDto } from '../model/proxyServiceDataDto';
@@ -109,167 +109,12 @@ export class DomainNamesApi {
     }
 
     /**
-     * Receives the unique identifiers of a company(companyId) and a domain name(id) and then deletes it. It then returns success or not
-     * @summary Delete a domain name
-     * @param id Unique identifier of the domain name
-     * @param companyId Unique identifier of the company the domain belongs to
-     */
-    public async _delete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/{id}'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling _delete.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Receives the unique identifiers of a company(companyId) and exports all the domain names that belong to it. It then returns a csv file conataining the domain names.
-     * @summary Export domain names to csv file
-     * @param companyId The unique identifier of the company to export domains for.
-     */
-    public async _export (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
-        const localVarPath = this.basePath + '/domain-names/export';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling _export.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * Receives the unique identifiers of a company(companyId) and the domain name(id) that is in the process of being transferred and then accepts it. It then returns success or not
      * @summary Accept domain name transfer
      * @param id Unique identifier of the domain name
      * @param companyId Unique identifier of the company the domain will be transferred to
      */
-    public async acceptTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async acceptDomainNameTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/transfer/accept'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -285,12 +130,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling acceptTransfer.');
+            throw new Error('Required parameter id was null or undefined when calling acceptDomainNameTransfer.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling acceptTransfer.');
+            throw new Error('Required parameter companyId was null or undefined when calling acceptDomainNameTransfer.');
         }
 
         if (companyId !== undefined) {
@@ -350,7 +195,7 @@ export class DomainNamesApi {
      * @param id Unique identifier of the domain name
      * @param companyId Unique identifier of the company the domain belongs to
      */
-    public async activateShield (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async activateDomainNameShield (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/shield/activate'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -366,12 +211,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling activateShield.');
+            throw new Error('Required parameter id was null or undefined when calling activateDomainNameShield.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling activateShield.');
+            throw new Error('Required parameter companyId was null or undefined when calling activateDomainNameShield.');
         }
 
         if (companyId !== undefined) {
@@ -432,7 +277,7 @@ export class DomainNamesApi {
      * @param companyId The unique identifier of the company the domain belongs to.
      * @param domainBundleDto 
      */
-    public async addBundle (id: string, companyId: string, domainBundleDto: DomainBundleDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response3;  }> {
+    public async addDomainNameBundle (id: string, companyId: string, domainBundleDto: DomainBundleDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetDomainName200Response;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/bundle/add'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -448,17 +293,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling addBundle.');
+            throw new Error('Required parameter id was null or undefined when calling addDomainNameBundle.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling addBundle.');
+            throw new Error('Required parameter companyId was null or undefined when calling addDomainNameBundle.');
         }
 
         // verify required parameter 'domainBundleDto' is not null or undefined
         if (domainBundleDto === null || domainBundleDto === undefined) {
-            throw new Error('Required parameter domainBundleDto was null or undefined when calling addBundle.');
+            throw new Error('Required parameter domainBundleDto was null or undefined when calling addDomainNameBundle.');
         }
 
         if (companyId !== undefined) {
@@ -498,13 +343,13 @@ export class DomainNamesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response3;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetDomainName200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response3");
+                            body = ObjectSerializer.deserialize(body, "GetDomainName200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -520,7 +365,7 @@ export class DomainNamesApi {
      * @param id Unique identifier of the domain name
      * @param companyId Unique identifier of the company the domain belongs to
      */
-    public async cancelTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async cancelDomainNameTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/transfer/cancel'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -536,12 +381,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling cancelTransfer.');
+            throw new Error('Required parameter id was null or undefined when calling cancelDomainNameTransfer.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling cancelTransfer.');
+            throw new Error('Required parameter companyId was null or undefined when calling cancelDomainNameTransfer.');
         }
 
         if (companyId !== undefined) {
@@ -601,7 +446,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company requesting the check.
      * @param domainCheckAvailabilityRequestDto 
      */
-    public async checkAvailability (companyId: string, domainCheckAvailabilityRequestDto: DomainCheckAvailabilityRequestDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CheckAvailability200Response;  }> {
+    public async checkDomainNameAvailability (companyId: string, domainCheckAvailabilityRequestDto: DomainCheckAvailabilityRequestDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CheckDomainNameAvailability200Response;  }> {
         const localVarPath = this.basePath + '/domain-names/check-availability';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -616,12 +461,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling checkAvailability.');
+            throw new Error('Required parameter companyId was null or undefined when calling checkDomainNameAvailability.');
         }
 
         // verify required parameter 'domainCheckAvailabilityRequestDto' is not null or undefined
         if (domainCheckAvailabilityRequestDto === null || domainCheckAvailabilityRequestDto === undefined) {
-            throw new Error('Required parameter domainCheckAvailabilityRequestDto was null or undefined when calling checkAvailability.');
+            throw new Error('Required parameter domainCheckAvailabilityRequestDto was null or undefined when calling checkDomainNameAvailability.');
         }
 
         if (companyId !== undefined) {
@@ -661,13 +506,13 @@ export class DomainNamesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: CheckAvailability200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CheckDomainNameAvailability200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CheckAvailability200Response");
+                            body = ObjectSerializer.deserialize(body, "CheckDomainNameAvailability200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -683,7 +528,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company requesting the check
      * @param domainCheckAvailabilityRequestDto 
      */
-    public async checkAvailabilitySockets (companyId: string, domainCheckAvailabilityRequestDto: DomainCheckAvailabilityRequestDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CheckAvailabilitySockets200Response;  }> {
+    public async checkDomainNameAvailabilitySockets (companyId: string, domainCheckAvailabilityRequestDto: DomainCheckAvailabilityRequestDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CheckDomainNameAvailabilitySockets200Response;  }> {
         const localVarPath = this.basePath + '/domain-names/check-availability/web-sockets';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -698,12 +543,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling checkAvailabilitySockets.');
+            throw new Error('Required parameter companyId was null or undefined when calling checkDomainNameAvailabilitySockets.');
         }
 
         // verify required parameter 'domainCheckAvailabilityRequestDto' is not null or undefined
         if (domainCheckAvailabilityRequestDto === null || domainCheckAvailabilityRequestDto === undefined) {
-            throw new Error('Required parameter domainCheckAvailabilityRequestDto was null or undefined when calling checkAvailabilitySockets.');
+            throw new Error('Required parameter domainCheckAvailabilityRequestDto was null or undefined when calling checkDomainNameAvailabilitySockets.');
         }
 
         if (companyId !== undefined) {
@@ -743,13 +588,13 @@ export class DomainNamesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: CheckAvailabilitySockets200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CheckDomainNameAvailabilitySockets200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "CheckAvailabilitySockets200Response");
+                            body = ObjectSerializer.deserialize(body, "CheckDomainNameAvailabilitySockets200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -765,7 +610,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name to check for transfer eligibility.
      * @param companyId The unique identifier of the company the domain belongs to.
      */
-    public async checkTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async checkDomainNameTransfer (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/transfer/check'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -781,12 +626,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling checkTransfer.');
+            throw new Error('Required parameter id was null or undefined when calling checkDomainNameTransfer.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling checkTransfer.');
+            throw new Error('Required parameter companyId was null or undefined when calling checkDomainNameTransfer.');
         }
 
         if (companyId !== undefined) {
@@ -847,7 +692,7 @@ export class DomainNamesApi {
      * @param companyId The unique identifier of the company to claim the domain.
      * @param document Proof of ownership document.
      */
-    public async claim (domain: string, companyId: string, document: any, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async claimDomainName (domain: string, companyId: string, document: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{domain}/claim/upload'
             .replace('{' + 'domain' + '}', encodeURIComponent(String(domain)));
         let localVarQueryParameters: any = {};
@@ -863,17 +708,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'domain' is not null or undefined
         if (domain === null || domain === undefined) {
-            throw new Error('Required parameter domain was null or undefined when calling claim.');
+            throw new Error('Required parameter domain was null or undefined when calling claimDomainName.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling claim.');
+            throw new Error('Required parameter companyId was null or undefined when calling claimDomainName.');
         }
 
         // verify required parameter 'document' is not null or undefined
         if (document === null || document === undefined) {
-            throw new Error('Required parameter document was null or undefined when calling claim.');
+            throw new Error('Required parameter document was null or undefined when calling claimDomainName.');
         }
 
         if (companyId !== undefined) {
@@ -881,7 +726,7 @@ export class DomainNamesApi {
         }
 
         if (document !== undefined) {
-            localVarQueryParameters['document'] = ObjectSerializer.serialize(document, "any");
+            localVarQueryParameters['document'] = ObjectSerializer.serialize(document, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -937,7 +782,7 @@ export class DomainNamesApi {
      * @param id Unique identifier of the domain name
      * @param companyId Unique identifier of the company the domain belongs to
      */
-    public async deactivateShield (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivateDomainNameShield (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/shield/deactivate'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -953,12 +798,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deactivateShield.');
+            throw new Error('Required parameter id was null or undefined when calling deactivateDomainNameShield.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling deactivateShield.');
+            throw new Error('Required parameter companyId was null or undefined when calling deactivateDomainNameShield.');
         }
 
         if (companyId !== undefined) {
@@ -1013,6 +858,161 @@ export class DomainNamesApi {
         });
     }
     /**
+     * Receives the unique identifiers of a company(companyId) and a domain name(id) and then deletes it. It then returns success or not
+     * @summary Delete a domain name
+     * @param id Unique identifier of the domain name
+     * @param companyId Unique identifier of the company the domain belongs to
+     */
+    public async deleteDomainName (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteDomainName.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling deleteDomainName.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Receives the unique identifiers of a company(companyId) and exports all the domain names that belong to it. It then returns a csv file conataining the domain names.
+     * @summary Export domain names to csv file
+     * @param companyId The unique identifier of the company to export domains for.
+     */
+    public async exportDomainNames (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/domain-names/export';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling exportDomainNames.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
      *  Recieves the unique identifier of a company(comapnyId) and returns all the domain names that belong to it. In the case of a domain name given as a query, The results will be sorted by the query
      * @summary Get list of all domain names
      * @param companyId The unique identifier of the company you wish to get domains for.
@@ -1020,7 +1020,7 @@ export class DomainNamesApi {
      * @param currentPage Specify the current page number for pagination.
      * @param perPage Specify the number of items per page for pagination.
      */
-    public async find (companyId: string, domainName?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response15;  }> {
+    public async findDomainNames (companyId: string, domainName?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FindDomainNames200Response;  }> {
         const localVarPath = this.basePath + '/domain-names';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -1035,7 +1035,7 @@ export class DomainNamesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling find.');
+            throw new Error('Required parameter companyId was null or undefined when calling findDomainNames.');
         }
 
         if (companyId !== undefined) {
@@ -1086,13 +1086,13 @@ export class DomainNamesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Find200Response15;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: FindDomainNames200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Find200Response15");
+                            body = ObjectSerializer.deserialize(body, "FindDomainNames200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1108,7 +1108,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name you wish to get.
      * @param companyId The unique identifier of the company the domain belongs to.
      */
-    public async get (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response3;  }> {
+    public async getDomainName (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetDomainName200Response;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1124,12 +1124,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling get.');
+            throw new Error('Required parameter id was null or undefined when calling getDomainName.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling get.');
+            throw new Error('Required parameter companyId was null or undefined when calling getDomainName.');
         }
 
         if (companyId !== undefined) {
@@ -1168,13 +1168,13 @@ export class DomainNamesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response3;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetDomainName200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response3");
+                            body = ObjectSerializer.deserialize(body, "GetDomainName200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1190,7 +1190,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name to lock.
      * @param companyId The unique identifier of the company the domain name belongs to.
      */
-    public async lock (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async lockDomainName (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/lock'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1206,12 +1206,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling lock.');
+            throw new Error('Required parameter id was null or undefined when calling lockDomainName.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling lock.');
+            throw new Error('Required parameter companyId was null or undefined when calling lockDomainName.');
         }
 
         if (companyId !== undefined) {
@@ -1271,7 +1271,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name to recall.
      * @param companyId The unique identifier of the company the domain belongs to.
      */
-    public async recall (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async recallDomainName (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/recall'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1287,12 +1287,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling recall.');
+            throw new Error('Required parameter id was null or undefined when calling recallDomainName.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling recall.');
+            throw new Error('Required parameter companyId was null or undefined when calling recallDomainName.');
         }
 
         if (companyId !== undefined) {
@@ -1353,7 +1353,7 @@ export class DomainNamesApi {
      * @param companyId The unique identifier of the company the domainn belongs to.
      * @param bundleName The name of the bundle to remove from the domain name.
      */
-    public async removeBundle (id: string, companyId: string, bundleName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeDomainNameBundle (id: string, companyId: string, bundleName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/bundle/remove'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1369,17 +1369,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling removeBundle.');
+            throw new Error('Required parameter id was null or undefined when calling removeDomainNameBundle.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling removeBundle.');
+            throw new Error('Required parameter companyId was null or undefined when calling removeDomainNameBundle.');
         }
 
         // verify required parameter 'bundleName' is not null or undefined
         if (bundleName === null || bundleName === undefined) {
-            throw new Error('Required parameter bundleName was null or undefined when calling removeBundle.');
+            throw new Error('Required parameter bundleName was null or undefined when calling removeDomainNameBundle.');
         }
 
         if (companyId !== undefined) {
@@ -1443,7 +1443,7 @@ export class DomainNamesApi {
      * @param id Unique identifier of the domain name
      * @param companyId Unique identifier of the company the domain belongs to
      */
-    public async sendAuthCode (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async sendDomainNameAuthCode (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/send-auth-code'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1459,12 +1459,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendAuthCode.');
+            throw new Error('Required parameter id was null or undefined when calling sendDomainNameAuthCode.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling sendAuthCode.');
+            throw new Error('Required parameter companyId was null or undefined when calling sendDomainNameAuthCode.');
         }
 
         if (companyId !== undefined) {
@@ -1524,7 +1524,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name to sync.
      * @param companyId The unique identifier of the company the domain belons to.
      */
-    public async sync (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async syncDomainName (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/sync'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1540,12 +1540,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sync.');
+            throw new Error('Required parameter id was null or undefined when calling syncDomainName.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling sync.');
+            throw new Error('Required parameter companyId was null or undefined when calling syncDomainName.');
         }
 
         if (companyId !== undefined) {
@@ -1605,7 +1605,7 @@ export class DomainNamesApi {
      * @param id The unique identifier of the domain name to unlock.
      * @param companyId The unique identifier of the company the domain name belongs to.
      */
-    public async unlock (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async unlockDomainName (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/unlock'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1621,12 +1621,12 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling unlock.');
+            throw new Error('Required parameter id was null or undefined when calling unlockDomainName.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling unlock.');
+            throw new Error('Required parameter companyId was null or undefined when calling unlockDomainName.');
         }
 
         if (companyId !== undefined) {
@@ -1687,7 +1687,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param catParameterDataDto 
      */
-    public async updateAdditionalCat (id: string, companyId: string, catParameterDataDto: CatParameterDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalCat (id: string, companyId: string, catParameterDataDto: CatParameterDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/cat-parameter'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1703,17 +1703,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalCat.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalCat.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalCat.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalCat.');
         }
 
         // verify required parameter 'catParameterDataDto' is not null or undefined
         if (catParameterDataDto === null || catParameterDataDto === undefined) {
-            throw new Error('Required parameter catParameterDataDto was null or undefined when calling updateAdditionalCat.');
+            throw new Error('Required parameter catParameterDataDto was null or undefined when calling updateDomainNameAdditionalCat.');
         }
 
         if (companyId !== undefined) {
@@ -1775,7 +1775,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param challengeParametersDataDto 
      */
-    public async updateAdditionalChallenge (id: string, companyId: string, challengeParametersDataDto: ChallengeParametersDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalChallenge (id: string, companyId: string, challengeParametersDataDto: ChallengeParametersDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/challenge-parameter'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1791,17 +1791,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalChallenge.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalChallenge.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalChallenge.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalChallenge.');
         }
 
         // verify required parameter 'challengeParametersDataDto' is not null or undefined
         if (challengeParametersDataDto === null || challengeParametersDataDto === undefined) {
-            throw new Error('Required parameter challengeParametersDataDto was null or undefined when calling updateAdditionalChallenge.');
+            throw new Error('Required parameter challengeParametersDataDto was null or undefined when calling updateDomainNameAdditionalChallenge.');
         }
 
         if (companyId !== undefined) {
@@ -1863,7 +1863,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param claimsTokenDataDto 
      */
-    public async updateAdditionalClaimTokenData (id: string, companyId: string, claimsTokenDataDto: ClaimsTokenDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalClaimTokenData (id: string, companyId: string, claimsTokenDataDto: ClaimsTokenDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/claims-token'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1879,17 +1879,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalClaimTokenData.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalClaimTokenData.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalClaimTokenData.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalClaimTokenData.');
         }
 
         // verify required parameter 'claimsTokenDataDto' is not null or undefined
         if (claimsTokenDataDto === null || claimsTokenDataDto === undefined) {
-            throw new Error('Required parameter claimsTokenDataDto was null or undefined when calling updateAdditionalClaimTokenData.');
+            throw new Error('Required parameter claimsTokenDataDto was null or undefined when calling updateDomainNameAdditionalClaimTokenData.');
         }
 
         if (companyId !== undefined) {
@@ -1951,7 +1951,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param donutsPriceCategoryDataDto 
      */
-    public async updateAdditionalDonutsPriceCategoryData (id: string, companyId: string, donutsPriceCategoryDataDto: DonutsPriceCategoryDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalDonutsPriceCategoryData (id: string, companyId: string, donutsPriceCategoryDataDto: DonutsPriceCategoryDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/donuts-price-category'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1967,17 +1967,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalDonutsPriceCategoryData.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalDonutsPriceCategoryData.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalDonutsPriceCategoryData.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalDonutsPriceCategoryData.');
         }
 
         // verify required parameter 'donutsPriceCategoryDataDto' is not null or undefined
         if (donutsPriceCategoryDataDto === null || donutsPriceCategoryDataDto === undefined) {
-            throw new Error('Required parameter donutsPriceCategoryDataDto was null or undefined when calling updateAdditionalDonutsPriceCategoryData.');
+            throw new Error('Required parameter donutsPriceCategoryDataDto was null or undefined when calling updateDomainNameAdditionalDonutsPriceCategoryData.');
         }
 
         if (companyId !== undefined) {
@@ -2039,7 +2039,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param intendedUseParamsDataDto 
      */
-    public async updateAdditionalIntendedUseParamsDataDto (id: string, companyId: string, intendedUseParamsDataDto: IntendedUseParamsDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalIntendedUseParamsDataDto (id: string, companyId: string, intendedUseParamsDataDto: IntendedUseParamsDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/intended-use-params'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2055,17 +2055,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalIntendedUseParamsDataDto.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalIntendedUseParamsDataDto.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalIntendedUseParamsDataDto.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalIntendedUseParamsDataDto.');
         }
 
         // verify required parameter 'intendedUseParamsDataDto' is not null or undefined
         if (intendedUseParamsDataDto === null || intendedUseParamsDataDto === undefined) {
-            throw new Error('Required parameter intendedUseParamsDataDto was null or undefined when calling updateAdditionalIntendedUseParamsDataDto.');
+            throw new Error('Required parameter intendedUseParamsDataDto was null or undefined when calling updateDomainNameAdditionalIntendedUseParamsDataDto.');
         }
 
         if (companyId !== undefined) {
@@ -2127,7 +2127,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param premiumPriceCategoryDataDto 
      */
-    public async updateAdditionalPremiumPriceCategoryData (id: string, companyId: string, premiumPriceCategoryDataDto: PremiumPriceCategoryDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalPremiumPriceCategoryData (id: string, companyId: string, premiumPriceCategoryDataDto: PremiumPriceCategoryDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/premium-price-category'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2143,17 +2143,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalPremiumPriceCategoryData.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalPremiumPriceCategoryData.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalPremiumPriceCategoryData.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalPremiumPriceCategoryData.');
         }
 
         // verify required parameter 'premiumPriceCategoryDataDto' is not null or undefined
         if (premiumPriceCategoryDataDto === null || premiumPriceCategoryDataDto === undefined) {
-            throw new Error('Required parameter premiumPriceCategoryDataDto was null or undefined when calling updateAdditionalPremiumPriceCategoryData.');
+            throw new Error('Required parameter premiumPriceCategoryDataDto was null or undefined when calling updateDomainNameAdditionalPremiumPriceCategoryData.');
         }
 
         if (companyId !== undefined) {
@@ -2215,7 +2215,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param proxyServiceDataDto 
      */
-    public async updateAdditionalProxyServiceDataDto (id: string, companyId: string, proxyServiceDataDto: ProxyServiceDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalProxyServiceDataDto (id: string, companyId: string, proxyServiceDataDto: ProxyServiceDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/proxy-service'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2231,17 +2231,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalProxyServiceDataDto.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalProxyServiceDataDto.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalProxyServiceDataDto.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalProxyServiceDataDto.');
         }
 
         // verify required parameter 'proxyServiceDataDto' is not null or undefined
         if (proxyServiceDataDto === null || proxyServiceDataDto === undefined) {
-            throw new Error('Required parameter proxyServiceDataDto was null or undefined when calling updateAdditionalProxyServiceDataDto.');
+            throw new Error('Required parameter proxyServiceDataDto was null or undefined when calling updateDomainNameAdditionalProxyServiceDataDto.');
         }
 
         if (companyId !== undefined) {
@@ -2303,7 +2303,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param sunriseDataDto 
      */
-    public async updateAdditionalSunriseData (id: string, companyId: string, sunriseDataDto: SunriseDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalSunriseData (id: string, companyId: string, sunriseDataDto: SunriseDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/sunrise'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2319,17 +2319,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalSunriseData.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalSunriseData.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalSunriseData.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalSunriseData.');
         }
 
         // verify required parameter 'sunriseDataDto' is not null or undefined
         if (sunriseDataDto === null || sunriseDataDto === undefined) {
-            throw new Error('Required parameter sunriseDataDto was null or undefined when calling updateAdditionalSunriseData.');
+            throw new Error('Required parameter sunriseDataDto was null or undefined when calling updateDomainNameAdditionalSunriseData.');
         }
 
         if (companyId !== undefined) {
@@ -2391,7 +2391,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param uKDirectDataDto 
      */
-    public async updateAdditionalUkDirectData (id: string, companyId: string, uKDirectDataDto: UKDirectDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalUkDirectData (id: string, companyId: string, uKDirectDataDto: UKDirectDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/uk-direct'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2407,17 +2407,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalUkDirectData.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalUkDirectData.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalUkDirectData.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalUkDirectData.');
         }
 
         // verify required parameter 'uKDirectDataDto' is not null or undefined
         if (uKDirectDataDto === null || uKDirectDataDto === undefined) {
-            throw new Error('Required parameter uKDirectDataDto was null or undefined when calling updateAdditionalUkDirectData.');
+            throw new Error('Required parameter uKDirectDataDto was null or undefined when calling updateDomainNameAdditionalUkDirectData.');
         }
 
         if (companyId !== undefined) {
@@ -2479,7 +2479,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param xXXMemberDataDto 
      */
-    public async updateAdditionalxxxMemberData (id: string, companyId: string, xXXMemberDataDto: XXXMemberDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdditionalxxxMemberData (id: string, companyId: string, xXXMemberDataDto: XXXMemberDataDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/additional/xxx-member'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2495,17 +2495,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdditionalxxxMemberData.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdditionalxxxMemberData.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdditionalxxxMemberData.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdditionalxxxMemberData.');
         }
 
         // verify required parameter 'xXXMemberDataDto' is not null or undefined
         if (xXXMemberDataDto === null || xXXMemberDataDto === undefined) {
-            throw new Error('Required parameter xXXMemberDataDto was null or undefined when calling updateAdditionalxxxMemberData.');
+            throw new Error('Required parameter xXXMemberDataDto was null or undefined when calling updateDomainNameAdditionalxxxMemberData.');
         }
 
         if (companyId !== undefined) {
@@ -2567,7 +2567,7 @@ export class DomainNamesApi {
      * @param newAdminCode New admin code
      * @param companyId Unique identifier of the company the domain belongs to
      */
-    public async updateAdminCode (id: string, newAdminCode: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameAdminCode (id: string, newAdminCode: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/contacts/admin/{newAdminCode}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'newAdminCode' + '}', encodeURIComponent(String(newAdminCode)));
@@ -2584,17 +2584,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateAdminCode.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameAdminCode.');
         }
 
         // verify required parameter 'newAdminCode' is not null or undefined
         if (newAdminCode === null || newAdminCode === undefined) {
-            throw new Error('Required parameter newAdminCode was null or undefined when calling updateAdminCode.');
+            throw new Error('Required parameter newAdminCode was null or undefined when calling updateDomainNameAdminCode.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateAdminCode.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameAdminCode.');
         }
 
         if (companyId !== undefined) {
@@ -2655,7 +2655,7 @@ export class DomainNamesApi {
      * @param newBillingCode New billing code
      * @param companyId Unique identifier of the company the domain belongs to
      */
-    public async updateBillingCode (id: string, newBillingCode: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameBillingCode (id: string, newBillingCode: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/contacts/billing/{newBillingCode}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'newBillingCode' + '}', encodeURIComponent(String(newBillingCode)));
@@ -2672,17 +2672,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateBillingCode.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameBillingCode.');
         }
 
         // verify required parameter 'newBillingCode' is not null or undefined
         if (newBillingCode === null || newBillingCode === undefined) {
-            throw new Error('Required parameter newBillingCode was null or undefined when calling updateBillingCode.');
+            throw new Error('Required parameter newBillingCode was null or undefined when calling updateDomainNameBillingCode.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateBillingCode.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameBillingCode.');
         }
 
         if (companyId !== undefined) {
@@ -2743,7 +2743,7 @@ export class DomainNamesApi {
      * @param companyId Unique identifier of the company the domain belongs to
      * @param newRegistrantCode New registrant code
      */
-    public async updateRegistrantCode (id: string, companyId: string, newRegistrantCode: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response3;  }> {
+    public async updateDomainNameRegistrantCode (id: string, companyId: string, newRegistrantCode: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetDomainName200Response;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/contacts/registrant/{newRegistrantCode}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'newRegistrantCode' + '}', encodeURIComponent(String(newRegistrantCode)));
@@ -2760,17 +2760,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateRegistrantCode.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameRegistrantCode.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateRegistrantCode.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameRegistrantCode.');
         }
 
         // verify required parameter 'newRegistrantCode' is not null or undefined
         if (newRegistrantCode === null || newRegistrantCode === undefined) {
-            throw new Error('Required parameter newRegistrantCode was null or undefined when calling updateRegistrantCode.');
+            throw new Error('Required parameter newRegistrantCode was null or undefined when calling updateDomainNameRegistrantCode.');
         }
 
         if (companyId !== undefined) {
@@ -2809,13 +2809,13 @@ export class DomainNamesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response3;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetDomainName200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response3");
+                            body = ObjectSerializer.deserialize(body, "GetDomainName200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -2832,7 +2832,7 @@ export class DomainNamesApi {
      * @param newTechCode New tech code
      * @param companyId Unique identifier of the company the domain belongs to
      */
-    public async updateTechCode (id: string, newTechCode: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async updateDomainNameTechCode (id: string, newTechCode: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/domain-names/{id}/contacts/tech/{newTechCode}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'newTechCode' + '}', encodeURIComponent(String(newTechCode)));
@@ -2849,17 +2849,17 @@ export class DomainNamesApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateTechCode.');
+            throw new Error('Required parameter id was null or undefined when calling updateDomainNameTechCode.');
         }
 
         // verify required parameter 'newTechCode' is not null or undefined
         if (newTechCode === null || newTechCode === undefined) {
-            throw new Error('Required parameter newTechCode was null or undefined when calling updateTechCode.');
+            throw new Error('Required parameter newTechCode was null or undefined when calling updateDomainNameTechCode.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateTechCode.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateDomainNameTechCode.');
         }
 
         if (companyId !== undefined) {

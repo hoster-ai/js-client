@@ -25,7 +25,7 @@ export class TemplateDto {
     /**
     * The title of the template.
     */
-    'title': string;
+    'title'?: string;
     /**
     * The notification type of the template.
     */

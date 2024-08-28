@@ -27,7 +27,7 @@ export class PersistentCart {
     /**
     * The date and time when the user\'s basket was last updated.
     */
-    'updatedAt': Date;
+    'updatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 

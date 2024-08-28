@@ -13,10 +13,10 @@
 import { RequestFile } from './models';
 
 export class CurrencyDto {
-    'id': string;
-    'name': string;
-    'threeLetterCode': string;
-    'symbol': string;
+    'id'?: string;
+    'name'?: string;
+    'threeLetterCode'?: string;
+    'symbol'?: string;
 
     static discriminator: string | undefined = undefined;
 

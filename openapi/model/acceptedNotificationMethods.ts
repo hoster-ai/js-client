@@ -12,6 +12,9 @@
 
 import { RequestFile } from './models';
 
+/**
+* Accepted notification methods for the user.
+*/
 export class AcceptedNotificationMethods {
     'email': boolean;
     'sms': boolean;

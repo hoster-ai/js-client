@@ -16,7 +16,7 @@ export class PolicyDto {
     /**
     * The unique identifier of the policy.
     */
-    'id': string;
+    'id'?: string;
     /**
     * The title of the price policy.
     */
@@ -32,11 +32,11 @@ export class PolicyDto {
     /**
     * The date when the policy was created.
     */
-    'createdAt': Date;
+    'createdAt'?: Date;
     /**
     * The date when the policy was last updated.
     */
-    'updatedAt': Date;
+    'updatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 

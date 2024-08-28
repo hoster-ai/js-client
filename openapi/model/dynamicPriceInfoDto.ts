@@ -16,15 +16,15 @@ export class DynamicPriceInfoDto {
     /**
     * The key representing a dynamic price factor.
     */
-    'key': string;
+    'key'?: string;
     /**
     * The number that count the interval of a charge in minutes.
     */
-    'fetchChargesInterval': number;
+    'fetchChargesInterval'?: number;
     /**
     * A brief text that describes a dynamic price.
     */
-    'description': string;
+    'description'?: string;
 
     static discriminator: string | undefined = undefined;
 

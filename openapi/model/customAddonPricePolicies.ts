@@ -27,7 +27,7 @@ export class CustomAddonPricePolicies {
     * The unique identifier of the addon.
     */
     'addonId': string;
-    'policy': PolicyData;
+    'policy'?: PolicyData;
     /**
     * An array of calculated prices.
     */

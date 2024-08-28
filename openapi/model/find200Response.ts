@@ -11,14 +11,12 @@
  */
 
 import { RequestFile } from './models';
+import { AddonDto } from './addonDto';
 
 export class Find200Response {
-    'code': number;
-    'message': string;
-    'data': Array<any>;
-    'currentPage': number;
-    'totalPages': number;
-    'perPage': number;
+    'code'?: number;
+    'message'?: string;
+    'data'?: AddonDto;
 
     static discriminator: string | undefined = undefined;
 
@@ -36,22 +34,7 @@ export class Find200Response {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<any>"
-        },
-        {
-            "name": "currentPage",
-            "baseName": "currentPage",
-            "type": "number"
-        },
-        {
-            "name": "totalPages",
-            "baseName": "totalPages",
-            "type": "number"
-        },
-        {
-            "name": "perPage",
-            "baseName": "perPage",
-            "type": "number"
+            "type": "AddonDto"
         }    ];
 
     static getAttributeTypeMap() {

@@ -16,11 +16,11 @@ export class CompanyRolesDto {
     /**
     * A unique identifier for user.
     */
-    'userId': string;
+    'userId'?: string;
     /**
     * A enum that describes the role and rights a user has to company.
     */
-    'roles': Array<CompanyRolesDto.RolesEnum>;
+    'roles'?: Array<CompanyRolesDto.RolesEnum>;
 
     static discriminator: string | undefined = undefined;
 

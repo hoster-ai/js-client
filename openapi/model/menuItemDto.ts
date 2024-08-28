@@ -16,15 +16,15 @@ export class MenuItemDto {
     /**
     * A label for the certain tab.
     */
-    'label': string;
+    'label'?: string;
     /**
     * The url associated with the tab.
     */
-    'url': string;
+    'url'?: string;
     /**
     * A string representing an identifier for the icon to be displayed for this menu item.
     */
-    'icon': string;
+    'icon'?: string;
 
     static discriminator: string | undefined = undefined;
 

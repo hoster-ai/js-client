@@ -17,19 +17,19 @@ export class CompanyFindResponseDto {
     /**
     * An array that contains objects with company informations.
     */
-    'results': Array<CompanyDto>;
+    'results'?: Array<CompanyDto>;
     /**
     * A number that indicates the current page being shown.
     */
-    'currentPage': number;
+    'currentPage'?: number;
     /**
     * A number that indicates the number of results per page.
     */
-    'perPage': number;
+    'perPage'?: number;
     /**
     * A number that indicates the total pages will be shown.
     */
-    'totalPages': number;
+    'totalPages'?: number;
 
     static discriminator: string | undefined = undefined;
 

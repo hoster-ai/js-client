@@ -16,7 +16,7 @@ export class TaskDto {
     /**
     * The unique identifier of the task.
     */
-    'id': string;
+    'id'?: string;
     /**
     * A description of the task.
     */
@@ -32,7 +32,7 @@ export class TaskDto {
     /**
     * The status of the task.
     */
-    'status': TaskDto.StatusEnum;
+    'status'?: TaskDto.StatusEnum;
     /**
     * The type of event related to a service integration\'s operations.
     */

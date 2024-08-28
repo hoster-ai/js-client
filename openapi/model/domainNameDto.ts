@@ -20,7 +20,7 @@ export class DomainNameDto {
     /**
     * Billing code provided by hoster.ai.
     */
-    'id': string;
+    'id'?: string;
     /**
     * The domain name to be registered.
     */

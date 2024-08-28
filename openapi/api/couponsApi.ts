@@ -17,8 +17,8 @@ import http from 'http';
 /* tslint:disable:no-unused-locals */
 import { CouponDto } from '../model/couponDto';
 import { ErrorResponse } from '../model/errorResponse';
-import { Find200Response16 } from '../model/find200Response16';
-import { InvoiceGet200Response } from '../model/invoiceGet200Response';
+import { FindCoupons200Response } from '../model/findCoupons200Response';
+import { GetInvoice200Response } from '../model/getInvoice200Response';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -101,7 +101,7 @@ export class CouponsApi {
      * @param companyId The unique identifier of the company to associate the coupon with.
      * @param couponDto 
      */
-    public async create (companyId: string, couponDto: CouponDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response16;  }> {
+    public async createCoupon (companyId: string, couponDto: CouponDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FindCoupons200Response;  }> {
         const localVarPath = this.basePath + '/coupons';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -116,12 +116,12 @@ export class CouponsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling create.');
+            throw new Error('Required parameter companyId was null or undefined when calling createCoupon.');
         }
 
         // verify required parameter 'couponDto' is not null or undefined
         if (couponDto === null || couponDto === undefined) {
-            throw new Error('Required parameter couponDto was null or undefined when calling create.');
+            throw new Error('Required parameter couponDto was null or undefined when calling createCoupon.');
         }
 
         if (companyId !== undefined) {
@@ -161,13 +161,13 @@ export class CouponsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Find200Response16;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: FindCoupons200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Find200Response16");
+                            body = ObjectSerializer.deserialize(body, "FindCoupons200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -183,7 +183,7 @@ export class CouponsApi {
      * @param id The unique identifier of the coupon to delete.
      * @param companyId The unique identifier of the company associated with the coupon.
      */
-    public async deleteCoupon (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async deleteCoupon (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
         const localVarPath = this.basePath + '/coupons/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -243,13 +243,13 @@ export class CouponsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -271,7 +271,7 @@ export class CouponsApi {
      * @param currentPage The current page number for pagination.
      * @param perPage The number of coupons to display per page.
      */
-    public async find (companyId: string, productIds: Array<any>, fromStartDate?: Date, toStartDate?: Date, fromEndDate?: Date, toEndDate?: Date, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response16;  }> {
+    public async findCoupons (companyId: string, productIds: Array<any>, fromStartDate?: Date, toStartDate?: Date, fromEndDate?: Date, toEndDate?: Date, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FindCoupons200Response;  }> {
         const localVarPath = this.basePath + '/coupons';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -286,12 +286,12 @@ export class CouponsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling find.');
+            throw new Error('Required parameter companyId was null or undefined when calling findCoupons.');
         }
 
         // verify required parameter 'productIds' is not null or undefined
         if (productIds === null || productIds === undefined) {
-            throw new Error('Required parameter productIds was null or undefined when calling find.');
+            throw new Error('Required parameter productIds was null or undefined when calling findCoupons.');
         }
 
         if (companyId !== undefined) {
@@ -358,13 +358,13 @@ export class CouponsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Find200Response16;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: FindCoupons200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Find200Response16");
+                            body = ObjectSerializer.deserialize(body, "FindCoupons200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -380,7 +380,7 @@ export class CouponsApi {
      * @param id The unique identifier of the coupon.
      * @param companyId The company\&#39;s unique identifier associated with the coupon.
      */
-    public async get (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response16;  }> {
+    public async getCoupon (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FindCoupons200Response;  }> {
         const localVarPath = this.basePath + '/coupons/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -396,12 +396,12 @@ export class CouponsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling get.');
+            throw new Error('Required parameter id was null or undefined when calling getCoupon.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling get.');
+            throw new Error('Required parameter companyId was null or undefined when calling getCoupon.');
         }
 
         if (companyId !== undefined) {
@@ -440,13 +440,13 @@ export class CouponsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Find200Response16;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: FindCoupons200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Find200Response16");
+                            body = ObjectSerializer.deserialize(body, "FindCoupons200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -463,7 +463,7 @@ export class CouponsApi {
      * @param id The unique identifier of the coupon to update.
      * @param body 
      */
-    public async updateCoupon (companyId: string, id: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response16;  }> {
+    public async updateCoupon (companyId: string, id: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FindCoupons200Response;  }> {
         const localVarPath = this.basePath + '/coupons/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -529,13 +529,13 @@ export class CouponsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Find200Response16;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: FindCoupons200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Find200Response16");
+                            body = ObjectSerializer.deserialize(body, "FindCoupons200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

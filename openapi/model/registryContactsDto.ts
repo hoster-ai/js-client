@@ -16,7 +16,7 @@ export class RegistryContactsDto {
     /**
     * Code provided by the registry for the registrant. Takes the value of ContactCode from domain Contact associated with the domain
     */
-    'registrantCode': string;
+    'registrantCode'?: string;
     /**
     * Admin code provided by hoster.ai
     */

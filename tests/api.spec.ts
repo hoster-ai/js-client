@@ -1,5 +1,4 @@
 import { Client } from "../client";
-import * as request from 'request';
 import {
   AddonsApi,
   AffiliatesApi,
@@ -21,10 +20,10 @@ import {
   PoliciesApi,
   ProductCategoriesApi,
   ProductsApi,
-  SettingsApi,
   TldsApi,
   UsersApi,
 } from "../openapi/api";
+import { SettingsApi } from "../openapi/api/settingsApi";
 
 describe("ApiClient", () => {
   let client: Client;
@@ -156,8 +155,8 @@ describe("ApiClient", () => {
   it("Try to ban a user without permissions", async () => {
     return client
       .users()
-      .ban("user1", "company1")
-      .then((results) => {
+      .banUser("user1", "company1")
+      .then(() => {
         fail('Should not have been successful');
       })
       .catch((error) => {

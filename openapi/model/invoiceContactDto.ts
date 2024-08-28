@@ -16,7 +16,7 @@ export class InvoiceContactDto {
     /**
     * The unique identifier for the contact.
     */
-    'id': string;
+    'id'?: string;
     /**
     * The unique identifier of the company associated with this contact.
     */
@@ -92,11 +92,11 @@ export class InvoiceContactDto {
     /**
     * The date and time when the contact was created.
     */
-    'createdAt': Date;
+    'createdAt'?: Date;
     /**
     * The date and time when the contact was last updated.
     */
-    'updatedAt': Date;
+    'updatedAt'?: Date;
 
     static discriminator: string | undefined = undefined;
 
