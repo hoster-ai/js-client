@@ -1,12 +1,12 @@
 {
   "name": "@hosterai/js-client",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Hoster.AI javascript client",
   "main": "dist/client.js",
   "scripts": {
     "test": "jest",
-    "openapi:generate:dev": "openapi-generator-cli generate -i http://localhost:3000/api-json -g typescript-node -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
-    "openapi:generate:production": "openapi-generator-cli generate -i https://api.hoster.ai/api-json -g typescript-node -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
+    "openapi:generate:dev": "rm -rf openapi && openapi-generator-cli generate -i http://localhost:3000/api-json -g typescript-axios -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
+    "openapi:generate:production": "rm -rf openapi && openapi-generator-cli generate -i https://api.hoster.ai/api-json -g typescript-axios -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
     "publish": "npm publish --access public",
     "build": "tsc"
   },
@@ -26,9 +26,6 @@
   ],
   "author": "Thomas Papamichail",
   "license": "ISC",
-  "dependencies": {
-    "request": "^2.88.2"
-  },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.13.1",
     "@types/jest": "^29.5.12",
