@@ -31,7 +31,7 @@ export class ProductDto {
     /**
     * The unique identifier of the company that owns the product.
     */
-    'companyId': string;
+    'companyId'?: string;
     /**
     * A boolean that indicates if a a version of the product is active.
     */
@@ -43,7 +43,7 @@ export class ProductDto {
     /**
     * An array that holds all the versions of a product available.
     */
-    'versionsIds': number;
+    'versionsIds'?: number;
     'integrationId': string;
     /**
     * The product\'s category unique identifier.

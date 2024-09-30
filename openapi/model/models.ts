@@ -14,8 +14,8 @@ export * from './catAdditionalDataDto';
 export * from './catParameterDataDto';
 export * from './challengeParametersDataDto';
 export * from './challengeQuestionAnswerDto';
-export * from './checkAvailability200Response';
-export * from './checkAvailabilitySockets200Response';
+export * from './checkDomainNameAvailability200Response';
+export * from './checkDomainNameAvailabilitySockets200Response';
 export * from './claimsTokenDataDto';
 export * from './companyDto';
 export * from './companyFindResponseDto';
@@ -24,27 +24,28 @@ export * from './contactAdditionalDto';
 export * from './couponDto';
 export * from './couponProductsDto';
 export * from './couponTypeDto';
-export * from './create200Response';
-export * from './create200Response1';
-export * from './create200Response2';
-export * from './create200Response3';
-export * from './create200Response4';
-export * from './create200Response5';
-export * from './create200Response6';
-export * from './create200Response7';
-export * from './create201Response';
-export * from './create201Response1';
-export * from './create201Response2';
-export * from './create201Response3';
-export * from './create201Response4';
-export * from './create201Response5';
-export * from './create201Response6';
-export * from './create201Response7';
+export * from './createAffiliate200Response';
+export * from './createCompany200Response';
+export * from './createDomainCategory201Response';
+export * from './createDomainContact200Response';
+export * from './createIntegration201Response';
+export * from './createInvoiceContact200Response';
+export * from './createIpGroup200Response';
+export * from './createIssue201Response';
+export * from './createOrder201Response';
+export * from './createPayment200Response';
+export * from './createPolicy200Response';
+export * from './createProduct201Response';
+export * from './createProductCategory201Response';
+export * from './createTemplate201Response';
+export * from './createTld200Response';
 export * from './currency';
 export * from './currencyDto';
 export * from './customAddonPricePolicies';
 export * from './customAffiliates';
 export * from './customPricePolicies';
+export * from './customToken200Response';
+export * from './customTokenDto';
 export * from './deAdditionalDataDto';
 export * from './defaultInvoiceContact';
 export * from './domainAdditionalDto';
@@ -63,41 +64,39 @@ export * from './emailPayloadDto';
 export * from './errorResponse';
 export * from './esAdditionalDataDto';
 export * from './euBeAdditionalDataDto';
-export * from './find200Response';
-export * from './find200Response1';
-export * from './find200Response10';
-export * from './find200Response11';
-export * from './find200Response12';
-export * from './find200Response13';
-export * from './find200Response14';
-export * from './find200Response15';
-export * from './find200Response16';
-export * from './find200Response17';
-export * from './find200Response18';
-export * from './find200Response19';
-export * from './find200Response2';
-export * from './find200Response20';
-export * from './find200Response21';
-export * from './find200Response22';
-export * from './find200Response3';
-export * from './find200Response4';
-export * from './find200Response5';
-export * from './find200Response6';
-export * from './find200Response7';
-export * from './find200Response8';
-export * from './find200Response9';
+export * from './findAddons200Response';
+export * from './findAffiliate200Response';
+export * from './findCompanies200Response';
+export * from './findCoupons200Response';
+export * from './findDomainCategories200Response';
+export * from './findDomainContacts200Response';
+export * from './findDomainNames200Response';
+export * from './findIPs200Response';
+export * from './findIntegrations200Response';
+export * from './findInvoiceContacts200Response';
+export * from './findInvoices200Response';
+export * from './findIpGroups200Response';
+export * from './findIssues200Response';
+export * from './findItems200Response';
+export * from './findOrders200Response';
+export * from './findPayments200Response';
+export * from './findPolicies200Response';
+export * from './findProductCategories200Response';
+export * from './findProducts200Response';
+export * from './findTemplates200Response';
+export * from './findTlds200Response';
+export * from './findUsers200Response';
 export * from './freeTldDto';
-export * from './get200Response';
-export * from './get200Response1';
-export * from './get200Response2';
-export * from './get200Response3';
-export * from './getSettings200Response';
+export * from './getDomainName200Response';
+export * from './getInvoice200Response';
+export * from './getItem200Response';
+export * from './getPayment200Response';
+export * from './getUser200Response';
 export * from './integration';
 export * from './integrationDto';
 export * from './integrationInfoResponseDto';
 export * from './intendedUseParamsDataDto';
 export * from './invoiceContactDto';
-export * from './invoiceGet200Response';
 export * from './ipDto';
 export * from './ipGroupDto';
 export * from './ipSettingsDto';
@@ -142,9 +141,6 @@ export * from './productTemplateDto';
 export * from './proxyServiceDataDto';
 export * from './pushPayloadDto';
 export * from './registryContactsDto';
-export * from './settingOptionsDto';
-export * from './settings';
-export * from './settingsDto';
 export * from './smsPayloadDto';
 export * from './sunriseDataDto';
 export * from './tabDto';
@@ -191,8 +187,8 @@ import { CatAdditionalDataDto } from './catAdditionalDataDto';
 import { CatParameterDataDto } from './catParameterDataDto';
 import { ChallengeParametersDataDto } from './challengeParametersDataDto';
 import { ChallengeQuestionAnswerDto } from './challengeQuestionAnswerDto';
-import { CheckAvailability200Response } from './checkAvailability200Response';
-import { CheckAvailabilitySockets200Response } from './checkAvailabilitySockets200Response';
+import { CheckDomainNameAvailability200Response } from './checkDomainNameAvailability200Response';
+import { CheckDomainNameAvailabilitySockets200Response } from './checkDomainNameAvailabilitySockets200Response';
 import { ClaimsTokenDataDto } from './claimsTokenDataDto';
 import { CompanyDto } from './companyDto';
 import { CompanyFindResponseDto } from './companyFindResponseDto';
@@ -201,27 +197,28 @@ import { ContactAdditionalDto } from './contactAdditionalDto';
 import { CouponDto } from './couponDto';
 import { CouponProductsDto } from './couponProductsDto';
 import { CouponTypeDto } from './couponTypeDto';
-import { Create200Response } from './create200Response';
-import { Create200Response1 } from './create200Response1';
-import { Create200Response2 } from './create200Response2';
-import { Create200Response3 } from './create200Response3';
-import { Create200Response4 } from './create200Response4';
-import { Create200Response5 } from './create200Response5';
-import { Create200Response6 } from './create200Response6';
-import { Create200Response7 } from './create200Response7';
-import { Create201Response } from './create201Response';
-import { Create201Response1 } from './create201Response1';
-import { Create201Response2 } from './create201Response2';
-import { Create201Response3 } from './create201Response3';
-import { Create201Response4 } from './create201Response4';
-import { Create201Response5 } from './create201Response5';
-import { Create201Response6 } from './create201Response6';
-import { Create201Response7 } from './create201Response7';
+import { CreateAffiliate200Response } from './createAffiliate200Response';
+import { CreateCompany200Response } from './createCompany200Response';
+import { CreateDomainCategory201Response } from './createDomainCategory201Response';
+import { CreateDomainContact200Response } from './createDomainContact200Response';
+import { CreateIntegration201Response } from './createIntegration201Response';
+import { CreateInvoiceContact200Response } from './createInvoiceContact200Response';
+import { CreateIpGroup200Response } from './createIpGroup200Response';
+import { CreateIssue201Response } from './createIssue201Response';
+import { CreateOrder201Response } from './createOrder201Response';
+import { CreatePayment200Response } from './createPayment200Response';
+import { CreatePolicy200Response } from './createPolicy200Response';
+import { CreateProduct201Response } from './createProduct201Response';
+import { CreateProductCategory201Response } from './createProductCategory201Response';
+import { CreateTemplate201Response } from './createTemplate201Response';
+import { CreateTld200Response } from './createTld200Response';
 import { Currency } from './currency';
 import { CurrencyDto } from './currencyDto';
 import { CustomAddonPricePolicies } from './customAddonPricePolicies';
 import { CustomAffiliates } from './customAffiliates';
 import { CustomPricePolicies } from './customPricePolicies';
+import { CustomToken200Response } from './customToken200Response';
+import { CustomTokenDto } from './customTokenDto';
 import { DeAdditionalDataDto } from './deAdditionalDataDto';
 import { DefaultInvoiceContact } from './defaultInvoiceContact';
 import { DomainAdditionalDto } from './domainAdditionalDto';
@@ -240,41 +237,39 @@ import { EmailPayloadDto } from './emailPayloadDto';
 import { ErrorResponse } from './errorResponse';
 import { EsAdditionalDataDto } from './esAdditionalDataDto';
 import { EuBeAdditionalDataDto } from './euBeAdditionalDataDto';
-import { Find200Response } from './find200Response';
-import { Find200Response1 } from './find200Response1';
-import { Find200Response10 } from './find200Response10';
-import { Find200Response11 } from './find200Response11';
-import { Find200Response12 } from './find200Response12';
-import { Find200Response13 } from './find200Response13';
-import { Find200Response14 } from './find200Response14';
-import { Find200Response15 } from './find200Response15';
-import { Find200Response16 } from './find200Response16';
-import { Find200Response17 } from './find200Response17';
-import { Find200Response18 } from './find200Response18';
-import { Find200Response19 } from './find200Response19';
-import { Find200Response2 } from './find200Response2';
-import { Find200Response20 } from './find200Response20';
-import { Find200Response21 } from './find200Response21';
-import { Find200Response22 } from './find200Response22';
-import { Find200Response3 } from './find200Response3';
-import { Find200Response4 } from './find200Response4';
-import { Find200Response5 } from './find200Response5';
-import { Find200Response6 } from './find200Response6';
-import { Find200Response7 } from './find200Response7';
-import { Find200Response8 } from './find200Response8';
-import { Find200Response9 } from './find200Response9';
+import { FindAddons200Response } from './findAddons200Response';
+import { FindAffiliate200Response } from './findAffiliate200Response';
+import { FindCompanies200Response } from './findCompanies200Response';
+import { FindCoupons200Response } from './findCoupons200Response';
+import { FindDomainCategories200Response } from './findDomainCategories200Response';
+import { FindDomainContacts200Response } from './findDomainContacts200Response';
+import { FindDomainNames200Response } from './findDomainNames200Response';
+import { FindIPs200Response } from './findIPs200Response';
+import { FindIntegrations200Response } from './findIntegrations200Response';
+import { FindInvoiceContacts200Response } from './findInvoiceContacts200Response';
+import { FindInvoices200Response } from './findInvoices200Response';
+import { FindIpGroups200Response } from './findIpGroups200Response';
+import { FindIssues200Response } from './findIssues200Response';
+import { FindItems200Response } from './findItems200Response';
+import { FindOrders200Response } from './findOrders200Response';
+import { FindPayments200Response } from './findPayments200Response';
+import { FindPolicies200Response } from './findPolicies200Response';
+import { FindProductCategories200Response } from './findProductCategories200Response';
+import { FindProducts200Response } from './findProducts200Response';
+import { FindTemplates200Response } from './findTemplates200Response';
+import { FindTlds200Response } from './findTlds200Response';
+import { FindUsers200Response } from './findUsers200Response';
 import { FreeTldDto } from './freeTldDto';
-import { Get200Response } from './get200Response';
-import { Get200Response1 } from './get200Response1';
-import { Get200Response2 } from './get200Response2';
-import { Get200Response3 } from './get200Response3';
-import { GetSettings200Response } from './getSettings200Response';
+import { GetDomainName200Response } from './getDomainName200Response';
+import { GetInvoice200Response } from './getInvoice200Response';
+import { GetItem200Response } from './getItem200Response';
+import { GetPayment200Response } from './getPayment200Response';
+import { GetUser200Response } from './getUser200Response';
 import { Integration } from './integration';
 import { IntegrationDto } from './integrationDto';
 import { IntegrationInfoResponseDto } from './integrationInfoResponseDto';
 import { IntendedUseParamsDataDto } from './intendedUseParamsDataDto';
 import { InvoiceContactDto } from './invoiceContactDto';
-import { InvoiceGet200Response } from './invoiceGet200Response';
 import { IpDto } from './ipDto';
 import { IpGroupDto } from './ipGroupDto';
 import { IpSettingsDto } from './ipSettingsDto';
@@ -319,9 +314,6 @@ import { ProductTemplateDto } from './productTemplateDto';
 import { ProxyServiceDataDto } from './proxyServiceDataDto';
 import { PushPayloadDto } from './pushPayloadDto';
 import { RegistryContactsDto } from './registryContactsDto';
-import { SettingOptionsDto } from './settingOptionsDto';
-import { Settings } from './settings';
-import { SettingsDto } from './settingsDto';
 import { SmsPayloadDto } from './smsPayloadDto';
 import { SunriseDataDto } from './sunriseDataDto';
 import { TabDto } from './tabDto';
@@ -447,8 +439,8 @@ let typeMap: {[index: string]: any} = {
     "CatParameterDataDto": CatParameterDataDto,
     "ChallengeParametersDataDto": ChallengeParametersDataDto,
     "ChallengeQuestionAnswerDto": ChallengeQuestionAnswerDto,
-    "CheckAvailability200Response": CheckAvailability200Response,
-    "CheckAvailabilitySockets200Response": CheckAvailabilitySockets200Response,
+    "CheckDomainNameAvailability200Response": CheckDomainNameAvailability200Response,
+    "CheckDomainNameAvailabilitySockets200Response": CheckDomainNameAvailabilitySockets200Response,
     "ClaimsTokenDataDto": ClaimsTokenDataDto,
     "CompanyDto": CompanyDto,
     "CompanyFindResponseDto": CompanyFindResponseDto,
@@ -457,27 +449,28 @@ let typeMap: {[index: string]: any} = {
     "CouponDto": CouponDto,
     "CouponProductsDto": CouponProductsDto,
     "CouponTypeDto": CouponTypeDto,
-    "Create200Response": Create200Response,
-    "Create200Response1": Create200Response1,
-    "Create200Response2": Create200Response2,
-    "Create200Response3": Create200Response3,
-    "Create200Response4": Create200Response4,
-    "Create200Response5": Create200Response5,
-    "Create200Response6": Create200Response6,
-    "Create200Response7": Create200Response7,
-    "Create201Response": Create201Response,
-    "Create201Response1": Create201Response1,
-    "Create201Response2": Create201Response2,
-    "Create201Response3": Create201Response3,
-    "Create201Response4": Create201Response4,
-    "Create201Response5": Create201Response5,
-    "Create201Response6": Create201Response6,
-    "Create201Response7": Create201Response7,
+    "CreateAffiliate200Response": CreateAffiliate200Response,
+    "CreateCompany200Response": CreateCompany200Response,
+    "CreateDomainCategory201Response": CreateDomainCategory201Response,
+    "CreateDomainContact200Response": CreateDomainContact200Response,
+    "CreateIntegration201Response": CreateIntegration201Response,
+    "CreateInvoiceContact200Response": CreateInvoiceContact200Response,
+    "CreateIpGroup200Response": CreateIpGroup200Response,
+    "CreateIssue201Response": CreateIssue201Response,
+    "CreateOrder201Response": CreateOrder201Response,
+    "CreatePayment200Response": CreatePayment200Response,
+    "CreatePolicy200Response": CreatePolicy200Response,
+    "CreateProduct201Response": CreateProduct201Response,
+    "CreateProductCategory201Response": CreateProductCategory201Response,
+    "CreateTemplate201Response": CreateTemplate201Response,
+    "CreateTld200Response": CreateTld200Response,
     "Currency": Currency,
     "CurrencyDto": CurrencyDto,
     "CustomAddonPricePolicies": CustomAddonPricePolicies,
     "CustomAffiliates": CustomAffiliates,
     "CustomPricePolicies": CustomPricePolicies,
+    "CustomToken200Response": CustomToken200Response,
+    "CustomTokenDto": CustomTokenDto,
     "DeAdditionalDataDto": DeAdditionalDataDto,
     "DefaultInvoiceContact": DefaultInvoiceContact,
     "DomainAdditionalDto": DomainAdditionalDto,
@@ -496,41 +489,39 @@ let typeMap: {[index: string]: any} = {
     "ErrorResponse": ErrorResponse,
     "EsAdditionalDataDto": EsAdditionalDataDto,
     "EuBeAdditionalDataDto": EuBeAdditionalDataDto,
-    "Find200Response": Find200Response,
-    "Find200Response1": Find200Response1,
-    "Find200Response10": Find200Response10,
-    "Find200Response11": Find200Response11,
-    "Find200Response12": Find200Response12,
-    "Find200Response13": Find200Response13,
-    "Find200Response14": Find200Response14,
-    "Find200Response15": Find200Response15,
-    "Find200Response16": Find200Response16,
-    "Find200Response17": Find200Response17,
-    "Find200Response18": Find200Response18,
-    "Find200Response19": Find200Response19,
-    "Find200Response2": Find200Response2,
-    "Find200Response20": Find200Response20,
-    "Find200Response21": Find200Response21,
-    "Find200Response22": Find200Response22,
-    "Find200Response3": Find200Response3,
-    "Find200Response4": Find200Response4,
-    "Find200Response5": Find200Response5,
-    "Find200Response6": Find200Response6,
-    "Find200Response7": Find200Response7,
-    "Find200Response8": Find200Response8,
-    "Find200Response9": Find200Response9,
+    "FindAddons200Response": FindAddons200Response,
+    "FindAffiliate200Response": FindAffiliate200Response,
+    "FindCompanies200Response": FindCompanies200Response,
+    "FindCoupons200Response": FindCoupons200Response,
+    "FindDomainCategories200Response": FindDomainCategories200Response,
+    "FindDomainContacts200Response": FindDomainContacts200Response,
+    "FindDomainNames200Response": FindDomainNames200Response,
+    "FindIPs200Response": FindIPs200Response,
+    "FindIntegrations200Response": FindIntegrations200Response,
+    "FindInvoiceContacts200Response": FindInvoiceContacts200Response,
+    "FindInvoices200Response": FindInvoices200Response,
+    "FindIpGroups200Response": FindIpGroups200Response,
+    "FindIssues200Response": FindIssues200Response,
+    "FindItems200Response": FindItems200Response,
+    "FindOrders200Response": FindOrders200Response,
+    "FindPayments200Response": FindPayments200Response,
+    "FindPolicies200Response": FindPolicies200Response,
+    "FindProductCategories200Response": FindProductCategories200Response,
+    "FindProducts200Response": FindProducts200Response,
+    "FindTemplates200Response": FindTemplates200Response,
+    "FindTlds200Response": FindTlds200Response,
+    "FindUsers200Response": FindUsers200Response,
     "FreeTldDto": FreeTldDto,
-    "Get200Response": Get200Response,
-    "Get200Response1": Get200Response1,
-    "Get200Response2": Get200Response2,
-    "Get200Response3": Get200Response3,
-    "GetSettings200Response": GetSettings200Response,
+    "GetDomainName200Response": GetDomainName200Response,
+    "GetInvoice200Response": GetInvoice200Response,
+    "GetItem200Response": GetItem200Response,
+    "GetPayment200Response": GetPayment200Response,
+    "GetUser200Response": GetUser200Response,
     "Integration": Integration,
     "IntegrationDto": IntegrationDto,
     "IntegrationInfoResponseDto": IntegrationInfoResponseDto,
     "IntendedUseParamsDataDto": IntendedUseParamsDataDto,
     "InvoiceContactDto": InvoiceContactDto,
-    "InvoiceGet200Response": InvoiceGet200Response,
     "IpDto": IpDto,
     "IpGroupDto": IpGroupDto,
     "IpSettingsDto": IpSettingsDto,
@@ -575,9 +566,6 @@ let typeMap: {[index: string]: any} = {
     "ProxyServiceDataDto": ProxyServiceDataDto,
     "PushPayloadDto": PushPayloadDto,
     "RegistryContactsDto": RegistryContactsDto,
-    "SettingOptionsDto": SettingOptionsDto,
-    "Settings": Settings,
-    "SettingsDto": SettingsDto,
     "SmsPayloadDto": SmsPayloadDto,
     "SunriseDataDto": SunriseDataDto,
     "TabDto": TabDto,

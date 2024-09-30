@@ -17,24 +17,24 @@ export class ActionFieldDto {
     /**
     * The unique identifiers of the addon field.
     */
-    'id': string;
+    'id'?: string;
     /**
     * A label for the certain addon field.
     */
-    'label': string;
-    'value': Value;
+    'label'?: string;
+    'value'?: Value;
     /**
     * The type of the addon field.
     */
-    'type': ActionFieldDto.TypeEnum;
+    'type'?: ActionFieldDto.TypeEnum;
     /**
     * Indicates if a field is required or not
     */
-    'required': boolean;
+    'required'?: boolean;
     /**
     * Indicates if the field is disabled.
     */
-    'disabled': boolean = false;
+    'disabled'?: boolean = false;
     /**
     * Indicates if the field will be hidden.
     */
@@ -42,11 +42,11 @@ export class ActionFieldDto {
     /**
     * A string representing a regular expression for validation.
     */
-    'regexValidation': string;
+    'regexValidation'?: string;
     /**
     * Indicates if the field needs remote validation.
     */
-    'remoteValidation': boolean;
+    'remoteValidation'?: boolean;
     /**
     * A string that represents an error message.
     */

@@ -17,7 +17,7 @@ export class ProductCategoryDetailsDto {
     /**
     *  Unique identifier of the category associated with the product
     */
-    'productCategoryId': string;
+    'productCategoryId'?: string;
     'productCategoryTitle'?: ProductCategoryTitle;
 
     static discriminator: string | undefined = undefined;

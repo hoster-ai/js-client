@@ -15,11 +15,11 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
-import { Create201Response } from '../model/create201Response';
+import { CreateIntegration201Response } from '../model/createIntegration201Response';
 import { ErrorResponse } from '../model/errorResponse';
-import { Find200Response4 } from '../model/find200Response4';
+import { FindIntegrations200Response } from '../model/findIntegrations200Response';
+import { GetInvoice200Response } from '../model/getInvoice200Response';
 import { IntegrationDto } from '../model/integrationDto';
-import { InvoiceGet200Response } from '../model/invoiceGet200Response';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -97,95 +97,13 @@ export class IntegrationsApi {
     }
 
     /**
-     * Deletes a integration. Returns a boolean that indicates the success of the delete action.
-     * @summary Delete an integration
-     * @param companyId 
-     * @param id integration ID
-     */
-    public async _delete (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
-        const localVarPath = this.basePath + '/integrations/{id}'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
-        }
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling _delete.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * Retrieves a token. Returns a IntegrationDto.
      * @summary Check an integration
-     * @param companyId 
-     * @param token Check Integration by token
+     * @param companyId The company ID
+     * @param token The integration token
      */
-    public async check (companyId: string, token: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response;  }> {
-        const localVarPath = this.basePath + '/integrations/{token}'
+    public async checkIntegration (companyId: string, token: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }> {
+        const localVarPath = this.basePath + '/integrations/token/{token}'
             .replace('{' + 'token' + '}', encodeURIComponent(String(token)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -200,12 +118,12 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling check.');
+            throw new Error('Required parameter companyId was null or undefined when calling checkIntegration.');
         }
 
         // verify required parameter 'token' is not null or undefined
         if (token === null || token === undefined) {
-            throw new Error('Required parameter token was null or undefined when calling check.');
+            throw new Error('Required parameter token was null or undefined when calling checkIntegration.');
         }
 
         if (companyId !== undefined) {
@@ -244,13 +162,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response");
+                            body = ObjectSerializer.deserialize(body, "CreateIntegration201Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -266,7 +184,7 @@ export class IntegrationsApi {
      * @param companyId 
      * @param integrationDto 
      */
-    public async create (companyId: string, integrationDto: IntegrationDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response;  }> {
+    public async createIntegration (companyId: string, integrationDto: IntegrationDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }> {
         const localVarPath = this.basePath + '/integrations';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -281,12 +199,12 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling create.');
+            throw new Error('Required parameter companyId was null or undefined when calling createIntegration.');
         }
 
         // verify required parameter 'integrationDto' is not null or undefined
         if (integrationDto === null || integrationDto === undefined) {
-            throw new Error('Required parameter integrationDto was null or undefined when calling create.');
+            throw new Error('Required parameter integrationDto was null or undefined when calling createIntegration.');
         }
 
         if (companyId !== undefined) {
@@ -326,13 +244,95 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response");
+                            body = ObjectSerializer.deserialize(body, "CreateIntegration201Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Deletes a integration. Returns a boolean that indicates the success of the delete action.
+     * @summary Delete an integration
+     * @param companyId 
+     * @param id integration ID
+     */
+    public async deleteIntegration (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
+        const localVarPath = this.basePath + '/integrations/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling deleteIntegration.');
+        }
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteIntegration.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -350,7 +350,7 @@ export class IntegrationsApi {
      * @param currentPage current page
      * @param perPage per Page 
      */
-    public async find (title?: string, type?: 'product' | 'registry' | 'application' | 'dns' | 'payment' | 'notification' | 'invoice', currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response4;  }> {
+    public async findIntegrations (title?: string, type?: 'product' | 'registry' | 'application' | 'dns' | 'payment' | 'notification' | 'invoice', currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FindIntegrations200Response;  }> {
         const localVarPath = this.basePath + '/integrations';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -411,13 +411,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Find200Response4;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: FindIntegrations200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Find200Response4");
+                            body = ObjectSerializer.deserialize(body, "FindIntegrations200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -433,7 +433,7 @@ export class IntegrationsApi {
      * @param companyId 
      * @param id ID
      */
-    public async get (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response;  }> {
+    public async getIntegration (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -449,12 +449,12 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling get.');
+            throw new Error('Required parameter companyId was null or undefined when calling getIntegration.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling get.');
+            throw new Error('Required parameter id was null or undefined when calling getIntegration.');
         }
 
         if (companyId !== undefined) {
@@ -493,13 +493,95 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response");
+                            body = ObjectSerializer.deserialize(body, "CreateIntegration201Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Retrieves a certains service integration info based on specific product. Returns a SingleResponseDto.
+     * @summary integration info
+     * @param companyId 
+     * @param productId integration ID
+     */
+    public async getProductInfoIntegration (companyId: string, productId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
+        const localVarPath = this.basePath + '/integrations/info/{productId}'
+            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling getProductInfoIntegration.');
+        }
+
+        // verify required parameter 'productId' is not null or undefined
+        if (productId === null || productId === undefined) {
+            throw new Error('Required parameter productId was null or undefined when calling getProductInfoIntegration.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -517,7 +599,7 @@ export class IntegrationsApi {
      * @param event 
      * @param body 
      */
-    public async hook (companyId: string, id: string, event: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async hookIntegration (companyId: string, id: string, event: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}/hooks'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -533,22 +615,22 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling hook.');
+            throw new Error('Required parameter companyId was null or undefined when calling hookIntegration.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling hook.');
+            throw new Error('Required parameter id was null or undefined when calling hookIntegration.');
         }
 
         // verify required parameter 'event' is not null or undefined
         if (event === null || event === undefined) {
-            throw new Error('Required parameter event was null or undefined when calling hook.');
+            throw new Error('Required parameter event was null or undefined when calling hookIntegration.');
         }
 
         // verify required parameter 'body' is not null or undefined
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling hook.');
+            throw new Error('Required parameter body was null or undefined when calling hookIntegration.');
         }
 
         if (companyId !== undefined) {
@@ -592,13 +674,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -614,7 +696,7 @@ export class IntegrationsApi {
      * @param companyId 
      * @param id integration ID
      */
-    public async info (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async infoIntegration (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}/info'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -630,12 +712,12 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling info.');
+            throw new Error('Required parameter companyId was null or undefined when calling infoIntegration.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling info.');
+            throw new Error('Required parameter id was null or undefined when calling infoIntegration.');
         }
 
         if (companyId !== undefined) {
@@ -674,13 +756,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -697,7 +779,7 @@ export class IntegrationsApi {
      * @param companyId 
      * @param body 
      */
-    public async install (id: string, companyId: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async installIntegration (id: string, companyId: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}/install'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -713,17 +795,17 @@ export class IntegrationsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling install.');
+            throw new Error('Required parameter id was null or undefined when calling installIntegration.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling install.');
+            throw new Error('Required parameter companyId was null or undefined when calling installIntegration.');
         }
 
         // verify required parameter 'body' is not null or undefined
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling install.');
+            throw new Error('Required parameter body was null or undefined when calling installIntegration.');
         }
 
         if (companyId !== undefined) {
@@ -763,95 +845,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Retrieves a certains service integration info based on specific product. Returns a SingleResponseDto.
-     * @summary integration info
-     * @param companyId 
-     * @param productId integration ID
-     */
-    public async productInfo (companyId: string, productId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
-        const localVarPath = this.basePath + '/integrations/info/{productId}'
-            .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling productInfo.');
-        }
-
-        // verify required parameter 'productId' is not null or undefined
-        if (productId === null || productId === undefined) {
-            throw new Error('Required parameter productId was null or undefined when calling productInfo.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -865,11 +865,11 @@ export class IntegrationsApi {
      * Creates a scheduled maintenance. Returns IntegrationDto.
      * @summary ScheduleMaintenance
      * @param companyId 
-     * @param id integration ID
-     * @param maintenanceStartDate 
-     * @param maintenanceEndDate 
+     * @param id Integration ID
+     * @param maintenanceStartDate Maintenance start date
+     * @param maintenanceEndDate Maintenance end date
      */
-    public async scheduleMaintenance (companyId: string, id: string, maintenanceStartDate: any, maintenanceEndDate: any, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response;  }> {
+    public async scheduleIntegrationMaintenance (companyId: string, id: string, maintenanceStartDate: string, maintenanceEndDate: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}/maintenance/schedule'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -885,22 +885,22 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling scheduleMaintenance.');
+            throw new Error('Required parameter companyId was null or undefined when calling scheduleIntegrationMaintenance.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling scheduleMaintenance.');
+            throw new Error('Required parameter id was null or undefined when calling scheduleIntegrationMaintenance.');
         }
 
         // verify required parameter 'maintenanceStartDate' is not null or undefined
         if (maintenanceStartDate === null || maintenanceStartDate === undefined) {
-            throw new Error('Required parameter maintenanceStartDate was null or undefined when calling scheduleMaintenance.');
+            throw new Error('Required parameter maintenanceStartDate was null or undefined when calling scheduleIntegrationMaintenance.');
         }
 
         // verify required parameter 'maintenanceEndDate' is not null or undefined
         if (maintenanceEndDate === null || maintenanceEndDate === undefined) {
-            throw new Error('Required parameter maintenanceEndDate was null or undefined when calling scheduleMaintenance.');
+            throw new Error('Required parameter maintenanceEndDate was null or undefined when calling scheduleIntegrationMaintenance.');
         }
 
         if (companyId !== undefined) {
@@ -908,11 +908,11 @@ export class IntegrationsApi {
         }
 
         if (maintenanceStartDate !== undefined) {
-            localVarQueryParameters['maintenanceStartDate'] = ObjectSerializer.serialize(maintenanceStartDate, "any");
+            localVarQueryParameters['maintenanceStartDate'] = ObjectSerializer.serialize(maintenanceStartDate, "string");
         }
 
         if (maintenanceEndDate !== undefined) {
-            localVarQueryParameters['maintenanceEndDate'] = ObjectSerializer.serialize(maintenanceEndDate, "any");
+            localVarQueryParameters['maintenanceEndDate'] = ObjectSerializer.serialize(maintenanceEndDate, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -947,13 +947,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response");
+                            body = ObjectSerializer.deserialize(body, "CreateIntegration201Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -969,7 +969,7 @@ export class IntegrationsApi {
      * @param companyId 
      * @param id integration ID
      */
-    public async startMaintenance (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response;  }> {
+    public async startIntegrationMaintenance (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}/maintenance/start'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -985,12 +985,12 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling startMaintenance.');
+            throw new Error('Required parameter companyId was null or undefined when calling startIntegrationMaintenance.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling startMaintenance.');
+            throw new Error('Required parameter id was null or undefined when calling startIntegrationMaintenance.');
         }
 
         if (companyId !== undefined) {
@@ -1029,13 +1029,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response");
+                            body = ObjectSerializer.deserialize(body, "CreateIntegration201Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1051,7 +1051,7 @@ export class IntegrationsApi {
      * @param companyId 
      * @param id integration ID
      */
-    public async stopMaintenance (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response;  }> {
+    public async stopIntegrationMaintenance (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}/maintenance/stop'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1067,12 +1067,12 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling stopMaintenance.');
+            throw new Error('Required parameter companyId was null or undefined when calling stopIntegrationMaintenance.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling stopMaintenance.');
+            throw new Error('Required parameter id was null or undefined when calling stopIntegrationMaintenance.');
         }
 
         if (companyId !== undefined) {
@@ -1111,13 +1111,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response");
+                            body = ObjectSerializer.deserialize(body, "CreateIntegration201Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1133,7 +1133,7 @@ export class IntegrationsApi {
      * @param companyId 
      * @param id 
      */
-    public async tokenRefresh (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response;  }> {
+    public async tokenRefreshIntegration (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}/refresh-token'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1149,12 +1149,12 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling tokenRefresh.');
+            throw new Error('Required parameter companyId was null or undefined when calling tokenRefreshIntegration.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling tokenRefresh.');
+            throw new Error('Required parameter id was null or undefined when calling tokenRefreshIntegration.');
         }
 
         if (companyId !== undefined) {
@@ -1193,13 +1193,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response");
+                            body = ObjectSerializer.deserialize(body, "CreateIntegration201Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1216,7 +1216,7 @@ export class IntegrationsApi {
      * @param id integration ID
      * @param body 
      */
-    public async uninstall (companyId: string, id: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async uninstallIntegration (companyId: string, id: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}/uninstall'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1232,17 +1232,17 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling uninstall.');
+            throw new Error('Required parameter companyId was null or undefined when calling uninstallIntegration.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling uninstall.');
+            throw new Error('Required parameter id was null or undefined when calling uninstallIntegration.');
         }
 
         // verify required parameter 'body' is not null or undefined
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling uninstall.');
+            throw new Error('Required parameter body was null or undefined when calling uninstallIntegration.');
         }
 
         if (companyId !== undefined) {
@@ -1282,13 +1282,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1305,7 +1305,7 @@ export class IntegrationsApi {
      * @param id integration ID
      * @param integrationDto 
      */
-    public async updateIntegration (companyId: string, id: string, integrationDto: IntegrationDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response;  }> {
+    public async updateIntegration (companyId: string, id: string, integrationDto: IntegrationDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }> {
         const localVarPath = this.basePath + '/integrations/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1371,13 +1371,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateIntegration201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response");
+                            body = ObjectSerializer.deserialize(body, "CreateIntegration201Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1394,7 +1394,7 @@ export class IntegrationsApi {
      * @param productId integration ID
      * @param body 
      */
-    public async validate (companyId: string, productId: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async validateIntegration (companyId: string, productId: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
         const localVarPath = this.basePath + '/integrations/validate/action-fields/{productId}'
             .replace('{' + 'productId' + '}', encodeURIComponent(String(productId)));
         let localVarQueryParameters: any = {};
@@ -1410,17 +1410,17 @@ export class IntegrationsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling validate.');
+            throw new Error('Required parameter companyId was null or undefined when calling validateIntegration.');
         }
 
         // verify required parameter 'productId' is not null or undefined
         if (productId === null || productId === undefined) {
-            throw new Error('Required parameter productId was null or undefined when calling validate.');
+            throw new Error('Required parameter productId was null or undefined when calling validateIntegration.');
         }
 
         // verify required parameter 'body' is not null or undefined
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling validate.');
+            throw new Error('Required parameter body was null or undefined when calling validateIntegration.');
         }
 
         if (companyId !== undefined) {
@@ -1460,13 +1460,13 @@ export class IntegrationsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

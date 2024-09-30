@@ -16,7 +16,7 @@ export class ListActionDto {
     /**
     * A string representing an identifier for the icon to be displayed for this list action.
     */
-    'icon': string;
+    'icon'?: string;
     /**
     * A label for the certain list action.
     */
@@ -28,7 +28,7 @@ export class ListActionDto {
     /**
     * The link associated with the list action.
     */
-    'link': string;
+    'link'?: string;
 
     static discriminator: string | undefined = undefined;
 

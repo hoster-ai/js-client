@@ -20,7 +20,7 @@ export class IntegrationInfoResponseDto {
     /**
     * The name of the service integration.
     */
-    'name': string;
+    'name'?: string;
     /**
     * The string contains the path for the service integration\'s logo.
     */

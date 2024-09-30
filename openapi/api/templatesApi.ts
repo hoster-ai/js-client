@@ -15,10 +15,10 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
-import { Create201Response4 } from '../model/create201Response4';
+import { CreateTemplate201Response } from '../model/createTemplate201Response';
 import { ErrorResponse } from '../model/errorResponse';
-import { Find200Response12 } from '../model/find200Response12';
-import { InvoiceGet200Response } from '../model/invoiceGet200Response';
+import { FindTemplates200Response } from '../model/findTemplates200Response';
+import { GetInvoice200Response } from '../model/getInvoice200Response';
 import { TemplateDto } from '../model/templateDto';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -97,94 +97,12 @@ export class TemplatesApi {
     }
 
     /**
-     * Deletes a certain template. Returns null.
-     * @summary Delete a template
-     * @param id Template ID
-     * @param companyId companyId
-     */
-    public async _delete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
-        const localVarPath = this.basePath + '/templates/{id}'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling _delete.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * Creates a new template . Returns a TemplateDto.
      * @summary Creates a new template
      * @param companyId companyId
      * @param templateDto 
      */
-    public async create (companyId: string, templateDto: TemplateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response4;  }> {
+    public async createTemplate (companyId: string, templateDto: TemplateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateTemplate201Response;  }> {
         const localVarPath = this.basePath + '/templates';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -199,12 +117,12 @@ export class TemplatesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling create.');
+            throw new Error('Required parameter companyId was null or undefined when calling createTemplate.');
         }
 
         // verify required parameter 'templateDto' is not null or undefined
         if (templateDto === null || templateDto === undefined) {
-            throw new Error('Required parameter templateDto was null or undefined when calling create.');
+            throw new Error('Required parameter templateDto was null or undefined when calling createTemplate.');
         }
 
         if (companyId !== undefined) {
@@ -244,13 +162,95 @@ export class TemplatesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response4;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateTemplate201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response4");
+                            body = ObjectSerializer.deserialize(body, "CreateTemplate201Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Deletes a certain template. Returns null.
+     * @summary Delete a template
+     * @param id Template ID
+     * @param companyId companyId
+     */
+    public async deleteTemplate (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
+        const localVarPath = this.basePath + '/templates/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteTemplate.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling deleteTemplate.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -269,7 +269,7 @@ export class TemplatesApi {
      * @param currentPage current page
      * @param perPage per Page 
      */
-    public async find (companyId: string, action?: 'item/create' | 'item/suspend' | 'item/unsuspend' | 'item/renew' | 'item/cancel' | 'item/delete' | 'item/upgrade' | 'item/update' | 'item/downgrade' | 'domain/create' | 'domain/lock' | 'domain/unlock' | 'domain/renew' | 'domain/bundle/add' | 'domain/bundle/remove' | 'domain/info' | 'domain/recall' | 'domain/transfer/check' | 'domain/transfer/cancel' | 'domain/transfer/accept' | 'domain/send-auth-code' | 'domain/check-availability' | 'domain/shield/activate' | 'domain/shield/deactivate' | 'domain/delete' | 'domain/contacts/info' | 'domain/contacts/create' | 'domain/contacts/update' | 'domain/contacts/delete' | 'domain/contacts/registrant' | 'domain/contacts/admin' | 'domain/contacts/tech' | 'domain/contacts/billing' | 'domain/resend-verification-email' | 'domain/check-claims' | 'domain/modify-hosts' | 'domain/modify-authcode' | 'domain/get-transfer-status' | 'domain/cancel-transfer' | 'domain/request-transfer-away' | 'domain/request-transfer' | 'domain/complete-transfer-away' | 'domain/reject-transfer-away' | 'domain/reject-transfer-expired', title?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response12;  }> {
+    public async findTemplates (companyId: string, action?: 'item/create' | 'item/suspend' | 'item/unsuspend' | 'item/renew' | 'item/cancel' | 'item/delete' | 'item/upgrade' | 'item/update' | 'item/downgrade' | 'domain/create' | 'domain/lock' | 'domain/unlock' | 'domain/renew' | 'domain/bundle/add' | 'domain/bundle/remove' | 'domain/info' | 'domain/recall' | 'domain/transfer/check' | 'domain/transfer/cancel' | 'domain/transfer/accept' | 'domain/send-auth-code' | 'domain/check-availability' | 'domain/shield/activate' | 'domain/shield/deactivate' | 'domain/delete' | 'domain/contacts/info' | 'domain/contacts/create' | 'domain/contacts/update' | 'domain/contacts/delete' | 'domain/contacts/registrant' | 'domain/contacts/admin' | 'domain/contacts/tech' | 'domain/contacts/billing' | 'domain/resend-verification-email' | 'domain/check-claims' | 'domain/modify-hosts' | 'domain/modify-authcode' | 'domain/get-transfer-status' | 'domain/cancel-transfer' | 'domain/request-transfer-away' | 'domain/request-transfer' | 'domain/complete-transfer-away' | 'domain/reject-transfer-away' | 'domain/reject-transfer-expired', title?: string, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FindTemplates200Response;  }> {
         const localVarPath = this.basePath + '/templates';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -284,7 +284,7 @@ export class TemplatesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling find.');
+            throw new Error('Required parameter companyId was null or undefined when calling findTemplates.');
         }
 
         if (companyId !== undefined) {
@@ -339,13 +339,13 @@ export class TemplatesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Find200Response12;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: FindTemplates200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Find200Response12");
+                            body = ObjectSerializer.deserialize(body, "FindTemplates200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -361,7 +361,7 @@ export class TemplatesApi {
      * @param companyId companyId
      * @param id ID
      */
-    public async get (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response4;  }> {
+    public async getTemplate (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateTemplate201Response;  }> {
         const localVarPath = this.basePath + '/templates/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -377,12 +377,12 @@ export class TemplatesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling get.');
+            throw new Error('Required parameter companyId was null or undefined when calling getTemplate.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling get.');
+            throw new Error('Required parameter id was null or undefined when calling getTemplate.');
         }
 
         if (companyId !== undefined) {
@@ -421,13 +421,13 @@ export class TemplatesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response4;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateTemplate201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response4");
+                            body = ObjectSerializer.deserialize(body, "CreateTemplate201Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -444,7 +444,7 @@ export class TemplatesApi {
      * @param id Template ID
      * @param templateDto 
      */
-    public async update (companyId: string, id: string, templateDto: TemplateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Create201Response4;  }> {
+    public async updateTemplate (companyId: string, id: string, templateDto: TemplateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CreateTemplate201Response;  }> {
         const localVarPath = this.basePath + '/templates/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -460,17 +460,17 @@ export class TemplatesApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling update.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateTemplate.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling update.');
+            throw new Error('Required parameter id was null or undefined when calling updateTemplate.');
         }
 
         // verify required parameter 'templateDto' is not null or undefined
         if (templateDto === null || templateDto === undefined) {
-            throw new Error('Required parameter templateDto was null or undefined when calling update.');
+            throw new Error('Required parameter templateDto was null or undefined when calling updateTemplate.');
         }
 
         if (companyId !== undefined) {
@@ -510,13 +510,13 @@ export class TemplatesApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Create201Response4;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: CreateTemplate201Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Create201Response4");
+                            body = ObjectSerializer.deserialize(body, "CreateTemplate201Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

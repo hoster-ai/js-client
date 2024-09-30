@@ -17,11 +17,11 @@ export class DomainContactDto {
     /**
     * The unique identifier of the contact.
     */
-    'id': string;
+    'id'?: string;
     /**
     * A custom code associated with the contact.
     */
-    'contactCode': string;
+    'contactCode'?: string;
     /**
     * The identifier of the integration associated with this contact.
     */

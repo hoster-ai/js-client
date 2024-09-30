@@ -16,11 +16,11 @@ export class TabDto {
     /**
     * A label for the certain tab.
     */
-    'label': string;
+    'label'?: string;
     /**
     * The url associated with the tab.
     */
-    'url': string;
+    'url'?: string;
 
     static discriminator: string | undefined = undefined;
 

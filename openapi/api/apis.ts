@@ -38,8 +38,6 @@ export * from './productCategoriesApi';
 import { ProductCategoriesApi } from './productCategoriesApi';
 export * from './productsApi';
 import { ProductsApi } from './productsApi';
-export * from './settingsApi';
-import { SettingsApi } from './settingsApi';
 export * from './templatesApi';
 import { TemplatesApi } from './templatesApi';
 export * from './tldsApi';
@@ -57,4 +55,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DefaultApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, SettingsApi, TemplatesApi, TldsApi, UsersApi];
+export const APIS = [AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DefaultApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, TemplatesApi, TldsApi, UsersApi];

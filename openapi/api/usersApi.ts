@@ -16,12 +16,11 @@ import http from 'http';
 
 /* tslint:disable:no-unused-locals */
 import { AffiliateDto } from '../model/affiliateDto';
+import { CustomToken200Response } from '../model/customToken200Response';
 import { ErrorResponse } from '../model/errorResponse';
-import { Find200Response3 } from '../model/find200Response3';
-import { Get200Response } from '../model/get200Response';
-import { GetSettings200Response } from '../model/getSettings200Response';
-import { InvoiceGet200Response } from '../model/invoiceGet200Response';
-import { SettingOptionsDto } from '../model/settingOptionsDto';
+import { FindUsers200Response } from '../model/findUsers200Response';
+import { GetInvoice200Response } from '../model/getInvoice200Response';
+import { GetUser200Response } from '../model/getUser200Response';
 import { UserAddonPricePolicyDto } from '../model/userAddonPricePolicyDto';
 import { UserPricePolicyDto } from '../model/userPricePolicyDto';
 
@@ -101,170 +100,13 @@ export class UsersApi {
     }
 
     /**
-     * Delete a user related to a specific company. You can specify the user by their unique ID and the company using its unique ID. The operation includes checks for balance, active payments, and parent-child relationships.Returns an empty response.
-     * @summary Delete a user
-     * @param id A unique identifier for the user. Use this parameter to specify the user you want to delete within the specified company.
-     * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
-     */
-    public async _delete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
-        const localVarPath = this.basePath + '/users/{id}'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling _delete.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Exports all users related to a company using the specified companyId. Returns data that may include user details in the form of a UserDto array of objects.
-     * @summary Export users
-     * @param companyId A unique identifier for the company.
-     */
-    public async _export (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
-        const localVarPath = this.basePath + '/users/export';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling _export.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * Add an additional notification email to a user related to a company. Identify the user by their unique ID and specify the company using the company ID. Returns an array of email addresses.
      * @summary Add additional notification emails to user
      * @param id A unique identifier for the user. Use this parameter to specify the user for whom you want to retrieve additional notification emails within the specified company.
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param newEmail 
      */
-    public async addAdditionalNotificationEmails (id: string, companyId: string, newEmail: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async addUserAdditionalNotificationEmails (id: string, companyId: string, newEmail: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/additional-notification-emails'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -280,17 +122,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling addAdditionalNotificationEmails.');
+            throw new Error('Required parameter id was null or undefined when calling addUserAdditionalNotificationEmails.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling addAdditionalNotificationEmails.');
+            throw new Error('Required parameter companyId was null or undefined when calling addUserAdditionalNotificationEmails.');
         }
 
         // verify required parameter 'newEmail' is not null or undefined
         if (newEmail === null || newEmail === undefined) {
-            throw new Error('Required parameter newEmail was null or undefined when calling addAdditionalNotificationEmails.');
+            throw new Error('Required parameter newEmail was null or undefined when calling addUserAdditionalNotificationEmails.');
         }
 
         if (companyId !== undefined) {
@@ -333,13 +175,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -356,7 +198,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param comment The comment to be added to the user\&#39;s profile.
      */
-    public async addComment (id: string, companyId: string, comment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async addUserComment (id: string, companyId: string, comment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/comments'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -372,17 +214,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling addComment.');
+            throw new Error('Required parameter id was null or undefined when calling addUserComment.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling addComment.');
+            throw new Error('Required parameter companyId was null or undefined when calling addUserComment.');
         }
 
         // verify required parameter 'comment' is not null or undefined
         if (comment === null || comment === undefined) {
-            throw new Error('Required parameter comment was null or undefined when calling addComment.');
+            throw new Error('Required parameter comment was null or undefined when calling addUserComment.');
         }
 
         if (companyId !== undefined) {
@@ -425,13 +267,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -448,7 +290,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param affiliateDto 
      */
-    public async addCustomAffiliate (id: string, companyId: string, affiliateDto: AffiliateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async addUserCustomAffiliate (id: string, companyId: string, affiliateDto: AffiliateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/affiliate'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -464,17 +306,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling addCustomAffiliate.');
+            throw new Error('Required parameter id was null or undefined when calling addUserCustomAffiliate.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling addCustomAffiliate.');
+            throw new Error('Required parameter companyId was null or undefined when calling addUserCustomAffiliate.');
         }
 
         // verify required parameter 'affiliateDto' is not null or undefined
         if (affiliateDto === null || affiliateDto === undefined) {
-            throw new Error('Required parameter affiliateDto was null or undefined when calling addCustomAffiliate.');
+            throw new Error('Required parameter affiliateDto was null or undefined when calling addUserCustomAffiliate.');
         }
 
         if (companyId !== undefined) {
@@ -514,102 +356,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Add a new setting for a specific user within a company. Returns updated UserDto object
-     * @summary Add user setting
-     * @param id A unique identifier for the user for whom you want to add a new setting. This parameter identifies the target user.
-     * @param companyId A unique identifier for the company to which the user belongs. This parameter specifies the company context.
-     * @param settingOptionsDto The new setting to be added for the user.
-     */
-    public async addSetting (id: string, companyId: string, settingOptionsDto: SettingOptionsDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
-        const localVarPath = this.basePath + '/users/{id}/settings'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling addSetting.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling addSetting.');
-        }
-
-        // verify required parameter 'settingOptionsDto' is not null or undefined
-        if (settingOptionsDto === null || settingOptionsDto === undefined) {
-            throw new Error('Required parameter settingOptionsDto was null or undefined when calling addSetting.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(settingOptionsDto, "SettingOptionsDto")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -625,7 +378,7 @@ export class UsersApi {
      * @param id A unique identifier for the user. Use this parameter to specify the user you want to ban within the specified company.
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      */
-    public async ban (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async banUser (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/ban'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -641,12 +394,12 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling ban.');
+            throw new Error('Required parameter id was null or undefined when calling banUser.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling ban.');
+            throw new Error('Required parameter companyId was null or undefined when calling banUser.');
         }
 
         if (companyId !== undefined) {
@@ -685,13 +438,245 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * 
+     * @summary Create a custom token for a user and return it
+     * @param companyId 
+     */
+    public async customToken (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CustomToken200Response;  }> {
+        const localVarPath = this.basePath + '/users/custom-token';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling customToken.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: CustomToken200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "CustomToken200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Delete a user related to a specific company. You can specify the user by their unique ID and the company using its unique ID. The operation includes checks for balance, active payments, and parent-child relationships.Returns an empty response.
+     * @summary Delete a user
+     * @param id A unique identifier for the user. Use this parameter to specify the user you want to delete within the specified company.
+     * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
+     */
+    public async deleteUser (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
+        const localVarPath = this.basePath + '/users/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteUser.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling deleteUser.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Exports all users related to a company using the specified companyId. Returns data that may include user details in the form of a UserDto array of objects.
+     * @summary Export users
+     * @param companyId A unique identifier for the company.
+     */
+    public async exportUser (companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
+        const localVarPath = this.basePath + '/users/export';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling exportUser.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -712,7 +697,7 @@ export class UsersApi {
      * @param currentPage Specify the current page.
      * @param comment Search for users based on comments.
      */
-    public async find (companyId: string, email?: string, lockedPayments?: boolean, policyId?: string, perPage?: number, currentPage?: number, comment?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response3;  }> {
+    public async findUsers (companyId: string, email?: string, lockedPayments?: boolean, policyId?: string, perPage?: number, currentPage?: number, comment?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FindUsers200Response;  }> {
         const localVarPath = this.basePath + '/users';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -727,7 +712,7 @@ export class UsersApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling find.');
+            throw new Error('Required parameter companyId was null or undefined when calling findUsers.');
         }
 
         if (companyId !== undefined) {
@@ -790,13 +775,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Find200Response3;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: FindUsers200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Find200Response3");
+                            body = ObjectSerializer.deserialize(body, "FindUsers200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -812,7 +797,7 @@ export class UsersApi {
      * @param id A unique identifier for the user.
      * @param companyId A unique identifier for the company.
      */
-    public async get (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async getUser (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -828,12 +813,12 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling get.');
+            throw new Error('Required parameter id was null or undefined when calling getUser.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling get.');
+            throw new Error('Required parameter companyId was null or undefined when calling getUser.');
         }
 
         if (companyId !== undefined) {
@@ -872,13 +857,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -894,7 +879,7 @@ export class UsersApi {
      * @param id A unique identifier for the user. Use this parameter to specify the user for whom you want to retrieve additional notification emails within the specified company.
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      */
-    public async getAdditionalNotificationEmails (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async getUserAdditionalNotificationEmails (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/additional-notification-emails'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -910,12 +895,12 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getAdditionalNotificationEmails.');
+            throw new Error('Required parameter id was null or undefined when calling getUserAdditionalNotificationEmails.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling getAdditionalNotificationEmails.');
+            throw new Error('Required parameter companyId was null or undefined when calling getUserAdditionalNotificationEmails.');
         }
 
         if (companyId !== undefined) {
@@ -954,13 +939,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -975,7 +960,7 @@ export class UsersApi {
      * @summary Get basket
      * @param id 
      */
-    public async getBasket (id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async getUserBasket (id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/basket'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -991,7 +976,7 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getBasket.');
+            throw new Error('Required parameter id was null or undefined when calling getUserBasket.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -1026,13 +1011,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1048,7 +1033,7 @@ export class UsersApi {
      * @param id A unique identifier for the user. Use this parameter to specify the user for whom you want to retrieve comments within the specified company.
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      */
-    public async getComments (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async getUserComments (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/comments'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1064,12 +1049,12 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getComments.');
+            throw new Error('Required parameter id was null or undefined when calling getUserComments.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling getComments.');
+            throw new Error('Required parameter companyId was null or undefined when calling getUserComments.');
         }
 
         if (companyId !== undefined) {
@@ -1108,177 +1093,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Retrieve logs for a specific user within a company. The logs may contain information about user activities, system events, and more.
-     * @summary Get user logs
-     * @param id A unique identifier for the user for whom you want to retrieve log entries.
-     * @param companyId A unique identifier for the company to which the user belongs.
-     */
-    public async getLogs (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
-        const localVarPath = this.basePath + '/users/{id}/logs'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getLogs.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling getLogs.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Retrieve settings for a specific user within a company. Returns user\'s settings in the form od a SettingsOptionsDto object.
-     * @summary Get user settings
-     * @param id A unique identifier for the user for whom you want to retrieve settings. This parameter identifies the target user.
-     * @param companyId A unique identifier for the company to which the user belongs. This parameter specifies the company context.
-     */
-    public async getSettings (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetSettings200Response;  }> {
-        const localVarPath = this.basePath + '/users/{id}/settings'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getSettings.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling getSettings.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: GetSettings200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "GetSettings200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1294,7 +1115,7 @@ export class UsersApi {
      * @param id User ID
      * @param companyId companyId
      */
-    public async lock (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async lockUser (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/lock'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1310,12 +1131,12 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling lock.');
+            throw new Error('Required parameter id was null or undefined when calling lockUser.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling lock.');
+            throw new Error('Required parameter companyId was null or undefined when calling lockUser.');
         }
 
         if (companyId !== undefined) {
@@ -1354,13 +1175,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1374,7 +1195,7 @@ export class UsersApi {
      * This endpoint allows a user to log out, terminating their session. It returns true upon successful logout.
      * @summary Logout
      */
-    public async logout (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async logoutUser (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
         const localVarPath = this.basePath + '/users/logout';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -1419,13 +1240,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1442,7 +1263,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param comment The comment to be removed from the user\&#39;s profile.
      */
-    public async removeComment (id: string, companyId: string, comment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async removeUserComment (id: string, companyId: string, comment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/comments'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1458,17 +1279,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling removeComment.');
+            throw new Error('Required parameter id was null or undefined when calling removeUserComment.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling removeComment.');
+            throw new Error('Required parameter companyId was null or undefined when calling removeUserComment.');
         }
 
         // verify required parameter 'comment' is not null or undefined
         if (comment === null || comment === undefined) {
-            throw new Error('Required parameter comment was null or undefined when calling removeComment.');
+            throw new Error('Required parameter comment was null or undefined when calling removeUserComment.');
         }
 
         if (companyId !== undefined) {
@@ -1511,13 +1332,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1534,7 +1355,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param affiliateId The unique ID of the custom affiliate to be removed from the user.
      */
-    public async removeCustomAffiliate (id: string, companyId: string, affiliateId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async removeUserCustomAffiliate (id: string, companyId: string, affiliateId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/affiliate/{affiliateId}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'affiliateId' + '}', encodeURIComponent(String(affiliateId)));
@@ -1551,17 +1372,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling removeCustomAffiliate.');
+            throw new Error('Required parameter id was null or undefined when calling removeUserCustomAffiliate.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling removeCustomAffiliate.');
+            throw new Error('Required parameter companyId was null or undefined when calling removeUserCustomAffiliate.');
         }
 
         // verify required parameter 'affiliateId' is not null or undefined
         if (affiliateId === null || affiliateId === undefined) {
-            throw new Error('Required parameter affiliateId was null or undefined when calling removeCustomAffiliate.');
+            throw new Error('Required parameter affiliateId was null or undefined when calling removeUserCustomAffiliate.');
         }
 
         if (companyId !== undefined) {
@@ -1600,13 +1421,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1621,7 +1442,7 @@ export class UsersApi {
      * @summary Save basket
      * @param id 
      */
-    public async saveBasket (id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async saveUserBasket (id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/basket'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1637,7 +1458,7 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling saveBasket.');
+            throw new Error('Required parameter id was null or undefined when calling saveUserBasket.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -1672,13 +1493,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1694,7 +1515,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param id A unique identifier for the user. Use this parameter to specify the user you want to unban within the specified company.
      */
-    public async unban (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async unbanUser (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/unban'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1710,12 +1531,12 @@ export class UsersApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling unban.');
+            throw new Error('Required parameter companyId was null or undefined when calling unbanUser.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling unban.');
+            throw new Error('Required parameter id was null or undefined when calling unbanUser.');
         }
 
         if (companyId !== undefined) {
@@ -1754,13 +1575,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1776,7 +1597,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param id A unique identifier for the user. Use this parameter to specify the user whose payments you want to unlock within the specified company.
      */
-    public async unlock (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async unlockUser (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/unlock'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1792,12 +1613,12 @@ export class UsersApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling unlock.');
+            throw new Error('Required parameter companyId was null or undefined when calling unlockUser.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling unlock.');
+            throw new Error('Required parameter id was null or undefined when calling unlockUser.');
         }
 
         if (companyId !== undefined) {
@@ -1836,13 +1657,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1860,7 +1681,7 @@ export class UsersApi {
      * @param commentId The ID of the comment you want to update on the user\&#39;s profile.
      * @param newComment The updated comment to replace the existing comment.
      */
-    public async updateComment (id: string, companyId: string, commentId: string, newComment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async updateUserComment (id: string, companyId: string, commentId: string, newComment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/comments/{commentId}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'commentId' + '}', encodeURIComponent(String(commentId)));
@@ -1877,22 +1698,22 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateComment.');
+            throw new Error('Required parameter id was null or undefined when calling updateUserComment.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateComment.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateUserComment.');
         }
 
         // verify required parameter 'commentId' is not null or undefined
         if (commentId === null || commentId === undefined) {
-            throw new Error('Required parameter commentId was null or undefined when calling updateComment.');
+            throw new Error('Required parameter commentId was null or undefined when calling updateUserComment.');
         }
 
         // verify required parameter 'newComment' is not null or undefined
         if (newComment === null || newComment === undefined) {
-            throw new Error('Required parameter newComment was null or undefined when calling updateComment.');
+            throw new Error('Required parameter newComment was null or undefined when calling updateUserComment.');
         }
 
         if (companyId !== undefined) {
@@ -1935,13 +1756,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1958,7 +1779,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param creditBalance The new credit balance to update for the user. It should be a numerical value representing the user\&#39;s credit balance.
      */
-    public async updateCreditBalance (id: string, companyId: string, creditBalance: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async updateUserCreditBalance (id: string, companyId: string, creditBalance: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/credit-balance'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1974,17 +1795,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateCreditBalance.');
+            throw new Error('Required parameter id was null or undefined when calling updateUserCreditBalance.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateCreditBalance.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateUserCreditBalance.');
         }
 
         // verify required parameter 'creditBalance' is not null or undefined
         if (creditBalance === null || creditBalance === undefined) {
-            throw new Error('Required parameter creditBalance was null or undefined when calling updateCreditBalance.');
+            throw new Error('Required parameter creditBalance was null or undefined when calling updateUserCreditBalance.');
         }
 
         if (companyId !== undefined) {
@@ -2027,13 +1848,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -2050,7 +1871,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param userAddonPricePolicyDto 
      */
-    public async updateCustomAddonPricePolicies (id: string, companyId: string, userAddonPricePolicyDto: Array<UserAddonPricePolicyDto>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async updateUserCustomAddonPricePolicies (id: string, companyId: string, userAddonPricePolicyDto: Array<UserAddonPricePolicyDto>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/custom-addon-price-policies'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2066,17 +1887,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateCustomAddonPricePolicies.');
+            throw new Error('Required parameter id was null or undefined when calling updateUserCustomAddonPricePolicies.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateCustomAddonPricePolicies.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateUserCustomAddonPricePolicies.');
         }
 
         // verify required parameter 'userAddonPricePolicyDto' is not null or undefined
         if (userAddonPricePolicyDto === null || userAddonPricePolicyDto === undefined) {
-            throw new Error('Required parameter userAddonPricePolicyDto was null or undefined when calling updateCustomAddonPricePolicies.');
+            throw new Error('Required parameter userAddonPricePolicyDto was null or undefined when calling updateUserCustomAddonPricePolicies.');
         }
 
         if (companyId !== undefined) {
@@ -2116,13 +1937,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -2139,7 +1960,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param userPricePolicyDto 
      */
-    public async updateCustomPricePolicies (id: string, companyId: string, userPricePolicyDto: Array<UserPricePolicyDto>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async updateUserCustomPricePolicies (id: string, companyId: string, userPricePolicyDto: Array<UserPricePolicyDto>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/custom-price-policies'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2155,17 +1976,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateCustomPricePolicies.');
+            throw new Error('Required parameter id was null or undefined when calling updateUserCustomPricePolicies.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateCustomPricePolicies.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateUserCustomPricePolicies.');
         }
 
         // verify required parameter 'userPricePolicyDto' is not null or undefined
         if (userPricePolicyDto === null || userPricePolicyDto === undefined) {
-            throw new Error('Required parameter userPricePolicyDto was null or undefined when calling updateCustomPricePolicies.');
+            throw new Error('Required parameter userPricePolicyDto was null or undefined when calling updateUserCustomPricePolicies.');
         }
 
         if (companyId !== undefined) {
@@ -2205,13 +2026,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -2228,7 +2049,7 @@ export class UsersApi {
      * @param id A unique identifier for the user. Use this parameter to specify the user for whom you want to update the invoice interval within the specified company.
      * @param invoiceInterval The new invoice interval to be set for the user. Choose from available options.
      */
-    public async updateInvoiceInterval (companyId: string, id: string, invoiceInterval: 'instant' | 'weekly' | 'monthly' | 'per request', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async updateUserInvoiceInterval (companyId: string, id: string, invoiceInterval: 'instant' | 'weekly' | 'monthly' | 'per request', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/invoice-interval'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2244,17 +2065,17 @@ export class UsersApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateInvoiceInterval.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateUserInvoiceInterval.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateInvoiceInterval.');
+            throw new Error('Required parameter id was null or undefined when calling updateUserInvoiceInterval.');
         }
 
         // verify required parameter 'invoiceInterval' is not null or undefined
         if (invoiceInterval === null || invoiceInterval === undefined) {
-            throw new Error('Required parameter invoiceInterval was null or undefined when calling updateInvoiceInterval.');
+            throw new Error('Required parameter invoiceInterval was null or undefined when calling updateUserInvoiceInterval.');
         }
 
         if (companyId !== undefined) {
@@ -2297,13 +2118,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -2320,7 +2141,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param languages The new list of preferred languages. Use this parameter to specify the updated list of preferred languages for the user.
      */
-    public async updateLanguages (id: string, companyId: string, languages: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async updateUserLanguages (id: string, companyId: string, languages: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/languages'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2336,17 +2157,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateLanguages.');
+            throw new Error('Required parameter id was null or undefined when calling updateUserLanguages.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateLanguages.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateUserLanguages.');
         }
 
         // verify required parameter 'languages' is not null or undefined
         if (languages === null || languages === undefined) {
-            throw new Error('Required parameter languages was null or undefined when calling updateLanguages.');
+            throw new Error('Required parameter languages was null or undefined when calling updateUserLanguages.');
         }
 
         if (companyId !== undefined) {
@@ -2389,102 +2210,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Update logs for a specific user within a company. Provide an array of log entries to update for the user. Return updated UserDto object
-     * @summary Update user logs
-     * @param id Unique identifier for the user.
-     * @param companyId Unique identifier for the company.
-     * @param requestBody An array of log entries to update for the user.
-     */
-    public async updateLogs (id: string, companyId: string, requestBody: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
-        const localVarPath = this.basePath + '/users/{id}/logs'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateLogs.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateLogs.');
-        }
-
-        // verify required parameter 'requestBody' is not null or undefined
-        if (requestBody === null || requestBody === undefined) {
-            throw new Error('Required parameter requestBody was null or undefined when calling updateLogs.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PATCH',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(requestBody, "Array<string>")
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -2502,7 +2234,7 @@ export class UsersApi {
      * @param policyId 
      * @param uniqueIdentifierForThePolicy 
      */
-    public async updatePolicy (id: string, companyId: string, policyId: string, uniqueIdentifierForThePolicy: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
+    public async updateUserPolicy (id: string, companyId: string, policyId: string, uniqueIdentifierForThePolicy: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/policy'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2518,22 +2250,22 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updatePolicy.');
+            throw new Error('Required parameter id was null or undefined when calling updateUserPolicy.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updatePolicy.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateUserPolicy.');
         }
 
         // verify required parameter 'policyId' is not null or undefined
         if (policyId === null || policyId === undefined) {
-            throw new Error('Required parameter policyId was null or undefined when calling updatePolicy.');
+            throw new Error('Required parameter policyId was null or undefined when calling updateUserPolicy.');
         }
 
         // verify required parameter 'uniqueIdentifierForThePolicy' is not null or undefined
         if (uniqueIdentifierForThePolicy === null || uniqueIdentifierForThePolicy === undefined) {
-            throw new Error('Required parameter uniqueIdentifierForThePolicy was null or undefined when calling updatePolicy.');
+            throw new Error('Required parameter uniqueIdentifierForThePolicy was null or undefined when calling updateUserPolicy.');
         }
 
         if (companyId !== undefined) {
@@ -2580,13 +2312,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -2603,7 +2335,7 @@ export class UsersApi {
      * @param companyId A unique identifier for the company. Specify the company to which the user belongs.
      * @param requestBody An array of tags to replace the existing tags on the user\&#39;s profile.
      */
-    public async updateTags (id: string, companyId: string, requestBody: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response;  }> {
+    public async updateUserTags (id: string, companyId: string, requestBody: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }> {
         const localVarPath = this.basePath + '/users/{id}/tags'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -2619,17 +2351,17 @@ export class UsersApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateTags.');
+            throw new Error('Required parameter id was null or undefined when calling updateUserTags.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateTags.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateUserTags.');
         }
 
         // verify required parameter 'requestBody' is not null or undefined
         if (requestBody === null || requestBody === undefined) {
-            throw new Error('Required parameter requestBody was null or undefined when calling updateTags.');
+            throw new Error('Required parameter requestBody was null or undefined when calling updateUserTags.');
         }
 
         if (companyId !== undefined) {
@@ -2669,13 +2401,13 @@ export class UsersApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetUser200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response");
+                            body = ObjectSerializer.deserialize(body, "GetUser200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

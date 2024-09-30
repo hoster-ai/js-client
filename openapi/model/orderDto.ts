@@ -19,7 +19,7 @@ export class OrderDto {
     /**
     * Unique Identifier of order
     */
-    'id': string;
+    'id'?: string;
     /**
     * Auto-incremented order identifier
     */
@@ -51,7 +51,7 @@ export class OrderDto {
     /**
     * The invoice status associated with the specific order
     */
-    'orderInvoiceStatus': OrderDto.OrderInvoiceStatusEnum;
+    'orderInvoiceStatus'?: OrderDto.OrderInvoiceStatusEnum;
     /**
     * Summary information about the order\'s prices and costs.
     */

@@ -22,11 +22,11 @@ export class ProductDetailsDto {
     * Multilingual title of the product
     */
     'title'?: object;
-    'integration': Integration;
+    'integration'?: Integration;
     /**
     * Version of the product
     */
-    'version': number;
+    'version'?: number;
 
     static discriminator: string | undefined = undefined;
 

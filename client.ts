@@ -1,4 +1,4 @@
-import { HttpBearerAuth, AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, SettingsApi, TemplatesApi, TldsApi, UsersApi } from "./openapi/api";
+import { HttpBearerAuth, AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, TemplatesApi, TldsApi, UsersApi } from "./openapi/api";
 
 // This is the entrypoint for the openapi package
 export * from './openapi/api/apis';
@@ -136,12 +136,6 @@ export class Client {
       const productsApi = new ProductsApi(this.basePath);
       productsApi.setDefaultAuthentication(this.httpBearerAuth);
       return productsApi;
-    }
-  
-    public settings() {
-      const settingsApi = new SettingsApi(this.basePath);
-      settingsApi.setDefaultAuthentication(this.httpBearerAuth);
-      return settingsApi;
     }
   
     public templates() {

@@ -19,7 +19,7 @@ export class AddonDto {
     /**
     * The unique identifier of the addon.
     */
-    'id': string;
+    'id'?: string;
     /**
     * The name of the addon.
     */
@@ -59,11 +59,11 @@ export class AddonDto {
     /**
     * Indicates if the addon can be deleted or not.
     */
-    'deletable': boolean;
+    'deletable'?: boolean;
     /**
     * Indicates if the addon is able to be eddited or not.
     */
-    'editable': boolean;
+    'editable'?: boolean;
 
     static discriminator: string | undefined = undefined;
 

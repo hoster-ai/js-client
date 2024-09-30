@@ -1,5 +1,4 @@
 import { Client } from "../client";
-import * as request from 'request';
 import {
   AddonsApi,
   AffiliatesApi,
@@ -21,7 +20,6 @@ import {
   PoliciesApi,
   ProductCategoriesApi,
   ProductsApi,
-  SettingsApi,
   TldsApi,
   UsersApi,
 } from "../openapi/api";
@@ -133,11 +131,6 @@ describe("ApiClient", () => {
     expect(api).toBeInstanceOf(ProductsApi);
   });
 
-  it("should create settings API", () => {
-    const api = client.settings();
-    expect(api).toBeInstanceOf(SettingsApi);
-  });
-
   it("should create templates API", () => {
     const api = client.templates();
     expect(api).toBeInstanceOf(TemplatesApi);
@@ -156,7 +149,7 @@ describe("ApiClient", () => {
   it.only("Try to ban a user without permissions", async () => {
     return client
       .users()
-      .ban("user1", "company1")
+      .banUser("user1", "company1")
       .then((results) => {
         fail('Should not have been successful');
       })

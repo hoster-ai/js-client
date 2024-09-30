@@ -27,7 +27,7 @@ export class CustomPricePolicies {
     * The unique identifier of the product.
     */
     'productId': string;
-    'policy': Policy;
+    'policy'?: Policy;
     /**
     * An array of calculated prices.
     */

@@ -17,7 +17,7 @@ export class TldDto {
     /**
     * The unique identifier for the tld.
     */
-    'id': string;
+    'id'?: string;
     /**
     * A string that contains the acual tld.
     */

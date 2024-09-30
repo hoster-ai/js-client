@@ -16,9 +16,9 @@ import http from 'http';
 
 /* tslint:disable:no-unused-locals */
 import { ErrorResponse } from '../model/errorResponse';
-import { Find200Response7 } from '../model/find200Response7';
-import { Get200Response1 } from '../model/get200Response1';
-import { InvoiceGet200Response } from '../model/invoiceGet200Response';
+import { FindItems200Response } from '../model/findItems200Response';
+import { GetInvoice200Response } from '../model/getInvoice200Response';
+import { GetItem200Response } from '../model/getItem200Response';
 import { ItemAffiliateDto } from '../model/itemAffiliateDto';
 import { ItemUpdateDto } from '../model/itemUpdateDto';
 
@@ -98,95 +98,13 @@ export class ItemsApi {
     }
 
     /**
-     * Permanently delete an item. This operation removes an item from the system. Use with caution as this action is irreversible. Returns true on success
-     * @summary delete an items
-     * @param id The unique identifier of the item to be deleted.
-     * @param companyId The unique identifier of the company associated with the item.
-     */
-    public async _delete (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }> {
-        const localVarPath = this.basePath + '/items/{id}'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling _delete.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling _delete.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'DELETE',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: InvoiceGet200Response;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "InvoiceGet200Response");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * Add an affiliate user to an item. This operation associates an affiliate user with a specific item. Returns the updated ItemDto
      * @summary add affiliate user to items
      * @param id The unique identifier of the item to which the affiliate user will be added.
      * @param companyId The unique identifier of the company associated with the item.
      * @param itemAffiliateDto 
      */
-    public async affiliateAdd (id: string, companyId: string, itemAffiliateDto: ItemAffiliateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async affiliateItemAdd (id: string, companyId: string, itemAffiliateDto: ItemAffiliateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/affiliate'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -202,17 +120,17 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling affiliateAdd.');
+            throw new Error('Required parameter id was null or undefined when calling affiliateItemAdd.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling affiliateAdd.');
+            throw new Error('Required parameter companyId was null or undefined when calling affiliateItemAdd.');
         }
 
         // verify required parameter 'itemAffiliateDto' is not null or undefined
         if (itemAffiliateDto === null || itemAffiliateDto === undefined) {
-            throw new Error('Required parameter itemAffiliateDto was null or undefined when calling affiliateAdd.');
+            throw new Error('Required parameter itemAffiliateDto was null or undefined when calling affiliateItemAdd.');
         }
 
         if (companyId !== undefined) {
@@ -252,13 +170,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -274,7 +192,7 @@ export class ItemsApi {
      * @param id The unique identifier of the item from which the affiliate user will be removed.
      * @param companyId The unique identifier of the company associated with the item.
      */
-    public async affiliateRemove (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async affiliateItemRemove (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/affiliate'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -290,12 +208,12 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling affiliateRemove.');
+            throw new Error('Required parameter id was null or undefined when calling affiliateItemRemove.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling affiliateRemove.');
+            throw new Error('Required parameter companyId was null or undefined when calling affiliateItemRemove.');
         }
 
         if (companyId !== undefined) {
@@ -334,13 +252,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -357,7 +275,7 @@ export class ItemsApi {
      * @param companyId The unique identifier of the company associated with the item.
      * @param ips An array of IP addresses to attach to the item.
      */
-    public async attachIps (id: string, companyId: string, ips: Array<any>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async attachItemIps (id: string, companyId: string, ips: Array<any>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/ips/attach'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -373,17 +291,17 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling attachIps.');
+            throw new Error('Required parameter id was null or undefined when calling attachItemIps.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling attachIps.');
+            throw new Error('Required parameter companyId was null or undefined when calling attachItemIps.');
         }
 
         // verify required parameter 'ips' is not null or undefined
         if (ips === null || ips === undefined) {
-            throw new Error('Required parameter ips was null or undefined when calling attachIps.');
+            throw new Error('Required parameter ips was null or undefined when calling attachItemIps.');
         }
 
         if (companyId !== undefined) {
@@ -426,13 +344,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -449,7 +367,7 @@ export class ItemsApi {
      * @param companyId The unique identifier of the company associated with the item and the bundle.
      * @param bundleId The unique identifier of the bundle to be deattached from the item.
      */
-    public async bundleDetach (id: string, companyId: string, bundleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async bundleItemDetach (id: string, companyId: string, bundleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/bundles/detach/{bundleId}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'bundleId' + '}', encodeURIComponent(String(bundleId)));
@@ -466,17 +384,17 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling bundleDetach.');
+            throw new Error('Required parameter id was null or undefined when calling bundleItemDetach.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling bundleDetach.');
+            throw new Error('Required parameter companyId was null or undefined when calling bundleItemDetach.');
         }
 
         // verify required parameter 'bundleId' is not null or undefined
         if (bundleId === null || bundleId === undefined) {
-            throw new Error('Required parameter bundleId was null or undefined when calling bundleDetach.');
+            throw new Error('Required parameter bundleId was null or undefined when calling bundleItemDetach.');
         }
 
         if (companyId !== undefined) {
@@ -515,13 +433,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -539,7 +457,7 @@ export class ItemsApi {
      * @param refundType Type of refund to be initiated if \&quot;refund\&quot; is set to true.
      * @param refund Specify whether a refund should be initiated for the canceled item. Defaults to false.
      */
-    public async cancel (id: string, companyId: string, refundType?: 'credit' | 'payment_method', refund?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async cancelItem (id: string, companyId: string, refundType?: 'credit' | 'payment_method', refund?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/cancel'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -555,12 +473,12 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling cancel.');
+            throw new Error('Required parameter id was null or undefined when calling cancelItem.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling cancel.');
+            throw new Error('Required parameter companyId was null or undefined when calling cancelItem.');
         }
 
         if (companyId !== undefined) {
@@ -607,13 +525,95 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Permanently delete an item. This operation removes an item from the system. Use with caution as this action is irreversible. Returns true on success
+     * @summary delete an items
+     * @param id The unique identifier of the item to be deleted.
+     * @param companyId The unique identifier of the company associated with the item.
+     */
+    public async deleteItem (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }> {
+        const localVarPath = this.basePath + '/items/{id}'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteItem.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling deleteItem.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: GetInvoice200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "GetInvoice200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -629,7 +629,7 @@ export class ItemsApi {
      * @param id The unique identifier of the item for which the parent comment will be removed. Returns true on success
      * @param companyId The unique identifier of the company associated with the item.
      */
-    public async deleteParentComment (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async deleteItemParentComment (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/comment/parent'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -645,12 +645,12 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteParentComment.');
+            throw new Error('Required parameter id was null or undefined when calling deleteItemParentComment.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling deleteParentComment.');
+            throw new Error('Required parameter companyId was null or undefined when calling deleteItemParentComment.');
         }
 
         if (companyId !== undefined) {
@@ -689,13 +689,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -711,7 +711,7 @@ export class ItemsApi {
      * @param id The unique identifier of the item for which the user comment will be deleted.
      * @param companyId The unique identifier of the company associated with the item.
      */
-    public async deleteUserComment (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async deleteItemUserComment (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/comment/user'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -727,12 +727,12 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteUserComment.');
+            throw new Error('Required parameter id was null or undefined when calling deleteItemUserComment.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling deleteUserComment.');
+            throw new Error('Required parameter companyId was null or undefined when calling deleteItemUserComment.');
         }
 
         if (companyId !== undefined) {
@@ -771,13 +771,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -793,7 +793,7 @@ export class ItemsApi {
      * @param id The unique identifier of the item to detach.
      * @param companyId The unique identifier of the company associated with the item.
      */
-    public async detach (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async detachItem (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/detach'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -809,12 +809,12 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling detach.');
+            throw new Error('Required parameter id was null or undefined when calling detachItem.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling detach.');
+            throw new Error('Required parameter companyId was null or undefined when calling detachItem.');
         }
 
         if (companyId !== undefined) {
@@ -853,13 +853,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -876,7 +876,7 @@ export class ItemsApi {
      * @param companyId The unique identifier of the company associated with the item.
      * @param ips An array of IP addresses to detach from the item.
      */
-    public async detachIps (id: string, companyId: string, ips: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async detachItemIps (id: string, companyId: string, ips: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/ips/detach'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -892,17 +892,17 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling detachIps.');
+            throw new Error('Required parameter id was null or undefined when calling detachItemIps.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling detachIps.');
+            throw new Error('Required parameter companyId was null or undefined when calling detachItemIps.');
         }
 
         // verify required parameter 'ips' is not null or undefined
         if (ips === null || ips === undefined) {
-            throw new Error('Required parameter ips was null or undefined when calling detachIps.');
+            throw new Error('Required parameter ips was null or undefined when calling detachItemIps.');
         }
 
         if (companyId !== undefined) {
@@ -945,13 +945,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -979,7 +979,7 @@ export class ItemsApi {
      * @param currentPage Specify the current page number for paginated results.
      * @param perPage Specify the number of items to display per page in the results.
      */
-    public async find (companyId: string, userId: string, name?: string, addons?: Array<string>, categoryTitle?: string, productTitle?: string, fromEndDate?: Date, toEndDate?: Date, fromStartDate?: Date, toStartDate?: Date, fromPrice?: number, toPrice?: number, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Find200Response7;  }> {
+    public async findItems (companyId: string, userId: string, name?: string, addons?: Array<string>, categoryTitle?: string, productTitle?: string, fromEndDate?: Date, toEndDate?: Date, fromStartDate?: Date, toStartDate?: Date, fromPrice?: number, toPrice?: number, currentPage?: number, perPage?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FindItems200Response;  }> {
         const localVarPath = this.basePath + '/items';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -994,12 +994,12 @@ export class ItemsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling find.');
+            throw new Error('Required parameter companyId was null or undefined when calling findItems.');
         }
 
         // verify required parameter 'userId' is not null or undefined
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling find.');
+            throw new Error('Required parameter userId was null or undefined when calling findItems.');
         }
 
         if (companyId !== undefined) {
@@ -1090,13 +1090,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Find200Response7;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: FindItems200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Find200Response7");
+                            body = ObjectSerializer.deserialize(body, "FindItems200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1112,7 +1112,7 @@ export class ItemsApi {
      * @param companyId The unique identifier of the company associated with the item.
      * @param id The unique identifier of the item to retrieve.
      */
-    public async get (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async getItem (companyId: string, id: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1128,12 +1128,12 @@ export class ItemsApi {
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling get.');
+            throw new Error('Required parameter companyId was null or undefined when calling getItem.');
         }
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling get.');
+            throw new Error('Required parameter id was null or undefined when calling getItem.');
         }
 
         if (companyId !== undefined) {
@@ -1172,13 +1172,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1194,7 +1194,7 @@ export class ItemsApi {
      * @param id The unique identifier of the item for which the parent comment will be retrieved.
      * @param companyId The unique identifier of the company associated with the item.
      */
-    public async getParentComment (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async getItemParentComment (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/comment/parent'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1210,12 +1210,12 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getParentComment.');
+            throw new Error('Required parameter id was null or undefined when calling getItemParentComment.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling getParentComment.');
+            throw new Error('Required parameter companyId was null or undefined when calling getItemParentComment.');
         }
 
         if (companyId !== undefined) {
@@ -1254,13 +1254,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1276,7 +1276,7 @@ export class ItemsApi {
      * @param id The unique identifier of the item for which the user comment will be retrieved.
      * @param companyId The unique identifier of the company associated with the item.
      */
-    public async getUserComment (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async getItemUserComment (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/comment/user'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1292,12 +1292,12 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getUserComment.');
+            throw new Error('Required parameter id was null or undefined when calling getItemUserComment.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling getUserComment.');
+            throw new Error('Required parameter companyId was null or undefined when calling getItemUserComment.');
         }
 
         if (companyId !== undefined) {
@@ -1336,13 +1336,177 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Postpone the expiration date of an item based on its unique identifier. Returns the updated ItemDto object
+     * @summary Postpone an Item\'s expiration
+     * @param id The unique identifier of the item for which the expiration will be postponed.
+     * @param companyId The unique identifier of the company associated with the item.
+     */
+    public async postponeItem (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
+        const localVarPath = this.basePath + '/items/{id}/postpone'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling postponeItem.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling postponeItem.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
+                            resolve({ response: response, body: body });
+                        } else {
+                            reject(new HttpError(response, body, response.statusCode));
+                        }
+                    }
+                });
+            });
+        });
+    }
+    /**
+     * Retry a failed operation on an item. This is used to retry an action on an item that previously failed. Returns updated ItemDto
+     * @summary items retry
+     * @param id The unique identifier of the item to retry the operation on.
+     * @param companyId The unique identifier of the company associated with the item.
+     */
+    public async retryItem (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
+        const localVarPath = this.basePath + '/items/{id}/retry'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling retryItem.');
+        }
+
+        // verify required parameter 'companyId' is not null or undefined
+        if (companyId === null || companyId === undefined) {
+            throw new Error('Required parameter companyId was null or undefined when calling retryItem.');
+        }
+
+        if (companyId !== undefined) {
+            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
+        }
+
+        (<any>Object).assign(localVarHeaderParams, options.headers);
+
+        let localVarUseFormData = false;
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        let authenticationPromise = Promise.resolve();
+        if (this.authentications.jwt.accessToken) {
+            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
+        }
+        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
+
+        let interceptorPromise = authenticationPromise;
+        for (const interceptor of this.interceptors) {
+            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
+        }
+
+        return interceptorPromise.then(() => {
+            if (Object.keys(localVarFormParams).length) {
+                if (localVarUseFormData) {
+                    (<any>localVarRequestOptions).formData = localVarFormParams;
+                } else {
+                    localVarRequestOptions.form = localVarFormParams;
+                }
+            }
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
+                localVarRequest(localVarRequestOptions, (error, response, body) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1359,7 +1523,7 @@ export class ItemsApi {
      * @param companyId The unique identifier of the company associated with the item.
      * @param certificate items ID
      */
-    public async ownershipCertificate (id: string, companyId: string, certificate: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async sendItemOwnershipCertificate (id: string, companyId: string, certificate: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/ownershipCertificate'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1375,17 +1539,17 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling ownershipCertificate.');
+            throw new Error('Required parameter id was null or undefined when calling sendItemOwnershipCertificate.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling ownershipCertificate.');
+            throw new Error('Required parameter companyId was null or undefined when calling sendItemOwnershipCertificate.');
         }
 
         // verify required parameter 'certificate' is not null or undefined
         if (certificate === null || certificate === undefined) {
-            throw new Error('Required parameter certificate was null or undefined when calling ownershipCertificate.');
+            throw new Error('Required parameter certificate was null or undefined when calling sendItemOwnershipCertificate.');
         }
 
         if (companyId !== undefined) {
@@ -1428,177 +1592,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Postpone the expiration date of an item based on its unique identifier. Returns the updated ItemDto object
-     * @summary Postpone an Item\'s expiration
-     * @param id The unique identifier of the item for which the expiration will be postponed.
-     * @param companyId The unique identifier of the company associated with the item.
-     */
-    public async postpone (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
-        const localVarPath = this.basePath + '/items/{id}/postpone'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling postpone.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling postpone.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
-     * Retry a failed operation on an item. This is used to retry an action on an item that previously failed. Returns updated ItemDto
-     * @summary items retry
-     * @param id The unique identifier of the item to retry the operation on.
-     * @param companyId The unique identifier of the company associated with the item.
-     */
-    public async retry (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
-        const localVarPath = this.basePath + '/items/{id}/retry'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling retry.');
-        }
-
-        // verify required parameter 'companyId' is not null or undefined
-        if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling retry.');
-        }
-
-        if (companyId !== undefined) {
-            localVarQueryParameters['companyId'] = ObjectSerializer.serialize(companyId, "string");
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.jwt.accessToken) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.jwt.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1614,7 +1614,7 @@ export class ItemsApi {
      * @param id The unique identifier of the item to be suspended.
      * @param companyId The unique identifier of the company associated with the item.
      */
-    public async suspend (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async suspendItem (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/suspend'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1630,12 +1630,12 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling suspend.');
+            throw new Error('Required parameter id was null or undefined when calling suspendItem.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling suspend.');
+            throw new Error('Required parameter companyId was null or undefined when calling suspendItem.');
         }
 
         if (companyId !== undefined) {
@@ -1674,13 +1674,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1697,7 +1697,7 @@ export class ItemsApi {
      * @param companyId The unique identifier of the company associated with the item and the target user or organization.
      * @param userId The unique identifier of the user or organization to which the item will be transferred.
      */
-    public async transfer (id: string, companyId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async transferItem (id: string, companyId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/transfer/{userId}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -1714,17 +1714,17 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling transfer.');
+            throw new Error('Required parameter id was null or undefined when calling transferItem.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling transfer.');
+            throw new Error('Required parameter companyId was null or undefined when calling transferItem.');
         }
 
         // verify required parameter 'userId' is not null or undefined
         if (userId === null || userId === undefined) {
-            throw new Error('Required parameter userId was null or undefined when calling transfer.');
+            throw new Error('Required parameter userId was null or undefined when calling transferItem.');
         }
 
         if (companyId !== undefined) {
@@ -1763,13 +1763,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1785,7 +1785,7 @@ export class ItemsApi {
      * @param id The unique identifier of the item to be unsuspended.
      * @param companyId The unique identifier of the company associated with the item.
      */
-    public async unsuspend (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async unsuspendItem (id: string, companyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/unsuspend'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1801,12 +1801,12 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling unsuspend.');
+            throw new Error('Required parameter id was null or undefined when calling unsuspendItem.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling unsuspend.');
+            throw new Error('Required parameter companyId was null or undefined when calling unsuspendItem.');
         }
 
         if (companyId !== undefined) {
@@ -1845,13 +1845,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1868,7 +1868,7 @@ export class ItemsApi {
      * @param companyId The unique identifier of the company associated with the item.
      * @param itemUpdateDto 
      */
-    public async update (id: string, companyId: string, itemUpdateDto: ItemUpdateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async updateItem (id: string, companyId: string, itemUpdateDto: ItemUpdateDto, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
         let localVarQueryParameters: any = {};
@@ -1884,17 +1884,17 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling update.');
+            throw new Error('Required parameter id was null or undefined when calling updateItem.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling update.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateItem.');
         }
 
         // verify required parameter 'itemUpdateDto' is not null or undefined
         if (itemUpdateDto === null || itemUpdateDto === undefined) {
-            throw new Error('Required parameter itemUpdateDto was null or undefined when calling update.');
+            throw new Error('Required parameter itemUpdateDto was null or undefined when calling updateItem.');
         }
 
         if (companyId !== undefined) {
@@ -1934,13 +1934,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1957,7 +1957,7 @@ export class ItemsApi {
      * @param companyId The unique identifier of the company associated with the item.
      * @param comment The new parent comment to update for the item.
      */
-    public async updateParentComment (id: string, companyId: string, comment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async updateItemParentComment (id: string, companyId: string, comment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/comment/parent/{comment}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'comment' + '}', encodeURIComponent(String(comment)));
@@ -1974,17 +1974,17 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateParentComment.');
+            throw new Error('Required parameter id was null or undefined when calling updateItemParentComment.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateParentComment.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateItemParentComment.');
         }
 
         // verify required parameter 'comment' is not null or undefined
         if (comment === null || comment === undefined) {
-            throw new Error('Required parameter comment was null or undefined when calling updateParentComment.');
+            throw new Error('Required parameter comment was null or undefined when calling updateItemParentComment.');
         }
 
         if (companyId !== undefined) {
@@ -2023,13 +2023,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -2046,7 +2046,7 @@ export class ItemsApi {
      * @param companyId The unique identifier of the company associated with the item.
      * @param comment The new user comment to update for the item.
      */
-    public async updateUserComment (id: string, companyId: string, comment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Get200Response1;  }> {
+    public async updateItemUserComment (id: string, companyId: string, comment: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }> {
         const localVarPath = this.basePath + '/items/{id}/comment/user/{comment}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
             .replace('{' + 'comment' + '}', encodeURIComponent(String(comment)));
@@ -2063,17 +2063,17 @@ export class ItemsApi {
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling updateUserComment.');
+            throw new Error('Required parameter id was null or undefined when calling updateItemUserComment.');
         }
 
         // verify required parameter 'companyId' is not null or undefined
         if (companyId === null || companyId === undefined) {
-            throw new Error('Required parameter companyId was null or undefined when calling updateUserComment.');
+            throw new Error('Required parameter companyId was null or undefined when calling updateItemUserComment.');
         }
 
         // verify required parameter 'comment' is not null or undefined
         if (comment === null || comment === undefined) {
-            throw new Error('Required parameter comment was null or undefined when calling updateUserComment.');
+            throw new Error('Required parameter comment was null or undefined when calling updateItemUserComment.');
         }
 
         if (companyId !== undefined) {
@@ -2112,13 +2112,13 @@ export class ItemsApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Get200Response1;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: GetItem200Response;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Get200Response1");
+                            body = ObjectSerializer.deserialize(body, "GetItem200Response");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

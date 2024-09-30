@@ -17,7 +17,7 @@ export class ProductCategoryDto {
     /**
     * The unique identifier for the product category.
     */
-    'id': string;
+    'id'?: string;
     /**
     * Multilingual product category names.
     */
