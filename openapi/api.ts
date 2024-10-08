@@ -1112,7 +1112,7 @@ export interface CompanyDto {
      * @type {string}
      * @memberof CompanyDto
      */
-    'privacyPolicyUrl': string;
+    'privacyPolicyUrl'?: string;
     /**
      * A unique identifier for a tenant asssociated with the company.
      * @type {string}
@@ -1369,6 +1369,31 @@ export interface CompanyFindResponseDto {
      * @memberof CompanyFindResponseDto
      */
     'totalPages'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface CompanyPublicData200Response
+ */
+export interface CompanyPublicData200Response {
+    /**
+     * 
+     * @type {number}
+     * @memberof CompanyPublicData200Response
+     */
+    'code'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CompanyPublicData200Response
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {CompanyPublicDataDto}
+     * @memberof CompanyPublicData200Response
+     */
+    'data'?: CompanyPublicDataDto;
 }
 /**
  * 
@@ -12187,6 +12212,40 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
+         * Returns a single company\'s info using as param username.
+         * @summary Get a company\'s Public Information
+         * @param {string} username The company store name.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        companyPublicData: async (username: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'username' is not null or undefined
+            assertParamExists('companyPublicData', 'username', username)
+            const localVarPath = `/companies/public-data/{username}`
+                .replace(`{${"username"}}`, encodeURIComponent(String(username)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Creates a company.
          * @summary Create a company
          * @param {CompanyDto} companyDto 
@@ -12589,6 +12648,19 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Returns a single company\'s info using as param username.
+         * @summary Get a company\'s Public Information
+         * @param {string} username The company store name.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async companyPublicData(username: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompanyPublicData200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.companyPublicData(username, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.companyPublicData']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Creates a company.
          * @summary Create a company
          * @param {CompanyDto} companyDto 
@@ -12744,6 +12816,16 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
             return localVarFp.addUserAccessToCompany(email, companyId, roles, requestBody, options).then((request) => request(axios, basePath));
         },
         /**
+         * Returns a single company\'s info using as param username.
+         * @summary Get a company\'s Public Information
+         * @param {string} username The company store name.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        companyPublicData(username: string, options?: any): AxiosPromise<CompanyPublicData200Response> {
+            return localVarFp.companyPublicData(username, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Creates a company.
          * @summary Create a company
          * @param {CompanyDto} companyDto 
@@ -12873,6 +12955,18 @@ export class CompaniesApi extends BaseAPI {
      */
     public addUserAccessToCompany(email: string, companyId: string, roles: Array<AddUserAccessToCompanyRolesEnum>, requestBody: Array<string>, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).addUserAccessToCompany(email, companyId, roles, requestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a single company\'s info using as param username.
+     * @summary Get a company\'s Public Information
+     * @param {string} username The company store name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public companyPublicData(username: string, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).companyPublicData(username, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

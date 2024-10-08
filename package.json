@@ -1,6 +1,6 @@
 {
   "name": "@hosterai/js-client",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Hoster.AI javascript client",
   "main": "dist/client.js",
   "scripts": {
@@ -27,11 +27,11 @@
   "author": "Thomas Papamichail",
   "license": "ISC",
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.13.1",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.30",
+    "@openapitools/openapi-generator-cli": "^2.14.0",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.5",
     "jest": "^29.7.0",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.4.3"
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.2"
   }
 }
