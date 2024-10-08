@@ -1,6 +1,6 @@
 {
   "name": "@hosterai/js-client",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Hoster.AI javascript client",
   "main": "dist/client.js",
   "scripts": {
