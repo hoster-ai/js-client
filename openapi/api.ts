@@ -1398,6 +1398,262 @@ export interface CompanyPublicData200Response {
 /**
  * 
  * @export
+ * @interface CompanyPublicDataDto
+ */
+export interface CompanyPublicDataDto {
+    /**
+     * The title of the company.
+     * @type {string}
+     * @memberof CompanyPublicDataDto
+     */
+    'title': string;
+    /**
+     * The url of the company Logo
+     * @type {string}
+     * @memberof CompanyPublicDataDto
+     */
+    'logoUrl'?: string;
+    /**
+     * The url of the company icon
+     * @type {string}
+     * @memberof CompanyPublicDataDto
+     */
+    'iconUrl'?: string;
+    /**
+     * A unique identifier key for google tag manager.
+     * @type {string}
+     * @memberof CompanyPublicDataDto
+     */
+    'googleTagManagerId'?: string;
+    /**
+     * The url of the company\'s privacy policy
+     * @type {string}
+     * @memberof CompanyPublicDataDto
+     */
+    'privacyPolicyUrl': string;
+    /**
+     * The username of the company. Must have a unique value. Accepts only lowercase letters and numbers.
+     * @type {string}
+     * @memberof CompanyPublicDataDto
+     */
+    'username': string;
+    /**
+     * An enum that defines the default language.
+     * @type {string}
+     * @memberof CompanyPublicDataDto
+     */
+    'defaultLanguage'?: CompanyPublicDataDtoDefaultLanguageEnum;
+    /**
+     * An array that contains all languages that will be used for products.
+     * @type {Array<number>}
+     * @memberof CompanyPublicDataDto
+     */
+    'productLanguages'?: Array<CompanyPublicDataDtoProductLanguagesEnum>;
+    /**
+     * A unique identifier for a tenant asssociated with the company.
+     * @type {string}
+     * @memberof CompanyPublicDataDto
+     */
+    'tenantId'?: string;
+}
+
+export const CompanyPublicDataDtoDefaultLanguageEnum = {
+    Aa: 'aa',
+    Af: 'af',
+    Ak: 'ak',
+    Sq: 'sq',
+    Am: 'am',
+    Ar: 'ar',
+    An: 'an',
+    Hy: 'hy',
+    As: 'as',
+    Av: 'av',
+    Ae: 'ae',
+    Ay: 'ay',
+    Az: 'az',
+    Bm: 'bm',
+    Ba: 'ba',
+    Eu: 'eu',
+    Be: 'be',
+    Bn: 'bn',
+    Bh: 'bh',
+    Bi: 'bi',
+    Bs: 'bs',
+    Br: 'br',
+    Bg: 'bg',
+    My: 'my',
+    Ca: 'ca',
+    Ch: 'ch',
+    Ce: 'ce',
+    Ny: 'ny',
+    Zh: 'zh',
+    Cv: 'cv',
+    Kw: 'kw',
+    Co: 'co',
+    Cr: 'cr',
+    Hr: 'hr',
+    Cs: 'cs',
+    Da: 'da',
+    Dv: 'dv',
+    Nl: 'nl',
+    Dz: 'dz',
+    En: 'en',
+    Eo: 'eo',
+    Et: 'et',
+    Ee: 'ee',
+    Fo: 'fo',
+    Fj: 'fj',
+    Fi: 'fi',
+    Fr: 'fr',
+    Ff: 'ff',
+    Gl: 'gl',
+    Ka: 'ka',
+    De: 'de',
+    El: 'el',
+    Gn: 'gn',
+    Gu: 'gu',
+    Ht: 'ht',
+    Ha: 'ha',
+    He: 'he',
+    Hz: 'hz',
+    Hi: 'hi',
+    Ho: 'ho',
+    Hu: 'hu',
+    Ia: 'ia',
+    Id: 'id',
+    Ie: 'ie',
+    Ga: 'ga',
+    Ig: 'ig',
+    Ik: 'ik',
+    Io: 'io',
+    Is: 'is',
+    It: 'it',
+    Iu: 'iu',
+    Ja: 'ja',
+    Jv: 'jv',
+    Kl: 'kl',
+    Kn: 'kn',
+    Kr: 'kr',
+    Ks: 'ks',
+    Kk: 'kk',
+    Km: 'km',
+    Ki: 'ki',
+    Rw: 'rw',
+    Ky: 'ky',
+    Kv: 'kv',
+    Kg: 'kg',
+    Ko: 'ko',
+    Ku: 'ku',
+    Kj: 'kj',
+    La: 'la',
+    Lb: 'lb',
+    Lg: 'lg',
+    Li: 'li',
+    Ln: 'ln',
+    Lo: 'lo',
+    Lt: 'lt',
+    Lu: 'lu',
+    Lv: 'lv',
+    Gv: 'gv',
+    Mk: 'mk',
+    Mg: 'mg',
+    Ms: 'ms',
+    Ml: 'ml',
+    Mt: 'mt',
+    Mi: 'mi',
+    Mr: 'mr',
+    Mh: 'mh',
+    Mn: 'mn',
+    Na: 'na',
+    Nv: 'nv',
+    Nd: 'nd',
+    Ne: 'ne',
+    Ng: 'ng',
+    Nb: 'nb',
+    Nn: 'nn',
+    No: 'no',
+    Ii: 'ii',
+    Nr: 'nr',
+    Oc: 'oc',
+    Oj: 'oj',
+    Cu: 'cu',
+    Om: 'om',
+    Or: 'or',
+    Os: 'os',
+    Pa: 'pa',
+    Pi: 'pi',
+    Fa: 'fa',
+    Pl: 'pl',
+    Ps: 'ps',
+    Pt: 'pt',
+    Qu: 'qu',
+    Rm: 'rm',
+    Rn: 'rn',
+    Ro: 'ro',
+    Rh: 'rh',
+    Ru: 'ru',
+    Sa: 'sa',
+    Sc: 'sc',
+    Sd: 'sd',
+    Se: 'se',
+    Sm: 'sm',
+    Sg: 'sg',
+    Sr: 'sr',
+    Gd: 'gd',
+    Sn: 'sn',
+    Si: 'si',
+    Sk: 'sk',
+    Sl: 'sl',
+    So: 'so',
+    St: 'st',
+    Es: 'es',
+    Su: 'su',
+    Sw: 'sw',
+    Ss: 'ss',
+    Sv: 'sv',
+    Ta: 'ta',
+    Te: 'te',
+    Tg: 'tg',
+    Th: 'th',
+    Ti: 'ti',
+    Bo: 'bo',
+    Tk: 'tk',
+    Tl: 'tl',
+    Tn: 'tn',
+    To: 'to',
+    Tr: 'tr',
+    Ts: 'ts',
+    Tt: 'tt',
+    Tw: 'tw',
+    Ty: 'ty',
+    Ug: 'ug',
+    Uk: 'uk',
+    Ur: 'ur',
+    Uz: 'uz',
+    Ve: 've',
+    Vi: 'vi',
+    Vo: 'vo',
+    Wa: 'wa',
+    Cy: 'cy',
+    Wo: 'wo',
+    Fy: 'fy',
+    Xh: 'xh',
+    Yi: 'yi',
+    Yo: 'yo',
+    Za: 'za',
+    Zu: 'zu'
+} as const;
+
+export type CompanyPublicDataDtoDefaultLanguageEnum = typeof CompanyPublicDataDtoDefaultLanguageEnum[keyof typeof CompanyPublicDataDtoDefaultLanguageEnum];
+export const CompanyPublicDataDtoProductLanguagesEnum = {
+    NUMBER_null: null
+} as const;
+
+export type CompanyPublicDataDtoProductLanguagesEnum = typeof CompanyPublicDataDtoProductLanguagesEnum[keyof typeof CompanyPublicDataDtoProductLanguagesEnum];
+
+/**
+ * 
+ * @export
  * @interface CompanyRolesDto
  */
 export interface CompanyRolesDto {
