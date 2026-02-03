@@ -19,7 +19,6 @@ import {
   TldsApi,
   UsersApi,
 } from "../openapi/api";
-import { SettingsApi } from "../openapi/api/settingsApi";
 
 describe("ApiClient", () => {
   let client: Client;
