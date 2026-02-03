@@ -951,6 +951,19 @@ export type AfnicAdditionalDataDtoBirthCcEnum = typeof AfnicAdditionalDataDtoBir
 /**
  * 
  * @export
+ * @interface AttachItemToBundleRequest
+ */
+export interface AttachItemToBundleRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof AttachItemToBundleRequest
+     */
+    'parentItemId'?: string;
+}
+/**
+ * 
+ * @export
  * @interface AttachmentDto
  */
 export interface AttachmentDto {
@@ -3661,77 +3674,6 @@ export type CompanyUpdateRequestDtoLanguagesEnum = typeof CompanyUpdateRequestDt
 /**
  * 
  * @export
- * @interface CompanyUpdateUserRolesRequest
- */
-export interface CompanyUpdateUserRolesRequest {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CompanyUpdateUserRolesRequest
-     */
-    'roles'?: Array<CompanyUpdateUserRolesRequestRolesEnum>;
-}
-
-export const CompanyUpdateUserRolesRequestRolesEnum = {
-    SimpleUser: 'SIMPLE_USER',
-    FullAccess: 'FULL_ACCESS',
-    SuperAdmin: 'SUPER_ADMIN',
-    OrderRead: 'ORDER_READ',
-    OrderWrite: 'ORDER_WRITE',
-    AddonRead: 'ADDON_READ',
-    AddonWrite: 'ADDON_WRITE',
-    AffiliateRead: 'AFFILIATE_READ',
-    AffiliateWrite: 'AFFILIATE_WRITE',
-    CompanyRead: 'COMPANY_READ',
-    CompanyWrite: 'COMPANY_WRITE',
-    TemplateRead: 'TEMPLATE_READ',
-    TemplateWrite: 'TEMPLATE_WRITE',
-    CouponRead: 'COUPON_READ',
-    CouponWrite: 'COUPON_WRITE',
-    DomainCategoryRead: 'DOMAIN_CATEGORY_READ',
-    DomainCategoryWrite: 'DOMAIN_CATEGORY_WRITE',
-    DomainContactRead: 'DOMAIN_CONTACT_READ',
-    DomainContactWrite: 'DOMAIN_CONTACT_WRITE',
-    DomainNameRead: 'DOMAIN_NAME_READ',
-    DomainNameWrite: 'DOMAIN_NAME_WRITE',
-    InvoiceContactRead: 'INVOICE_CONTACT_READ',
-    InvoiceContactWrite: 'INVOICE_CONTACT_WRITE',
-    InvoiceRead: 'INVOICE_READ',
-    InvoiceWrite: 'INVOICE_WRITE',
-    IpGroupsRead: 'IP_GROUPS_READ',
-    IpGroupsWrite: 'IP_GROUPS_WRITE',
-    IpsRead: 'IPS_READ',
-    IpsWrite: 'IPS_WRITE',
-    ItemsRead: 'ITEMS_READ',
-    ItemsWrite: 'ITEMS_WRITE',
-    OrdersRead: 'ORDERS_READ',
-    OrdersWrite: 'ORDERS_WRITE',
-    TransactionsRead: 'TRANSACTIONS_READ',
-    TransactionsWrite: 'TRANSACTIONS_WRITE',
-    PoliciesRead: 'POLICIES_READ',
-    PoliciesWrite: 'POLICIES_WRITE',
-    ProductCategoriesRead: 'PRODUCT_CATEGORIES_READ',
-    ProductCategoriesWrite: 'PRODUCT_CATEGORIES_WRITE',
-    ProductsRead: 'PRODUCTS_READ',
-    ProductsWrite: 'PRODUCTS_WRITE',
-    SettingsRead: 'SETTINGS_READ',
-    SettingsWrite: 'SETTINGS_WRITE',
-    IntegrationsRead: 'INTEGRATIONS_READ',
-    IntegrationsWrite: 'INTEGRATIONS_WRITE',
-    TldsRead: 'TLDS_READ',
-    TldsWrite: 'TLDS_WRITE',
-    UsersRead: 'USERS_READ',
-    UsersWrite: 'USERS_WRITE',
-    IssuesWrite: 'ISSUES_WRITE',
-    IssuesRead: 'ISSUES_READ',
-    ActionLogsRead: 'ACTION_LOGS_READ'
-} as const;
-
-export type CompanyUpdateUserRolesRequestRolesEnum = typeof CompanyUpdateUserRolesRequestRolesEnum[keyof typeof CompanyUpdateUserRolesRequestRolesEnum];
-
-/**
- * 
- * @export
  * @interface ContactAdditionalDto
  */
 export interface ContactAdditionalDto {
@@ -4827,6 +4769,31 @@ export interface CreateTransaction200Response {
     'data': TransactionRedirectUrlResponseDto;
 }
 /**
+ * 
+ * @export
+ * @interface CreateUserCustomToken201Response
+ */
+export interface CreateUserCustomToken201Response {
+    /**
+     * The HTTP status code indicating the result of the operation.
+     * @type {any}
+     * @memberof CreateUserCustomToken201Response
+     */
+    'code': any;
+    /**
+     * A human-readable message providing more details about the response.
+     * @type {any}
+     * @memberof CreateUserCustomToken201Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {CustomTokenDto}
+     * @memberof CreateUserCustomToken201Response
+     */
+    'data': CustomTokenDto;
+}
+/**
  * @type CreatedByCompany
  * The company that created or submitted the integration.
  * @export
@@ -4851,31 +4818,6 @@ export interface CustomPricesRequestDto {
      * @memberof CustomPricesRequestDto
      */
     'customSetupFee'?: number;
-}
-/**
- * 
- * @export
- * @interface CustomToken201Response
- */
-export interface CustomToken201Response {
-    /**
-     * The HTTP status code indicating the result of the operation.
-     * @type {any}
-     * @memberof CustomToken201Response
-     */
-    'code': any;
-    /**
-     * A human-readable message providing more details about the response.
-     * @type {any}
-     * @memberof CustomToken201Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {CustomTokenDto}
-     * @memberof CustomToken201Response
-     */
-    'data': CustomTokenDto;
 }
 /**
  * 
@@ -6071,13 +6013,13 @@ export interface DynamicPriceDto {
 /**
  * 
  * @export
- * @interface EditCompanyCommentRequest
+ * @interface EditCommentRequest
  */
-export interface EditCompanyCommentRequest {
+export interface EditCommentRequest {
     /**
      * 
      * @type {string}
-     * @memberof EditCompanyCommentRequest
+     * @memberof EditCommentRequest
      */
     'comment'?: string;
 }
@@ -6444,590 +6386,125 @@ export interface FieldOptionDto {
 /**
  * 
  * @export
- * @interface FindAddons200Response
+ * @interface GetAddons200Response
  */
-export interface FindAddons200Response {
+export interface GetAddons200Response {
     /**
      * 
      * @type {any}
-     * @memberof FindAddons200Response
+     * @memberof GetAddons200Response
      */
     'code': any;
     /**
      * 
      * @type {any}
-     * @memberof FindAddons200Response
+     * @memberof GetAddons200Response
      */
     'message': any;
     /**
      * 
      * @type {Array<AddonResponseDto>}
-     * @memberof FindAddons200Response
+     * @memberof GetAddons200Response
      */
     'data': Array<AddonResponseDto>;
     /**
      * 
      * @type {any}
-     * @memberof FindAddons200Response
+     * @memberof GetAddons200Response
      */
     'currentPage': any;
     /**
      * 
      * @type {any}
-     * @memberof FindAddons200Response
+     * @memberof GetAddons200Response
      */
     'totalPages': any;
     /**
      * 
      * @type {any}
-     * @memberof FindAddons200Response
+     * @memberof GetAddons200Response
      */
     'perPage': any;
     /**
      * 
      * @type {any}
-     * @memberof FindAddons200Response
+     * @memberof GetAddons200Response
      */
     'totalResults': any;
 }
 /**
  * 
  * @export
- * @interface FindAffiliate200Response
+ * @interface GetAffiliates200Response
  */
-export interface FindAffiliate200Response {
+export interface GetAffiliates200Response {
     /**
      * 
      * @type {any}
-     * @memberof FindAffiliate200Response
+     * @memberof GetAffiliates200Response
      */
     'code': any;
     /**
      * 
      * @type {any}
-     * @memberof FindAffiliate200Response
+     * @memberof GetAffiliates200Response
      */
     'message': any;
     /**
      * 
      * @type {Array<AffiliateResponseDto>}
-     * @memberof FindAffiliate200Response
+     * @memberof GetAffiliates200Response
      */
     'data': Array<AffiliateResponseDto>;
     /**
      * 
      * @type {any}
-     * @memberof FindAffiliate200Response
+     * @memberof GetAffiliates200Response
      */
     'currentPage': any;
     /**
      * 
      * @type {any}
-     * @memberof FindAffiliate200Response
+     * @memberof GetAffiliates200Response
      */
     'totalPages': any;
     /**
      * 
      * @type {any}
-     * @memberof FindAffiliate200Response
+     * @memberof GetAffiliates200Response
      */
     'perPage': any;
     /**
      * 
      * @type {any}
-     * @memberof FindAffiliate200Response
+     * @memberof GetAffiliates200Response
      */
     'totalResults': any;
 }
 /**
  * 
  * @export
- * @interface FindCoupons200Response
+ * @interface GetBalance200Response
  */
-export interface FindCoupons200Response {
+export interface GetBalance200Response {
     /**
-     * 
+     * The HTTP status code indicating the result of the operation.
      * @type {any}
-     * @memberof FindCoupons200Response
+     * @memberof GetBalance200Response
      */
     'code': any;
     /**
-     * 
+     * A human-readable message providing more details about the response.
      * @type {any}
-     * @memberof FindCoupons200Response
+     * @memberof GetBalance200Response
      */
     'message': any;
     /**
      * 
-     * @type {Array<CouponResponseDto>}
-     * @memberof FindCoupons200Response
+     * @type {CompanyBalanceResponseDto}
+     * @memberof GetBalance200Response
      */
-    'data': Array<CouponResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindCoupons200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindCoupons200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindCoupons200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindCoupons200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface FindDomainCategories200Response
- */
-export interface FindDomainCategories200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainCategories200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainCategories200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<DomainCategoryResponseDto>}
-     * @memberof FindDomainCategories200Response
-     */
-    'data': Array<DomainCategoryResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainCategories200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainCategories200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainCategories200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainCategories200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface FindDomainContacts200Response
- */
-export interface FindDomainContacts200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainContacts200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainContacts200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<DomainContactResponseDto>}
-     * @memberof FindDomainContacts200Response
-     */
-    'data': Array<DomainContactResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainContacts200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainContacts200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainContacts200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindDomainContacts200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface FindInvoices200Response
- */
-export interface FindInvoices200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindInvoices200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindInvoices200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<InvoiceResponseDto>}
-     * @memberof FindInvoices200Response
-     */
-    'data': Array<InvoiceResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindInvoices200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindInvoices200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindInvoices200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindInvoices200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface FindIssues200Response
- */
-export interface FindIssues200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindIssues200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindIssues200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<IssueResponseDto>}
-     * @memberof FindIssues200Response
-     */
-    'data': Array<IssueResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindIssues200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindIssues200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindIssues200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindIssues200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface FindPolicies200Response
- */
-export interface FindPolicies200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindPolicies200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindPolicies200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<PolicyResponseDto>}
-     * @memberof FindPolicies200Response
-     */
-    'data': Array<PolicyResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindPolicies200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindPolicies200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindPolicies200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindPolicies200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface FindProductCategories200Response
- */
-export interface FindProductCategories200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindProductCategories200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindProductCategories200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<ProductCategoryResponseDto>}
-     * @memberof FindProductCategories200Response
-     */
-    'data': Array<ProductCategoryResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindProductCategories200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindProductCategories200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindProductCategories200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindProductCategories200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface FindTemplates200Response
- */
-export interface FindTemplates200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<TemplateResponseDto>}
-     * @memberof FindTemplates200Response
-     */
-    'data': Array<TemplateResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface FindTlds200Response
- */
-export interface FindTlds200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTlds200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTlds200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<TldResponseDto>}
-     * @memberof FindTlds200Response
-     */
-    'data': Array<TldResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTlds200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTlds200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTlds200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTlds200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface FindTransactions200Response
- */
-export interface FindTransactions200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTransactions200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTransactions200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<TransactionResponseDto>}
-     * @memberof FindTransactions200Response
-     */
-    'data': Array<TransactionResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTransactions200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTransactions200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTransactions200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTransactions200Response
-     */
-    'totalResults': any;
+    'data': CompanyBalanceResponseDto;
 }
 /**
  * 
@@ -7057,123 +6534,98 @@ export interface GetClientItem200Response {
 /**
  * 
  * @export
- * @interface GetCompanyBalance200Response
+ * @interface GetClientItems200Response
  */
-export interface GetCompanyBalance200Response {
-    /**
-     * The HTTP status code indicating the result of the operation.
-     * @type {any}
-     * @memberof GetCompanyBalance200Response
-     */
-    'code': any;
-    /**
-     * A human-readable message providing more details about the response.
-     * @type {any}
-     * @memberof GetCompanyBalance200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {CompanyBalanceResponseDto}
-     * @memberof GetCompanyBalance200Response
-     */
-    'data': CompanyBalanceResponseDto;
-}
-/**
- * 
- * @export
- * @interface GetCompanyPaginatedProducts200Response
- */
-export interface GetCompanyPaginatedProducts200Response {
+export interface GetClientItems200Response {
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedProducts200Response
+     * @memberof GetClientItems200Response
      */
     'code': any;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedProducts200Response
+     * @memberof GetClientItems200Response
      */
     'message': any;
     /**
      * 
-     * @type {Array<ProductResponseDto>}
-     * @memberof GetCompanyPaginatedProducts200Response
+     * @type {Array<ItemClientResponseDto>}
+     * @memberof GetClientItems200Response
      */
-    'data': Array<ProductResponseDto>;
+    'data': Array<ItemClientResponseDto>;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedProducts200Response
+     * @memberof GetClientItems200Response
      */
     'currentPage': any;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedProducts200Response
+     * @memberof GetClientItems200Response
      */
     'totalPages': any;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedProducts200Response
+     * @memberof GetClientItems200Response
      */
     'perPage': any;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedProducts200Response
+     * @memberof GetClientItems200Response
      */
     'totalResults': any;
 }
 /**
  * 
  * @export
- * @interface GetCompanyPaginatedUsers200Response
+ * @interface GetCompanies200Response
  */
-export interface GetCompanyPaginatedUsers200Response {
+export interface GetCompanies200Response {
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedUsers200Response
+     * @memberof GetCompanies200Response
      */
     'code': any;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedUsers200Response
+     * @memberof GetCompanies200Response
      */
     'message': any;
     /**
      * 
-     * @type {Array<UserResponseDto>}
-     * @memberof GetCompanyPaginatedUsers200Response
+     * @type {Array<CompanyResponseDto>}
+     * @memberof GetCompanies200Response
      */
-    'data': Array<UserResponseDto>;
+    'data': Array<CompanyResponseDto>;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedUsers200Response
+     * @memberof GetCompanies200Response
      */
     'currentPage': any;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedUsers200Response
+     * @memberof GetCompanies200Response
      */
     'totalPages': any;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedUsers200Response
+     * @memberof GetCompanies200Response
      */
     'perPage': any;
     /**
      * 
      * @type {any}
-     * @memberof GetCompanyPaginatedUsers200Response
+     * @memberof GetCompanies200Response
      */
     'totalResults': any;
 }
@@ -7201,6 +6653,153 @@ export interface GetCompanyPublicInfo200Response {
      * @memberof GetCompanyPublicInfo200Response
      */
     'data': CompanyPublicInfoDto;
+}
+/**
+ * 
+ * @export
+ * @interface GetCoupons200Response
+ */
+export interface GetCoupons200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetCoupons200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetCoupons200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<CouponResponseDto>}
+     * @memberof GetCoupons200Response
+     */
+    'data': Array<CouponResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetCoupons200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetCoupons200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetCoupons200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetCoupons200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
+ * @interface GetDomainCategories200Response
+ */
+export interface GetDomainCategories200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainCategories200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainCategories200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<DomainCategoryResponseDto>}
+     * @memberof GetDomainCategories200Response
+     */
+    'data': Array<DomainCategoryResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainCategories200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainCategories200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainCategories200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainCategories200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
+ * @interface GetDomainContacts200Response
+ */
+export interface GetDomainContacts200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainContacts200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainContacts200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<DomainContactResponseDto>}
+     * @memberof GetDomainContacts200Response
+     */
+    'data': Array<DomainContactResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainContacts200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainContacts200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainContacts200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetDomainContacts200Response
+     */
+    'totalResults': any;
 }
 /**
  * 
@@ -7304,6 +6903,104 @@ export interface GetInvoice200Response {
 /**
  * 
  * @export
+ * @interface GetInvoices200Response
+ */
+export interface GetInvoices200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetInvoices200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetInvoices200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<InvoiceResponseDto>}
+     * @memberof GetInvoices200Response
+     */
+    'data': Array<InvoiceResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetInvoices200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetInvoices200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetInvoices200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetInvoices200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
+ * @interface GetIssues200Response
+ */
+export interface GetIssues200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetIssues200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetIssues200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<IssueResponseDto>}
+     * @memberof GetIssues200Response
+     */
+    'data': Array<IssueResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetIssues200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetIssues200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetIssues200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetIssues200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
  * @interface GetItem200Response
  */
 export interface GetItem200Response {
@@ -7325,6 +7022,55 @@ export interface GetItem200Response {
      * @memberof GetItem200Response
      */
     'data': ItemResponseDto;
+}
+/**
+ * 
+ * @export
+ * @interface GetItems200Response
+ */
+export interface GetItems200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetItems200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetItems200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<ItemResponseDto>}
+     * @memberof GetItems200Response
+     */
+    'data': Array<ItemResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetItems200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetItems200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetItems200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetItems200Response
+     */
+    'totalResults': any;
 }
 /**
  * 
@@ -7354,147 +7100,49 @@ export interface GetItemsForTransfer200Response {
 /**
  * 
  * @export
- * @interface GetPaginatedClientItems200Response
+ * @interface GetPolicies200Response
  */
-export interface GetPaginatedClientItems200Response {
+export interface GetPolicies200Response {
     /**
      * 
      * @type {any}
-     * @memberof GetPaginatedClientItems200Response
+     * @memberof GetPolicies200Response
      */
     'code': any;
     /**
      * 
      * @type {any}
-     * @memberof GetPaginatedClientItems200Response
+     * @memberof GetPolicies200Response
      */
     'message': any;
     /**
      * 
-     * @type {Array<ItemClientResponseDto>}
-     * @memberof GetPaginatedClientItems200Response
+     * @type {Array<PolicyResponseDto>}
+     * @memberof GetPolicies200Response
      */
-    'data': Array<ItemClientResponseDto>;
+    'data': Array<PolicyResponseDto>;
     /**
      * 
      * @type {any}
-     * @memberof GetPaginatedClientItems200Response
+     * @memberof GetPolicies200Response
      */
     'currentPage': any;
     /**
      * 
      * @type {any}
-     * @memberof GetPaginatedClientItems200Response
+     * @memberof GetPolicies200Response
      */
     'totalPages': any;
     /**
      * 
      * @type {any}
-     * @memberof GetPaginatedClientItems200Response
+     * @memberof GetPolicies200Response
      */
     'perPage': any;
     /**
      * 
      * @type {any}
-     * @memberof GetPaginatedClientItems200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface GetPaginatedCompanies200Response
- */
-export interface GetPaginatedCompanies200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedCompanies200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedCompanies200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<CompanyResponseDto>}
-     * @memberof GetPaginatedCompanies200Response
-     */
-    'data': Array<CompanyResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedCompanies200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedCompanies200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedCompanies200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedCompanies200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
- * @interface GetPaginatedItems200Response
- */
-export interface GetPaginatedItems200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedItems200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedItems200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<ItemResponseDto>}
-     * @memberof GetPaginatedItems200Response
-     */
-    'data': Array<ItemResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedItems200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedItems200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedItems200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof GetPaginatedItems200Response
+     * @memberof GetPolicies200Response
      */
     'totalResults': any;
 }
@@ -7526,6 +7174,55 @@ export interface GetProduct200Response {
 /**
  * 
  * @export
+ * @interface GetProductCategories200Response
+ */
+export interface GetProductCategories200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProductCategories200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProductCategories200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<ProductCategoryResponseDto>}
+     * @memberof GetProductCategories200Response
+     */
+    'data': Array<ProductCategoryResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProductCategories200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProductCategories200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProductCategories200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProductCategories200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
  * @interface GetProductResponseDto
  */
 export interface GetProductResponseDto {
@@ -7541,6 +7238,227 @@ export interface GetProductResponseDto {
      * @memberof GetProductResponseDto
      */
     'hasActiveItems': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface GetProducts200Response
+ */
+export interface GetProducts200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProducts200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProducts200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<ProductResponseDto>}
+     * @memberof GetProducts200Response
+     */
+    'data': Array<ProductResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProducts200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProducts200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProducts200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetProducts200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
+ * @interface GetTemplates200Response
+ */
+export interface GetTemplates200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTemplates200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTemplates200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<TemplateResponseDto>}
+     * @memberof GetTemplates200Response
+     */
+    'data': Array<TemplateResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTemplates200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTemplates200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTemplates200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTemplates200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
+ * @interface GetTlds200Response
+ */
+export interface GetTlds200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTlds200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTlds200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<TldResponseDto>}
+     * @memberof GetTlds200Response
+     */
+    'data': Array<TldResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTlds200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTlds200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTlds200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTlds200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
+ * @interface GetTransaction200Response
+ */
+export interface GetTransaction200Response {
+    /**
+     * The HTTP status code indicating the result of the operation.
+     * @type {any}
+     * @memberof GetTransaction200Response
+     */
+    'code': any;
+    /**
+     * A human-readable message providing more details about the response.
+     * @type {any}
+     * @memberof GetTransaction200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {TransactionResponseDto}
+     * @memberof GetTransaction200Response
+     */
+    'data': TransactionResponseDto;
+}
+/**
+ * 
+ * @export
+ * @interface GetTransactions200Response
+ */
+export interface GetTransactions200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTransactions200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTransactions200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<TransactionResponseDto>}
+     * @memberof GetTransactions200Response
+     */
+    'data': Array<TransactionResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTransactions200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTransactions200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTransactions200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetTransactions200Response
+     */
+    'totalResults': any;
 }
 /**
  * 
@@ -7645,27 +7563,51 @@ export interface GetUserTransactions200Response {
 /**
  * 
  * @export
- * @interface Gettransaction200Response
+ * @interface GetUsers200Response
  */
-export interface Gettransaction200Response {
+export interface GetUsers200Response {
     /**
-     * The HTTP status code indicating the result of the operation.
+     * 
      * @type {any}
-     * @memberof Gettransaction200Response
+     * @memberof GetUsers200Response
      */
     'code': any;
     /**
-     * A human-readable message providing more details about the response.
+     * 
      * @type {any}
-     * @memberof Gettransaction200Response
+     * @memberof GetUsers200Response
      */
     'message': any;
     /**
      * 
-     * @type {TransactionResponseDto}
-     * @memberof Gettransaction200Response
+     * @type {Array<UserResponseDto>}
+     * @memberof GetUsers200Response
      */
-    'data': TransactionResponseDto;
+    'data': Array<UserResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUsers200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUsers200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUsers200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUsers200Response
+     */
+    'totalResults': any;
 }
 /**
  * 
@@ -8181,18 +8123,18 @@ export type InfoDtoRequiredRolesEnum = typeof InfoDtoRequiredRolesEnum[keyof typ
 /**
  * 
  * @export
- * @interface InstallCompanyIntegrationRequest
+ * @interface InstallIntegrationRequest
  */
-export interface InstallCompanyIntegrationRequest {
+export interface InstallIntegrationRequest {
     /**
      * 
      * @type {Array<string>}
-     * @memberof InstallCompanyIntegrationRequest
+     * @memberof InstallIntegrationRequest
      */
-    'acceptedRoles'?: Array<InstallCompanyIntegrationRequestAcceptedRolesEnum>;
+    'acceptedRoles'?: Array<InstallIntegrationRequestAcceptedRolesEnum>;
 }
 
-export const InstallCompanyIntegrationRequestAcceptedRolesEnum = {
+export const InstallIntegrationRequestAcceptedRolesEnum = {
     SimpleUser: 'SIMPLE_USER',
     FullAccess: 'FULL_ACCESS',
     SuperAdmin: 'SUPER_ADMIN',
@@ -8247,7 +8189,7 @@ export const InstallCompanyIntegrationRequestAcceptedRolesEnum = {
     ActionLogsRead: 'ACTION_LOGS_READ'
 } as const;
 
-export type InstallCompanyIntegrationRequestAcceptedRolesEnum = typeof InstallCompanyIntegrationRequestAcceptedRolesEnum[keyof typeof InstallCompanyIntegrationRequestAcceptedRolesEnum];
+export type InstallIntegrationRequestAcceptedRolesEnum = typeof InstallIntegrationRequestAcceptedRolesEnum[keyof typeof InstallIntegrationRequestAcceptedRolesEnum];
 
 /**
  * @type Integration
@@ -9971,19 +9913,6 @@ export const ItemAffiliateDtoStatusEnum = {
 
 export type ItemAffiliateDtoStatusEnum = typeof ItemAffiliateDtoStatusEnum[keyof typeof ItemAffiliateDtoStatusEnum];
 
-/**
- * 
- * @export
- * @interface ItemAttachToBundleRequest
- */
-export interface ItemAttachToBundleRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemAttachToBundleRequest
-     */
-    'parentItemId'?: string;
-}
 /**
  * 
  * @export
@@ -14592,13 +14521,13 @@ export interface SelectedNotificationIntegrationsDto {
 /**
  * 
  * @export
- * @interface SetCompanyCreditBalanceRequest
+ * @interface SetCreditBalanceRequest
  */
-export interface SetCompanyCreditBalanceRequest {
+export interface SetCreditBalanceRequest {
     /**
      * 
      * @type {number}
-     * @memberof SetCompanyCreditBalanceRequest
+     * @memberof SetCreditBalanceRequest
      */
     'creditBalance'?: number;
 }
@@ -18472,18 +18401,102 @@ export interface UpdateCompanyBrandRequest {
 /**
  * 
  * @export
- * @interface UpdateCompanyDefaultLanguageRequest
+ * @interface UpdateCompanyUserRolesRequest
  */
-export interface UpdateCompanyDefaultLanguageRequest {
+export interface UpdateCompanyUserRolesRequest {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateCompanyUserRolesRequest
+     */
+    'roles'?: Array<UpdateCompanyUserRolesRequestRolesEnum>;
+}
+
+export const UpdateCompanyUserRolesRequestRolesEnum = {
+    SimpleUser: 'SIMPLE_USER',
+    FullAccess: 'FULL_ACCESS',
+    SuperAdmin: 'SUPER_ADMIN',
+    OrderRead: 'ORDER_READ',
+    OrderWrite: 'ORDER_WRITE',
+    AddonRead: 'ADDON_READ',
+    AddonWrite: 'ADDON_WRITE',
+    AffiliateRead: 'AFFILIATE_READ',
+    AffiliateWrite: 'AFFILIATE_WRITE',
+    CompanyRead: 'COMPANY_READ',
+    CompanyWrite: 'COMPANY_WRITE',
+    TemplateRead: 'TEMPLATE_READ',
+    TemplateWrite: 'TEMPLATE_WRITE',
+    CouponRead: 'COUPON_READ',
+    CouponWrite: 'COUPON_WRITE',
+    DomainCategoryRead: 'DOMAIN_CATEGORY_READ',
+    DomainCategoryWrite: 'DOMAIN_CATEGORY_WRITE',
+    DomainContactRead: 'DOMAIN_CONTACT_READ',
+    DomainContactWrite: 'DOMAIN_CONTACT_WRITE',
+    DomainNameRead: 'DOMAIN_NAME_READ',
+    DomainNameWrite: 'DOMAIN_NAME_WRITE',
+    InvoiceContactRead: 'INVOICE_CONTACT_READ',
+    InvoiceContactWrite: 'INVOICE_CONTACT_WRITE',
+    InvoiceRead: 'INVOICE_READ',
+    InvoiceWrite: 'INVOICE_WRITE',
+    IpGroupsRead: 'IP_GROUPS_READ',
+    IpGroupsWrite: 'IP_GROUPS_WRITE',
+    IpsRead: 'IPS_READ',
+    IpsWrite: 'IPS_WRITE',
+    ItemsRead: 'ITEMS_READ',
+    ItemsWrite: 'ITEMS_WRITE',
+    OrdersRead: 'ORDERS_READ',
+    OrdersWrite: 'ORDERS_WRITE',
+    TransactionsRead: 'TRANSACTIONS_READ',
+    TransactionsWrite: 'TRANSACTIONS_WRITE',
+    PoliciesRead: 'POLICIES_READ',
+    PoliciesWrite: 'POLICIES_WRITE',
+    ProductCategoriesRead: 'PRODUCT_CATEGORIES_READ',
+    ProductCategoriesWrite: 'PRODUCT_CATEGORIES_WRITE',
+    ProductsRead: 'PRODUCTS_READ',
+    ProductsWrite: 'PRODUCTS_WRITE',
+    SettingsRead: 'SETTINGS_READ',
+    SettingsWrite: 'SETTINGS_WRITE',
+    IntegrationsRead: 'INTEGRATIONS_READ',
+    IntegrationsWrite: 'INTEGRATIONS_WRITE',
+    TldsRead: 'TLDS_READ',
+    TldsWrite: 'TLDS_WRITE',
+    UsersRead: 'USERS_READ',
+    UsersWrite: 'USERS_WRITE',
+    IssuesWrite: 'ISSUES_WRITE',
+    IssuesRead: 'ISSUES_READ',
+    ActionLogsRead: 'ACTION_LOGS_READ'
+} as const;
+
+export type UpdateCompanyUserRolesRequestRolesEnum = typeof UpdateCompanyUserRolesRequestRolesEnum[keyof typeof UpdateCompanyUserRolesRequestRolesEnum];
+
+/**
+ * 
+ * @export
+ * @interface UpdateCompanyUsernameRequest
+ */
+export interface UpdateCompanyUsernameRequest {
     /**
      * 
      * @type {string}
-     * @memberof UpdateCompanyDefaultLanguageRequest
+     * @memberof UpdateCompanyUsernameRequest
      */
-    'defaultLanguage'?: UpdateCompanyDefaultLanguageRequestDefaultLanguageEnum;
+    'username'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateDefaultLanguageRequest
+ */
+export interface UpdateDefaultLanguageRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateDefaultLanguageRequest
+     */
+    'defaultLanguage'?: UpdateDefaultLanguageRequestDefaultLanguageEnum;
 }
 
-export const UpdateCompanyDefaultLanguageRequestDefaultLanguageEnum = {
+export const UpdateDefaultLanguageRequestDefaultLanguageEnum = {
     Ab: 'AB',
     Aa: 'AA',
     Af: 'AF',
@@ -18670,21 +18683,8 @@ export const UpdateCompanyDefaultLanguageRequestDefaultLanguageEnum = {
     Zu: 'ZU'
 } as const;
 
-export type UpdateCompanyDefaultLanguageRequestDefaultLanguageEnum = typeof UpdateCompanyDefaultLanguageRequestDefaultLanguageEnum[keyof typeof UpdateCompanyDefaultLanguageRequestDefaultLanguageEnum];
+export type UpdateDefaultLanguageRequestDefaultLanguageEnum = typeof UpdateDefaultLanguageRequestDefaultLanguageEnum[keyof typeof UpdateDefaultLanguageRequestDefaultLanguageEnum];
 
-/**
- * 
- * @export
- * @interface UpdateCompanyUsernameRequest
- */
-export interface UpdateCompanyUsernameRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateCompanyUsernameRequest
-     */
-    'username'?: string;
-}
 /**
  * 
  * @export
@@ -19691,62 +19691,6 @@ export const AddonsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Retrieves a list of all the addons. Returns an array of AddonDto.
-         * @summary Get list of all addons
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [query] searches in title and description
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findAddons: async (companyId: string, query?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findAddons', 'companyId', companyId)
-            const localVarPath = `/addons`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (query !== undefined) {
-                localVarQueryParameter['query'] = query;
-            }
-
-            if (currentPage !== undefined) {
-                localVarQueryParameter['currentPage'] = currentPage;
-            }
-
-            if (perPage !== undefined) {
-                localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Retrieves a certain addon. Returns an AddonResponseDto.
          * @summary Get an addon
          * @param {string} id ID
@@ -19778,6 +19722,62 @@ export const AddonsApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a list of all the addons. Returns an array of AddonDto.
+         * @summary Get list of all addons
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [query] searches in title and description
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAddons: async (companyId: string, query?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getAddons', 'companyId', companyId)
+            const localVarPath = `/addons`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (query !== undefined) {
+                localVarQueryParameter['query'] = query;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['currentPage'] = currentPage;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
             }
 
 
@@ -19881,22 +19881,6 @@ export const AddonsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a list of all the addons. Returns an array of AddonDto.
-         * @summary Get list of all addons
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [query] searches in title and description
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async findAddons(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindAddons200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findAddons(companyId, query, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AddonsApi.findAddons']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieves a certain addon. Returns an AddonResponseDto.
          * @summary Get an addon
          * @param {string} id ID
@@ -19908,6 +19892,22 @@ export const AddonsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAddon(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AddonsApi.getAddon']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a list of all the addons. Returns an array of AddonDto.
+         * @summary Get list of all addons
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [query] searches in title and description
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAddons(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAddons200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAddons(companyId, query, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AddonsApi.getAddons']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -19958,19 +19958,6 @@ export const AddonsApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.deleteAddon(companyId, id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieves a list of all the addons. Returns an array of AddonDto.
-         * @summary Get list of all addons
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [query] searches in title and description
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findAddons(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindAddons200Response> {
-            return localVarFp.findAddons(companyId, query, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Retrieves a certain addon. Returns an AddonResponseDto.
          * @summary Get an addon
          * @param {string} id ID
@@ -19980,6 +19967,19 @@ export const AddonsApiFactory = function (configuration?: Configuration, basePat
          */
         getAddon(id: string, companyId: string, options?: any): AxiosPromise<CreateAddon201Response> {
             return localVarFp.getAddon(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a list of all the addons. Returns an array of AddonDto.
+         * @summary Get list of all addons
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [query] searches in title and description
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAddons(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetAddons200Response> {
+            return localVarFp.getAddons(companyId, query, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a certain addon. Returns an AddonResponseDto.
@@ -20030,21 +20030,6 @@ export class AddonsApi extends BaseAPI {
     }
 
     /**
-     * Retrieves a list of all the addons. Returns an array of AddonDto.
-     * @summary Get list of all addons
-     * @param {string} companyId A unique identifier for the company.
-     * @param {string} [query] searches in title and description
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AddonsApi
-     */
-    public findAddons(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return AddonsApiFp(this.configuration).findAddons(companyId, query, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Retrieves a certain addon. Returns an AddonResponseDto.
      * @summary Get an addon
      * @param {string} id ID
@@ -20055,6 +20040,21 @@ export class AddonsApi extends BaseAPI {
      */
     public getAddon(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return AddonsApiFp(this.configuration).getAddon(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a list of all the addons. Returns an array of AddonDto.
+     * @summary Get list of all addons
+     * @param {string} companyId A unique identifier for the company.
+     * @param {string} [query] searches in title and description
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AddonsApi
+     */
+    public getAddons(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return AddonsApiFp(this.configuration).getAddons(companyId, query, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -20173,62 +20173,6 @@ export const AffiliatesApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Retrieves a list of all affiliates. Returns an array of AffiliateDto.
-         * @summary Get list of all affiliates
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [productId] product id
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findAffiliate: async (companyId: string, productId?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findAffiliate', 'companyId', companyId)
-            const localVarPath = `/affiliates`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (productId !== undefined) {
-                localVarQueryParameter['productId'] = productId;
-            }
-
-            if (currentPage !== undefined) {
-                localVarQueryParameter['currentPage'] = currentPage;
-            }
-
-            if (perPage !== undefined) {
-                localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Retrieves a certain affiliate. Returns a AffiliateResponseDto.
          * @summary Get an affiliate
          * @param {string} companyId A unique identifier for the company.
@@ -20260,6 +20204,62 @@ export const AffiliatesApiAxiosParamCreator = function (configuration?: Configur
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a list of all affiliates. Returns an array of AffiliateDto.
+         * @summary Get list of all affiliates
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [productId] product id
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAffiliates: async (companyId: string, productId?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getAffiliates', 'companyId', companyId)
+            const localVarPath = `/affiliates`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (productId !== undefined) {
+                localVarQueryParameter['productId'] = productId;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['currentPage'] = currentPage;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
             }
 
 
@@ -20363,22 +20363,6 @@ export const AffiliatesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a list of all affiliates. Returns an array of AffiliateDto.
-         * @summary Get list of all affiliates
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [productId] product id
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async findAffiliate(companyId: string, productId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindAffiliate200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findAffiliate(companyId, productId, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AffiliatesApi.findAffiliate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieves a certain affiliate. Returns a AffiliateResponseDto.
          * @summary Get an affiliate
          * @param {string} companyId A unique identifier for the company.
@@ -20390,6 +20374,22 @@ export const AffiliatesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAffiliate(companyId, id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AffiliatesApi.getAffiliate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a list of all affiliates. Returns an array of AffiliateDto.
+         * @summary Get list of all affiliates
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [productId] product id
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAffiliates(companyId: string, productId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAffiliates200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAffiliates(companyId, productId, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AffiliatesApi.getAffiliates']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -20440,19 +20440,6 @@ export const AffiliatesApiFactory = function (configuration?: Configuration, bas
             return localVarFp.deleteAffiliate(companyId, id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieves a list of all affiliates. Returns an array of AffiliateDto.
-         * @summary Get list of all affiliates
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [productId] product id
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findAffiliate(companyId: string, productId?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindAffiliate200Response> {
-            return localVarFp.findAffiliate(companyId, productId, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Retrieves a certain affiliate. Returns a AffiliateResponseDto.
          * @summary Get an affiliate
          * @param {string} companyId A unique identifier for the company.
@@ -20462,6 +20449,19 @@ export const AffiliatesApiFactory = function (configuration?: Configuration, bas
          */
         getAffiliate(companyId: string, id: string, options?: any): AxiosPromise<CreateAffiliate201Response> {
             return localVarFp.getAffiliate(companyId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a list of all affiliates. Returns an array of AffiliateDto.
+         * @summary Get list of all affiliates
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [productId] product id
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAffiliates(companyId: string, productId?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetAffiliates200Response> {
+            return localVarFp.getAffiliates(companyId, productId, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a certain affiliate. Returns a AffiliateResponseDto.
@@ -20512,21 +20512,6 @@ export class AffiliatesApi extends BaseAPI {
     }
 
     /**
-     * Retrieves a list of all affiliates. Returns an array of AffiliateDto.
-     * @summary Get list of all affiliates
-     * @param {string} companyId A unique identifier for the company.
-     * @param {string} [productId] product id
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AffiliatesApi
-     */
-    public findAffiliate(companyId: string, productId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return AffiliatesApiFp(this.configuration).findAffiliate(companyId, productId, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Retrieves a certain affiliate. Returns a AffiliateResponseDto.
      * @summary Get an affiliate
      * @param {string} companyId A unique identifier for the company.
@@ -20537,6 +20522,21 @@ export class AffiliatesApi extends BaseAPI {
      */
     public getAffiliate(companyId: string, id: string, options?: RawAxiosRequestConfig) {
         return AffiliatesApiFp(this.configuration).getAffiliate(companyId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a list of all affiliates. Returns an array of AffiliateDto.
+     * @summary Get list of all affiliates
+     * @param {string} companyId A unique identifier for the company.
+     * @param {string} [productId] product id
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AffiliatesApi
+     */
+    public getAffiliates(companyId: string, productId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return AffiliatesApiFp(this.configuration).getAffiliates(companyId, productId, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -20562,6 +20562,44 @@ export class AffiliatesApi extends BaseAPI {
  */
 export const ClientItemsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Cancel a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, has idle status, and is not a bundled child item. Returns a boolean indicating success.
+         * @summary Item Client Cancel
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelClientItem: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('cancelClientItem', 'id', id)
+            const localVarPath = `/client/items/{id}/cancel`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
@@ -20608,9 +20646,9 @@ export const ClientItemsApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatedClientItems: async (companyId: string, pagination?: PaginationQueryDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getClientItems: async (companyId: string, pagination?: PaginationQueryDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getPaginatedClientItems', 'companyId', companyId)
+            assertParamExists('getClientItems', 'companyId', companyId)
             const localVarPath = `/client/items`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -20649,53 +20687,15 @@ export const ClientItemsApiAxiosParamCreator = function (configuration?: Configu
             };
         },
         /**
-         * Cancel a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, has idle status, and is not a bundled child item. Returns a boolean indicating success.
-         * @summary Item Client Cancel
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemClientCancel: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemClientCancel', 'id', id)
-            const localVarPath = `/client/items/{id}/cancel`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Postpone a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, is within 10 days of expiration, and can be postponed. Returns a boolean indicating success.
          * @summary Item Client Postpone
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to postpone.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemClientPostpone: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postponeClientItem: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemClientPostpone', 'id', id)
+            assertParamExists('postponeClientItem', 'id', id)
             const localVarPath = `/client/items/{id}/postpone`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -20731,9 +20731,9 @@ export const ClientItemsApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemClientRetry: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        retryClientItem: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemClientRetry', 'id', id)
+            assertParamExists('retryClientItem', 'id', id)
             const localVarPath = `/client/items/{id}/retry`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -20770,11 +20770,11 @@ export const ClientItemsApiAxiosParamCreator = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemClientUpdate: async (id: string, updateClientRequestDto: UpdateClientRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateClientItem: async (id: string, updateClientRequestDto: UpdateClientRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemClientUpdate', 'id', id)
+            assertParamExists('updateClientItem', 'id', id)
             // verify required parameter 'updateClientRequestDto' is not null or undefined
-            assertParamExists('itemClientUpdate', 'updateClientRequestDto', updateClientRequestDto)
+            assertParamExists('updateClientItem', 'updateClientRequestDto', updateClientRequestDto)
             const localVarPath = `/client/items/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -20817,6 +20817,19 @@ export const ClientItemsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ClientItemsApiAxiosParamCreator(configuration)
     return {
         /**
+         * Cancel a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, has idle status, and is not a bundled child item. Returns a boolean indicating success.
+         * @summary Item Client Cancel
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cancelClientItem(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelClientItem(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.cancelClientItem']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -20837,23 +20850,10 @@ export const ClientItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPaginatedClientItems(companyId: string, pagination?: PaginationQueryDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedClientItems200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatedClientItems(companyId, pagination, options);
+        async getClientItems(companyId: string, pagination?: PaginationQueryDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetClientItems200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getClientItems(companyId, pagination, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.getPaginatedClientItems']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Cancel a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, has idle status, and is not a bundled child item. Returns a boolean indicating success.
-         * @summary Item Client Cancel
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemClientCancel(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemClientCancel(id, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.itemClientCancel']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.getClientItems']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -20863,10 +20863,10 @@ export const ClientItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemClientPostpone(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemClientPostpone(id, options);
+        async postponeClientItem(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postponeClientItem(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.itemClientPostpone']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.postponeClientItem']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -20876,10 +20876,10 @@ export const ClientItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemClientRetry(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemClientRetry(id, options);
+        async retryClientItem(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retryClientItem(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.itemClientRetry']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.retryClientItem']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -20890,10 +20890,10 @@ export const ClientItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemClientUpdate(id: string, updateClientRequestDto: UpdateClientRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemClientUpdate(id, updateClientRequestDto, options);
+        async updateClientItem(id: string, updateClientRequestDto: UpdateClientRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateClientItem(id, updateClientRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.itemClientUpdate']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.updateClientItem']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -20906,6 +20906,16 @@ export const ClientItemsApiFp = function(configuration?: Configuration) {
 export const ClientItemsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ClientItemsApiFp(configuration)
     return {
+        /**
+         * Cancel a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, has idle status, and is not a bundled child item. Returns a boolean indicating success.
+         * @summary Item Client Cancel
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelClientItem(id: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.cancelClientItem(id, options).then((request) => request(axios, basePath));
+        },
         /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
@@ -20924,18 +20934,8 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatedClientItems(companyId: string, pagination?: PaginationQueryDto, options?: any): AxiosPromise<GetPaginatedClientItems200Response> {
-            return localVarFp.getPaginatedClientItems(companyId, pagination, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Cancel a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, has idle status, and is not a bundled child item. Returns a boolean indicating success.
-         * @summary Item Client Cancel
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemClientCancel(id: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemClientCancel(id, options).then((request) => request(axios, basePath));
+        getClientItems(companyId: string, pagination?: PaginationQueryDto, options?: any): AxiosPromise<GetClientItems200Response> {
+            return localVarFp.getClientItems(companyId, pagination, options).then((request) => request(axios, basePath));
         },
         /**
          * Postpone a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, is within 10 days of expiration, and can be postponed. Returns a boolean indicating success.
@@ -20944,8 +20944,8 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemClientPostpone(id: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemClientPostpone(id, options).then((request) => request(axios, basePath));
+        postponeClientItem(id: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.postponeClientItem(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Retry the action for a specific item that is in error status. Validates that the item exists, belongs to the authenticated user, and has error status. Returns a boolean indicating success.
@@ -20954,8 +20954,8 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemClientRetry(id: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemClientRetry(id, options).then((request) => request(axios, basePath));
+        retryClientItem(id: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.retryClientItem(id, options).then((request) => request(axios, basePath));
         },
         /**
          * Update a specific item for a client by its unique ID. Validates that the item exists and belongs to the authenticated user. Returns a boolean indicating success.
@@ -20965,8 +20965,8 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemClientUpdate(id: string, updateClientRequestDto: UpdateClientRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemClientUpdate(id, updateClientRequestDto, options).then((request) => request(axios, basePath));
+        updateClientItem(id: string, updateClientRequestDto: UpdateClientRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.updateClientItem(id, updateClientRequestDto, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -20978,6 +20978,18 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
  * @extends {BaseAPI}
  */
 export class ClientItemsApi extends BaseAPI {
+    /**
+     * Cancel a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, has idle status, and is not a bundled child item. Returns a boolean indicating success.
+     * @summary Item Client Cancel
+     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClientItemsApi
+     */
+    public cancelClientItem(id: string, options?: RawAxiosRequestConfig) {
+        return ClientItemsApiFp(this.configuration).cancelClientItem(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
      * @summary Get Client Item
@@ -20999,20 +21011,8 @@ export class ClientItemsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ClientItemsApi
      */
-    public getPaginatedClientItems(companyId: string, pagination?: PaginationQueryDto, options?: RawAxiosRequestConfig) {
-        return ClientItemsApiFp(this.configuration).getPaginatedClientItems(companyId, pagination, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Cancel a specific item for a client by its unique ID. Validates that the item exists, belongs to the authenticated user, has idle status, and is not a bundled child item. Returns a boolean indicating success.
-     * @summary Item Client Cancel
-     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ClientItemsApi
-     */
-    public itemClientCancel(id: string, options?: RawAxiosRequestConfig) {
-        return ClientItemsApiFp(this.configuration).itemClientCancel(id, options).then((request) => request(this.axios, this.basePath));
+    public getClientItems(companyId: string, pagination?: PaginationQueryDto, options?: RawAxiosRequestConfig) {
+        return ClientItemsApiFp(this.configuration).getClientItems(companyId, pagination, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -21023,8 +21023,8 @@ export class ClientItemsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ClientItemsApi
      */
-    public itemClientPostpone(id: string, options?: RawAxiosRequestConfig) {
-        return ClientItemsApiFp(this.configuration).itemClientPostpone(id, options).then((request) => request(this.axios, this.basePath));
+    public postponeClientItem(id: string, options?: RawAxiosRequestConfig) {
+        return ClientItemsApiFp(this.configuration).postponeClientItem(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -21035,8 +21035,8 @@ export class ClientItemsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ClientItemsApi
      */
-    public itemClientRetry(id: string, options?: RawAxiosRequestConfig) {
-        return ClientItemsApiFp(this.configuration).itemClientRetry(id, options).then((request) => request(this.axios, this.basePath));
+    public retryClientItem(id: string, options?: RawAxiosRequestConfig) {
+        return ClientItemsApiFp(this.configuration).retryClientItem(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -21048,8 +21048,8 @@ export class ClientItemsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ClientItemsApi
      */
-    public itemClientUpdate(id: string, updateClientRequestDto: UpdateClientRequestDto, options?: RawAxiosRequestConfig) {
-        return ClientItemsApiFp(this.configuration).itemClientUpdate(id, updateClientRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public updateClientItem(id: string, updateClientRequestDto: UpdateClientRequestDto, options?: RawAxiosRequestConfig) {
+        return ClientItemsApiFp(this.configuration).updateClientItem(id, updateClientRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -22381,57 +22381,6 @@ export type UpdateClientUserInvoiceIntervalInvoiceIntervalEnum = typeof UpdateCl
 export const CompaniesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Updates the roles of a user within a specific company.
-         * @summary Update user roles in a company
-         * @param {string} email The email of the user.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {CompanyUpdateUserRolesRequest} companyUpdateUserRolesRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        companyUpdateUserRoles: async (email: string, companyId: string, companyUpdateUserRolesRequest: CompanyUpdateUserRolesRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'email' is not null or undefined
-            assertParamExists('companyUpdateUserRoles', 'email', email)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('companyUpdateUserRoles', 'companyId', companyId)
-            // verify required parameter 'companyUpdateUserRolesRequest' is not null or undefined
-            assertParamExists('companyUpdateUserRoles', 'companyUpdateUserRolesRequest', companyUpdateUserRolesRequest)
-            const localVarPath = `/companies/access/{email}`
-                .replace(`{${"email"}}`, encodeURIComponent(String(email)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(companyUpdateUserRolesRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Creates a new company and returns the company data.
          * @summary Create Company
          * @param {CompanyRequestDto} companyRequestDto 
@@ -22516,15 +22465,15 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
          * Edits the comment for a specified company. Returns a boolean indicating success.
          * @summary Edit Company Comment
          * @param {string} companyId A unique identifier for the company.
-         * @param {EditCompanyCommentRequest} editCompanyCommentRequest 
+         * @param {EditCommentRequest} editCommentRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        editCompanyComment: async (companyId: string, editCompanyCommentRequest: EditCompanyCommentRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        editComment: async (companyId: string, editCommentRequest: EditCommentRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('editCompanyComment', 'companyId', companyId)
-            // verify required parameter 'editCompanyCommentRequest' is not null or undefined
-            assertParamExists('editCompanyComment', 'editCompanyCommentRequest', editCompanyCommentRequest)
+            assertParamExists('editComment', 'companyId', companyId)
+            // verify required parameter 'editCommentRequest' is not null or undefined
+            assertParamExists('editComment', 'editCommentRequest', editCommentRequest)
             const localVarPath = `/companies/edit-comment`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -22552,7 +22501,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(editCompanyCommentRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(editCommentRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -22560,16 +22509,16 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Retrieves a single company by its ID. Returns a single company response.
-         * @summary Get Company
+         * Retrieves the balance of a specified company.
+         * @summary Get Company Balance
          * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompany: async (companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getBalance: async (companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getCompany', 'companyId', companyId)
-            const localVarPath = `/companies/company`;
+            assertParamExists('getBalance', 'companyId', companyId)
+            const localVarPath = `/companies/get-balance`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -22601,16 +22550,67 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Retrieves the balance of a specified company.
-         * @summary Get Company Balance
+         * Retrieves a paginated list of companies. Returns a paginated response with company data.
+         * @summary Get Paginated Companies
+         * @param {string} companyId 
+         * @param {number} [perPage] per Page 
+         * @param {number} [currentPage] current page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCompanies: async (companyId: string, perPage?: number, currentPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getCompanies', 'companyId', companyId)
+            const localVarPath = `/companies`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['currentPage'] = currentPage;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a single company by its ID. Returns a single company response.
+         * @summary Get Company
          * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompanyBalance: async (companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCompany: async (companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getCompanyBalance', 'companyId', companyId)
-            const localVarPath = `/companies/get-balance`;
+            assertParamExists('getCompany', 'companyId', companyId)
+            const localVarPath = `/companies/company`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -22710,72 +22710,21 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Retrieves a paginated list of companies. Returns a paginated response with company data.
-         * @summary Get Paginated Companies
-         * @param {string} companyId 
-         * @param {number} [perPage] per Page 
-         * @param {number} [currentPage] current page
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getPaginatedCompanies: async (companyId: string, perPage?: number, currentPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getPaginatedCompanies', 'companyId', companyId)
-            const localVarPath = `/companies`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (perPage !== undefined) {
-                localVarQueryParameter['perPage'] = perPage;
-            }
-
-            if (currentPage !== undefined) {
-                localVarQueryParameter['currentPage'] = currentPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Installs an integration for a specified company. Returns a boolean indicating success.
          * @summary Install Company Integration
          * @param {string} companyId A unique identifier for the company.
          * @param {string} integrationId A unique identifier for the integration.
-         * @param {InstallCompanyIntegrationRequest} installCompanyIntegrationRequest 
+         * @param {InstallIntegrationRequest} installIntegrationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        installCompanyIntegration: async (companyId: string, integrationId: string, installCompanyIntegrationRequest: InstallCompanyIntegrationRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        installIntegration: async (companyId: string, integrationId: string, installIntegrationRequest: InstallIntegrationRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('installCompanyIntegration', 'companyId', companyId)
+            assertParamExists('installIntegration', 'companyId', companyId)
             // verify required parameter 'integrationId' is not null or undefined
-            assertParamExists('installCompanyIntegration', 'integrationId', integrationId)
-            // verify required parameter 'installCompanyIntegrationRequest' is not null or undefined
-            assertParamExists('installCompanyIntegration', 'installCompanyIntegrationRequest', installCompanyIntegrationRequest)
+            assertParamExists('installIntegration', 'integrationId', integrationId)
+            // verify required parameter 'installIntegrationRequest' is not null or undefined
+            assertParamExists('installIntegration', 'installIntegrationRequest', installIntegrationRequest)
             const localVarPath = `/companies/{integrationId}/integration/install`
                 .replace(`{${"integrationId"}}`, encodeURIComponent(String(integrationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -22804,7 +22753,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(installCompanyIntegrationRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(installIntegrationRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -22856,15 +22805,15 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
          * Sets the credit balance for a specified company. Returns a boolean indicating success.
          * @summary Set Company Credit Balance
          * @param {string} companyId A unique identifier for the company.
-         * @param {SetCompanyCreditBalanceRequest} setCompanyCreditBalanceRequest 
+         * @param {SetCreditBalanceRequest} setCreditBalanceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setCompanyCreditBalance: async (companyId: string, setCompanyCreditBalanceRequest: SetCompanyCreditBalanceRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        setCreditBalance: async (companyId: string, setCreditBalanceRequest: SetCreditBalanceRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('setCompanyCreditBalance', 'companyId', companyId)
-            // verify required parameter 'setCompanyCreditBalanceRequest' is not null or undefined
-            assertParamExists('setCompanyCreditBalance', 'setCompanyCreditBalanceRequest', setCompanyCreditBalanceRequest)
+            assertParamExists('setCreditBalance', 'companyId', companyId)
+            // verify required parameter 'setCreditBalanceRequest' is not null or undefined
+            assertParamExists('setCreditBalance', 'setCreditBalanceRequest', setCreditBalanceRequest)
             const localVarPath = `/companies/set-credit-balance`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -22892,7 +22841,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(setCompanyCreditBalanceRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(setCreditBalanceRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -22907,11 +22856,11 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uninstallCompanyIntegration: async (companyId: string, integrationId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        uninstallIntegration: async (companyId: string, integrationId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('uninstallCompanyIntegration', 'companyId', companyId)
+            assertParamExists('uninstallIntegration', 'companyId', companyId)
             // verify required parameter 'integrationId' is not null or undefined
-            assertParamExists('uninstallCompanyIntegration', 'integrationId', integrationId)
+            assertParamExists('uninstallIntegration', 'integrationId', integrationId)
             const localVarPath = `/companies/{integrationId}/integration/uninstall`
                 .replace(`{${"integrationId"}}`, encodeURIComponent(String(integrationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -23080,19 +23029,23 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Updates the default language for a specified company. Returns a boolean indicating success.
-         * @summary Update Company Default Language
+         * Updates the roles of a user within a specific company.
+         * @summary Update user roles in a company
+         * @param {string} email The email of the user.
          * @param {string} companyId A unique identifier for the company.
-         * @param {UpdateCompanyDefaultLanguageRequest} updateCompanyDefaultLanguageRequest 
+         * @param {UpdateCompanyUserRolesRequest} updateCompanyUserRolesRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCompanyDefaultLanguage: async (companyId: string, updateCompanyDefaultLanguageRequest: UpdateCompanyDefaultLanguageRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateCompanyUserRoles: async (email: string, companyId: string, updateCompanyUserRolesRequest: UpdateCompanyUserRolesRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'email' is not null or undefined
+            assertParamExists('updateCompanyUserRoles', 'email', email)
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('updateCompanyDefaultLanguage', 'companyId', companyId)
-            // verify required parameter 'updateCompanyDefaultLanguageRequest' is not null or undefined
-            assertParamExists('updateCompanyDefaultLanguage', 'updateCompanyDefaultLanguageRequest', updateCompanyDefaultLanguageRequest)
-            const localVarPath = `/companies/set-default-language`;
+            assertParamExists('updateCompanyUserRoles', 'companyId', companyId)
+            // verify required parameter 'updateCompanyUserRolesRequest' is not null or undefined
+            assertParamExists('updateCompanyUserRoles', 'updateCompanyUserRolesRequest', updateCompanyUserRolesRequest)
+            const localVarPath = `/companies/access/{email}`
+                .replace(`{${"email"}}`, encodeURIComponent(String(email)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -23119,7 +23072,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateCompanyDefaultLanguageRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateCompanyUserRolesRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -23167,6 +23120,53 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(updateCompanyUsernameRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates the default language for a specified company. Returns a boolean indicating success.
+         * @summary Update Company Default Language
+         * @param {string} companyId A unique identifier for the company.
+         * @param {UpdateDefaultLanguageRequest} updateDefaultLanguageRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateDefaultLanguage: async (companyId: string, updateDefaultLanguageRequest: UpdateDefaultLanguageRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('updateDefaultLanguage', 'companyId', companyId)
+            // verify required parameter 'updateDefaultLanguageRequest' is not null or undefined
+            assertParamExists('updateDefaultLanguage', 'updateDefaultLanguageRequest', updateDefaultLanguageRequest)
+            const localVarPath = `/companies/set-default-language`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateDefaultLanguageRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -23231,21 +23231,6 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CompaniesApiAxiosParamCreator(configuration)
     return {
         /**
-         * Updates the roles of a user within a specific company.
-         * @summary Update user roles in a company
-         * @param {string} email The email of the user.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {CompanyUpdateUserRolesRequest} companyUpdateUserRolesRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async companyUpdateUserRoles(email: string, companyId: string, companyUpdateUserRolesRequest: CompanyUpdateUserRolesRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.companyUpdateUserRoles(email, companyId, companyUpdateUserRolesRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.companyUpdateUserRoles']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Creates a new company and returns the company data.
          * @summary Create Company
          * @param {CompanyRequestDto} companyRequestDto 
@@ -23275,14 +23260,42 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
          * Edits the comment for a specified company. Returns a boolean indicating success.
          * @summary Edit Company Comment
          * @param {string} companyId A unique identifier for the company.
-         * @param {EditCompanyCommentRequest} editCompanyCommentRequest 
+         * @param {EditCommentRequest} editCommentRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async editCompanyComment(companyId: string, editCompanyCommentRequest: EditCompanyCommentRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.editCompanyComment(companyId, editCompanyCommentRequest, options);
+        async editComment(companyId: string, editCommentRequest: EditCommentRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.editComment(companyId, editCommentRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.editCompanyComment']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.editComment']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves the balance of a specified company.
+         * @summary Get Company Balance
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getBalance(companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetBalance200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getBalance(companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getBalance']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a paginated list of companies. Returns a paginated response with company data.
+         * @summary Get Paginated Companies
+         * @param {string} companyId 
+         * @param {number} [perPage] per Page 
+         * @param {number} [currentPage] current page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getCompanies(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCompanies200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanies(companyId, perPage, currentPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getCompanies']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -23296,19 +23309,6 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCompany(companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getCompany']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retrieves the balance of a specified company.
-         * @summary Get Company Balance
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getCompanyBalance(companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCompanyBalance200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanyBalance(companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getCompanyBalance']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -23338,33 +23338,18 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a paginated list of companies. Returns a paginated response with company data.
-         * @summary Get Paginated Companies
-         * @param {string} companyId 
-         * @param {number} [perPage] per Page 
-         * @param {number} [currentPage] current page
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getPaginatedCompanies(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedCompanies200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatedCompanies(companyId, perPage, currentPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getPaginatedCompanies']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Installs an integration for a specified company. Returns a boolean indicating success.
          * @summary Install Company Integration
          * @param {string} companyId A unique identifier for the company.
          * @param {string} integrationId A unique identifier for the integration.
-         * @param {InstallCompanyIntegrationRequest} installCompanyIntegrationRequest 
+         * @param {InstallIntegrationRequest} installIntegrationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async installCompanyIntegration(companyId: string, integrationId: string, installCompanyIntegrationRequest: InstallCompanyIntegrationRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.installCompanyIntegration(companyId, integrationId, installCompanyIntegrationRequest, options);
+        async installIntegration(companyId: string, integrationId: string, installIntegrationRequest: InstallIntegrationRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.installIntegration(companyId, integrationId, installIntegrationRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.installCompanyIntegration']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.installIntegration']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -23384,14 +23369,14 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
          * Sets the credit balance for a specified company. Returns a boolean indicating success.
          * @summary Set Company Credit Balance
          * @param {string} companyId A unique identifier for the company.
-         * @param {SetCompanyCreditBalanceRequest} setCompanyCreditBalanceRequest 
+         * @param {SetCreditBalanceRequest} setCreditBalanceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async setCompanyCreditBalance(companyId: string, setCompanyCreditBalanceRequest: SetCompanyCreditBalanceRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.setCompanyCreditBalance(companyId, setCompanyCreditBalanceRequest, options);
+        async setCreditBalance(companyId: string, setCreditBalanceRequest: SetCreditBalanceRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.setCreditBalance(companyId, setCreditBalanceRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.setCompanyCreditBalance']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.setCreditBalance']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -23402,10 +23387,10 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uninstallCompanyIntegration(companyId: string, integrationId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.uninstallCompanyIntegration(companyId, integrationId, options);
+        async uninstallIntegration(companyId: string, integrationId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.uninstallIntegration(companyId, integrationId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.uninstallCompanyIntegration']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.uninstallIntegration']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -23450,17 +23435,18 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Updates the default language for a specified company. Returns a boolean indicating success.
-         * @summary Update Company Default Language
+         * Updates the roles of a user within a specific company.
+         * @summary Update user roles in a company
+         * @param {string} email The email of the user.
          * @param {string} companyId A unique identifier for the company.
-         * @param {UpdateCompanyDefaultLanguageRequest} updateCompanyDefaultLanguageRequest 
+         * @param {UpdateCompanyUserRolesRequest} updateCompanyUserRolesRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCompanyDefaultLanguage(companyId: string, updateCompanyDefaultLanguageRequest: UpdateCompanyDefaultLanguageRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCompanyDefaultLanguage(companyId, updateCompanyDefaultLanguageRequest, options);
+        async updateCompanyUserRoles(email: string, companyId: string, updateCompanyUserRolesRequest: UpdateCompanyUserRolesRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCompanyUserRoles(email, companyId, updateCompanyUserRolesRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.updateCompanyDefaultLanguage']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.updateCompanyUserRoles']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -23475,6 +23461,20 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateCompanyUsername(companyId, updateCompanyUsernameRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CompaniesApi.updateCompanyUsername']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Updates the default language for a specified company. Returns a boolean indicating success.
+         * @summary Update Company Default Language
+         * @param {string} companyId A unique identifier for the company.
+         * @param {UpdateDefaultLanguageRequest} updateDefaultLanguageRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateDefaultLanguage(companyId: string, updateDefaultLanguageRequest: UpdateDefaultLanguageRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateDefaultLanguage(companyId, updateDefaultLanguageRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.updateDefaultLanguage']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -23502,18 +23502,6 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
     const localVarFp = CompaniesApiFp(configuration)
     return {
         /**
-         * Updates the roles of a user within a specific company.
-         * @summary Update user roles in a company
-         * @param {string} email The email of the user.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {CompanyUpdateUserRolesRequest} companyUpdateUserRolesRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        companyUpdateUserRoles(email: string, companyId: string, companyUpdateUserRolesRequest: CompanyUpdateUserRolesRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.companyUpdateUserRoles(email, companyId, companyUpdateUserRolesRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Creates a new company and returns the company data.
          * @summary Create Company
          * @param {CompanyRequestDto} companyRequestDto 
@@ -23537,12 +23525,34 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          * Edits the comment for a specified company. Returns a boolean indicating success.
          * @summary Edit Company Comment
          * @param {string} companyId A unique identifier for the company.
-         * @param {EditCompanyCommentRequest} editCompanyCommentRequest 
+         * @param {EditCommentRequest} editCommentRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        editCompanyComment(companyId: string, editCompanyCommentRequest: EditCompanyCommentRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.editCompanyComment(companyId, editCompanyCommentRequest, options).then((request) => request(axios, basePath));
+        editComment(companyId: string, editCommentRequest: EditCommentRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.editComment(companyId, editCommentRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves the balance of a specified company.
+         * @summary Get Company Balance
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getBalance(companyId: string, options?: any): AxiosPromise<GetBalance200Response> {
+            return localVarFp.getBalance(companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a paginated list of companies. Returns a paginated response with company data.
+         * @summary Get Paginated Companies
+         * @param {string} companyId 
+         * @param {number} [perPage] per Page 
+         * @param {number} [currentPage] current page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCompanies(companyId: string, perPage?: number, currentPage?: number, options?: any): AxiosPromise<GetCompanies200Response> {
+            return localVarFp.getCompanies(companyId, perPage, currentPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves a single company by its ID. Returns a single company response.
@@ -23553,16 +23563,6 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          */
         getCompany(companyId: string, options?: any): AxiosPromise<CreateCompany201Response> {
             return localVarFp.getCompany(companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieves the balance of a specified company.
-         * @summary Get Company Balance
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getCompanyBalance(companyId: string, options?: any): AxiosPromise<GetCompanyBalance200Response> {
-            return localVarFp.getCompanyBalance(companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves public information for a single company by its ID.
@@ -23585,28 +23585,16 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
             return localVarFp.getCompanyPublicInfoByUrl(username, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieves a paginated list of companies. Returns a paginated response with company data.
-         * @summary Get Paginated Companies
-         * @param {string} companyId 
-         * @param {number} [perPage] per Page 
-         * @param {number} [currentPage] current page
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getPaginatedCompanies(companyId: string, perPage?: number, currentPage?: number, options?: any): AxiosPromise<GetPaginatedCompanies200Response> {
-            return localVarFp.getPaginatedCompanies(companyId, perPage, currentPage, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Installs an integration for a specified company. Returns a boolean indicating success.
          * @summary Install Company Integration
          * @param {string} companyId A unique identifier for the company.
          * @param {string} integrationId A unique identifier for the integration.
-         * @param {InstallCompanyIntegrationRequest} installCompanyIntegrationRequest 
+         * @param {InstallIntegrationRequest} installIntegrationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        installCompanyIntegration(companyId: string, integrationId: string, installCompanyIntegrationRequest: InstallCompanyIntegrationRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.installCompanyIntegration(companyId, integrationId, installCompanyIntegrationRequest, options).then((request) => request(axios, basePath));
+        installIntegration(companyId: string, integrationId: string, installIntegrationRequest: InstallIntegrationRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.installIntegration(companyId, integrationId, installIntegrationRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Locks a company, preventing any modifications. Returns a boolean indicating success.
@@ -23622,12 +23610,12 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          * Sets the credit balance for a specified company. Returns a boolean indicating success.
          * @summary Set Company Credit Balance
          * @param {string} companyId A unique identifier for the company.
-         * @param {SetCompanyCreditBalanceRequest} setCompanyCreditBalanceRequest 
+         * @param {SetCreditBalanceRequest} setCreditBalanceRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setCompanyCreditBalance(companyId: string, setCompanyCreditBalanceRequest: SetCompanyCreditBalanceRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.setCompanyCreditBalance(companyId, setCompanyCreditBalanceRequest, options).then((request) => request(axios, basePath));
+        setCreditBalance(companyId: string, setCreditBalanceRequest: SetCreditBalanceRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.setCreditBalance(companyId, setCreditBalanceRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Uninstalls an integration from a specified company. Returns a boolean indicating success.
@@ -23637,8 +23625,8 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uninstallCompanyIntegration(companyId: string, integrationId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.uninstallCompanyIntegration(companyId, integrationId, options).then((request) => request(axios, basePath));
+        uninstallIntegration(companyId: string, integrationId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.uninstallIntegration(companyId, integrationId, options).then((request) => request(axios, basePath));
         },
         /**
          * Unlocks a company, allowing modifications. Returns a boolean indicating success.
@@ -23673,15 +23661,16 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
             return localVarFp.updateCompanyBrand(companyId, updateCompanyBrandRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Updates the default language for a specified company. Returns a boolean indicating success.
-         * @summary Update Company Default Language
+         * Updates the roles of a user within a specific company.
+         * @summary Update user roles in a company
+         * @param {string} email The email of the user.
          * @param {string} companyId A unique identifier for the company.
-         * @param {UpdateCompanyDefaultLanguageRequest} updateCompanyDefaultLanguageRequest 
+         * @param {UpdateCompanyUserRolesRequest} updateCompanyUserRolesRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCompanyDefaultLanguage(companyId: string, updateCompanyDefaultLanguageRequest: UpdateCompanyDefaultLanguageRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.updateCompanyDefaultLanguage(companyId, updateCompanyDefaultLanguageRequest, options).then((request) => request(axios, basePath));
+        updateCompanyUserRoles(email: string, companyId: string, updateCompanyUserRolesRequest: UpdateCompanyUserRolesRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.updateCompanyUserRoles(email, companyId, updateCompanyUserRolesRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the username/URL for a specified company. Returns a boolean indicating success.
@@ -23693,6 +23682,17 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          */
         updateCompanyUsername(companyId: string, updateCompanyUsernameRequest: UpdateCompanyUsernameRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.updateCompanyUsername(companyId, updateCompanyUsernameRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Updates the default language for a specified company. Returns a boolean indicating success.
+         * @summary Update Company Default Language
+         * @param {string} companyId A unique identifier for the company.
+         * @param {UpdateDefaultLanguageRequest} updateDefaultLanguageRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateDefaultLanguage(companyId: string, updateDefaultLanguageRequest: UpdateDefaultLanguageRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.updateDefaultLanguage(companyId, updateDefaultLanguageRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the privacy policy URL for a specified company. Returns a boolean indicating success.
@@ -23715,20 +23715,6 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
  * @extends {BaseAPI}
  */
 export class CompaniesApi extends BaseAPI {
-    /**
-     * Updates the roles of a user within a specific company.
-     * @summary Update user roles in a company
-     * @param {string} email The email of the user.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {CompanyUpdateUserRolesRequest} companyUpdateUserRolesRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CompaniesApi
-     */
-    public companyUpdateUserRoles(email: string, companyId: string, companyUpdateUserRolesRequest: CompanyUpdateUserRolesRequest, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).companyUpdateUserRoles(email, companyId, companyUpdateUserRolesRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
     /**
      * Creates a new company and returns the company data.
      * @summary Create Company
@@ -23757,13 +23743,39 @@ export class CompaniesApi extends BaseAPI {
      * Edits the comment for a specified company. Returns a boolean indicating success.
      * @summary Edit Company Comment
      * @param {string} companyId A unique identifier for the company.
-     * @param {EditCompanyCommentRequest} editCompanyCommentRequest 
+     * @param {EditCommentRequest} editCommentRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public editCompanyComment(companyId: string, editCompanyCommentRequest: EditCompanyCommentRequest, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).editCompanyComment(companyId, editCompanyCommentRequest, options).then((request) => request(this.axios, this.basePath));
+    public editComment(companyId: string, editCommentRequest: EditCommentRequest, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).editComment(companyId, editCommentRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves the balance of a specified company.
+     * @summary Get Company Balance
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public getBalance(companyId: string, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).getBalance(companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a paginated list of companies. Returns a paginated response with company data.
+     * @summary Get Paginated Companies
+     * @param {string} companyId 
+     * @param {number} [perPage] per Page 
+     * @param {number} [currentPage] current page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public getCompanies(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).getCompanies(companyId, perPage, currentPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -23776,18 +23788,6 @@ export class CompaniesApi extends BaseAPI {
      */
     public getCompany(companyId: string, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).getCompany(companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieves the balance of a specified company.
-     * @summary Get Company Balance
-     * @param {string} companyId A unique identifier for the company.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CompaniesApi
-     */
-    public getCompanyBalance(companyId: string, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).getCompanyBalance(companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -23815,31 +23815,17 @@ export class CompaniesApi extends BaseAPI {
     }
 
     /**
-     * Retrieves a paginated list of companies. Returns a paginated response with company data.
-     * @summary Get Paginated Companies
-     * @param {string} companyId 
-     * @param {number} [perPage] per Page 
-     * @param {number} [currentPage] current page
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CompaniesApi
-     */
-    public getPaginatedCompanies(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).getPaginatedCompanies(companyId, perPage, currentPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Installs an integration for a specified company. Returns a boolean indicating success.
      * @summary Install Company Integration
      * @param {string} companyId A unique identifier for the company.
      * @param {string} integrationId A unique identifier for the integration.
-     * @param {InstallCompanyIntegrationRequest} installCompanyIntegrationRequest 
+     * @param {InstallIntegrationRequest} installIntegrationRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public installCompanyIntegration(companyId: string, integrationId: string, installCompanyIntegrationRequest: InstallCompanyIntegrationRequest, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).installCompanyIntegration(companyId, integrationId, installCompanyIntegrationRequest, options).then((request) => request(this.axios, this.basePath));
+    public installIntegration(companyId: string, integrationId: string, installIntegrationRequest: InstallIntegrationRequest, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).installIntegration(companyId, integrationId, installIntegrationRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -23858,13 +23844,13 @@ export class CompaniesApi extends BaseAPI {
      * Sets the credit balance for a specified company. Returns a boolean indicating success.
      * @summary Set Company Credit Balance
      * @param {string} companyId A unique identifier for the company.
-     * @param {SetCompanyCreditBalanceRequest} setCompanyCreditBalanceRequest 
+     * @param {SetCreditBalanceRequest} setCreditBalanceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public setCompanyCreditBalance(companyId: string, setCompanyCreditBalanceRequest: SetCompanyCreditBalanceRequest, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).setCompanyCreditBalance(companyId, setCompanyCreditBalanceRequest, options).then((request) => request(this.axios, this.basePath));
+    public setCreditBalance(companyId: string, setCreditBalanceRequest: SetCreditBalanceRequest, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).setCreditBalance(companyId, setCreditBalanceRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -23876,8 +23862,8 @@ export class CompaniesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public uninstallCompanyIntegration(companyId: string, integrationId: string, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).uninstallCompanyIntegration(companyId, integrationId, options).then((request) => request(this.axios, this.basePath));
+    public uninstallIntegration(companyId: string, integrationId: string, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).uninstallIntegration(companyId, integrationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -23919,16 +23905,17 @@ export class CompaniesApi extends BaseAPI {
     }
 
     /**
-     * Updates the default language for a specified company. Returns a boolean indicating success.
-     * @summary Update Company Default Language
+     * Updates the roles of a user within a specific company.
+     * @summary Update user roles in a company
+     * @param {string} email The email of the user.
      * @param {string} companyId A unique identifier for the company.
-     * @param {UpdateCompanyDefaultLanguageRequest} updateCompanyDefaultLanguageRequest 
+     * @param {UpdateCompanyUserRolesRequest} updateCompanyUserRolesRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public updateCompanyDefaultLanguage(companyId: string, updateCompanyDefaultLanguageRequest: UpdateCompanyDefaultLanguageRequest, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).updateCompanyDefaultLanguage(companyId, updateCompanyDefaultLanguageRequest, options).then((request) => request(this.axios, this.basePath));
+    public updateCompanyUserRoles(email: string, companyId: string, updateCompanyUserRolesRequest: UpdateCompanyUserRolesRequest, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).updateCompanyUserRoles(email, companyId, updateCompanyUserRolesRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -23942,6 +23929,19 @@ export class CompaniesApi extends BaseAPI {
      */
     public updateCompanyUsername(companyId: string, updateCompanyUsernameRequest: UpdateCompanyUsernameRequest, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).updateCompanyUsername(companyId, updateCompanyUsernameRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Updates the default language for a specified company. Returns a boolean indicating success.
+     * @summary Update Company Default Language
+     * @param {string} companyId A unique identifier for the company.
+     * @param {UpdateDefaultLanguageRequest} updateDefaultLanguageRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public updateDefaultLanguage(companyId: string, updateDefaultLanguageRequest: UpdateDefaultLanguageRequest, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).updateDefaultLanguage(companyId, updateDefaultLanguageRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -24156,6 +24156,51 @@ export const CouponsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Retrieve a coupon\'s details based on its unique ID and company. Returns CouponResponseDto object
+         * @summary Get a coupon
+         * @param {string} id The unique identifier of the coupon.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCoupon: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getCoupon', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getCoupon', 'companyId', companyId)
+            const localVarPath = `/coupons/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a list of coupons based on various criteria including product IDs, date ranges, and pagination. Returns an array of CouponDto objects
          * @summary Get list of all coupons
          * @param {string} companyId A unique identifier for the company.
@@ -24169,11 +24214,11 @@ export const CouponsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findCoupons: async (companyId: string, productIds: Array<any>, fromStartDate?: string, toStartDate?: string, fromEndDate?: string, toEndDate?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCoupons: async (companyId: string, productIds: Array<any>, fromStartDate?: string, toStartDate?: string, fromEndDate?: string, toEndDate?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findCoupons', 'companyId', companyId)
+            assertParamExists('getCoupons', 'companyId', companyId)
             // verify required parameter 'productIds' is not null or undefined
-            assertParamExists('findCoupons', 'productIds', productIds)
+            assertParamExists('getCoupons', 'productIds', productIds)
             const localVarPath = `/coupons`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -24228,51 +24273,6 @@ export const CouponsApiAxiosParamCreator = function (configuration?: Configurati
 
             if (perPage !== undefined) {
                 localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve a coupon\'s details based on its unique ID and company. Returns CouponResponseDto object
-         * @summary Get a coupon
-         * @param {string} id The unique identifier of the coupon.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getCoupon: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getCoupon', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getCoupon', 'companyId', companyId)
-            const localVarPath = `/coupons/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
             }
 
 
@@ -24376,6 +24376,20 @@ export const CouponsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Retrieve a coupon\'s details based on its unique ID and company. Returns CouponResponseDto object
+         * @summary Get a coupon
+         * @param {string} id The unique identifier of the coupon.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getCoupon(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCoupon201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCoupon(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CouponsApi.getCoupon']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve a list of coupons based on various criteria including product IDs, date ranges, and pagination. Returns an array of CouponDto objects
          * @summary Get list of all coupons
          * @param {string} companyId A unique identifier for the company.
@@ -24389,24 +24403,10 @@ export const CouponsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findCoupons(companyId: string, productIds: Array<any>, fromStartDate?: string, toStartDate?: string, fromEndDate?: string, toEndDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindCoupons200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findCoupons(companyId, productIds, fromStartDate, toStartDate, fromEndDate, toEndDate, currentPage, perPage, options);
+        async getCoupons(companyId: string, productIds: Array<any>, fromStartDate?: string, toStartDate?: string, fromEndDate?: string, toEndDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCoupons200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCoupons(companyId, productIds, fromStartDate, toStartDate, fromEndDate, toEndDate, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CouponsApi.findCoupons']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retrieve a coupon\'s details based on its unique ID and company. Returns CouponResponseDto object
-         * @summary Get a coupon
-         * @param {string} id The unique identifier of the coupon.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getCoupon(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCoupon201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCoupon(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CouponsApi.getCoupon']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['CouponsApi.getCoupons']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -24457,6 +24457,17 @@ export const CouponsApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.deleteCoupon(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Retrieve a coupon\'s details based on its unique ID and company. Returns CouponResponseDto object
+         * @summary Get a coupon
+         * @param {string} id The unique identifier of the coupon.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCoupon(id: string, companyId: string, options?: any): AxiosPromise<CreateCoupon201Response> {
+            return localVarFp.getCoupon(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieve a list of coupons based on various criteria including product IDs, date ranges, and pagination. Returns an array of CouponDto objects
          * @summary Get list of all coupons
          * @param {string} companyId A unique identifier for the company.
@@ -24470,19 +24481,8 @@ export const CouponsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findCoupons(companyId: string, productIds: Array<any>, fromStartDate?: string, toStartDate?: string, fromEndDate?: string, toEndDate?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindCoupons200Response> {
-            return localVarFp.findCoupons(companyId, productIds, fromStartDate, toStartDate, fromEndDate, toEndDate, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve a coupon\'s details based on its unique ID and company. Returns CouponResponseDto object
-         * @summary Get a coupon
-         * @param {string} id The unique identifier of the coupon.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getCoupon(id: string, companyId: string, options?: any): AxiosPromise<CreateCoupon201Response> {
-            return localVarFp.getCoupon(id, companyId, options).then((request) => request(axios, basePath));
+        getCoupons(companyId: string, productIds: Array<any>, fromStartDate?: string, toStartDate?: string, fromEndDate?: string, toEndDate?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetCoupons200Response> {
+            return localVarFp.getCoupons(companyId, productIds, fromStartDate, toStartDate, fromEndDate, toEndDate, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Update the details of an existing coupon associated with a specific company. Returns updated CouponDto object
@@ -24533,6 +24533,19 @@ export class CouponsApi extends BaseAPI {
     }
 
     /**
+     * Retrieve a coupon\'s details based on its unique ID and company. Returns CouponResponseDto object
+     * @summary Get a coupon
+     * @param {string} id The unique identifier of the coupon.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponsApi
+     */
+    public getCoupon(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return CouponsApiFp(this.configuration).getCoupon(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Retrieve a list of coupons based on various criteria including product IDs, date ranges, and pagination. Returns an array of CouponDto objects
      * @summary Get list of all coupons
      * @param {string} companyId A unique identifier for the company.
@@ -24547,21 +24560,8 @@ export class CouponsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CouponsApi
      */
-    public findCoupons(companyId: string, productIds: Array<any>, fromStartDate?: string, toStartDate?: string, fromEndDate?: string, toEndDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return CouponsApiFp(this.configuration).findCoupons(companyId, productIds, fromStartDate, toStartDate, fromEndDate, toEndDate, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieve a coupon\'s details based on its unique ID and company. Returns CouponResponseDto object
-     * @summary Get a coupon
-     * @param {string} id The unique identifier of the coupon.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CouponsApi
-     */
-    public getCoupon(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return CouponsApiFp(this.configuration).getCoupon(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    public getCoupons(companyId: string, productIds: Array<any>, fromStartDate?: string, toStartDate?: string, fromEndDate?: string, toEndDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return CouponsApiFp(this.configuration).getCoupons(companyId, productIds, fromStartDate, toStartDate, fromEndDate, toEndDate, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -24689,9 +24689,9 @@ export const DomainCategoriesApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findDomainCategories: async (companyId: string, description?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDomainCategories: async (companyId: string, description?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findDomainCategories', 'companyId', companyId)
+            assertParamExists('getDomainCategories', 'companyId', companyId)
             const localVarPath = `/domain-categories`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -24879,10 +24879,10 @@ export const DomainCategoriesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findDomainCategories(companyId: string, description?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindDomainCategories200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findDomainCategories(companyId, description, currentPage, perPage, options);
+        async getDomainCategories(companyId: string, description?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDomainCategories200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDomainCategories(companyId, description, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DomainCategoriesApi.findDomainCategories']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['DomainCategoriesApi.getDomainCategories']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -24956,8 +24956,8 @@ export const DomainCategoriesApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findDomainCategories(companyId: string, description?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindDomainCategories200Response> {
-            return localVarFp.findDomainCategories(companyId, description, currentPage, perPage, options).then((request) => request(axios, basePath));
+        getDomainCategories(companyId: string, description?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetDomainCategories200Response> {
+            return localVarFp.getDomainCategories(companyId, description, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves a certain domain category. Returns a DomainCategoryResponseDto.
@@ -25029,8 +25029,8 @@ export class DomainCategoriesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainCategoriesApi
      */
-    public findDomainCategories(companyId: string, description?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return DomainCategoriesApiFp(this.configuration).findDomainCategories(companyId, description, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
+    public getDomainCategories(companyId: string, description?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return DomainCategoriesApiFp(this.configuration).getDomainCategories(companyId, description, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -25162,20 +25162,65 @@ export const DomainContactsApiAxiosParamCreator = function (configuration?: Conf
             };
         },
         /**
+         * Retrieves a specific domain contact associated with a company based on the provided parameters. This endpoint allows you to retrieve a specific domain contact by specifying its \'id\' and the \'companyId\' it belongs to. It returns detailed information about the domain contact.
+         * @summary Get a Domain Contact
+         * @param {string} id The ID of the domain contact.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDomainContact: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getDomainContact', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getDomainContact', 'companyId', companyId)
+            const localVarPath = `/domain-contacts/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a list of domain contacts associated with a specific company based on the provided parameters. You can filter the results by name, street, postcode, organization, city, state, telephone, fax, or email using the \'query\' parameter. If you want to filter by the country code, you can use the \'country\' parameter. You can also paginate the results by specifying the \'currentPage\' and \'perPage\' parameters. This endpoint returns a list of domain contacts (type: DomainContactDto) associated with the specified company.
          * @summary Get List of All Domain Contacts
          * @param {string} companyId A unique identifier for the company.
          * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
-         * @param {FindDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
+         * @param {GetDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
          * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findDomainContacts: async (companyId: string, query?: string, country?: FindDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDomainContacts: async (companyId: string, query?: string, country?: GetDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findDomainContacts', 'companyId', companyId)
+            assertParamExists('getDomainContacts', 'companyId', companyId)
             const localVarPath = `/domain-contacts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -25214,51 +25259,6 @@ export const DomainContactsApiAxiosParamCreator = function (configuration?: Conf
 
             if (perPage !== undefined) {
                 localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieves a specific domain contact associated with a company based on the provided parameters. This endpoint allows you to retrieve a specific domain contact by specifying its \'id\' and the \'companyId\' it belongs to. It returns detailed information about the domain contact.
-         * @summary Get a Domain Contact
-         * @param {string} id The ID of the domain contact.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getDomainContact: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getDomainContact', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getDomainContact', 'companyId', companyId)
-            const localVarPath = `/domain-contacts/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
             }
 
 
@@ -25923,24 +25923,6 @@ export const DomainContactsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a list of domain contacts associated with a specific company based on the provided parameters. You can filter the results by name, street, postcode, organization, city, state, telephone, fax, or email using the \'query\' parameter. If you want to filter by the country code, you can use the \'country\' parameter. You can also paginate the results by specifying the \'currentPage\' and \'perPage\' parameters. This endpoint returns a list of domain contacts (type: DomainContactDto) associated with the specified company.
-         * @summary Get List of All Domain Contacts
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
-         * @param {FindDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
-         * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async findDomainContacts(companyId: string, query?: string, country?: FindDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindDomainContacts200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findDomainContacts(companyId, query, country, userId, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DomainContactsApi.findDomainContacts']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieves a specific domain contact associated with a company based on the provided parameters. This endpoint allows you to retrieve a specific domain contact by specifying its \'id\' and the \'companyId\' it belongs to. It returns detailed information about the domain contact.
          * @summary Get a Domain Contact
          * @param {string} id The ID of the domain contact.
@@ -25952,6 +25934,24 @@ export const DomainContactsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getDomainContact(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DomainContactsApi.getDomainContact']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a list of domain contacts associated with a specific company based on the provided parameters. You can filter the results by name, street, postcode, organization, city, state, telephone, fax, or email using the \'query\' parameter. If you want to filter by the country code, you can use the \'country\' parameter. You can also paginate the results by specifying the \'currentPage\' and \'perPage\' parameters. This endpoint returns a list of domain contacts (type: DomainContactDto) associated with the specified company.
+         * @summary Get List of All Domain Contacts
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
+         * @param {GetDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
+         * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getDomainContacts(companyId: string, query?: string, country?: GetDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDomainContacts200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDomainContacts(companyId, query, country, userId, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DomainContactsApi.getDomainContacts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -26167,21 +26167,6 @@ export const DomainContactsApiFactory = function (configuration?: Configuration,
             return localVarFp.deleteDomainContact(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieves a list of domain contacts associated with a specific company based on the provided parameters. You can filter the results by name, street, postcode, organization, city, state, telephone, fax, or email using the \'query\' parameter. If you want to filter by the country code, you can use the \'country\' parameter. You can also paginate the results by specifying the \'currentPage\' and \'perPage\' parameters. This endpoint returns a list of domain contacts (type: DomainContactDto) associated with the specified company.
-         * @summary Get List of All Domain Contacts
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
-         * @param {FindDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
-         * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findDomainContacts(companyId: string, query?: string, country?: FindDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindDomainContacts200Response> {
-            return localVarFp.findDomainContacts(companyId, query, country, userId, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Retrieves a specific domain contact associated with a company based on the provided parameters. This endpoint allows you to retrieve a specific domain contact by specifying its \'id\' and the \'companyId\' it belongs to. It returns detailed information about the domain contact.
          * @summary Get a Domain Contact
          * @param {string} id The ID of the domain contact.
@@ -26191,6 +26176,21 @@ export const DomainContactsApiFactory = function (configuration?: Configuration,
          */
         getDomainContact(id: string, companyId: string, options?: any): AxiosPromise<CreateDomainContact201Response> {
             return localVarFp.getDomainContact(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a list of domain contacts associated with a specific company based on the provided parameters. You can filter the results by name, street, postcode, organization, city, state, telephone, fax, or email using the \'query\' parameter. If you want to filter by the country code, you can use the \'country\' parameter. You can also paginate the results by specifying the \'currentPage\' and \'perPage\' parameters. This endpoint returns a list of domain contacts (type: DomainContactDto) associated with the specified company.
+         * @summary Get List of All Domain Contacts
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
+         * @param {GetDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
+         * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDomainContacts(companyId: string, query?: string, country?: GetDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetDomainContacts200Response> {
+            return localVarFp.getDomainContacts(companyId, query, country, userId, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates an existing domain contact associated with a specific company. Provide the \'id\' of the domain contact you want to update and the \'companyId\' it belongs to as path parameters. You should include the updated domain contact details in the request body using \'DomainContactDto\'. This endpoint returns the updated domain contact data (\'DomainContactDto\') with a 200 status code upon success.
@@ -26373,23 +26373,6 @@ export class DomainContactsApi extends BaseAPI {
     }
 
     /**
-     * Retrieves a list of domain contacts associated with a specific company based on the provided parameters. You can filter the results by name, street, postcode, organization, city, state, telephone, fax, or email using the \'query\' parameter. If you want to filter by the country code, you can use the \'country\' parameter. You can also paginate the results by specifying the \'currentPage\' and \'perPage\' parameters. This endpoint returns a list of domain contacts (type: DomainContactDto) associated with the specified company.
-     * @summary Get List of All Domain Contacts
-     * @param {string} companyId A unique identifier for the company.
-     * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
-     * @param {FindDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
-     * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DomainContactsApi
-     */
-    public findDomainContacts(companyId: string, query?: string, country?: FindDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return DomainContactsApiFp(this.configuration).findDomainContacts(companyId, query, country, userId, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Retrieves a specific domain contact associated with a company based on the provided parameters. This endpoint allows you to retrieve a specific domain contact by specifying its \'id\' and the \'companyId\' it belongs to. It returns detailed information about the domain contact.
      * @summary Get a Domain Contact
      * @param {string} id The ID of the domain contact.
@@ -26400,6 +26383,23 @@ export class DomainContactsApi extends BaseAPI {
      */
     public getDomainContact(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return DomainContactsApiFp(this.configuration).getDomainContact(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a list of domain contacts associated with a specific company based on the provided parameters. You can filter the results by name, street, postcode, organization, city, state, telephone, fax, or email using the \'query\' parameter. If you want to filter by the country code, you can use the \'country\' parameter. You can also paginate the results by specifying the \'currentPage\' and \'perPage\' parameters. This endpoint returns a list of domain contacts (type: DomainContactDto) associated with the specified company.
+     * @summary Get List of All Domain Contacts
+     * @param {string} companyId A unique identifier for the company.
+     * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
+     * @param {GetDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
+     * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DomainContactsApi
+     */
+    public getDomainContacts(companyId: string, query?: string, country?: GetDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return DomainContactsApiFp(this.configuration).getDomainContacts(companyId, query, country, userId, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -26574,7 +26574,7 @@ export class DomainContactsApi extends BaseAPI {
 /**
  * @export
  */
-export const FindDomainContactsCountryEnum = {
+export const GetDomainContactsCountryEnum = {
     Af: 'AF',
     Al: 'AL',
     Dz: 'DZ',
@@ -26824,7 +26824,7 @@ export const FindDomainContactsCountryEnum = {
     To: 'TO',
     Tt: 'TT'
 } as const;
-export type FindDomainContactsCountryEnum = typeof FindDomainContactsCountryEnum[keyof typeof FindDomainContactsCountryEnum];
+export type GetDomainContactsCountryEnum = typeof GetDomainContactsCountryEnum[keyof typeof GetDomainContactsCountryEnum];
 
 
 /**
@@ -28398,19 +28398,64 @@ export const InvoiceContactsApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
+         * 
+         * @summary Get an invoice contacts
+         * @param {string} id ID
+         * @param {string} companyId companyId
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInvoiceContact: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getInvoiceContact', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getInvoiceContact', 'companyId', companyId)
+            const localVarPath = `/invoice-contacts/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * This endpoint retrieves a list of invoice contacts based on the provided parameters. It allows filtering by company ID, query string, country, and pagination parameters.
          * @summary Get list of all invoice contacts
          * @param {string} companyId companyId
          * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
-         * @param {FindInvoiceContactsCountryEnum} [country] 
+         * @param {GetInvoiceContactsCountryEnum} [country] 
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findInvoiceContacts: async (companyId: string, query?: string, country?: FindInvoiceContactsCountryEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getInvoiceContacts: async (companyId: string, query?: string, country?: GetInvoiceContactsCountryEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findInvoiceContacts', 'companyId', companyId)
+            assertParamExists('getInvoiceContacts', 'companyId', companyId)
             const localVarPath = `/invoice-contacts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -28445,51 +28490,6 @@ export const InvoiceContactsApiAxiosParamCreator = function (configuration?: Con
 
             if (perPage !== undefined) {
                 localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get an invoice contacts
-         * @param {string} id ID
-         * @param {string} companyId companyId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getInvoiceContact: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getInvoiceContact', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getInvoiceContact', 'companyId', companyId)
-            const localVarPath = `/invoice-contacts/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
             }
 
 
@@ -28593,23 +28593,6 @@ export const InvoiceContactsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * This endpoint retrieves a list of invoice contacts based on the provided parameters. It allows filtering by company ID, query string, country, and pagination parameters.
-         * @summary Get list of all invoice contacts
-         * @param {string} companyId companyId
-         * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
-         * @param {FindInvoiceContactsCountryEnum} [country] 
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async findInvoiceContacts(companyId: string, query?: string, country?: FindInvoiceContactsCountryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InvoiceContactResponseDto>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findInvoiceContacts(companyId, query, country, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['InvoiceContactsApi.findInvoiceContacts']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * 
          * @summary Get an invoice contacts
          * @param {string} id ID
@@ -28621,6 +28604,23 @@ export const InvoiceContactsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInvoiceContact(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['InvoiceContactsApi.getInvoiceContact']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * This endpoint retrieves a list of invoice contacts based on the provided parameters. It allows filtering by company ID, query string, country, and pagination parameters.
+         * @summary Get list of all invoice contacts
+         * @param {string} companyId companyId
+         * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
+         * @param {GetInvoiceContactsCountryEnum} [country] 
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getInvoiceContacts(companyId: string, query?: string, country?: GetInvoiceContactsCountryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InvoiceContactResponseDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInvoiceContacts(companyId, query, country, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InvoiceContactsApi.getInvoiceContacts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -28671,20 +28671,6 @@ export const InvoiceContactsApiFactory = function (configuration?: Configuration
             return localVarFp.deleteInvoiceContact(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * This endpoint retrieves a list of invoice contacts based on the provided parameters. It allows filtering by company ID, query string, country, and pagination parameters.
-         * @summary Get list of all invoice contacts
-         * @param {string} companyId companyId
-         * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
-         * @param {FindInvoiceContactsCountryEnum} [country] 
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findInvoiceContacts(companyId: string, query?: string, country?: FindInvoiceContactsCountryEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<Array<InvoiceContactResponseDto>> {
-            return localVarFp.findInvoiceContacts(companyId, query, country, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
          * 
          * @summary Get an invoice contacts
          * @param {string} id ID
@@ -28694,6 +28680,20 @@ export const InvoiceContactsApiFactory = function (configuration?: Configuration
          */
         getInvoiceContact(id: string, companyId: string, options?: any): AxiosPromise<InvoiceContactResponseDto> {
             return localVarFp.getInvoiceContact(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint retrieves a list of invoice contacts based on the provided parameters. It allows filtering by company ID, query string, country, and pagination parameters.
+         * @summary Get list of all invoice contacts
+         * @param {string} companyId companyId
+         * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
+         * @param {GetInvoiceContactsCountryEnum} [country] 
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInvoiceContacts(companyId: string, query?: string, country?: GetInvoiceContactsCountryEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<Array<InvoiceContactResponseDto>> {
+            return localVarFp.getInvoiceContacts(companyId, query, country, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint allows you to update an existing invoice contact for a specific company. It retrieves the invoice contact by ID and updates its details based on the provided data. It returns a response containing the updated invoice contact or an error response.
@@ -28744,22 +28744,6 @@ export class InvoiceContactsApi extends BaseAPI {
     }
 
     /**
-     * This endpoint retrieves a list of invoice contacts based on the provided parameters. It allows filtering by company ID, query string, country, and pagination parameters.
-     * @summary Get list of all invoice contacts
-     * @param {string} companyId companyId
-     * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
-     * @param {FindInvoiceContactsCountryEnum} [country] 
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InvoiceContactsApi
-     */
-    public findInvoiceContacts(companyId: string, query?: string, country?: FindInvoiceContactsCountryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return InvoiceContactsApiFp(this.configuration).findInvoiceContacts(companyId, query, country, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * 
      * @summary Get an invoice contacts
      * @param {string} id ID
@@ -28770,6 +28754,22 @@ export class InvoiceContactsApi extends BaseAPI {
      */
     public getInvoiceContact(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return InvoiceContactsApiFp(this.configuration).getInvoiceContact(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint retrieves a list of invoice contacts based on the provided parameters. It allows filtering by company ID, query string, country, and pagination parameters.
+     * @summary Get list of all invoice contacts
+     * @param {string} companyId companyId
+     * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
+     * @param {GetInvoiceContactsCountryEnum} [country] 
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InvoiceContactsApi
+     */
+    public getInvoiceContacts(companyId: string, query?: string, country?: GetInvoiceContactsCountryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return InvoiceContactsApiFp(this.configuration).getInvoiceContacts(companyId, query, country, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -28790,7 +28790,7 @@ export class InvoiceContactsApi extends BaseAPI {
 /**
  * @export
  */
-export const FindInvoiceContactsCountryEnum = {
+export const GetInvoiceContactsCountryEnum = {
     Af: 'AF',
     Al: 'AL',
     Dz: 'DZ',
@@ -29040,7 +29040,7 @@ export const FindInvoiceContactsCountryEnum = {
     To: 'TO',
     Tt: 'TT'
 } as const;
-export type FindInvoiceContactsCountryEnum = typeof FindInvoiceContactsCountryEnum[keyof typeof FindInvoiceContactsCountryEnum];
+export type GetInvoiceContactsCountryEnum = typeof GetInvoiceContactsCountryEnum[keyof typeof GetInvoiceContactsCountryEnum];
 
 
 /**
@@ -29129,62 +29129,6 @@ export const InvoicesApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
-         * @summary Get list of all invoices
-         * @param {string} companyId A unique identifier for the company.
-         * @param {FindInvoicesStatusEnum} [status] Filter invoices by status (optional).
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findInvoices: async (companyId: string, status?: FindInvoicesStatusEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findInvoices', 'companyId', companyId)
-            const localVarPath = `/invoices`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (status !== undefined) {
-                localVarQueryParameter['status'] = status;
-            }
-
-            if (currentPage !== undefined) {
-                localVarQueryParameter['currentPage'] = currentPage;
-            }
-
-            if (perPage !== undefined) {
-                localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Retrieve a specific invoice for a company based on its unique identifier.
          * @summary Get an invoice
          * @param {string} id The unique identifier of the invoice to retrieve.
@@ -29216,6 +29160,62 @@ export const InvoicesApiAxiosParamCreator = function (configuration?: Configurat
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
+         * @summary Get list of all invoices
+         * @param {string} companyId A unique identifier for the company.
+         * @param {GetInvoicesStatusEnum} [status] Filter invoices by status (optional).
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInvoices: async (companyId: string, status?: GetInvoicesStatusEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getInvoices', 'companyId', companyId)
+            const localVarPath = `/invoices`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['currentPage'] = currentPage;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
             }
 
 
@@ -29317,22 +29317,6 @@ export const InvoicesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
-         * @summary Get list of all invoices
-         * @param {string} companyId A unique identifier for the company.
-         * @param {FindInvoicesStatusEnum} [status] Filter invoices by status (optional).
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async findInvoices(companyId: string, status?: FindInvoicesStatusEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindInvoices200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findInvoices(companyId, status, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['InvoicesApi.findInvoices']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieve a specific invoice for a company based on its unique identifier.
          * @summary Get an invoice
          * @param {string} id The unique identifier of the invoice to retrieve.
@@ -29344,6 +29328,22 @@ export const InvoicesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInvoice(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['InvoicesApi.getInvoice']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
+         * @summary Get list of all invoices
+         * @param {string} companyId A unique identifier for the company.
+         * @param {GetInvoicesStatusEnum} [status] Filter invoices by status (optional).
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getInvoices(companyId: string, status?: GetInvoicesStatusEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetInvoices200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInvoices(companyId, status, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InvoicesApi.getInvoices']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -29391,19 +29391,6 @@ export const InvoicesApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.exportInvoice(companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
-         * @summary Get list of all invoices
-         * @param {string} companyId A unique identifier for the company.
-         * @param {FindInvoicesStatusEnum} [status] Filter invoices by status (optional).
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findInvoices(companyId: string, status?: FindInvoicesStatusEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindInvoices200Response> {
-            return localVarFp.findInvoices(companyId, status, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Retrieve a specific invoice for a company based on its unique identifier.
          * @summary Get an invoice
          * @param {string} id The unique identifier of the invoice to retrieve.
@@ -29413,6 +29400,19 @@ export const InvoicesApiFactory = function (configuration?: Configuration, baseP
          */
         getInvoice(id: string, companyId: string, options?: any): AxiosPromise<GetInvoice200Response> {
             return localVarFp.getInvoice(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
+         * @summary Get list of all invoices
+         * @param {string} companyId A unique identifier for the company.
+         * @param {GetInvoicesStatusEnum} [status] Filter invoices by status (optional).
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInvoices(companyId: string, status?: GetInvoicesStatusEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetInvoices200Response> {
+            return localVarFp.getInvoices(companyId, status, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -29460,21 +29460,6 @@ export class InvoicesApi extends BaseAPI {
     }
 
     /**
-     * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
-     * @summary Get list of all invoices
-     * @param {string} companyId A unique identifier for the company.
-     * @param {FindInvoicesStatusEnum} [status] Filter invoices by status (optional).
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InvoicesApi
-     */
-    public findInvoices(companyId: string, status?: FindInvoicesStatusEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return InvoicesApiFp(this.configuration).findInvoices(companyId, status, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Retrieve a specific invoice for a company based on its unique identifier.
      * @summary Get an invoice
      * @param {string} id The unique identifier of the invoice to retrieve.
@@ -29485,6 +29470,21 @@ export class InvoicesApi extends BaseAPI {
      */
     public getInvoice(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return InvoicesApiFp(this.configuration).getInvoice(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
+     * @summary Get list of all invoices
+     * @param {string} companyId A unique identifier for the company.
+     * @param {GetInvoicesStatusEnum} [status] Filter invoices by status (optional).
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InvoicesApi
+     */
+    public getInvoices(companyId: string, status?: GetInvoicesStatusEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return InvoicesApiFp(this.configuration).getInvoices(companyId, status, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -29504,12 +29504,12 @@ export class InvoicesApi extends BaseAPI {
 /**
  * @export
  */
-export const FindInvoicesStatusEnum = {
+export const GetInvoicesStatusEnum = {
     Pending: 'PENDING',
     Success: 'SUCCESS',
     Failed: 'FAILED'
 } as const;
-export type FindInvoicesStatusEnum = typeof FindInvoicesStatusEnum[keyof typeof FindInvoicesStatusEnum];
+export type GetInvoicesStatusEnum = typeof GetInvoicesStatusEnum[keyof typeof GetInvoicesStatusEnum];
 
 
 /**
@@ -29611,21 +29611,66 @@ export const IssuesApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Retrieves a certain issue. Returns an IssueResponseDto.
+         * @summary Get an issue
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} id ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIssue: async (companyId: string, id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getIssue', 'companyId', companyId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getIssue', 'id', id)
+            const localVarPath = `/issues/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a list of all issues. Returns an array of IssueResponseDto.
          * @summary Get list of all issues
          * @param {string} companyId A unique identifier for the company.
          * @param {string} [title] 
          * @param {string} [description] 
          * @param {boolean} [resolved] 
-         * @param {FindIssuesIssueCategoryEnum} [issueCategory] 
+         * @param {GetIssuesIssueCategoryEnum} [issueCategory] 
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findIssues: async (companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: FindIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getIssues: async (companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: GetIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findIssues', 'companyId', companyId)
+            assertParamExists('getIssues', 'companyId', companyId)
             const localVarPath = `/issues`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -29668,51 +29713,6 @@ export const IssuesApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (perPage !== undefined) {
                 localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieves a certain issue. Returns an IssueResponseDto.
-         * @summary Get an issue
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} id ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getIssue: async (companyId: string, id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getIssue', 'companyId', companyId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getIssue', 'id', id)
-            const localVarPath = `/issues/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
             }
 
 
@@ -29870,25 +29870,6 @@ export const IssuesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a list of all issues. Returns an array of IssueResponseDto.
-         * @summary Get list of all issues
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [title] 
-         * @param {string} [description] 
-         * @param {boolean} [resolved] 
-         * @param {FindIssuesIssueCategoryEnum} [issueCategory] 
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async findIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: FindIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindIssues200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findIssues(companyId, title, description, resolved, issueCategory, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['IssuesApi.findIssues']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieves a certain issue. Returns an IssueResponseDto.
          * @summary Get an issue
          * @param {string} companyId A unique identifier for the company.
@@ -29900,6 +29881,25 @@ export const IssuesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getIssue(companyId, id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['IssuesApi.getIssue']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a list of all issues. Returns an array of IssueResponseDto.
+         * @summary Get list of all issues
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [title] 
+         * @param {string} [description] 
+         * @param {boolean} [resolved] 
+         * @param {GetIssuesIssueCategoryEnum} [issueCategory] 
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: GetIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetIssues200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getIssues(companyId, title, description, resolved, issueCategory, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['IssuesApi.getIssues']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -29964,22 +29964,6 @@ export const IssuesApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.deleteIssue(companyId, id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieves a list of all issues. Returns an array of IssueResponseDto.
-         * @summary Get list of all issues
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [title] 
-         * @param {string} [description] 
-         * @param {boolean} [resolved] 
-         * @param {FindIssuesIssueCategoryEnum} [issueCategory] 
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: FindIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindIssues200Response> {
-            return localVarFp.findIssues(companyId, title, description, resolved, issueCategory, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Retrieves a certain issue. Returns an IssueResponseDto.
          * @summary Get an issue
          * @param {string} companyId A unique identifier for the company.
@@ -29989,6 +29973,22 @@ export const IssuesApiFactory = function (configuration?: Configuration, basePat
          */
         getIssue(companyId: string, id: string, options?: any): AxiosPromise<CreateIssue201Response> {
             return localVarFp.getIssue(companyId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a list of all issues. Returns an array of IssueResponseDto.
+         * @summary Get list of all issues
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [title] 
+         * @param {string} [description] 
+         * @param {boolean} [resolved] 
+         * @param {GetIssuesIssueCategoryEnum} [issueCategory] 
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: GetIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetIssues200Response> {
+            return localVarFp.getIssues(companyId, title, description, resolved, issueCategory, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -30050,24 +30050,6 @@ export class IssuesApi extends BaseAPI {
     }
 
     /**
-     * Retrieves a list of all issues. Returns an array of IssueResponseDto.
-     * @summary Get list of all issues
-     * @param {string} companyId A unique identifier for the company.
-     * @param {string} [title] 
-     * @param {string} [description] 
-     * @param {boolean} [resolved] 
-     * @param {FindIssuesIssueCategoryEnum} [issueCategory] 
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof IssuesApi
-     */
-    public findIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: FindIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return IssuesApiFp(this.configuration).findIssues(companyId, title, description, resolved, issueCategory, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Retrieves a certain issue. Returns an IssueResponseDto.
      * @summary Get an issue
      * @param {string} companyId A unique identifier for the company.
@@ -30078,6 +30060,24 @@ export class IssuesApi extends BaseAPI {
      */
     public getIssue(companyId: string, id: string, options?: RawAxiosRequestConfig) {
         return IssuesApiFp(this.configuration).getIssue(companyId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a list of all issues. Returns an array of IssueResponseDto.
+     * @summary Get list of all issues
+     * @param {string} companyId A unique identifier for the company.
+     * @param {string} [title] 
+     * @param {string} [description] 
+     * @param {boolean} [resolved] 
+     * @param {GetIssuesIssueCategoryEnum} [issueCategory] 
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IssuesApi
+     */
+    public getIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: GetIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return IssuesApiFp(this.configuration).getIssues(companyId, title, description, resolved, issueCategory, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -30111,12 +30111,12 @@ export class IssuesApi extends BaseAPI {
 /**
  * @export
  */
-export const FindIssuesIssueCategoryEnum = {
+export const GetIssuesIssueCategoryEnum = {
     Order: 'order',
     OrderItem: 'order_item',
     Other: 'other'
 } as const;
-export type FindIssuesIssueCategoryEnum = typeof FindIssuesIssueCategoryEnum[keyof typeof FindIssuesIssueCategoryEnum];
+export type GetIssuesIssueCategoryEnum = typeof GetIssuesIssueCategoryEnum[keyof typeof GetIssuesIssueCategoryEnum];
 
 
 /**
@@ -30125,6 +30125,82 @@ export type FindIssuesIssueCategoryEnum = typeof FindIssuesIssueCategoryEnum[key
  */
 export const ItemsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Accept the transfer of items from one user to another. Validates the hash, checks permissions, and transfers ownership. Returns a boolean indicating success.
+         * @summary Item Accept Transfer
+         * @param {string} companyid A unique identifier for the company.
+         * @param {string} hash Security hash for validating the transfer request.
+         * @param {string} receiverId Unique identifier for the receiver user.
+         * @param {number} timestamp Timestamp for the transfer request expiration.
+         * @param {string} senderId Unique identifier for the sender user.
+         * @param {Array<string>} itemids Array of item IDs to be transferred.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        acceptItemTransfer: async (companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyid' is not null or undefined
+            assertParamExists('acceptItemTransfer', 'companyid', companyid)
+            // verify required parameter 'hash' is not null or undefined
+            assertParamExists('acceptItemTransfer', 'hash', hash)
+            // verify required parameter 'receiverId' is not null or undefined
+            assertParamExists('acceptItemTransfer', 'receiverId', receiverId)
+            // verify required parameter 'timestamp' is not null or undefined
+            assertParamExists('acceptItemTransfer', 'timestamp', timestamp)
+            // verify required parameter 'senderId' is not null or undefined
+            assertParamExists('acceptItemTransfer', 'senderId', senderId)
+            // verify required parameter 'itemids' is not null or undefined
+            assertParamExists('acceptItemTransfer', 'itemids', itemids)
+            const localVarPath = `/items/transfer/accept`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyid !== undefined) {
+                localVarQueryParameter['companyid'] = companyid;
+            }
+
+            if (hash !== undefined) {
+                localVarQueryParameter['hash'] = hash;
+            }
+
+            if (receiverId !== undefined) {
+                localVarQueryParameter['receiver-id'] = receiverId;
+            }
+
+            if (timestamp !== undefined) {
+                localVarQueryParameter['timestamp'] = timestamp;
+            }
+
+            if (senderId !== undefined) {
+                localVarQueryParameter['sender-id'] = senderId;
+            }
+
+            if (itemids) {
+                localVarQueryParameter['itemids'] = itemids;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Add affiliate data to an item. The affiliate must not have already been accepted or paid. Returns a boolean indicating success.
          * @summary Add Affiliate User
@@ -30177,6 +30253,192 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Attach an item to a parent bundle. Both items must belong to the same user and the item end dates must be within 10 days of each other. Returns a boolean indicating success.
+         * @summary Item Attach To Bundle
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {AttachItemToBundleRequest} attachItemToBundleRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachItemToBundle: async (id: string, companyId: string, attachItemToBundleRequest: AttachItemToBundleRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('attachItemToBundle', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('attachItemToBundle', 'companyId', companyId)
+            // verify required parameter 'attachItemToBundleRequest' is not null or undefined
+            assertParamExists('attachItemToBundle', 'attachItemToBundleRequest', attachItemToBundleRequest)
+            const localVarPath = `/items/{id}/bundles/attach`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(attachItemToBundleRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
+         * @summary Item Cancel
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelItem: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('cancelItem', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('cancelItem', 'companyId', companyId)
+            const localVarPath = `/items/{id}/cancel`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
+         * @summary Item Delete
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteItem: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('deleteItem', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('deleteItem', 'companyId', companyId)
+            const localVarPath = `/items/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Detach a child item from its parent bundle. The item must be a child item and not in inprogress, canceled, or refunded status. Returns a boolean indicating success.
+         * @summary Item Detach From Bundle
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to detach from bundle.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detachItemFromBundle: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('detachItemFromBundle', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('detachItemFromBundle', 'companyId', companyId)
+            const localVarPath = `/items/{id}/bundles/detach`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
          * @param {string} companyId A unique identifier for the company.
@@ -30208,6 +30470,62 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a paginated list of items for a specific company. Optionally filter by user ID. Returns an array of items with pagination metadata.
+         * @summary Get Paginated Items
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [userId] Optional unique identifier for the user. Filter items by user.
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getItems: async (companyId: string, userId?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getItems', 'companyId', companyId)
+            const localVarPath = `/items`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (userId !== undefined) {
+                localVarQueryParameter['userId'] = userId;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['currentPage'] = currentPage;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
             }
 
 
@@ -30284,234 +30602,6 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
 
             if (itemids) {
                 localVarQueryParameter['itemids'] = itemids;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve a paginated list of items for a specific company. Optionally filter by user ID. Returns an array of items with pagination metadata.
-         * @summary Get Paginated Items
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [userId] Optional unique identifier for the user. Filter items by user.
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getPaginatedItems: async (companyId: string, userId?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getPaginatedItems', 'companyId', companyId)
-            const localVarPath = `/items`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (userId !== undefined) {
-                localVarQueryParameter['userId'] = userId;
-            }
-
-            if (currentPage !== undefined) {
-                localVarQueryParameter['currentPage'] = currentPage;
-            }
-
-            if (perPage !== undefined) {
-                localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Accept the transfer of items from one user to another. Validates the hash, checks permissions, and transfers ownership. Returns a boolean indicating success.
-         * @summary Item Accept Transfer
-         * @param {string} companyid A unique identifier for the company.
-         * @param {string} hash Security hash for validating the transfer request.
-         * @param {string} receiverId Unique identifier for the receiver user.
-         * @param {number} timestamp Timestamp for the transfer request expiration.
-         * @param {string} senderId Unique identifier for the sender user.
-         * @param {Array<string>} itemids Array of item IDs to be transferred.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemAcceptTransfer: async (companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyid' is not null or undefined
-            assertParamExists('itemAcceptTransfer', 'companyid', companyid)
-            // verify required parameter 'hash' is not null or undefined
-            assertParamExists('itemAcceptTransfer', 'hash', hash)
-            // verify required parameter 'receiverId' is not null or undefined
-            assertParamExists('itemAcceptTransfer', 'receiverId', receiverId)
-            // verify required parameter 'timestamp' is not null or undefined
-            assertParamExists('itemAcceptTransfer', 'timestamp', timestamp)
-            // verify required parameter 'senderId' is not null or undefined
-            assertParamExists('itemAcceptTransfer', 'senderId', senderId)
-            // verify required parameter 'itemids' is not null or undefined
-            assertParamExists('itemAcceptTransfer', 'itemids', itemids)
-            const localVarPath = `/items/transfer/accept`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyid !== undefined) {
-                localVarQueryParameter['companyid'] = companyid;
-            }
-
-            if (hash !== undefined) {
-                localVarQueryParameter['hash'] = hash;
-            }
-
-            if (receiverId !== undefined) {
-                localVarQueryParameter['receiver-id'] = receiverId;
-            }
-
-            if (timestamp !== undefined) {
-                localVarQueryParameter['timestamp'] = timestamp;
-            }
-
-            if (senderId !== undefined) {
-                localVarQueryParameter['sender-id'] = senderId;
-            }
-
-            if (itemids) {
-                localVarQueryParameter['itemids'] = itemids;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Attach an item to a parent bundle. Both items must belong to the same user and the item end dates must be within 10 days of each other. Returns a boolean indicating success.
-         * @summary Item Attach To Bundle
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemAttachToBundle: async (id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemAttachToBundle', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemAttachToBundle', 'companyId', companyId)
-            // verify required parameter 'itemAttachToBundleRequest' is not null or undefined
-            assertParamExists('itemAttachToBundle', 'itemAttachToBundleRequest', itemAttachToBundleRequest)
-            const localVarPath = `/items/{id}/bundles/attach`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(itemAttachToBundleRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
-         * @summary Item Cancel
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemCancel: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemCancel', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemCancel', 'companyId', companyId)
-            const localVarPath = `/items/{id}/cancel`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
             }
 
 
@@ -30614,96 +30704,6 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
-         * @summary Item Delete
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemDelete: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemDelete', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemDelete', 'companyId', companyId)
-            const localVarPath = `/items/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Detach a child item from its parent bundle. The item must be a child item and not in inprogress, canceled, or refunded status. Returns a boolean indicating success.
-         * @summary Item Detach From Bundle
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to detach from bundle.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemDetachFromBundle: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemDetachFromBundle', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemDetachFromBundle', 'companyId', companyId)
-            const localVarPath = `/items/{id}/bundles/detach`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Postpone an item\'s end date. The item must be within 10 days of its end date and cannot be a bundled child item. Returns a boolean indicating success.
          * @summary Item Postpone
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to postpone.
@@ -30711,11 +30711,11 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemPostpone: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postponeItem: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemPostpone', 'id', id)
+            assertParamExists('postponeItem', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemPostpone', 'companyId', companyId)
+            assertParamExists('postponeItem', 'companyId', companyId)
             const localVarPath = `/items/{id}/postpone`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -30742,192 +30742,6 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
-         * @summary Item Retry
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemRetry: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemRetry', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemRetry', 'companyId', companyId)
-            const localVarPath = `/items/{id}/retry`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Suspend an item. The item must be in active, expired, trial, or postponed status and cannot be a bundled child item. Returns a boolean indicating success.
-         * @summary Item Suspend
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to suspend.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemSuspend: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemSuspend', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemSuspend', 'companyId', companyId)
-            const localVarPath = `/items/{id}/suspend`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
-         * @summary Item Unsuspend
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to unsuspend.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemUnsuspend: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemUnsuspend', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemUnsuspend', 'companyId', companyId)
-            const localVarPath = `/items/{id}/unsuspend`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Update an existing item by its unique ID within a company. Provide the updated item data in the request body. Returns a boolean indicating success.
-         * @summary Item Update
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to update.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {ItemUpdateRequestDto} itemUpdateRequestDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemUpdate: async (id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemUpdate', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemUpdate', 'companyId', companyId)
-            // verify required parameter 'itemUpdateRequestDto' is not null or undefined
-            assertParamExists('itemUpdate', 'itemUpdateRequestDto', itemUpdateRequestDto)
-            const localVarPath = `/items/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(itemUpdateRequestDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -30987,11 +30801,11 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        restoreItemPrice: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        restorePrice: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('restoreItemPrice', 'id', id)
+            assertParamExists('restorePrice', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('restoreItemPrice', 'companyId', companyId)
+            assertParamExists('restorePrice', 'companyId', companyId)
             const localVarPath = `/items/{id}/restore-price`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -31025,6 +30839,51 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
+         * @summary Item Retry
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retryItem: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('retryItem', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('retryItem', 'companyId', companyId)
+            const localVarPath = `/items/{id}/retry`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Set custom prices for an item. The item must be in idle status and the order must be pending. Returns a boolean indicating success.
          * @summary Set Item Custom Prices
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to set custom prices for.
@@ -31033,13 +30892,13 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setItemCustomPrices: async (id: string, companyId: string, customPricesRequestDto: CustomPricesRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        setCustomPrices: async (id: string, companyId: string, customPricesRequestDto: CustomPricesRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('setItemCustomPrices', 'id', id)
+            assertParamExists('setCustomPrices', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('setItemCustomPrices', 'companyId', companyId)
+            assertParamExists('setCustomPrices', 'companyId', companyId)
             // verify required parameter 'customPricesRequestDto' is not null or undefined
-            assertParamExists('setItemCustomPrices', 'customPricesRequestDto', customPricesRequestDto)
+            assertParamExists('setCustomPrices', 'customPricesRequestDto', customPricesRequestDto)
             const localVarPath = `/items/{id}/custom-prices`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -31075,6 +30934,147 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Suspend an item. The item must be in active, expired, trial, or postponed status and cannot be a bundled child item. Returns a boolean indicating success.
+         * @summary Item Suspend
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to suspend.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        suspendItem: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('suspendItem', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('suspendItem', 'companyId', companyId)
+            const localVarPath = `/items/{id}/suspend`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
+         * @summary Item Unsuspend
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to unsuspend.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unsuspendItem: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('unsuspendItem', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('unsuspendItem', 'companyId', companyId)
+            const localVarPath = `/items/{id}/unsuspend`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update an existing item by its unique ID within a company. Provide the updated item data in the request body. Returns a boolean indicating success.
+         * @summary Item Update
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to update.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {ItemUpdateRequestDto} itemUpdateRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateItem: async (id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateItem', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('updateItem', 'companyId', companyId)
+            // verify required parameter 'itemUpdateRequestDto' is not null or undefined
+            assertParamExists('updateItem', 'itemUpdateRequestDto', itemUpdateRequestDto)
+            const localVarPath = `/items/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(itemUpdateRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -31085,6 +31085,24 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
 export const ItemsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ItemsApiAxiosParamCreator(configuration)
     return {
+        /**
+         * Accept the transfer of items from one user to another. Validates the hash, checks permissions, and transfers ownership. Returns a boolean indicating success.
+         * @summary Item Accept Transfer
+         * @param {string} companyid A unique identifier for the company.
+         * @param {string} hash Security hash for validating the transfer request.
+         * @param {string} receiverId Unique identifier for the receiver user.
+         * @param {number} timestamp Timestamp for the transfer request expiration.
+         * @param {string} senderId Unique identifier for the sender user.
+         * @param {Array<string>} itemids Array of item IDs to be transferred.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async acceptItemTransfer(companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.acceptItemTransfer(companyid, hash, receiverId, timestamp, senderId, itemids, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.acceptItemTransfer']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
         /**
          * Add affiliate data to an item. The affiliate must not have already been accepted or paid. Returns a boolean indicating success.
          * @summary Add Affiliate User
@@ -31101,6 +31119,63 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Attach an item to a parent bundle. Both items must belong to the same user and the item end dates must be within 10 days of each other. Returns a boolean indicating success.
+         * @summary Item Attach To Bundle
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {AttachItemToBundleRequest} attachItemToBundleRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async attachItemToBundle(id: string, companyId: string, attachItemToBundleRequest: AttachItemToBundleRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.attachItemToBundle(id, companyId, attachItemToBundleRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.attachItemToBundle']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
+         * @summary Item Cancel
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async cancelItem(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelItem(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.cancelItem']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
+         * @summary Item Delete
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteItem(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteItem(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.deleteItem']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Detach a child item from its parent bundle. The item must be a child item and not in inprogress, canceled, or refunded status. Returns a boolean indicating success.
+         * @summary Item Detach From Bundle
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to detach from bundle.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async detachItemFromBundle(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.detachItemFromBundle(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.detachItemFromBundle']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
          * @param {string} companyId A unique identifier for the company.
@@ -31112,6 +31187,22 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getItem(companyId, id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.getItem']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieve a paginated list of items for a specific company. Optionally filter by user ID. Returns an array of items with pagination metadata.
+         * @summary Get Paginated Items
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [userId] Optional unique identifier for the user. Filter items by user.
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getItems(companyId: string, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetItems200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getItems(companyId, userId, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.getItems']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -31130,69 +31221,6 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getItemsForTransfer(companyid, hash, receiverId, timestamp, senderId, itemids, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.getItemsForTransfer']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retrieve a paginated list of items for a specific company. Optionally filter by user ID. Returns an array of items with pagination metadata.
-         * @summary Get Paginated Items
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [userId] Optional unique identifier for the user. Filter items by user.
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getPaginatedItems(companyId: string, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedItems200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatedItems(companyId, userId, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.getPaginatedItems']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Accept the transfer of items from one user to another. Validates the hash, checks permissions, and transfers ownership. Returns a boolean indicating success.
-         * @summary Item Accept Transfer
-         * @param {string} companyid A unique identifier for the company.
-         * @param {string} hash Security hash for validating the transfer request.
-         * @param {string} receiverId Unique identifier for the receiver user.
-         * @param {number} timestamp Timestamp for the transfer request expiration.
-         * @param {string} senderId Unique identifier for the sender user.
-         * @param {Array<string>} itemids Array of item IDs to be transferred.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemAcceptTransfer(companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemAcceptTransfer(companyid, hash, receiverId, timestamp, senderId, itemids, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemAcceptTransfer']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Attach an item to a parent bundle. Both items must belong to the same user and the item end dates must be within 10 days of each other. Returns a boolean indicating success.
-         * @summary Item Attach To Bundle
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemAttachToBundle']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
-         * @summary Item Cancel
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemCancel(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemCancel(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemCancel']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -31222,34 +31250,6 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
-         * @summary Item Delete
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemDelete(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemDelete(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemDelete']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Detach a child item from its parent bundle. The item must be a child item and not in inprogress, canceled, or refunded status. Returns a boolean indicating success.
-         * @summary Item Detach From Bundle
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to detach from bundle.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemDetachFromBundle(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemDetachFromBundle(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemDetachFromBundle']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Postpone an item\'s end date. The item must be within 10 days of its end date and cannot be a bundled child item. Returns a boolean indicating success.
          * @summary Item Postpone
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to postpone.
@@ -31257,67 +31257,10 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemPostpone(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemPostpone(id, companyId, options);
+        async postponeItem(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postponeItem(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemPostpone']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
-         * @summary Item Retry
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemRetry(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemRetry(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemRetry']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Suspend an item. The item must be in active, expired, trial, or postponed status and cannot be a bundled child item. Returns a boolean indicating success.
-         * @summary Item Suspend
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to suspend.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemSuspend(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemSuspend(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemSuspend']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
-         * @summary Item Unsuspend
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to unsuspend.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemUnsuspend(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemUnsuspend(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemUnsuspend']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Update an existing item by its unique ID within a company. Provide the updated item data in the request body. Returns a boolean indicating success.
-         * @summary Item Update
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to update.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {ItemUpdateRequestDto} itemUpdateRequestDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemUpdate(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemUpdate(id, companyId, itemUpdateRequestDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemUpdate']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.postponeItem']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -31342,10 +31285,24 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async restoreItemPrice(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.restoreItemPrice(id, companyId, options);
+        async restorePrice(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.restorePrice(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.restoreItemPrice']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.restorePrice']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
+         * @summary Item Retry
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retryItem(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.retryItem(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.retryItem']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -31357,10 +31314,53 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async setItemCustomPrices(id: string, companyId: string, customPricesRequestDto: CustomPricesRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.setItemCustomPrices(id, companyId, customPricesRequestDto, options);
+        async setCustomPrices(id: string, companyId: string, customPricesRequestDto: CustomPricesRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.setCustomPrices(id, companyId, customPricesRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.setItemCustomPrices']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.setCustomPrices']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Suspend an item. The item must be in active, expired, trial, or postponed status and cannot be a bundled child item. Returns a boolean indicating success.
+         * @summary Item Suspend
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to suspend.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async suspendItem(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.suspendItem(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.suspendItem']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
+         * @summary Item Unsuspend
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to unsuspend.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unsuspendItem(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unsuspendItem(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.unsuspendItem']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Update an existing item by its unique ID within a company. Provide the updated item data in the request body. Returns a boolean indicating success.
+         * @summary Item Update
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to update.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {ItemUpdateRequestDto} itemUpdateRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateItem(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateItem(id, companyId, itemUpdateRequestDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.updateItem']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -31374,6 +31374,21 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
     const localVarFp = ItemsApiFp(configuration)
     return {
         /**
+         * Accept the transfer of items from one user to another. Validates the hash, checks permissions, and transfers ownership. Returns a boolean indicating success.
+         * @summary Item Accept Transfer
+         * @param {string} companyid A unique identifier for the company.
+         * @param {string} hash Security hash for validating the transfer request.
+         * @param {string} receiverId Unique identifier for the receiver user.
+         * @param {number} timestamp Timestamp for the transfer request expiration.
+         * @param {string} senderId Unique identifier for the sender user.
+         * @param {Array<string>} itemids Array of item IDs to be transferred.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        acceptItemTransfer(companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.acceptItemTransfer(companyid, hash, receiverId, timestamp, senderId, itemids, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Add affiliate data to an item. The affiliate must not have already been accepted or paid. Returns a boolean indicating success.
          * @summary Add Affiliate User
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to add affiliate data to.
@@ -31386,6 +31401,51 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.addAffiliateUser(id, companyId, affiliateDataRequestDto, options).then((request) => request(axios, basePath));
         },
         /**
+         * Attach an item to a parent bundle. Both items must belong to the same user and the item end dates must be within 10 days of each other. Returns a boolean indicating success.
+         * @summary Item Attach To Bundle
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {AttachItemToBundleRequest} attachItemToBundleRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachItemToBundle(id: string, companyId: string, attachItemToBundleRequest: AttachItemToBundleRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.attachItemToBundle(id, companyId, attachItemToBundleRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
+         * @summary Item Cancel
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelItem(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.cancelItem(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
+         * @summary Item Delete
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteItem(id: string, companyId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.deleteItem(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Detach a child item from its parent bundle. The item must be a child item and not in inprogress, canceled, or refunded status. Returns a boolean indicating success.
+         * @summary Item Detach From Bundle
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to detach from bundle.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detachItemFromBundle(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.detachItemFromBundle(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
          * @param {string} companyId A unique identifier for the company.
@@ -31395,6 +31455,19 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         getItem(companyId: string, id: string, options?: any): AxiosPromise<GetItem200Response> {
             return localVarFp.getItem(companyId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a paginated list of items for a specific company. Optionally filter by user ID. Returns an array of items with pagination metadata.
+         * @summary Get Paginated Items
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [userId] Optional unique identifier for the user. Filter items by user.
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getItems(companyId: string, userId?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetItems200Response> {
+            return localVarFp.getItems(companyId, userId, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items.
@@ -31410,57 +31483,6 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         getItemsForTransfer(companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options?: any): AxiosPromise<GetItemsForTransfer200Response> {
             return localVarFp.getItemsForTransfer(companyid, hash, receiverId, timestamp, senderId, itemids, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve a paginated list of items for a specific company. Optionally filter by user ID. Returns an array of items with pagination metadata.
-         * @summary Get Paginated Items
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [userId] Optional unique identifier for the user. Filter items by user.
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getPaginatedItems(companyId: string, userId?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetPaginatedItems200Response> {
-            return localVarFp.getPaginatedItems(companyId, userId, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Accept the transfer of items from one user to another. Validates the hash, checks permissions, and transfers ownership. Returns a boolean indicating success.
-         * @summary Item Accept Transfer
-         * @param {string} companyid A unique identifier for the company.
-         * @param {string} hash Security hash for validating the transfer request.
-         * @param {string} receiverId Unique identifier for the receiver user.
-         * @param {number} timestamp Timestamp for the transfer request expiration.
-         * @param {string} senderId Unique identifier for the sender user.
-         * @param {Array<string>} itemids Array of item IDs to be transferred.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemAcceptTransfer(companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemAcceptTransfer(companyid, hash, receiverId, timestamp, senderId, itemids, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Attach an item to a parent bundle. Both items must belong to the same user and the item end dates must be within 10 days of each other. Returns a boolean indicating success.
-         * @summary Item Attach To Bundle
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
-         * @summary Item Cancel
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemCancel(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemCancel(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -31483,28 +31505,6 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.itemControllerItemTransfer(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
-         * @summary Item Delete
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemDelete(id: string, companyId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.itemDelete(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Detach a child item from its parent bundle. The item must be a child item and not in inprogress, canceled, or refunded status. Returns a boolean indicating success.
-         * @summary Item Detach From Bundle
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to detach from bundle.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemDetachFromBundle(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemDetachFromBundle(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Postpone an item\'s end date. The item must be within 10 days of its end date and cannot be a bundled child item. Returns a boolean indicating success.
          * @summary Item Postpone
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to postpone.
@@ -31512,53 +31512,8 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemPostpone(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemPostpone(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
-         * @summary Item Retry
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemRetry(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemRetry(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Suspend an item. The item must be in active, expired, trial, or postponed status and cannot be a bundled child item. Returns a boolean indicating success.
-         * @summary Item Suspend
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to suspend.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemSuspend(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemSuspend(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
-         * @summary Item Unsuspend
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to unsuspend.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemUnsuspend(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemUnsuspend(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Update an existing item by its unique ID within a company. Provide the updated item data in the request body. Returns a boolean indicating success.
-         * @summary Item Update
-         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to update.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {ItemUpdateRequestDto} itemUpdateRequestDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemUpdate(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemUpdate(id, companyId, itemUpdateRequestDto, options).then((request) => request(axios, basePath));
+        postponeItem(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.postponeItem(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Remove affiliate data from an item. The affiliate must not have already been accepted or paid. Returns a boolean indicating success.
@@ -31579,8 +31534,19 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        restoreItemPrice(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.restoreItemPrice(id, companyId, options).then((request) => request(axios, basePath));
+        restorePrice(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.restorePrice(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
+         * @summary Item Retry
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retryItem(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.retryItem(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Set custom prices for an item. The item must be in idle status and the order must be pending. Returns a boolean indicating success.
@@ -31591,8 +31557,42 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setItemCustomPrices(id: string, companyId: string, customPricesRequestDto: CustomPricesRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.setItemCustomPrices(id, companyId, customPricesRequestDto, options).then((request) => request(axios, basePath));
+        setCustomPrices(id: string, companyId: string, customPricesRequestDto: CustomPricesRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.setCustomPrices(id, companyId, customPricesRequestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Suspend an item. The item must be in active, expired, trial, or postponed status and cannot be a bundled child item. Returns a boolean indicating success.
+         * @summary Item Suspend
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to suspend.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        suspendItem(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.suspendItem(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
+         * @summary Item Unsuspend
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to unsuspend.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unsuspendItem(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.unsuspendItem(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update an existing item by its unique ID within a company. Provide the updated item data in the request body. Returns a boolean indicating success.
+         * @summary Item Update
+         * @param {string} id A unique identifier for the item. Use this parameter to specify which item to update.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {ItemUpdateRequestDto} itemUpdateRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateItem(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.updateItem(id, companyId, itemUpdateRequestDto, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -31604,6 +31604,23 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
  * @extends {BaseAPI}
  */
 export class ItemsApi extends BaseAPI {
+    /**
+     * Accept the transfer of items from one user to another. Validates the hash, checks permissions, and transfers ownership. Returns a boolean indicating success.
+     * @summary Item Accept Transfer
+     * @param {string} companyid A unique identifier for the company.
+     * @param {string} hash Security hash for validating the transfer request.
+     * @param {string} receiverId Unique identifier for the receiver user.
+     * @param {number} timestamp Timestamp for the transfer request expiration.
+     * @param {string} senderId Unique identifier for the sender user.
+     * @param {Array<string>} itemids Array of item IDs to be transferred.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public acceptItemTransfer(companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).acceptItemTransfer(companyid, hash, receiverId, timestamp, senderId, itemids, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Add affiliate data to an item. The affiliate must not have already been accepted or paid. Returns a boolean indicating success.
      * @summary Add Affiliate User
@@ -31619,6 +31636,59 @@ export class ItemsApi extends BaseAPI {
     }
 
     /**
+     * Attach an item to a parent bundle. Both items must belong to the same user and the item end dates must be within 10 days of each other. Returns a boolean indicating success.
+     * @summary Item Attach To Bundle
+     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {AttachItemToBundleRequest} attachItemToBundleRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public attachItemToBundle(id: string, companyId: string, attachItemToBundleRequest: AttachItemToBundleRequest, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).attachItemToBundle(id, companyId, attachItemToBundleRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
+     * @summary Item Cancel
+     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public cancelItem(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).cancelItem(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
+     * @summary Item Delete
+     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public deleteItem(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).deleteItem(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Detach a child item from its parent bundle. The item must be a child item and not in inprogress, canceled, or refunded status. Returns a boolean indicating success.
+     * @summary Item Detach From Bundle
+     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to detach from bundle.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public detachItemFromBundle(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).detachItemFromBundle(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Retrieve a specific item by its unique ID within a company. Returns the item details.
      * @summary Get Item
      * @param {string} companyId A unique identifier for the company.
@@ -31629,6 +31699,21 @@ export class ItemsApi extends BaseAPI {
      */
     public getItem(companyId: string, id: string, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).getItem(companyId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve a paginated list of items for a specific company. Optionally filter by user ID. Returns an array of items with pagination metadata.
+     * @summary Get Paginated Items
+     * @param {string} companyId A unique identifier for the company.
+     * @param {string} [userId] Optional unique identifier for the user. Filter items by user.
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public getItems(companyId: string, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).getItems(companyId, userId, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -31646,65 +31731,6 @@ export class ItemsApi extends BaseAPI {
      */
     public getItemsForTransfer(companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).getItemsForTransfer(companyid, hash, receiverId, timestamp, senderId, itemids, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieve a paginated list of items for a specific company. Optionally filter by user ID. Returns an array of items with pagination metadata.
-     * @summary Get Paginated Items
-     * @param {string} companyId A unique identifier for the company.
-     * @param {string} [userId] Optional unique identifier for the user. Filter items by user.
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public getPaginatedItems(companyId: string, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).getPaginatedItems(companyId, userId, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Accept the transfer of items from one user to another. Validates the hash, checks permissions, and transfers ownership. Returns a boolean indicating success.
-     * @summary Item Accept Transfer
-     * @param {string} companyid A unique identifier for the company.
-     * @param {string} hash Security hash for validating the transfer request.
-     * @param {string} receiverId Unique identifier for the receiver user.
-     * @param {number} timestamp Timestamp for the transfer request expiration.
-     * @param {string} senderId Unique identifier for the sender user.
-     * @param {Array<string>} itemids Array of item IDs to be transferred.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemAcceptTransfer(companyid: string, hash: string, receiverId: string, timestamp: number, senderId: string, itemids: Array<string>, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemAcceptTransfer(companyid, hash, receiverId, timestamp, senderId, itemids, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Attach an item to a parent bundle. Both items must belong to the same user and the item end dates must be within 10 days of each other. Returns a boolean indicating success.
-     * @summary Item Attach To Bundle
-     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
-     * @summary Item Cancel
-     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to cancel.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemCancel(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemCancel(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -31732,32 +31758,6 @@ export class ItemsApi extends BaseAPI {
     }
 
     /**
-     * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
-     * @summary Item Delete
-     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemDelete(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemDelete(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Detach a child item from its parent bundle. The item must be a child item and not in inprogress, canceled, or refunded status. Returns a boolean indicating success.
-     * @summary Item Detach From Bundle
-     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to detach from bundle.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemDetachFromBundle(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemDetachFromBundle(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Postpone an item\'s end date. The item must be within 10 days of its end date and cannot be a bundled child item. Returns a boolean indicating success.
      * @summary Item Postpone
      * @param {string} id A unique identifier for the item. Use this parameter to specify which item to postpone.
@@ -31766,61 +31766,8 @@ export class ItemsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ItemsApi
      */
-    public itemPostpone(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemPostpone(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
-     * @summary Item Retry
-     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemRetry(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemRetry(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Suspend an item. The item must be in active, expired, trial, or postponed status and cannot be a bundled child item. Returns a boolean indicating success.
-     * @summary Item Suspend
-     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to suspend.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemSuspend(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemSuspend(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
-     * @summary Item Unsuspend
-     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to unsuspend.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemUnsuspend(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemUnsuspend(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Update an existing item by its unique ID within a company. Provide the updated item data in the request body. Returns a boolean indicating success.
-     * @summary Item Update
-     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to update.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {ItemUpdateRequestDto} itemUpdateRequestDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemUpdate(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemUpdate(id, companyId, itemUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public postponeItem(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).postponeItem(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -31845,8 +31792,21 @@ export class ItemsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ItemsApi
      */
-    public restoreItemPrice(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).restoreItemPrice(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    public restorePrice(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).restorePrice(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
+     * @summary Item Retry
+     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public retryItem(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).retryItem(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -31859,8 +31819,48 @@ export class ItemsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ItemsApi
      */
-    public setItemCustomPrices(id: string, companyId: string, customPricesRequestDto: CustomPricesRequestDto, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).setItemCustomPrices(id, companyId, customPricesRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public setCustomPrices(id: string, companyId: string, customPricesRequestDto: CustomPricesRequestDto, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).setCustomPrices(id, companyId, customPricesRequestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Suspend an item. The item must be in active, expired, trial, or postponed status and cannot be a bundled child item. Returns a boolean indicating success.
+     * @summary Item Suspend
+     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to suspend.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public suspendItem(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).suspendItem(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
+     * @summary Item Unsuspend
+     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to unsuspend.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public unsuspendItem(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).unsuspendItem(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update an existing item by its unique ID within a company. Provide the updated item data in the request body. Returns a boolean indicating success.
+     * @summary Item Update
+     * @param {string} id A unique identifier for the item. Use this parameter to specify which item to update.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {ItemUpdateRequestDto} itemUpdateRequestDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public updateItem(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).updateItem(id, companyId, itemUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -32980,9 +32980,9 @@ export const PoliciesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findPolicies: async (companyId: string, query?: string, _default?: boolean, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPolicies: async (companyId: string, query?: string, _default?: boolean, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findPolicies', 'companyId', companyId)
+            assertParamExists('getPolicies', 'companyId', companyId)
             const localVarPath = `/policies`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -33175,10 +33175,10 @@ export const PoliciesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findPolicies(companyId: string, query?: string, _default?: boolean, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindPolicies200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findPolicies(companyId, query, _default, currentPage, perPage, options);
+        async getPolicies(companyId: string, query?: string, _default?: boolean, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPolicies200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPolicies(companyId, query, _default, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['PoliciesApi.findPolicies']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['PoliciesApi.getPolicies']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -33253,8 +33253,8 @@ export const PoliciesApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findPolicies(companyId: string, query?: string, _default?: boolean, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindPolicies200Response> {
-            return localVarFp.findPolicies(companyId, query, _default, currentPage, perPage, options).then((request) => request(axios, basePath));
+        getPolicies(companyId: string, query?: string, _default?: boolean, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetPolicies200Response> {
+            return localVarFp.getPolicies(companyId, query, _default, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a specific policy associated with a specific company.Returns PolicyResponseDto object
@@ -33327,8 +33327,8 @@ export class PoliciesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof PoliciesApi
      */
-    public findPolicies(companyId: string, query?: string, _default?: boolean, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return PoliciesApiFp(this.configuration).findPolicies(companyId, query, _default, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
+    public getPolicies(companyId: string, query?: string, _default?: boolean, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return PoliciesApiFp(this.configuration).getPolicies(companyId, query, _default, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -33469,9 +33469,9 @@ export const ProductCategoriesApiAxiosParamCreator = function (configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findProductCategories: async (companyId: string, query?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProductCategories: async (companyId: string, query?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findProductCategories', 'companyId', companyId)
+            assertParamExists('getProductCategories', 'companyId', companyId)
             const localVarPath = `/product-categories`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -33659,10 +33659,10 @@ export const ProductCategoriesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findProductCategories(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindProductCategories200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findProductCategories(companyId, query, currentPage, perPage, options);
+        async getProductCategories(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetProductCategories200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductCategories(companyId, query, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProductCategoriesApi.findProductCategories']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ProductCategoriesApi.getProductCategories']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -33736,8 +33736,8 @@ export const ProductCategoriesApiFactory = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findProductCategories(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindProductCategories200Response> {
-            return localVarFp.findProductCategories(companyId, query, currentPage, perPage, options).then((request) => request(axios, basePath));
+        getProductCategories(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetProductCategories200Response> {
+            return localVarFp.getProductCategories(companyId, query, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          *  Recieve the unique identifiers of a company(companyId) and a product category(id) and return the product category information/data.
@@ -33809,8 +33809,8 @@ export class ProductCategoriesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProductCategoriesApi
      */
-    public findProductCategories(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return ProductCategoriesApiFp(this.configuration).findProductCategories(companyId, query, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
+    public getProductCategories(companyId: string, query?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return ProductCategoriesApiFp(this.configuration).getProductCategories(companyId, query, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -34077,6 +34077,51 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Retrieves a single product by its ID.
+         * @summary Get a product by ID
+         * @param {string} id A unique identifier for the product.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProduct: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getProduct', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getProduct', 'companyId', companyId)
+            const localVarPath = `/products/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a paginated list of products for a specific company. Supports filtering by name and archived status.
          * @summary List products for a company
          * @param {string} companyId A unique identifier for the company.
@@ -34087,9 +34132,9 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompanyPaginatedProducts: async (companyId: string, name?: string, archived?: boolean, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProducts: async (companyId: string, name?: string, archived?: boolean, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getCompanyPaginatedProducts', 'companyId', companyId)
+            assertParamExists('getProducts', 'companyId', companyId)
             const localVarPath = `/products`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -34124,51 +34169,6 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
 
             if (perPage !== undefined) {
                 localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieves a single product by its ID.
-         * @summary Get a product by ID
-         * @param {string} id A unique identifier for the product.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getProduct: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getProduct', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getProduct', 'companyId', companyId)
-            const localVarPath = `/products/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
             }
 
 
@@ -34359,23 +34359,6 @@ export const ProductsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a paginated list of products for a specific company. Supports filtering by name and archived status.
-         * @summary List products for a company
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} [name] Filter products by name.
-         * @param {boolean} [archived] Filter products by archived status.
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getCompanyPaginatedProducts(companyId: string, name?: string, archived?: boolean, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCompanyPaginatedProducts200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanyPaginatedProducts(companyId, name, archived, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProductsApi.getCompanyPaginatedProducts']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieves a single product by its ID.
          * @summary Get a product by ID
          * @param {string} id A unique identifier for the product.
@@ -34387,6 +34370,23 @@ export const ProductsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getProduct(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProductsApi.getProduct']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a paginated list of products for a specific company. Supports filtering by name and archived status.
+         * @summary List products for a company
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} [name] Filter products by name.
+         * @param {boolean} [archived] Filter products by archived status.
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProducts(companyId: string, name?: string, archived?: boolean, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetProducts200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProducts(companyId, name, archived, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProductsApi.getProducts']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -34484,6 +34484,17 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.deleteProduct(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Retrieves a single product by its ID.
+         * @summary Get a product by ID
+         * @param {string} id A unique identifier for the product.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProduct(id: string, companyId: string, options?: any): AxiosPromise<GetProduct200Response> {
+            return localVarFp.getProduct(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieves a paginated list of products for a specific company. Supports filtering by name and archived status.
          * @summary List products for a company
          * @param {string} companyId A unique identifier for the company.
@@ -34494,19 +34505,8 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompanyPaginatedProducts(companyId: string, name?: string, archived?: boolean, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetCompanyPaginatedProducts200Response> {
-            return localVarFp.getCompanyPaginatedProducts(companyId, name, archived, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieves a single product by its ID.
-         * @summary Get a product by ID
-         * @param {string} id A unique identifier for the product.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getProduct(id: string, companyId: string, options?: any): AxiosPromise<GetProduct200Response> {
-            return localVarFp.getProduct(id, companyId, options).then((request) => request(axios, basePath));
+        getProducts(companyId: string, name?: string, archived?: boolean, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetProducts200Response> {
+            return localVarFp.getProducts(companyId, name, archived, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Restores an archived product.
@@ -34607,6 +34607,19 @@ export class ProductsApi extends BaseAPI {
     }
 
     /**
+     * Retrieves a single product by its ID.
+     * @summary Get a product by ID
+     * @param {string} id A unique identifier for the product.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductsApi
+     */
+    public getProduct(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).getProduct(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Retrieves a paginated list of products for a specific company. Supports filtering by name and archived status.
      * @summary List products for a company
      * @param {string} companyId A unique identifier for the company.
@@ -34618,21 +34631,8 @@ export class ProductsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ProductsApi
      */
-    public getCompanyPaginatedProducts(companyId: string, name?: string, archived?: boolean, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return ProductsApiFp(this.configuration).getCompanyPaginatedProducts(companyId, name, archived, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieves a single product by its ID.
-     * @summary Get a product by ID
-     * @param {string} id A unique identifier for the product.
-     * @param {string} companyId A unique identifier for the company.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductsApi
-     */
-    public getProduct(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ProductsApiFp(this.configuration).getProduct(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    public getProducts(companyId: string, name?: string, archived?: boolean, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).getProducts(companyId, name, archived, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -34937,19 +34937,64 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
+         * Retrieves a certain template. Returns a TemplateDto.
+         * @summary Get a template
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} id ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTemplate: async (companyId: string, id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getTemplate', 'companyId', companyId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getTemplate', 'id', id)
+            const localVarPath = `/templates/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a list all templates. Returns an array of TemplateResponseDto.
          * @summary Get list of all templates
          * @param {string} companyId A unique identifier for the company.
-         * @param {FindTemplatesActionEnum} [action] get templates by action
+         * @param {GetTemplatesActionEnum} [action] get templates by action
          * @param {string} [title] 
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findTemplates: async (companyId: string, action?: FindTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getTemplates: async (companyId: string, action?: GetTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findTemplates', 'companyId', companyId)
+            assertParamExists('getTemplates', 'companyId', companyId)
             const localVarPath = `/templates`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -34984,51 +35029,6 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
 
             if (perPage !== undefined) {
                 localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieves a certain template. Returns a TemplateDto.
-         * @summary Get a template
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} id ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getTemplate: async (companyId: string, id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getTemplate', 'companyId', companyId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('getTemplate', 'id', id)
-            const localVarPath = `/templates/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
             }
 
 
@@ -35132,23 +35132,6 @@ export const TemplatesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a list all templates. Returns an array of TemplateResponseDto.
-         * @summary Get list of all templates
-         * @param {string} companyId A unique identifier for the company.
-         * @param {FindTemplatesActionEnum} [action] get templates by action
-         * @param {string} [title] 
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async findTemplates(companyId: string, action?: FindTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindTemplates200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findTemplates(companyId, action, title, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TemplatesApi.findTemplates']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieves a certain template. Returns a TemplateDto.
          * @summary Get a template
          * @param {string} companyId A unique identifier for the company.
@@ -35160,6 +35143,23 @@ export const TemplatesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTemplate(companyId, id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TemplatesApi.getTemplate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a list all templates. Returns an array of TemplateResponseDto.
+         * @summary Get list of all templates
+         * @param {string} companyId A unique identifier for the company.
+         * @param {GetTemplatesActionEnum} [action] get templates by action
+         * @param {string} [title] 
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTemplates(companyId: string, action?: GetTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTemplates200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTemplates(companyId, action, title, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TemplatesApi.getTemplates']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -35210,20 +35210,6 @@ export const TemplatesApiFactory = function (configuration?: Configuration, base
             return localVarFp.deleteTemplate(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieves a list all templates. Returns an array of TemplateResponseDto.
-         * @summary Get list of all templates
-         * @param {string} companyId A unique identifier for the company.
-         * @param {FindTemplatesActionEnum} [action] get templates by action
-         * @param {string} [title] 
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findTemplates(companyId: string, action?: FindTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindTemplates200Response> {
-            return localVarFp.findTemplates(companyId, action, title, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Retrieves a certain template. Returns a TemplateDto.
          * @summary Get a template
          * @param {string} companyId A unique identifier for the company.
@@ -35233,6 +35219,20 @@ export const TemplatesApiFactory = function (configuration?: Configuration, base
          */
         getTemplate(companyId: string, id: string, options?: any): AxiosPromise<CreateTemplate201Response> {
             return localVarFp.getTemplate(companyId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a list all templates. Returns an array of TemplateResponseDto.
+         * @summary Get list of all templates
+         * @param {string} companyId A unique identifier for the company.
+         * @param {GetTemplatesActionEnum} [action] get templates by action
+         * @param {string} [title] 
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTemplates(companyId: string, action?: GetTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetTemplates200Response> {
+            return localVarFp.getTemplates(companyId, action, title, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a certain template. Returns a TemplateResponseDto.
@@ -35283,22 +35283,6 @@ export class TemplatesApi extends BaseAPI {
     }
 
     /**
-     * Retrieves a list all templates. Returns an array of TemplateResponseDto.
-     * @summary Get list of all templates
-     * @param {string} companyId A unique identifier for the company.
-     * @param {FindTemplatesActionEnum} [action] get templates by action
-     * @param {string} [title] 
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TemplatesApi
-     */
-    public findTemplates(companyId: string, action?: FindTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return TemplatesApiFp(this.configuration).findTemplates(companyId, action, title, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Retrieves a certain template. Returns a TemplateDto.
      * @summary Get a template
      * @param {string} companyId A unique identifier for the company.
@@ -35309,6 +35293,22 @@ export class TemplatesApi extends BaseAPI {
      */
     public getTemplate(companyId: string, id: string, options?: RawAxiosRequestConfig) {
         return TemplatesApiFp(this.configuration).getTemplate(companyId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a list all templates. Returns an array of TemplateResponseDto.
+     * @summary Get list of all templates
+     * @param {string} companyId A unique identifier for the company.
+     * @param {GetTemplatesActionEnum} [action] get templates by action
+     * @param {string} [title] 
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TemplatesApi
+     */
+    public getTemplates(companyId: string, action?: GetTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return TemplatesApiFp(this.configuration).getTemplates(companyId, action, title, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -35329,7 +35329,7 @@ export class TemplatesApi extends BaseAPI {
 /**
  * @export
  */
-export const FindTemplatesActionEnum = {
+export const GetTemplatesActionEnum = {
     Create: 'item/create',
     Suspend: 'item/suspend',
     Unsuspend: 'item/unsuspend',
@@ -35339,7 +35339,7 @@ export const FindTemplatesActionEnum = {
     Upgrade: 'item/upgrade',
     Downgrade: 'item/downgrade'
 } as const;
-export type FindTemplatesActionEnum = typeof FindTemplatesActionEnum[keyof typeof FindTemplatesActionEnum];
+export type GetTemplatesActionEnum = typeof GetTemplatesActionEnum[keyof typeof GetTemplatesActionEnum];
 
 
 /**
@@ -35441,62 +35441,6 @@ export const TldsApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieves a list of all Tlds .Returns an arry of TldResponseDto.
-         * @summary Get list of all TLDs
-         * @param {string} companyId 
-         * @param {string} [tld] tld name
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findTlds: async (companyId: string, tld?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findTlds', 'companyId', companyId)
-            const localVarPath = `/tlds`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (tld !== undefined) {
-                localVarQueryParameter['tld'] = tld;
-            }
-
-            if (currentPage !== undefined) {
-                localVarQueryParameter['currentPage'] = currentPage;
-            }
-
-            if (perPage !== undefined) {
-                localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Retrieves a certain tld .Returns a TldResponseDto
          * @summary Get a TLD
          * @param {string} companyId 
@@ -35528,6 +35472,62 @@ export const TldsApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a list of all Tlds .Returns an arry of TldResponseDto.
+         * @summary Get list of all TLDs
+         * @param {string} companyId 
+         * @param {string} [tld] tld name
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTlds: async (companyId: string, tld?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getTlds', 'companyId', companyId)
+            const localVarPath = `/tlds`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (tld !== undefined) {
+                localVarQueryParameter['tld'] = tld;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['currentPage'] = currentPage;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
             }
 
 
@@ -35631,22 +35631,6 @@ export const TldsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a list of all Tlds .Returns an arry of TldResponseDto.
-         * @summary Get list of all TLDs
-         * @param {string} companyId 
-         * @param {string} [tld] tld name
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async findTlds(companyId: string, tld?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindTlds200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findTlds(companyId, tld, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TldsApi.findTlds']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieves a certain tld .Returns a TldResponseDto
          * @summary Get a TLD
          * @param {string} companyId 
@@ -35658,6 +35642,22 @@ export const TldsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTld(companyId, id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TldsApi.getTld']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a list of all Tlds .Returns an arry of TldResponseDto.
+         * @summary Get list of all TLDs
+         * @param {string} companyId 
+         * @param {string} [tld] tld name
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTlds(companyId: string, tld?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTlds200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTlds(companyId, tld, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TldsApi.getTlds']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -35708,19 +35708,6 @@ export const TldsApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.deleteTld(companyId, id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieves a list of all Tlds .Returns an arry of TldResponseDto.
-         * @summary Get list of all TLDs
-         * @param {string} companyId 
-         * @param {string} [tld] tld name
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findTlds(companyId: string, tld?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindTlds200Response> {
-            return localVarFp.findTlds(companyId, tld, currentPage, perPage, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Retrieves a certain tld .Returns a TldResponseDto
          * @summary Get a TLD
          * @param {string} companyId 
@@ -35730,6 +35717,19 @@ export const TldsApiFactory = function (configuration?: Configuration, basePath?
          */
         getTld(companyId: string, id: string, options?: any): AxiosPromise<CreateTld201Response> {
             return localVarFp.getTld(companyId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a list of all Tlds .Returns an arry of TldResponseDto.
+         * @summary Get list of all TLDs
+         * @param {string} companyId 
+         * @param {string} [tld] tld name
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTlds(companyId: string, tld?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetTlds200Response> {
+            return localVarFp.getTlds(companyId, tld, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a certain tld .Returns a TldResponseDto
@@ -35780,21 +35780,6 @@ export class TldsApi extends BaseAPI {
     }
 
     /**
-     * Retrieves a list of all Tlds .Returns an arry of TldResponseDto.
-     * @summary Get list of all TLDs
-     * @param {string} companyId 
-     * @param {string} [tld] tld name
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TldsApi
-     */
-    public findTlds(companyId: string, tld?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return TldsApiFp(this.configuration).findTlds(companyId, tld, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Retrieves a certain tld .Returns a TldResponseDto
      * @summary Get a TLD
      * @param {string} companyId 
@@ -35805,6 +35790,21 @@ export class TldsApi extends BaseAPI {
      */
     public getTld(companyId: string, id: string, options?: RawAxiosRequestConfig) {
         return TldsApiFp(this.configuration).getTld(companyId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a list of all Tlds .Returns an arry of TldResponseDto.
+     * @summary Get list of all TLDs
+     * @param {string} companyId 
+     * @param {string} [tld] tld name
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TldsApi
+     */
+    public getTlds(companyId: string, tld?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return TldsApiFp(this.configuration).getTlds(companyId, tld, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -35930,9 +35930,9 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportTransaction: async (companyId: string, userId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        exportTransactions: async (companyId: string, userId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('exportTransaction', 'companyId', companyId)
+            assertParamExists('exportTransactions', 'companyId', companyId)
             const localVarPath = `/transactions/export`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -35969,13 +35969,58 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve detailed information about a transaction by its unique identifier. Returns TransactionResponseDto object
+         * @summary Get a transaction
+         * @param {string} id The unique identifier of the transaction.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTransaction: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getTransaction', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getTransaction', 'companyId', companyId)
+            const localVarPath = `/transactions/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a list of transactions based on various filtering parameters. Returns an array of TransactionResponseDto objects
          * @summary Get list of all transactions
          * @param {string} companyId A unique identifier for the company.
          * @param {string} userId 
-         * @param {FindTransactionsTypeEnum} [type] Filter transactions by type.
+         * @param {GetTransactionsTypeEnum} [type] Filter transactions by type.
          * @param {string} [integration] Filter transactions by service integration ID or title.
-         * @param {FindTransactionsStatusEnum} [status] Filter transactions by status.
+         * @param {GetTransactionsStatusEnum} [status] Filter transactions by status.
          * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
          * @param {number} [toValue] Filter transactions with values less than or equal to this value.
          * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
@@ -35985,11 +36030,11 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findTransactions: async (companyId: string, userId: string, type?: FindTransactionsTypeEnum, integration?: string, status?: FindTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getTransactions: async (companyId: string, userId: string, type?: GetTransactionsTypeEnum, integration?: string, status?: GetTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findTransactions', 'companyId', companyId)
+            assertParamExists('getTransactions', 'companyId', companyId)
             // verify required parameter 'userId' is not null or undefined
-            assertParamExists('findTransactions', 'userId', userId)
+            assertParamExists('getTransactions', 'userId', userId)
             const localVarPath = `/transactions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -36052,51 +36097,6 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
 
             if (perPage !== undefined) {
                 localVarQueryParameter['perPage'] = perPage;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve detailed information about a transaction by its unique identifier. Returns TransactionResponseDto object
-         * @summary Get a transaction
-         * @param {string} id The unique identifier of the transaction.
-         * @param {string} companyId A unique identifier for the company.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        gettransaction: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('gettransaction', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('gettransaction', 'companyId', companyId)
-            const localVarPath = `/transactions/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
             }
 
 
@@ -36193,7 +36193,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteTransaction(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Gettransaction200Response>> {
+        async deleteTransaction(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTransaction200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteTransaction(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TransactionsApi.deleteTransaction']?.[localVarOperationServerIndex]?.url;
@@ -36207,33 +36207,10 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async exportTransaction(companyId: string, userId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserTransactions200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.exportTransaction(companyId, userId, options);
+        async exportTransactions(companyId: string, userId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserTransactions200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.exportTransactions(companyId, userId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TransactionsApi.exportTransaction']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retrieve a list of transactions based on various filtering parameters. Returns an array of TransactionResponseDto objects
-         * @summary Get list of all transactions
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} userId 
-         * @param {FindTransactionsTypeEnum} [type] Filter transactions by type.
-         * @param {string} [integration] Filter transactions by service integration ID or title.
-         * @param {FindTransactionsStatusEnum} [status] Filter transactions by status.
-         * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
-         * @param {number} [toValue] Filter transactions with values less than or equal to this value.
-         * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
-         * @param {string} [toDate] Filter transactions with dates on or before this date (in ISO 8601 format).
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async findTransactions(companyId: string, userId: string, type?: FindTransactionsTypeEnum, integration?: string, status?: FindTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindTransactions200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findTransactions(companyId, userId, type, integration, status, fromValue, toValue, fromDate, toDate, currentPage, perPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TransactionsApi.findTransactions']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TransactionsApi.exportTransactions']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -36244,10 +36221,33 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async gettransaction(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Gettransaction200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.gettransaction(id, companyId, options);
+        async getTransaction(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTransaction200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTransaction(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TransactionsApi.gettransaction']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TransactionsApi.getTransaction']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieve a list of transactions based on various filtering parameters. Returns an array of TransactionResponseDto objects
+         * @summary Get list of all transactions
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} userId 
+         * @param {GetTransactionsTypeEnum} [type] Filter transactions by type.
+         * @param {string} [integration] Filter transactions by service integration ID or title.
+         * @param {GetTransactionsStatusEnum} [status] Filter transactions by status.
+         * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
+         * @param {number} [toValue] Filter transactions with values less than or equal to this value.
+         * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
+         * @param {string} [toDate] Filter transactions with dates on or before this date (in ISO 8601 format).
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTransactions(companyId: string, userId: string, type?: GetTransactionsTypeEnum, integration?: string, status?: GetTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTransactions200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTransactions(companyId, userId, type, integration, status, fromValue, toValue, fromDate, toDate, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TransactionsApi.getTransactions']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -36259,7 +36259,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateTransaction(companyId: string, id: string, transactionRequestDto: TransactionRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Gettransaction200Response>> {
+        async updateTransaction(companyId: string, id: string, transactionRequestDto: TransactionRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTransaction200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateTransaction(companyId, id, transactionRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TransactionsApi.updateTransaction']?.[localVarOperationServerIndex]?.url;
@@ -36294,7 +36294,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteTransaction(id: string, companyId: string, options?: any): AxiosPromise<Gettransaction200Response> {
+        deleteTransaction(id: string, companyId: string, options?: any): AxiosPromise<GetTransaction200Response> {
             return localVarFp.deleteTransaction(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -36305,28 +36305,8 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportTransaction(companyId: string, userId?: string, options?: any): AxiosPromise<GetUserTransactions200Response> {
-            return localVarFp.exportTransaction(companyId, userId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve a list of transactions based on various filtering parameters. Returns an array of TransactionResponseDto objects
-         * @summary Get list of all transactions
-         * @param {string} companyId A unique identifier for the company.
-         * @param {string} userId 
-         * @param {FindTransactionsTypeEnum} [type] Filter transactions by type.
-         * @param {string} [integration] Filter transactions by service integration ID or title.
-         * @param {FindTransactionsStatusEnum} [status] Filter transactions by status.
-         * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
-         * @param {number} [toValue] Filter transactions with values less than or equal to this value.
-         * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
-         * @param {string} [toDate] Filter transactions with dates on or before this date (in ISO 8601 format).
-         * @param {number} [currentPage] current page
-         * @param {number} [perPage] per Page 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        findTransactions(companyId: string, userId: string, type?: FindTransactionsTypeEnum, integration?: string, status?: FindTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindTransactions200Response> {
-            return localVarFp.findTransactions(companyId, userId, type, integration, status, fromValue, toValue, fromDate, toDate, currentPage, perPage, options).then((request) => request(axios, basePath));
+        exportTransactions(companyId: string, userId?: string, options?: any): AxiosPromise<GetUserTransactions200Response> {
+            return localVarFp.exportTransactions(companyId, userId, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve detailed information about a transaction by its unique identifier. Returns TransactionResponseDto object
@@ -36336,8 +36316,28 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        gettransaction(id: string, companyId: string, options?: any): AxiosPromise<Gettransaction200Response> {
-            return localVarFp.gettransaction(id, companyId, options).then((request) => request(axios, basePath));
+        getTransaction(id: string, companyId: string, options?: any): AxiosPromise<GetTransaction200Response> {
+            return localVarFp.getTransaction(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a list of transactions based on various filtering parameters. Returns an array of TransactionResponseDto objects
+         * @summary Get list of all transactions
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} userId 
+         * @param {GetTransactionsTypeEnum} [type] Filter transactions by type.
+         * @param {string} [integration] Filter transactions by service integration ID or title.
+         * @param {GetTransactionsStatusEnum} [status] Filter transactions by status.
+         * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
+         * @param {number} [toValue] Filter transactions with values less than or equal to this value.
+         * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
+         * @param {string} [toDate] Filter transactions with dates on or before this date (in ISO 8601 format).
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTransactions(companyId: string, userId: string, type?: GetTransactionsTypeEnum, integration?: string, status?: GetTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetTransactions200Response> {
+            return localVarFp.getTransactions(companyId, userId, type, integration, status, fromValue, toValue, fromDate, toDate, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Update an existing transaction record in the specified company. Returns updated TransactionResponseDto
@@ -36348,7 +36348,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateTransaction(companyId: string, id: string, transactionRequestDto: TransactionRequestDto, options?: any): AxiosPromise<Gettransaction200Response> {
+        updateTransaction(companyId: string, id: string, transactionRequestDto: TransactionRequestDto, options?: any): AxiosPromise<GetTransaction200Response> {
             return localVarFp.updateTransaction(companyId, id, transactionRequestDto, options).then((request) => request(axios, basePath));
         },
     };
@@ -36396,30 +36396,8 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public exportTransaction(companyId: string, userId?: string, options?: RawAxiosRequestConfig) {
-        return TransactionsApiFp(this.configuration).exportTransaction(companyId, userId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieve a list of transactions based on various filtering parameters. Returns an array of TransactionResponseDto objects
-     * @summary Get list of all transactions
-     * @param {string} companyId A unique identifier for the company.
-     * @param {string} userId 
-     * @param {FindTransactionsTypeEnum} [type] Filter transactions by type.
-     * @param {string} [integration] Filter transactions by service integration ID or title.
-     * @param {FindTransactionsStatusEnum} [status] Filter transactions by status.
-     * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
-     * @param {number} [toValue] Filter transactions with values less than or equal to this value.
-     * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
-     * @param {string} [toDate] Filter transactions with dates on or before this date (in ISO 8601 format).
-     * @param {number} [currentPage] current page
-     * @param {number} [perPage] per Page 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof TransactionsApi
-     */
-    public findTransactions(companyId: string, userId: string, type?: FindTransactionsTypeEnum, integration?: string, status?: FindTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return TransactionsApiFp(this.configuration).findTransactions(companyId, userId, type, integration, status, fromValue, toValue, fromDate, toDate, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
+    public exportTransactions(companyId: string, userId?: string, options?: RawAxiosRequestConfig) {
+        return TransactionsApiFp(this.configuration).exportTransactions(companyId, userId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -36431,8 +36409,30 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public gettransaction(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return TransactionsApiFp(this.configuration).gettransaction(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    public getTransaction(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return TransactionsApiFp(this.configuration).getTransaction(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve a list of transactions based on various filtering parameters. Returns an array of TransactionResponseDto objects
+     * @summary Get list of all transactions
+     * @param {string} companyId A unique identifier for the company.
+     * @param {string} userId 
+     * @param {GetTransactionsTypeEnum} [type] Filter transactions by type.
+     * @param {string} [integration] Filter transactions by service integration ID or title.
+     * @param {GetTransactionsStatusEnum} [status] Filter transactions by status.
+     * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
+     * @param {number} [toValue] Filter transactions with values less than or equal to this value.
+     * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
+     * @param {string} [toDate] Filter transactions with dates on or before this date (in ISO 8601 format).
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    public getTransactions(companyId: string, userId: string, type?: GetTransactionsTypeEnum, integration?: string, status?: GetTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return TransactionsApiFp(this.configuration).getTransactions(companyId, userId, type, integration, status, fromValue, toValue, fromDate, toDate, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -36453,22 +36453,22 @@ export class TransactionsApi extends BaseAPI {
 /**
  * @export
  */
-export const FindTransactionsTypeEnum = {
+export const GetTransactionsTypeEnum = {
     Order: 'ORDER',
     Credits: 'CREDITS'
 } as const;
-export type FindTransactionsTypeEnum = typeof FindTransactionsTypeEnum[keyof typeof FindTransactionsTypeEnum];
+export type GetTransactionsTypeEnum = typeof GetTransactionsTypeEnum[keyof typeof GetTransactionsTypeEnum];
 /**
  * @export
  */
-export const FindTransactionsStatusEnum = {
+export const GetTransactionsStatusEnum = {
     Pending: 'PENDING',
     Processing: 'PROCESSING',
     Completed: 'COMPLETED',
     Cancel: 'CANCEL',
     Error: 'ERROR'
 } as const;
-export type FindTransactionsStatusEnum = typeof FindTransactionsStatusEnum[keyof typeof FindTransactionsStatusEnum];
+export type GetTransactionsStatusEnum = typeof GetTransactionsStatusEnum[keyof typeof GetTransactionsStatusEnum];
 
 
 /**
@@ -36583,13 +36583,13 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addNotificationEmail: async (id: string, companyId: string, newEmail: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addUserNotificationEmail: async (id: string, companyId: string, newEmail: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('addNotificationEmail', 'id', id)
+            assertParamExists('addUserNotificationEmail', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('addNotificationEmail', 'companyId', companyId)
+            assertParamExists('addUserNotificationEmail', 'companyId', companyId)
             // verify required parameter 'newEmail' is not null or undefined
-            assertParamExists('addNotificationEmail', 'newEmail', newEmail)
+            assertParamExists('addUserNotificationEmail', 'newEmail', newEmail)
             const localVarPath = `/users/{id}/additional-notification-emails`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -36678,9 +36678,9 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        customToken: async (companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createUserCustomToken: async (companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('customToken', 'companyId', companyId)
+            assertParamExists('createUserCustomToken', 'companyId', companyId)
             const localVarPath = `/users/custom-token`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -36744,57 +36744,6 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve a list of all users related to the specified company with optional filters applied. Returns an array of UserResponseDto objects.
-         * @summary Get list of all users
-         * @param {string} companyId A unique identifier for the company.
-         * @param {number} [perPage] per Page 
-         * @param {number} [currentPage] current page
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getCompanyPaginatedUsers: async (companyId: string, perPage?: number, currentPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getCompanyPaginatedUsers', 'companyId', companyId)
-            const localVarPath = `/users`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (perPage !== undefined) {
-                localVarQueryParameter['perPage'] = perPage;
-            }
-
-            if (currentPage !== undefined) {
-                localVarQueryParameter['currentPage'] = currentPage;
             }
 
 
@@ -37020,6 +36969,57 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of all users related to the specified company with optional filters applied. Returns an array of UserResponseDto objects.
+         * @summary Get list of all users
+         * @param {string} companyId A unique identifier for the company.
+         * @param {number} [perPage] per Page 
+         * @param {number} [currentPage] current page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUsers: async (companyId: string, perPage?: number, currentPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getUsers', 'companyId', companyId)
+            const localVarPath = `/users`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['currentPage'] = currentPage;
             }
 
 
@@ -37645,10 +37645,10 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addNotificationEmail(id: string, companyId: string, newEmail: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.addNotificationEmail(id, companyId, newEmail, options);
+        async addUserNotificationEmail(id: string, companyId: string, newEmail: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addUserNotificationEmail(id, companyId, newEmail, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UsersApi.addNotificationEmail']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.addUserNotificationEmail']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -37672,10 +37672,10 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async customToken(companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CustomToken201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.customToken(companyId, options);
+        async createUserCustomToken(companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateUserCustomToken201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createUserCustomToken(companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UsersApi.customToken']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.createUserCustomToken']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -37690,21 +37690,6 @@ export const UsersApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteUser(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UsersApi.deleteUser']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retrieve a list of all users related to the specified company with optional filters applied. Returns an array of UserResponseDto objects.
-         * @summary Get list of all users
-         * @param {string} companyId A unique identifier for the company.
-         * @param {number} [perPage] per Page 
-         * @param {number} [currentPage] current page
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getCompanyPaginatedUsers(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCompanyPaginatedUsers200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanyPaginatedUsers(companyId, perPage, currentPage, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UsersApi.getCompanyPaginatedUsers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -37775,6 +37760,21 @@ export const UsersApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserTransactions(companyId, id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UsersApi.getUserTransactions']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieve a list of all users related to the specified company with optional filters applied. Returns an array of UserResponseDto objects.
+         * @summary Get list of all users
+         * @param {string} companyId A unique identifier for the company.
+         * @param {number} [perPage] per Page 
+         * @param {number} [currentPage] current page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUsers(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUsers200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUsers(companyId, perPage, currentPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.getUsers']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -37972,8 +37972,8 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addNotificationEmail(id: string, companyId: string, newEmail: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.addNotificationEmail(id, companyId, newEmail, options).then((request) => request(axios, basePath));
+        addUserNotificationEmail(id: string, companyId: string, newEmail: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.addUserNotificationEmail(id, companyId, newEmail, options).then((request) => request(axios, basePath));
         },
         /**
          * Activate a ban on a user within a specific company. You can specify the user by their unique ID and the company using its unique ID. Returns a boolean indicating success.
@@ -37993,8 +37993,8 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        customToken(companyId: string, options?: any): AxiosPromise<CustomToken201Response> {
-            return localVarFp.customToken(companyId, options).then((request) => request(axios, basePath));
+        createUserCustomToken(companyId: string, options?: any): AxiosPromise<CreateUserCustomToken201Response> {
+            return localVarFp.createUserCustomToken(companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete a user related to a specific company. You can specify the user by their unique ID and the company using its unique ID. The operation includes checks for balance, active payments, and parent-child relationships.Returns an empty response.
@@ -38006,18 +38006,6 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          */
         deleteUser(id: string, companyId: string, options?: any): AxiosPromise<void> {
             return localVarFp.deleteUser(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve a list of all users related to the specified company with optional filters applied. Returns an array of UserResponseDto objects.
-         * @summary Get list of all users
-         * @param {string} companyId A unique identifier for the company.
-         * @param {number} [perPage] per Page 
-         * @param {number} [currentPage] current page
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getCompanyPaginatedUsers(companyId: string, perPage?: number, currentPage?: number, options?: any): AxiosPromise<GetCompanyPaginatedUsers200Response> {
-            return localVarFp.getCompanyPaginatedUsers(companyId, perPage, currentPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve detailed information about a user related to a specific company using the user\'s unique ID within the company as a parameter. Returns a single UserDto object containing user-related data.
@@ -38073,6 +38061,18 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          */
         getUserTransactions(companyId: string, id: string, options?: any): AxiosPromise<GetUserTransactions200Response> {
             return localVarFp.getUserTransactions(companyId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a list of all users related to the specified company with optional filters applied. Returns an array of UserResponseDto objects.
+         * @summary Get list of all users
+         * @param {string} companyId A unique identifier for the company.
+         * @param {number} [perPage] per Page 
+         * @param {number} [currentPage] current page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUsers(companyId: string, perPage?: number, currentPage?: number, options?: any): AxiosPromise<GetUsers200Response> {
+            return localVarFp.getUsers(companyId, perPage, currentPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Lock the payments for a user within a specific company. You can specify the user by their unique ID and the company using its unique ID. Returns a boolean indicating success.
@@ -38234,8 +38234,8 @@ export class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public addNotificationEmail(id: string, companyId: string, newEmail: string, options?: RawAxiosRequestConfig) {
-        return UsersApiFp(this.configuration).addNotificationEmail(id, companyId, newEmail, options).then((request) => request(this.axios, this.basePath));
+    public addUserNotificationEmail(id: string, companyId: string, newEmail: string, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).addUserNotificationEmail(id, companyId, newEmail, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -38259,8 +38259,8 @@ export class UsersApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public customToken(companyId: string, options?: RawAxiosRequestConfig) {
-        return UsersApiFp(this.configuration).customToken(companyId, options).then((request) => request(this.axios, this.basePath));
+    public createUserCustomToken(companyId: string, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).createUserCustomToken(companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -38274,20 +38274,6 @@ export class UsersApi extends BaseAPI {
      */
     public deleteUser(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return UsersApiFp(this.configuration).deleteUser(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieve a list of all users related to the specified company with optional filters applied. Returns an array of UserResponseDto objects.
-     * @summary Get list of all users
-     * @param {string} companyId A unique identifier for the company.
-     * @param {number} [perPage] per Page 
-     * @param {number} [currentPage] current page
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UsersApi
-     */
-    public getCompanyPaginatedUsers(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig) {
-        return UsersApiFp(this.configuration).getCompanyPaginatedUsers(companyId, perPage, currentPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -38353,6 +38339,20 @@ export class UsersApi extends BaseAPI {
      */
     public getUserTransactions(companyId: string, id: string, options?: RawAxiosRequestConfig) {
         return UsersApiFp(this.configuration).getUserTransactions(companyId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve a list of all users related to the specified company with optional filters applied. Returns an array of UserResponseDto objects.
+     * @summary Get list of all users
+     * @param {string} companyId A unique identifier for the company.
+     * @param {number} [perPage] per Page 
+     * @param {number} [currentPage] current page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public getUsers(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).getUsers(companyId, perPage, currentPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
