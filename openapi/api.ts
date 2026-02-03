@@ -100,7 +100,7 @@ export interface AddonOptionsDto {
      * @type {string}
      * @memberof AddonOptionsDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * An array of the addon option title in all supported languages. This allows you to provide the title of the option in different languages, enabling multilingual support for your addon options.
      * @type {Array<MultilangTextDto>}
@@ -137,13 +137,13 @@ export interface AddonRequestDto {
      * @type {Array<MultilangTextDto>}
      * @memberof AddonRequestDto
      */
-    'description'?: Array<MultilangTextDto>;
+    'description': Array<MultilangTextDto>;
     /**
      * A URL pointing to the icon image of the addon. This icon will be displayed in the user interface to visually represent the addon. It should be an accessible URL to an image file (e.g., PNG, JPG, etc.).
      * @type {string}
      * @memberof AddonRequestDto
      */
-    'iconUrl'?: string;
+    'iconUrl': string;
     /**
      * Defines the type of input element that the addon will display on the frontend. This determines how the addon will be presented to the user, such as a text box, checkbox, radio button, etc.
      * @type {string}
@@ -198,13 +198,13 @@ export interface AddonResponseDto {
      * @type {Array<MultilangTextDto>}
      * @memberof AddonResponseDto
      */
-    'description'?: Array<MultilangTextDto>;
+    'description': Array<MultilangTextDto>;
     /**
      * A URL pointing to the icon image of the addon. This icon will be displayed in the user interface to visually represent the addon. It should be an accessible URL to an image file (e.g., PNG, JPG, etc.).
      * @type {string}
      * @memberof AddonResponseDto
      */
-    'iconUrl'?: string;
+    'iconUrl': string;
     /**
      * Defines the type of input element that the addon will display on the frontend. This determines how the addon will be presented to the user, such as a text box, checkbox, radio button, etc.
      * @type {string}
@@ -234,7 +234,7 @@ export interface AddonResponseDto {
      * @type {string}
      * @memberof AddonResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {Company6}
@@ -246,13 +246,13 @@ export interface AddonResponseDto {
      * @type {string}
      * @memberof AddonResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date the addon updated.
      * @type {string}
      * @memberof AddonResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 
 export const AddonResponseDtoTypeEnum = {
@@ -413,7 +413,7 @@ export interface AffiliateData {
      * @type {any}
      * @memberof AffiliateData
      */
-    'paidAt'?: any;
+    'paidAt': any;
     /**
      * The monetary value to be paid.
      * @type {any}
@@ -591,7 +591,7 @@ export interface AffiliateResponseDto {
      * @type {string}
      * @memberof AffiliateResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {Company7}
@@ -609,13 +609,13 @@ export interface AffiliateResponseDto {
      * @type {string}
      * @memberof AffiliateResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date when the affiliate was updated.
      * @type {string}
      * @memberof AffiliateResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 
 export const AffiliateResponseDtoDurationsEnum = {
@@ -1054,7 +1054,7 @@ export interface CatAdditionalDataDto {
      * @type {string}
      * @memberof CatAdditionalDataDto
      */
-    'maintainer'?: string;
+    'maintainer': string;
 }
 
 export const CatAdditionalDataDtoLanguageEnum = {
@@ -1276,7 +1276,7 @@ export interface ChallengeParametersDataDto {
      * @type {Array<ChallengeQuestionAnswerDto>}
      * @memberof ChallengeParametersDataDto
      */
-    'challenges'?: Array<ChallengeQuestionAnswerDto>;
+    'challenges': Array<ChallengeQuestionAnswerDto>;
 }
 /**
  * 
@@ -1503,7 +1503,7 @@ export interface CompanyBalanceResponseDto {
      * @type {number}
      * @memberof CompanyBalanceResponseDto
      */
-    'walletBalance'?: number;
+    'walletBalance': number;
 }
 /**
  * 
@@ -1516,25 +1516,25 @@ export interface CompanyFindResponseDto {
      * @type {Array<CompanyResponseDto>}
      * @memberof CompanyFindResponseDto
      */
-    'results'?: Array<CompanyResponseDto>;
+    'results': Array<CompanyResponseDto>;
     /**
      * A number that indicates the current page being shown.
      * @type {number}
      * @memberof CompanyFindResponseDto
      */
-    'currentPage'?: number;
+    'currentPage': number;
     /**
      * A number that indicates the number of results per page.
      * @type {number}
      * @memberof CompanyFindResponseDto
      */
-    'perPage'?: number;
+    'perPage': number;
     /**
      * A number that indicates the total pages will be shown.
      * @type {number}
      * @memberof CompanyFindResponseDto
      */
-    'totalPages'?: number;
+    'totalPages': number;
 }
 /**
  * @type CompanyID
@@ -1657,7 +1657,7 @@ export interface CompanyPublicInfoDto {
      * @type {string}
      * @memberof CompanyPublicInfoDto
      */
-    'defaultLanguage'?: CompanyPublicInfoDtoDefaultLanguageEnum;
+    'defaultLanguage': CompanyPublicInfoDtoDefaultLanguageEnum;
     /**
      * An array that specifies all the languages required for translations in multilingual fields. These languages determine the set of translations to be provided for product-related content or other fields that support multiple languages.
      * @type {Array<string>}
@@ -2409,7 +2409,7 @@ export interface CompanyRequestDto {
      * @type {Array<UserRolesRequestDto>}
      * @memberof CompanyRequestDto
      */
-    'userRoles'?: Array<UserRolesRequestDto>;
+    'userRoles': Array<UserRolesRequestDto>;
     /**
      * This array contains unique identifiers for service integrations attached to the company, along with the roles the integration has access to. These roles define the permissions the integration has within the company system, specifying which actions or resources it can access.
      * @type {Array<IntegrationsInfoRequestDto>}
@@ -2920,7 +2920,7 @@ export interface CompanyResponseDto {
      * @type {Array<UserRolesResponseDto>}
      * @memberof CompanyResponseDto
      */
-    'userRoles'?: Array<UserRolesResponseDto>;
+    'userRoles': Array<UserRolesResponseDto>;
     /**
      * This array contains unique identifiers for service integrations attached to the company, along with the roles the integration has access to. These roles define the permissions the integration has within the company system, specifying which actions or resources it can access.
      * @type {Array<IntegrationsInfoResponseDto>}
@@ -3800,7 +3800,7 @@ export interface ContactAdditionalDto {
      * @type {UsAdditionalDataDto}
      * @memberof ContactAdditionalDto
      */
-    'usAdditionalData'?: UsAdditionalDataDto;
+    'usAdditionalData': UsAdditionalDataDto;
 }
 /**
  * 
@@ -4442,13 +4442,13 @@ export interface CouponResponseDto {
      * @type {string}
      * @memberof CouponResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date and time when the coupon was updated.
      * @type {string}
      * @memberof CouponResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 /**
  * 
@@ -5112,19 +5112,19 @@ export interface DomainCategoryResponseDto {
      * @type {string}
      * @memberof DomainCategoryResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * The date when the domain category was created.
      * @type {string}
      * @memberof DomainCategoryResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date when the domain category was last updated.
      * @type {string}
      * @memberof DomainCategoryResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 /**
  * 
@@ -5572,7 +5572,7 @@ export interface DomainContactResponseDto {
      * @type {string}
      * @memberof DomainContactResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {Company11}
@@ -5899,7 +5899,7 @@ export interface DomainNameDataRequestDto {
      * @type {Array<DomainBundleDto>}
      * @memberof DomainNameDataRequestDto
      */
-    'bundles'?: Array<DomainBundleDto>;
+    'bundles': Array<DomainBundleDto>;
     /**
      * Additional information required by the TLD (Top-Level Domain). This can include extra details that the registry requests when registering a domain.
      * @type {DomainAdditionalDto}
@@ -5954,7 +5954,7 @@ export interface DomainNameDataResponseDto {
      * @type {Array<DomainBundleDto>}
      * @memberof DomainNameDataResponseDto
      */
-    'bundles'?: Array<DomainBundleDto>;
+    'bundles': Array<DomainBundleDto>;
     /**
      * Additional information required by the TLD (Top-Level Domain). This can include extra details that the registry requests when registering a domain.
      * @type {DomainAdditionalDto}
@@ -6104,7 +6104,7 @@ export interface EmailPayloadDto {
      * @type {Array<AttachmentDto>}
      * @memberof EmailPayloadDto
      */
-    'attachments'?: Array<AttachmentDto>;
+    'attachments': Array<AttachmentDto>;
 }
 /**
  * 
@@ -6126,10 +6126,10 @@ export interface ErrorResponse {
     'message': string;
     /**
      * 
-     * @type {object}
+     * @type {{ [key: string]: any; }}
      * @memberof ErrorResponse
      */
-    'details': object;
+    'details': { [key: string]: any; };
 }
 /**
  * 
@@ -8320,13 +8320,13 @@ export interface IntegrationPublicDto {
      * @type {string}
      * @memberof IntegrationPublicDto
      */
-    'maintenanceStartDate'?: string;
+    'maintenanceStartDate': string;
     /**
      * The end date of maintenance.
      * @type {string}
      * @memberof IntegrationPublicDto
      */
-    'maintenanceEndDate'?: string;
+    'maintenanceEndDate': string;
     /**
      * Indicates if the integration is active.
      * @type {boolean}
@@ -8480,7 +8480,7 @@ export interface IntegrationResponseDto {
      * @type {string}
      * @memberof IntegrationResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {CreatedByCompany}
@@ -8504,13 +8504,13 @@ export interface IntegrationResponseDto {
      * @type {string}
      * @memberof IntegrationResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date and time when the service integration was updated.
      * @type {string}
      * @memberof IntegrationResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 
 export const IntegrationResponseDtoTypeEnum = {
@@ -8543,31 +8543,31 @@ export interface IntegrationUpdateRequestDto {
      * @type {string}
      * @memberof IntegrationUpdateRequestDto
      */
-    'title'?: string;
+    'title': string;
     /**
      * Integration description
      * @type {string}
      * @memberof IntegrationUpdateRequestDto
      */
-    'description'?: string;
+    'description': string;
     /**
      * Integration URL
      * @type {string}
      * @memberof IntegrationUpdateRequestDto
      */
-    'url'?: string;
+    'url': string;
     /**
      * Integration maintenance start date
      * @type {string}
      * @memberof IntegrationUpdateRequestDto
      */
-    'maintenanceStartDate'?: string;
+    'maintenanceStartDate': string;
     /**
      * Integration maintenance end date
      * @type {string}
      * @memberof IntegrationUpdateRequestDto
      */
-    'maintenanceEndDate'?: string;
+    'maintenanceEndDate': string;
 }
 /**
  * 
@@ -8791,7 +8791,7 @@ export interface InvoiceContact2 {
      * @type {any}
      * @memberof InvoiceContact2
      */
-    'companyName'?: any;
+    'companyName': any;
     /**
      * 
      * @type {InvoiceContact1}
@@ -8822,7 +8822,7 @@ export interface InvoiceContactInfoResponseDto {
      * @type {string}
      * @memberof InvoiceContactInfoResponseDto
      */
-    'companyName'?: string;
+    'companyName': string;
     /**
      * 
      * @type {InvoiceContact1}
@@ -8865,7 +8865,7 @@ export interface InvoiceContactRequestDto {
      * @type {string}
      * @memberof InvoiceContactRequestDto
      */
-    'companyName'?: string;
+    'companyName': string;
     /**
      * The telephone number of the contact.
      * @type {string}
@@ -8877,7 +8877,7 @@ export interface InvoiceContactRequestDto {
      * @type {string}
      * @memberof InvoiceContactRequestDto
      */
-    'mobile'?: string;
+    'mobile': string;
     /**
      * The first address line.
      * @type {string}
@@ -8889,13 +8889,13 @@ export interface InvoiceContactRequestDto {
      * @type {string}
      * @memberof InvoiceContactRequestDto
      */
-    'address2'?: string;
+    'address2': string;
     /**
      * The third address line.
      * @type {string}
      * @memberof InvoiceContactRequestDto
      */
-    'address3'?: string;
+    'address3': string;
     /**
      * The postal code or ZIP code.
      * @type {string}
@@ -8919,19 +8919,19 @@ export interface InvoiceContactRequestDto {
      * @type {string}
      * @memberof InvoiceContactRequestDto
      */
-    'state'?: string;
+    'state': string;
     /**
      * The Value Added Tax (VAT) number of the contact.
      * @type {string}
      * @memberof InvoiceContactRequestDto
      */
-    'vat'?: string;
+    'vat': string;
     /**
      * The tax office related to the contact.
      * @type {string}
      * @memberof InvoiceContactRequestDto
      */
-    'taxOffice'?: string;
+    'taxOffice': string;
 }
 
 export const InvoiceContactRequestDtoCountryEnum = {
@@ -9222,7 +9222,7 @@ export interface InvoiceContactResponseDto {
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'companyName'?: string;
+    'companyName': string;
     /**
      * The telephone number of the contact.
      * @type {string}
@@ -9234,7 +9234,7 @@ export interface InvoiceContactResponseDto {
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'mobile'?: string;
+    'mobile': string;
     /**
      * The first address line.
      * @type {string}
@@ -9246,13 +9246,13 @@ export interface InvoiceContactResponseDto {
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'address2'?: string;
+    'address2': string;
     /**
      * The third address line.
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'address3'?: string;
+    'address3': string;
     /**
      * The postal code or ZIP code.
      * @type {string}
@@ -9276,25 +9276,25 @@ export interface InvoiceContactResponseDto {
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'state'?: string;
+    'state': string;
     /**
      * The Value Added Tax (VAT) number of the contact.
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'vat'?: string;
+    'vat': string;
     /**
      * The tax office related to the contact.
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'taxOffice'?: string;
+    'taxOffice': string;
     /**
      * The unique identifier for the contact.
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {Company3}
@@ -9312,13 +9312,13 @@ export interface InvoiceContactResponseDto {
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date and time when the contact was last updated.
      * @type {string}
      * @memberof InvoiceContactResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 
 export const InvoiceContactResponseDtoCountryEnum = {
@@ -9585,13 +9585,13 @@ export interface InvoiceResponseDto {
      * @type {boolean}
      * @memberof InvoiceResponseDto
      */
-    'isDebit'?: boolean;
+    'isDebit': boolean;
     /**
      * The unique identifier for the invoice.
      * @type {string}
      * @memberof InvoiceResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {User6}
@@ -9627,7 +9627,7 @@ export interface InvoiceResponseDto {
      * @type {string}
      * @memberof InvoiceResponseDto
      */
-    'invoiceInterval'?: InvoiceResponseDtoInvoiceIntervalEnum;
+    'invoiceInterval': InvoiceResponseDtoInvoiceIntervalEnum;
     /**
      * The date and time when the invoice was created.
      * @type {string}
@@ -9707,7 +9707,7 @@ export interface IssueRequestDto {
      * @type {boolean}
      * @memberof IssueRequestDto
      */
-    'resolved'?: boolean;
+    'resolved': boolean;
     /**
      * An array that determines the actions taken.
      * @type {Array<MultilangTextDto>}
@@ -9790,7 +9790,7 @@ export interface IssueResponseDto {
      * @type {boolean}
      * @memberof IssueResponseDto
      */
-    'resolved'?: boolean;
+    'resolved': boolean;
     /**
      * An array that determines the actions taken.
      * @type {Array<MultilangTextDto>}
@@ -9942,7 +9942,7 @@ export interface ItemAffiliateDto {
      * @type {string}
      * @memberof ItemAffiliateDto
      */
-    'paidAt'?: string;
+    'paidAt': string;
     /**
      * The monetary value to be paid.
      * @type {number}
@@ -10010,10 +10010,10 @@ export interface ItemClientResponseDto {
     'action': ItemClientResponseDtoActionEnum;
     /**
      * These are additional attributes requested by the integration from the customer who purchases the product. They capture specific details or preferences from the buyer, which may be needed for fulfilling the order or for configuring the product according to the customer\'s needs.
-     * @type {object}
+     * @type {{ [key: string]: any; }}
      * @memberof ItemClientResponseDto
      */
-    'itemAttributes'?: object;
+    'itemAttributes'?: { [key: string]: any; };
     /**
      * Contains additional information related to the item addons. Each key-value pair represents an addon and its chosen option.
      * @type {{ [key: string]: any; }}
@@ -10025,7 +10025,7 @@ export interface ItemClientResponseDto {
      * @type {boolean}
      * @memberof ItemClientResponseDto
      */
-    'autorenew'?: boolean;
+    'autorenew': boolean;
     /**
      * A comment associated with the item that can be accessed by all users.
      * @type {string}
@@ -10037,13 +10037,13 @@ export interface ItemClientResponseDto {
      * @type {string}
      * @memberof ItemClientResponseDto
      */
-    'duration'?: ItemClientResponseDtoDurationEnum;
+    'duration': ItemClientResponseDtoDurationEnum;
     /**
      * A unique identifier for the item, used for precise referencing within the system.
      * @type {string}
      * @memberof ItemClientResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {Company9}
@@ -10073,7 +10073,7 @@ export interface ItemClientResponseDto {
      * @type {string}
      * @memberof ItemClientResponseDto
      */
-    'ancestorItemId'?: string;
+    'ancestorItemId': string;
     /**
      * 
      * @type {ParentItem}
@@ -10085,13 +10085,13 @@ export interface ItemClientResponseDto {
      * @type {Order}
      * @memberof ItemClientResponseDto
      */
-    'order'?: Order;
+    'order': Order;
     /**
      * Represents the current state of the item, as defined in ItemStatusEnum. The default value is IDLE.
      * @type {string}
      * @memberof ItemClientResponseDto
      */
-    'status'?: ItemClientResponseDtoStatusEnum;
+    'status': ItemClientResponseDtoStatusEnum;
     /**
      * 
      * @type {ProductId}
@@ -10127,19 +10127,19 @@ export interface ItemClientResponseDto {
      * @type {boolean}
      * @memberof ItemClientResponseDto
      */
-    'transferredOut'?: boolean;
+    'transferredOut': boolean;
     /**
      * 
      * @type {TransferredFromUser}
      * @memberof ItemClientResponseDto
      */
-    'transferredFromUser'?: TransferredFromUser;
+    'transferredFromUser': TransferredFromUser;
     /**
      * 
      * @type {TransferredToUser}
      * @memberof ItemClientResponseDto
      */
-    'transferredToUser'?: TransferredToUser;
+    'transferredToUser': TransferredToUser;
     /**
      * The default price of the item, representing the value of the product excluding VAT or commissions.
      * @type {number}
@@ -10211,7 +10211,7 @@ export interface ItemClientResponseDto {
      * @type {DomainNameDataResponseDto}
      * @memberof ItemClientResponseDto
      */
-    'domainNameData'?: DomainNameDataResponseDto;
+    'domainNameData': DomainNameDataResponseDto;
     /**
      * Indicates whether the item is currently under maintenance.
      * @type {boolean}
@@ -10332,16 +10332,16 @@ export interface ItemRequestDto {
     'action': ItemRequestDtoActionEnum;
     /**
      * These are additional attributes requested by the integration from the customer who purchases the product. They capture specific details or preferences from the buyer, which may be needed for fulfilling the order or for configuring the product according to the customer\'s needs.
-     * @type {object}
+     * @type {{ [key: string]: any; }}
      * @memberof ItemRequestDto
      */
-    'itemAttributes'?: object;
+    'itemAttributes'?: { [key: string]: any; };
     /**
      * Contains additional information related to the item, used internally and not visible to simple users.
      * @type {{ [key: string]: any; }}
      * @memberof ItemRequestDto
      */
-    'responseDataFieldNames'?: { [key: string]: any; };
+    'responseDataFieldNames': { [key: string]: any; };
     /**
      * Contains additional information related to the item addons. Each key-value pair represents an addon and its chosen option.
      * @type {{ [key: string]: any; }}
@@ -10353,7 +10353,7 @@ export interface ItemRequestDto {
      * @type {boolean}
      * @memberof ItemRequestDto
      */
-    'autorenew'?: boolean;
+    'autorenew': boolean;
     /**
      * A comment associated with the item that can be accessed by all users.
      * @type {string}
@@ -10365,7 +10365,7 @@ export interface ItemRequestDto {
      * @type {string}
      * @memberof ItemRequestDto
      */
-    'duration'?: ItemRequestDtoDurationEnum;
+    'duration': ItemRequestDtoDurationEnum;
     /**
      * A unique identifier for the client company associated with this item, used to link the item to a specific client organization.
      * @type {string}
@@ -10389,7 +10389,7 @@ export interface ItemRequestDto {
      * @type {DomainNameDataRequestDto}
      * @memberof ItemRequestDto
      */
-    'domainNameData'?: DomainNameDataRequestDto;
+    'domainNameData': DomainNameDataRequestDto;
 }
 
 export const ItemRequestDtoActionEnum = {
@@ -10457,16 +10457,16 @@ export interface ItemResponseDto {
     'action': ItemResponseDtoActionEnum;
     /**
      * These are additional attributes requested by the integration from the customer who purchases the product. They capture specific details or preferences from the buyer, which may be needed for fulfilling the order or for configuring the product according to the customer\'s needs.
-     * @type {object}
+     * @type {{ [key: string]: any; }}
      * @memberof ItemResponseDto
      */
-    'itemAttributes'?: object;
+    'itemAttributes'?: { [key: string]: any; };
     /**
      * Contains additional information related to the item, used internally and not visible to simple users.
      * @type {{ [key: string]: any; }}
      * @memberof ItemResponseDto
      */
-    'responseDataFieldNames'?: { [key: string]: any; };
+    'responseDataFieldNames': { [key: string]: any; };
     /**
      * Contains additional information related to the item addons. Each key-value pair represents an addon and its chosen option.
      * @type {{ [key: string]: any; }}
@@ -10478,7 +10478,7 @@ export interface ItemResponseDto {
      * @type {boolean}
      * @memberof ItemResponseDto
      */
-    'autorenew'?: boolean;
+    'autorenew': boolean;
     /**
      * A comment associated with the item that can be accessed by all users.
      * @type {string}
@@ -10490,13 +10490,13 @@ export interface ItemResponseDto {
      * @type {string}
      * @memberof ItemResponseDto
      */
-    'duration'?: ItemResponseDtoDurationEnum;
+    'duration': ItemResponseDtoDurationEnum;
     /**
      * A unique identifier for the item, used for precise referencing within the system.
      * @type {string}
      * @memberof ItemResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {Company9}
@@ -10532,7 +10532,7 @@ export interface ItemResponseDto {
      * @type {string}
      * @memberof ItemResponseDto
      */
-    'ancestorItemId'?: string;
+    'ancestorItemId': string;
     /**
      * 
      * @type {ParentItem}
@@ -10544,13 +10544,13 @@ export interface ItemResponseDto {
      * @type {Order}
      * @memberof ItemResponseDto
      */
-    'order'?: Order;
+    'order': Order;
     /**
      * Represents the current state of the item, as defined in ItemStatusEnum. The default value is IDLE.
      * @type {string}
      * @memberof ItemResponseDto
      */
-    'status'?: ItemResponseDtoStatusEnum;
+    'status': ItemResponseDtoStatusEnum;
     /**
      * 
      * @type {ProductId}
@@ -10586,25 +10586,25 @@ export interface ItemResponseDto {
      * @type {boolean}
      * @memberof ItemResponseDto
      */
-    'transferredOut'?: boolean;
+    'transferredOut': boolean;
     /**
      * 
      * @type {TransferredFromUser}
      * @memberof ItemResponseDto
      */
-    'transferredFromUser'?: TransferredFromUser;
+    'transferredFromUser': TransferredFromUser;
     /**
      * 
      * @type {TransferredToUser}
      * @memberof ItemResponseDto
      */
-    'transferredToUser'?: TransferredToUser;
+    'transferredToUser': TransferredToUser;
     /**
      * A comment associated with the item. This information is restricted and cannot be accessed by simple users.
      * @type {string}
      * @memberof ItemResponseDto
      */
-    'privateComment'?: string;
+    'privateComment': string;
     /**
      * The default price of the item, representing the value of the product excluding VAT or commissions.
      * @type {number}
@@ -10676,13 +10676,13 @@ export interface ItemResponseDto {
      * @type {DomainNameDataResponseDto}
      * @memberof ItemResponseDto
      */
-    'domainNameData'?: DomainNameDataResponseDto;
+    'domainNameData': DomainNameDataResponseDto;
     /**
      * 
      * @type {AffiliateData}
      * @memberof ItemResponseDto
      */
-    'itemAffiliateData'?: AffiliateData;
+    'itemAffiliateData': AffiliateData;
     /**
      * Indicates whether the item is currently under maintenance.
      * @type {boolean}
@@ -11237,7 +11237,7 @@ export interface NlAdditionalDataDto {
      * @type {string}
      * @memberof NlAdditionalDataDto
      */
-    'legalTypeRegistrationNumber'?: string;
+    'legalTypeRegistrationNumber': string;
 }
 
 export const NlAdditionalDataDtoLegalTypeEnum = {
@@ -11827,25 +11827,25 @@ export interface NotificationTemplatesRequestDto {
      * @type {string}
      * @memberof NotificationTemplatesRequestDto
      */
-    'upgrade'?: string;
+    'upgrade': string;
     /**
      * The template for downgrading a product. This field represents the official name or identifier for the template, and it cannot be empty.
      * @type {string}
      * @memberof NotificationTemplatesRequestDto
      */
-    'downgrade'?: string;
+    'downgrade': string;
     /**
      * The template for updating a product. This field represents the official name or identifier for the template, and it cannot be empty.
      * @type {string}
      * @memberof NotificationTemplatesRequestDto
      */
-    'update'?: string;
+    'update': string;
     /**
      * The template for canceling a product. This field represents the official name or identifier for the template, and it cannot be empty.
      * @type {string}
      * @memberof NotificationTemplatesRequestDto
      */
-    'cancel'?: string;
+    'cancel': string;
 }
 /**
  * 
@@ -11888,25 +11888,25 @@ export interface NotificationTemplatesResponseDto {
      * @type {UpgradeTemplate}
      * @memberof NotificationTemplatesResponseDto
      */
-    'upgrade'?: UpgradeTemplate;
+    'upgrade': UpgradeTemplate;
     /**
      * 
      * @type {DowngradeTemplate}
      * @memberof NotificationTemplatesResponseDto
      */
-    'downgrade'?: DowngradeTemplate;
+    'downgrade': DowngradeTemplate;
     /**
      * 
      * @type {UpdateTemplate}
      * @memberof NotificationTemplatesResponseDto
      */
-    'update'?: UpdateTemplate;
+    'update': UpdateTemplate;
     /**
      * 
      * @type {CancelTemplate}
      * @memberof NotificationTemplatesResponseDto
      */
-    'cancel'?: CancelTemplate;
+    'cancel': CancelTemplate;
 }
 /**
  * @type Order
@@ -11951,7 +11951,7 @@ export interface OrderRequestDto {
      * @type {string}
      * @memberof OrderRequestDto
      */
-    'clientCompany'?: string;
+    'clientCompany': string;
     /**
      * A unique identifier assigned to the invoice contact associated with this order.
      * @type {string}
@@ -12018,7 +12018,7 @@ export interface OrderResponseDto {
      * @type {ClientCompany1}
      * @memberof OrderResponseDto
      */
-    'clientCompany'?: ClientCompany1;
+    'clientCompany': ClientCompany1;
     /**
      * 
      * @type {Coupon}
@@ -12054,7 +12054,7 @@ export interface OrderResponseDto {
      * @type {Summary}
      * @memberof OrderResponseDto
      */
-    'summary'?: Summary;
+    'summary': Summary;
     /**
      * Indicates if the order has been fully paid. A value of true means the payment is completed, while false indicates the payment is pending or not yet made.
      * @type {boolean}
@@ -12119,10 +12119,10 @@ export interface PaginatedResponse {
     'message': string;
     /**
      * 
-     * @type {object}
+     * @type {{ [key: string]: any; }}
      * @memberof PaginatedResponse
      */
-    'data': object;
+    'data': { [key: string]: any; };
     /**
      * 
      * @type {number}
@@ -12211,25 +12211,25 @@ export interface PolicyCriteriaDto {
      * @type {number}
      * @memberof PolicyCriteriaDto
      */
-    'activeProductsFrom'?: number;
+    'activeProductsFrom': number;
     /**
      * The maximum number of active products allowed to meet the criteria.
      * @type {number}
      * @memberof PolicyCriteriaDto
      */
-    'activeProductsTo'?: number;
+    'activeProductsTo': number;
     /**
      * The minimum turnover required to meet the criteria.
      * @type {number}
      * @memberof PolicyCriteriaDto
      */
-    'turnoverFrom'?: number;
+    'turnoverFrom': number;
     /**
      * The maximum turnover allowed to meet the criteria.
      * @type {number}
      * @memberof PolicyCriteriaDto
      */
-    'turnoverTo'?: number;
+    'turnoverTo': number;
 }
 /**
  * 
@@ -12475,7 +12475,7 @@ export interface PolicyResponseDto {
      * @type {string}
      * @memberof PolicyResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {Company2}
@@ -12487,13 +12487,13 @@ export interface PolicyResponseDto {
      * @type {string}
      * @memberof PolicyResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date when the policy was last updated.
      * @type {string}
      * @memberof PolicyResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 /**
  * 
@@ -12647,7 +12647,7 @@ export interface PricePolicyResponseDto {
      * @type {string}
      * @memberof PricePolicyResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {Company8}
@@ -12659,13 +12659,13 @@ export interface PricePolicyResponseDto {
      * @type {string}
      * @memberof PricePolicyResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date the price policy updated.
      * @type {string}
      * @memberof PricePolicyResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 /**
  * 
@@ -12824,7 +12824,7 @@ export interface Product2 {
      * @type {any}
      * @memberof Product2
      */
-    'hasDynamicPrices'?: any;
+    'hasDynamicPrices': any;
     /**
      * Indicates whether the product is activated. An activated product is active and available for use or purchase. The default value is true.
      * @type {any}
@@ -12944,7 +12944,7 @@ export interface Product2 {
      * @type {CompanyId}
      * @memberof Product2
      */
-    'company'?: CompanyId;
+    'company': CompanyId;
     /**
      * A number that indicates the version of the product. Each version represents a specific state of the product, such as updated features, prices, or characteristics. The default value is 1.
      * @type {any}
@@ -13022,7 +13022,7 @@ export interface Product2 {
      * @type {any}
      * @memberof Product2
      */
-    'versions'?: any;
+    'versions': any;
     /**
      * Defines the prices per price policy for the product or domain. These policies include configurations for user-specific pricing, associated rules, dynamic price calculations, and fixed price details.
      * @type {any}
@@ -13034,13 +13034,13 @@ export interface Product2 {
      * @type {any}
      * @memberof Product2
      */
-    'createdAt'?: any;
+    'createdAt': any;
     /**
      * The date the product updated.
      * @type {any}
      * @memberof Product2
      */
-    'updatedAt'?: any;
+    'updatedAt': any;
 }
 
 export const Product2BillingMethodEnum = {
@@ -13130,13 +13130,13 @@ export interface ProductCategoryResponseDto {
      * @type {string}
      * @memberof ProductCategoryResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date the product category updated.
      * @type {string}
      * @memberof ProductCategoryResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 /**
  * @type ProductId
@@ -13710,7 +13710,7 @@ export interface ProductRequestDto {
      * @type {boolean}
      * @memberof ProductRequestDto
      */
-    'hasDynamicPrices'?: boolean;
+    'hasDynamicPrices': boolean;
     /**
      * Indicates whether the product is activated. An activated product is active and available for use or purchase. The default value is true.
      * @type {boolean}
@@ -13906,7 +13906,7 @@ export interface ProductResponseDto {
      * @type {boolean}
      * @memberof ProductResponseDto
      */
-    'hasDynamicPrices'?: boolean;
+    'hasDynamicPrices': boolean;
     /**
      * Indicates whether the product is activated. An activated product is active and available for use or purchase. The default value is true.
      * @type {boolean}
@@ -14026,7 +14026,7 @@ export interface ProductResponseDto {
      * @type {CompanyId}
      * @memberof ProductResponseDto
      */
-    'company'?: CompanyId;
+    'company': CompanyId;
     /**
      * A number that indicates the version of the product. Each version represents a specific state of the product, such as updated features, prices, or characteristics. The default value is 1.
      * @type {number}
@@ -14104,7 +14104,7 @@ export interface ProductResponseDto {
      * @type {Array<ProductVersionDto>}
      * @memberof ProductResponseDto
      */
-    'versions'?: Array<ProductVersionDto>;
+    'versions': Array<ProductVersionDto>;
     /**
      * Defines the prices per price policy for the product or domain. These policies include configurations for user-specific pricing, associated rules, dynamic price calculations, and fixed price details.
      * @type {Array<PolicyPricesResponseDto>}
@@ -14116,13 +14116,13 @@ export interface ProductResponseDto {
      * @type {string}
      * @memberof ProductResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date the product updated.
      * @type {string}
      * @memberof ProductResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 
 export const ProductResponseDtoBillingMethodEnum = {
@@ -14328,7 +14328,7 @@ export interface ProductVersionDto {
      * @type {Array<ProductVersionDtoProductInner>}
      * @memberof ProductVersionDto
      */
-    'product'?: Array<ProductVersionDtoProductInner>;
+    'product': Array<ProductVersionDtoProductInner>;
 }
 /**
  * @type ProductVersionDtoProductInner
@@ -14366,31 +14366,31 @@ export interface PublicIntegrationInfoDto {
      * @type {string}
      * @memberof PublicIntegrationInfoDto
      */
-    'logo'?: string;
+    'logo': string;
     /**
      * The description of the integration.
      * @type {string}
      * @memberof PublicIntegrationInfoDto
      */
-    'description'?: string;
+    'description': string;
     /**
      * Supported languages for the integration.
      * @type {Array<string>}
      * @memberof PublicIntegrationInfoDto
      */
-    'supportedLanguages'?: Array<string>;
+    'supportedLanguages': Array<string>;
     /**
      * Roles required for the integration.
      * @type {Array<string>}
      * @memberof PublicIntegrationInfoDto
      */
-    'requiredRoles'?: Array<PublicIntegrationInfoDtoRequiredRolesEnum>;
+    'requiredRoles': Array<PublicIntegrationInfoDtoRequiredRolesEnum>;
     /**
      * The type of notification supported by the integration.
      * @type {string}
      * @memberof PublicIntegrationInfoDto
      */
-    'notificationType'?: PublicIntegrationInfoDtoNotificationTypeEnum;
+    'notificationType': PublicIntegrationInfoDtoNotificationTypeEnum;
 }
 
 export const PublicIntegrationInfoDtoRequiredRolesEnum = {
@@ -14474,7 +14474,7 @@ export interface PushPayloadDto {
      * @type {string}
      * @memberof PushPayloadDto
      */
-    'subtitle'?: string;
+    'subtitle': string;
     /**
      * The content of the push message
      * @type {string}
@@ -14524,7 +14524,7 @@ export interface RefundRequestDto {
      * @type {string}
      * @memberof RefundRequestDto
      */
-    'comment'?: string;
+    'comment': string;
 }
 /**
  * 
@@ -14543,19 +14543,19 @@ export interface RegistryContactsDto {
      * @type {string}
      * @memberof RegistryContactsDto
      */
-    'adminCode'?: string;
+    'adminCode': string;
     /**
      * The unique identifier for the domain\'s technical contact, responsible for technical configuration and support.
      * @type {string}
      * @memberof RegistryContactsDto
      */
-    'techCode'?: string;
+    'techCode': string;
     /**
      * The unique identifier for the domain\'s billing contact, responsible for managing payments and invoices.
      * @type {string}
      * @memberof RegistryContactsDto
      */
-    'billingCode'?: string;
+    'billingCode': string;
 }
 /**
  * @type RenewTemplate
@@ -14913,7 +14913,7 @@ export interface TemplateRequestDto {
      * @type {string}
      * @memberof TemplateRequestDto
      */
-    'title'?: string;
+    'title': string;
     /**
      * The notification type of the template.
      * @type {string}
@@ -15145,7 +15145,7 @@ export interface TemplateResponseDto {
      * @type {string}
      * @memberof TemplateResponseDto
      */
-    'title'?: string;
+    'title': string;
     /**
      * The notification type of the template.
      * @type {string}
@@ -15169,13 +15169,13 @@ export interface TemplateResponseDto {
      * @type {string}
      * @memberof TemplateResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * 
      * @type {Company5}
      * @memberof TemplateResponseDto
      */
-    'company'?: Company5;
+    'company': Company5;
     /**
      * 
      * @type {Integration1}
@@ -15193,19 +15193,19 @@ export interface TemplateResponseDto {
      * @type {boolean}
      * @memberof TemplateResponseDto
      */
-    'deletable'?: boolean;
+    'deletable': boolean;
     /**
      * The date when the template was created.
      * @type {string}
      * @memberof TemplateResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date when the template was updated.
      * @type {string}
      * @memberof TemplateResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 
 export const TemplateResponseDtoNotificationTypeEnum = {
@@ -15553,7 +15553,7 @@ export interface TldRequestDto {
      * @type {boolean}
      * @memberof TldRequestDto
      */
-    'deletesIfDnsZonesAreInactive'?: boolean;
+    'deletesIfDnsZonesAreInactive': boolean;
     /**
      * Indicates whether the EPP code should be sent to the domain owner via email when they request a transfer to a different registrar.
      * @type {boolean}
@@ -15583,7 +15583,7 @@ export interface TldRequestDto {
      * @type {boolean}
      * @memberof TldRequestDto
      */
-    'hasHardQuarantineFee'?: boolean;
+    'hasHardQuarantineFee': boolean;
     /**
      * Indicates whether the TLD can be transferred to a different registrar even after it has expired.
      * @type {boolean}
@@ -16824,7 +16824,7 @@ export interface TldResponseDto {
      * @type {boolean}
      * @memberof TldResponseDto
      */
-    'deletesIfDnsZonesAreInactive'?: boolean;
+    'deletesIfDnsZonesAreInactive': boolean;
     /**
      * Indicates whether the EPP code should be sent to the domain owner via email when they request a transfer to a different registrar.
      * @type {boolean}
@@ -16854,7 +16854,7 @@ export interface TldResponseDto {
      * @type {boolean}
      * @memberof TldResponseDto
      */
-    'hasHardQuarantineFee'?: boolean;
+    'hasHardQuarantineFee': boolean;
     /**
      * Indicates whether the TLD can be transferred to a different registrar even after it has expired.
      * @type {boolean}
@@ -16878,7 +16878,7 @@ export interface TldResponseDto {
      * @type {string}
      * @memberof TldResponseDto
      */
-    'id'?: string;
+    'id': string;
     /**
      * An array representing the categories to which this TLD belongs.
      * @type {Array<TldResponseDtoCategoriesInner>}
@@ -16890,13 +16890,13 @@ export interface TldResponseDto {
      * @type {string}
      * @memberof TldResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date and time when the tld was created.
      * @type {string}
      * @memberof TldResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 
 export const TldResponseDtoRegistrantContactCountryPresenceEnum = {
@@ -19089,13 +19089,13 @@ export interface UserResponseDto {
      * @type {string}
      * @memberof UserResponseDto
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The date the user was last updated.
      * @type {string}
      * @memberof UserResponseDto
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
 }
 
 export const UserResponseDtoInvoiceIntervalEnum = {
@@ -19312,7 +19312,7 @@ export interface UserRolesRequestDto {
      * @type {Array<string>}
      * @memberof UserRolesRequestDto
      */
-    'roles'?: Array<UserRolesRequestDtoRolesEnum>;
+    'roles': Array<UserRolesRequestDtoRolesEnum>;
     /**
      * A unique identifier for user.
      * @type {string}
@@ -19389,7 +19389,7 @@ export interface UserRolesResponseDto {
      * @type {Array<string>}
      * @memberof UserRolesResponseDto
      */
-    'roles'?: Array<UserRolesResponseDtoRolesEnum>;
+    'roles': Array<UserRolesResponseDtoRolesEnum>;
     /**
      * 
      * @type {User}
