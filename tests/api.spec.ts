@@ -7,16 +7,12 @@ import {
   CouponsApi,
   DomainCategoriesApi,
   DomainContactsApi,
-  DomainNamesApi,
-  IPGroupsApi,
-  IPsApi,
   IntegrationsApi,
   InvoiceContactsApi,
   InvoicesApi,
   IssuesApi,
   ItemsApi,
   OrdersApi,
-  PaymentsApi,
   PoliciesApi,
   ProductCategoriesApi,
   ProductsApi,
@@ -66,21 +62,6 @@ describe("ApiClient", () => {
     expect(api).toBeInstanceOf(DomainContactsApi);
   });
 
-  it("should create domain names API", () => {
-    const api = client.domainNames();
-    expect(api).toBeInstanceOf(DomainNamesApi);
-  });
-
-  it("should create IP groups API", () => {
-    const api = client.ipGroups();
-    expect(api).toBeInstanceOf(IPGroupsApi);
-  });
-
-  it("should create IPs API", () => {
-    const api = client.ips();
-    expect(api).toBeInstanceOf(IPsApi);
-  });
-
   it("should create integrations API", () => {
     const api = client.integrations();
     expect(api).toBeInstanceOf(IntegrationsApi);
@@ -109,11 +90,6 @@ describe("ApiClient", () => {
   it("should create orders API", () => {
     const api = client.orders();
     expect(api).toBeInstanceOf(OrdersApi);
-  });
-
-  it("should create payments API", () => {
-    const api = client.payments();
-    expect(api).toBeInstanceOf(PaymentsApi);
   });
 
   it("should create policies API", () => {

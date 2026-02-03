@@ -1,5 +1,5 @@
 import { Configuration } from "./openapi";
-import { AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, DomainNamesApi, IPGroupsApi, IPsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PaymentsApi, PoliciesApi, ProductCategoriesApi, ProductsApi, TemplatesApi, TldsApi, UsersApi } from "./openapi/api";
+import { AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PoliciesApi, ProductCategoriesApi, ProductsApi, TemplatesApi, TldsApi, UsersApi } from "./openapi/api";
 
 // This is the entrypoint for the openapi package
 export * from './openapi/index';
@@ -56,21 +56,6 @@ export class Client {
       return domainContactsApi;
     }
   
-    public domainNames() {
-      const domainNamesApi = new DomainNamesApi(this.configuration);
-      return domainNamesApi;
-    }
-  
-    public ipGroups() {
-      const ipGroupsApi = new IPGroupsApi(this.configuration);
-      return ipGroupsApi;
-    }
-  
-    public ips() {
-      const ipsApi = new IPsApi(this.configuration);
-      return ipsApi;
-    }
-  
     public integrations() {
       const integrationsApi = new IntegrationsApi(this.configuration);
       return integrationsApi;
@@ -99,11 +84,6 @@ export class Client {
     public orders() {
       const ordersApi = new OrdersApi(this.configuration);
       return ordersApi;
-    }
-  
-    public payments() {
-      const paymentsApi = new PaymentsApi(this.configuration);
-      return paymentsApi;
     }
   
     public policies() {
