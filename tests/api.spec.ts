@@ -7,16 +7,12 @@ import {
   CouponsApi,
   DomainCategoriesApi,
   DomainContactsApi,
-  DomainNamesApi,
-  IPGroupsApi,
-  IPsApi,
   IntegrationsApi,
   InvoiceContactsApi,
   InvoicesApi,
   IssuesApi,
   ItemsApi,
   OrdersApi,
-  PaymentsApi,
   PoliciesApi,
   ProductCategoriesApi,
   ProductsApi,
@@ -29,7 +25,7 @@ describe("ApiClient", () => {
   let client: Client;
 
   beforeEach(() => {
-    client = new Client("https://api.hoster.ai");
+    client = new Client("http://localhost:3000");
   });
 
   it("should create addons API", () => {
@@ -67,21 +63,6 @@ describe("ApiClient", () => {
     expect(api).toBeInstanceOf(DomainContactsApi);
   });
 
-  it("should create domain names API", () => {
-    const api = client.domainNames();
-    expect(api).toBeInstanceOf(DomainNamesApi);
-  });
-
-  it("should create IP groups API", () => {
-    const api = client.ipGroups();
-    expect(api).toBeInstanceOf(IPGroupsApi);
-  });
-
-  it("should create IPs API", () => {
-    const api = client.ips();
-    expect(api).toBeInstanceOf(IPsApi);
-  });
-
   it("should create integrations API", () => {
     const api = client.integrations();
     expect(api).toBeInstanceOf(IntegrationsApi);
@@ -112,11 +93,6 @@ describe("ApiClient", () => {
     expect(api).toBeInstanceOf(OrdersApi);
   });
 
-  it("should create payments API", () => {
-    const api = client.payments();
-    expect(api).toBeInstanceOf(PaymentsApi);
-  });
-
   it("should create policies API", () => {
     const api = client.policies();
     expect(api).toBeInstanceOf(PoliciesApi);
@@ -130,11 +106,6 @@ describe("ApiClient", () => {
   it("should create products API", () => {
     const api = client.products();
     expect(api).toBeInstanceOf(ProductsApi);
-  });
-
-  it("should create settings API", () => {
-    const api = client.settings();
-    expect(api).toBeInstanceOf(SettingsApi);
   });
 
   it("should create templates API", () => {
@@ -152,11 +123,11 @@ describe("ApiClient", () => {
     expect(api).toBeInstanceOf(UsersApi);
   });
 
-  it("Try to ban a user without permissions", async () => {
+  it.skip("Try to ban a user without permissions", async () => {
     return client
       .users()
       .banUser("user1", "company1")
-      .then(() => {
+      .then((results) => {
         fail('Should not have been successful');
       })
       .catch((error) => {

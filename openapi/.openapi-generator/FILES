@@ -1,5 +1,8 @@
 .gitignore
+.npmignore
+.openapi-generator-ignore
 api.ts
+<<<<<<< HEAD
 api/addonsApi.ts
 api/affiliatesApi.ts
 api/apis.ts
@@ -183,3 +186,10 @@ model/userDto.ts
 model/userPricePolicyDto.ts
 model/value.ts
 model/xXXMemberDataDto.ts
+=======
+base.ts
+common.ts
+configuration.ts
+git_push.sh
+index.ts
+>>>>>>> develop
