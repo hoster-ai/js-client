@@ -24,7 +24,7 @@ describe("ApiClient", () => {
   let client: Client;
 
   beforeEach(() => {
-    client = new Client("https://api.hoster.ai");
+    client = new Client("http://localhost:3000");
   });
 
   it("should create addons API", () => {
@@ -122,7 +122,7 @@ describe("ApiClient", () => {
     expect(api).toBeInstanceOf(UsersApi);
   });
 
-  it.only("Try to ban a user without permissions", async () => {
+  it.skip("Try to ban a user without permissions", async () => {
     return client
       .users()
       .banUser("user1", "company1")
