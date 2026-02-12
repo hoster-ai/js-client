@@ -17,13 +17,14 @@ export class Client {
           ? "https://api.hoster.ai"
           : "http://localhost:3000";
     }
+
+    this.configuration = new Configuration({
+      basePath: this.basePath,
+    });
   }
 
   public setAccessToken(accessToken: string) {
-    this.configuration = new Configuration({
-      accessToken: accessToken,
-      basePath: this.basePath,
-    });
+    this.configuration!.accessToken = accessToken;
   }
 
   public addons() {
