@@ -23002,19 +23002,15 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Retrieves public information for a single company by its username/URL.
          * @summary Get Company Public Info By Url
-         * @param {string} subdomain 
-         * @param {string} username The username or URL of the company.
+         * @param {string} subdomain The username or URL of the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompanyPublicInfoByUrl: async (subdomain: string, username: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCompanyPublicInfoByUrl: async (subdomain: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'subdomain' is not null or undefined
             assertParamExists('getCompanyPublicInfoByUrl', 'subdomain', subdomain)
-            // verify required parameter 'username' is not null or undefined
-            assertParamExists('getCompanyPublicInfoByUrl', 'username', username)
             const localVarPath = `/companies/{subdomain}/public-data`
-                .replace(`{${"subdomain"}}`, encodeURIComponent(String(subdomain)))
-                .replace(`{${"username"}}`, encodeURIComponent(String(username)));
+                .replace(`{${"subdomain"}}`, encodeURIComponent(String(subdomain)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -23888,13 +23884,12 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
         /**
          * Retrieves public information for a single company by its username/URL.
          * @summary Get Company Public Info By Url
-         * @param {string} subdomain 
-         * @param {string} username The username or URL of the company.
+         * @param {string} subdomain The username or URL of the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCompanyPublicInfoByUrl(subdomain: string, username: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCompanyPublicInfo200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanyPublicInfoByUrl(subdomain, username, options);
+        async getCompanyPublicInfoByUrl(subdomain: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCompanyPublicInfo200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompanyPublicInfoByUrl(subdomain, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getCompanyPublicInfoByUrl']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -24209,13 +24204,12 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
         /**
          * Retrieves public information for a single company by its username/URL.
          * @summary Get Company Public Info By Url
-         * @param {string} subdomain 
-         * @param {string} username The username or URL of the company.
+         * @param {string} subdomain The username or URL of the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompanyPublicInfoByUrl(subdomain: string, username: string, options?: any): AxiosPromise<GetCompanyPublicInfo200Response> {
-            return localVarFp.getCompanyPublicInfoByUrl(subdomain, username, options).then((request) => request(axios, basePath));
+        getCompanyPublicInfoByUrl(subdomain: string, options?: any): AxiosPromise<GetCompanyPublicInfo200Response> {
+            return localVarFp.getCompanyPublicInfoByUrl(subdomain, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves a paginated list of companies. Returns a paginated response with company data.
@@ -24493,14 +24487,13 @@ export class CompaniesApi extends BaseAPI {
     /**
      * Retrieves public information for a single company by its username/URL.
      * @summary Get Company Public Info By Url
-     * @param {string} subdomain 
-     * @param {string} username The username or URL of the company.
+     * @param {string} subdomain The username or URL of the company.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public getCompanyPublicInfoByUrl(subdomain: string, username: string, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).getCompanyPublicInfoByUrl(subdomain, username, options).then((request) => request(this.axios, this.basePath));
+    public getCompanyPublicInfoByUrl(subdomain: string, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).getCompanyPublicInfoByUrl(subdomain, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
