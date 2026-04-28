@@ -2821,7 +2821,7 @@ export interface CompanyPublicInfoDto {
     'defaultLanguage'?: CompanyPublicInfoDtoDefaultLanguageEnum;
     /**
      * An array that specifies all the languages required for translations in multilingual fields. These languages determine the set of translations to be provided for product-related content or other fields that support multiple languages.
-     * @type {Array<number>}
+     * @type {Array<string>}
      * @memberof CompanyPublicInfoDto
      */
     'languages'?: Array<CompanyPublicInfoDtoLanguagesEnum>;
@@ -3269,7 +3269,190 @@ export const CompanyPublicInfoDtoDefaultLanguageEnum = {
 
 export type CompanyPublicInfoDtoDefaultLanguageEnum = typeof CompanyPublicInfoDtoDefaultLanguageEnum[keyof typeof CompanyPublicInfoDtoDefaultLanguageEnum];
 export const CompanyPublicInfoDtoLanguagesEnum = {
-    NUMBER_{ABKHAZIAN=AB, AFAR=AA, AFRIKAANS=AF, AKAN=AK, ALBANIAN=SQ, AMHARIC=AM, ARABIC=AR, ARAGONESE=AN, ARMENIAN=HY, ASSAMESE=AS, AVARIC=AV, AVESTAN=AE, AYMARA=AY, AZERBAIJANI=AZ, BAMBARA=BM, BASHKIR=BA, BASQUE=EU, BELARUSIAN=BE, BENGALI=BN, BISLAMA=BI, BOSNIAN=BS, BRETON=BR, BULGARIAN=BG, BURMESE=MY, CATALAN=CA, CENTRAL_KHMER=KM, CHAMORRO=CH, CHECHEN=CE, CHICHEWA=NY, CHINESE=ZH, CHURCH_SLAVONIC=CU, CHUVASH=CV, CORNISH=KW, CORSICAN=CO, CREE=CR, CROATIAN=HR, CZECH=CS, DANISH=DA, DIVEHI=DV, DUTCH=NL, DZONGKHA=DZ, ENGLISH=EN, ESPERANTO=EO, ESTONIAN=ET, EWE=EE, FAROESE=FO, FIJIAN=FJ, FINNISH=FI, FRENCH=FR, FULAH=FF, GALICIAN=GL, GANDA=LG, GEORGIAN=KA, GERMAN=DE, GREEK=EL, GUARANI=GN, GUJARATI=GU, HAITIAN=HT, HAUSA=HA, HEBREW=HE, HERERO=HZ, HINDI=HI, HIRI_MOTU=HO, HUNGARIAN=HU, ICELANDIC=IS, IDO=IO, IGBO=IG, INDONESIAN=ID, INTERLINGUA=IA, INTERLINGUE=IE, INUKTITUT=IU, INUPIAQ=IK, IRISH=GA, ITALIAN=IT, JAPANESE=JA, JAVANESE=JV, KALAALLISUT=KL, KANNADA=KN, KANURI=KR, KASHMIRI=KS, KAZAKH=KK, KIKUYU=KI, KINYARWANDA=RW, KIRGHIZ=KY, KOMI=KV, KONGO=KG, KOREAN=KO, KUANYAMA=KJ, KURDISH=KU, LAO=LO, LATIN=LA, LATVIAN=LV, LIMBURGAN=LI, LINGALA=LN, LITHUANIAN=LT, LUBA_KATANGA=LU, LUXEMBOURGISH=LB, SKOPJE=MK, MALAGASY=MG, MALAY=MS, MALAYALAM=ML, MALTESE=MT, MANX=GV, MAORI=MI, MARATHI=MR, MARSHALLESE=MH, MONGOLIAN=MN, NAURU=NA, NAVAJO=NV, NDEBELE_NORTH=ND, NDEBELE_SOUTH=NR, NDONGA=NG, NEPALI=NE, NORTHERN_SAMI=SE, NORWEGIAN=NO, NORWEGIAN_BOKMAL=NB, NORWEGIAN_NYNORSK=NN, NUOSU=II, OCCITAN=OC, OJIBWA=OJ, ORIYA=OR, OROMO=OM, OSSETIAN=OS, PALI=PI, PASHTO=PS, PERSIAN=FA, POLISH=PL, PORTUGUESE=PT, PUNJABI=PA, QUECHUA=QU, ROMANIAN=RO, ROMANSH=RM, RUNDI=RN, RUSSIAN=RU, SAMOAN=SM, SANGO=SG, SANSKRIT=SA, SARDINIAN=SC, SCOTTISH_GAELIC=GD, SERBIAN=SR, SHONA=SN, SICHUAN_YI=II, SINDHI=SD, SINHALA=SI, SLOVAK=SK, SLOVENIAN=SL, SOMALI=SO, SOTHO_SOUTHERN=ST, SPANISH=ES, SUNDANESE=SU, SWAHILI=SW, SWATI=SS, SWEDISH=SV, TAGALOG=TL, TAHITIAN=TY, TAJIK=TG, TAMIL=TA, TATAR=TT, TELUGU=TE, THAI=TH, TIBETAN=BO, TIGRINYA=TI, TONGA=TO, TSONGA=TS, TSWANA=TN, TURKISH=TR, TURKMEN=TK, TWI=TW, UIGHUR=UG, UKRAINIAN=UK, URDU=UR, UZBEK=UZ, VENDA=VE, VIETNAMESE=VI, VOLAPUK=VO, WALLOON=WA, WELSH=CY, WESTERN_FRISIAN=FY, WOLOF=WO, XHOSA=XH, YIDDISH=YI, YORUBA=YO, ZHUANG=ZA, ZULU=ZU}: {ABKHAZIAN=AB, AFAR=AA, AFRIKAANS=AF, AKAN=AK, ALBANIAN=SQ, AMHARIC=AM, ARABIC=AR, ARAGONESE=AN, ARMENIAN=HY, ASSAMESE=AS, AVARIC=AV, AVESTAN=AE, AYMARA=AY, AZERBAIJANI=AZ, BAMBARA=BM, BASHKIR=BA, BASQUE=EU, BELARUSIAN=BE, BENGALI=BN, BISLAMA=BI, BOSNIAN=BS, BRETON=BR, BULGARIAN=BG, BURMESE=MY, CATALAN=CA, CENTRAL_KHMER=KM, CHAMORRO=CH, CHECHEN=CE, CHICHEWA=NY, CHINESE=ZH, CHURCH_SLAVONIC=CU, CHUVASH=CV, CORNISH=KW, CORSICAN=CO, CREE=CR, CROATIAN=HR, CZECH=CS, DANISH=DA, DIVEHI=DV, DUTCH=NL, DZONGKHA=DZ, ENGLISH=EN, ESPERANTO=EO, ESTONIAN=ET, EWE=EE, FAROESE=FO, FIJIAN=FJ, FINNISH=FI, FRENCH=FR, FULAH=FF, GALICIAN=GL, GANDA=LG, GEORGIAN=KA, GERMAN=DE, GREEK=EL, GUARANI=GN, GUJARATI=GU, HAITIAN=HT, HAUSA=HA, HEBREW=HE, HERERO=HZ, HINDI=HI, HIRI_MOTU=HO, HUNGARIAN=HU, ICELANDIC=IS, IDO=IO, IGBO=IG, INDONESIAN=ID, INTERLINGUA=IA, INTERLINGUE=IE, INUKTITUT=IU, INUPIAQ=IK, IRISH=GA, ITALIAN=IT, JAPANESE=JA, JAVANESE=JV, KALAALLISUT=KL, KANNADA=KN, KANURI=KR, KASHMIRI=KS, KAZAKH=KK, KIKUYU=KI, KINYARWANDA=RW, KIRGHIZ=KY, KOMI=KV, KONGO=KG, KOREAN=KO, KUANYAMA=KJ, KURDISH=KU, LAO=LO, LATIN=LA, LATVIAN=LV, LIMBURGAN=LI, LINGALA=LN, LITHUANIAN=LT, LUBA_KATANGA=LU, LUXEMBOURGISH=LB, SKOPJE=MK, MALAGASY=MG, MALAY=MS, MALAYALAM=ML, MALTESE=MT, MANX=GV, MAORI=MI, MARATHI=MR, MARSHALLESE=MH, MONGOLIAN=MN, NAURU=NA, NAVAJO=NV, NDEBELE_NORTH=ND, NDEBELE_SOUTH=NR, NDONGA=NG, NEPALI=NE, NORTHERN_SAMI=SE, NORWEGIAN=NO, NORWEGIAN_BOKMAL=NB, NORWEGIAN_NYNORSK=NN, NUOSU=II, OCCITAN=OC, OJIBWA=OJ, ORIYA=OR, OROMO=OM, OSSETIAN=OS, PALI=PI, PASHTO=PS, PERSIAN=FA, POLISH=PL, PORTUGUESE=PT, PUNJABI=PA, QUECHUA=QU, ROMANIAN=RO, ROMANSH=RM, RUNDI=RN, RUSSIAN=RU, SAMOAN=SM, SANGO=SG, SANSKRIT=SA, SARDINIAN=SC, SCOTTISH_GAELIC=GD, SERBIAN=SR, SHONA=SN, SICHUAN_YI=II, SINDHI=SD, SINHALA=SI, SLOVAK=SK, SLOVENIAN=SL, SOMALI=SO, SOTHO_SOUTHERN=ST, SPANISH=ES, SUNDANESE=SU, SWAHILI=SW, SWATI=SS, SWEDISH=SV, TAGALOG=TL, TAHITIAN=TY, TAJIK=TG, TAMIL=TA, TATAR=TT, TELUGU=TE, THAI=TH, TIBETAN=BO, TIGRINYA=TI, TONGA=TO, TSONGA=TS, TSWANA=TN, TURKISH=TR, TURKMEN=TK, TWI=TW, UIGHUR=UG, UKRAINIAN=UK, URDU=UR, UZBEK=UZ, VENDA=VE, VIETNAMESE=VI, VOLAPUK=VO, WALLOON=WA, WELSH=CY, WESTERN_FRISIAN=FY, WOLOF=WO, XHOSA=XH, YIDDISH=YI, YORUBA=YO, ZHUANG=ZA, ZULU=ZU}
+    AB: 'AB',
+    AA: 'AA',
+    AF: 'AF',
+    AK: 'AK',
+    SQ: 'SQ',
+    AM: 'AM',
+    AR: 'AR',
+    AN: 'AN',
+    HY: 'HY',
+    AS: 'AS',
+    AV: 'AV',
+    AE: 'AE',
+    AY: 'AY',
+    AZ: 'AZ',
+    BM: 'BM',
+    BA: 'BA',
+    EU: 'EU',
+    BE: 'BE',
+    BN: 'BN',
+    BI: 'BI',
+    BS: 'BS',
+    BR: 'BR',
+    BG: 'BG',
+    MY: 'MY',
+    CA: 'CA',
+    KM: 'KM',
+    CH: 'CH',
+    CE: 'CE',
+    NY: 'NY',
+    ZH: 'ZH',
+    CU: 'CU',
+    CV: 'CV',
+    KW: 'KW',
+    CO: 'CO',
+    CR: 'CR',
+    HR: 'HR',
+    CS: 'CS',
+    DA: 'DA',
+    DV: 'DV',
+    NL: 'NL',
+    DZ: 'DZ',
+    EN: 'EN',
+    EO: 'EO',
+    ET: 'ET',
+    EE: 'EE',
+    FO: 'FO',
+    FJ: 'FJ',
+    FI: 'FI',
+    FR: 'FR',
+    FF: 'FF',
+    GL: 'GL',
+    LG: 'LG',
+    KA: 'KA',
+    DE: 'DE',
+    EL: 'EL',
+    GN: 'GN',
+    GU: 'GU',
+    HT: 'HT',
+    HA: 'HA',
+    HE: 'HE',
+    HZ: 'HZ',
+    HI: 'HI',
+    HO: 'HO',
+    HU: 'HU',
+    IS: 'IS',
+    IO: 'IO',
+    IG: 'IG',
+    ID: 'ID',
+    IA: 'IA',
+    IE: 'IE',
+    IU: 'IU',
+    IK: 'IK',
+    GA: 'GA',
+    IT: 'IT',
+    JA: 'JA',
+    JV: 'JV',
+    KL: 'KL',
+    KN: 'KN',
+    KR: 'KR',
+    KS: 'KS',
+    KK: 'KK',
+    KI: 'KI',
+    RW: 'RW',
+    KY: 'KY',
+    KV: 'KV',
+    KG: 'KG',
+    KO: 'KO',
+    KJ: 'KJ',
+    KU: 'KU',
+    LO: 'LO',
+    LA: 'LA',
+    LV: 'LV',
+    LI: 'LI',
+    LN: 'LN',
+    LT: 'LT',
+    LU: 'LU',
+    LB: 'LB',
+    MK: 'MK',
+    MG: 'MG',
+    MS: 'MS',
+    ML: 'ML',
+    MT: 'MT',
+    GV: 'GV',
+    MI: 'MI',
+    MR: 'MR',
+    MH: 'MH',
+    MN: 'MN',
+    NA: 'NA',
+    NV: 'NV',
+    ND: 'ND',
+    NR: 'NR',
+    NG: 'NG',
+    NE: 'NE',
+    SE: 'SE',
+    NO: 'NO',
+    NB: 'NB',
+    NN: 'NN',
+    II: 'II',
+    OC: 'OC',
+    OJ: 'OJ',
+    OR: 'OR',
+    OM: 'OM',
+    OS: 'OS',
+    PI: 'PI',
+    PS: 'PS',
+    FA: 'FA',
+    PL: 'PL',
+    PT: 'PT',
+    PA: 'PA',
+    QU: 'QU',
+    RO: 'RO',
+    RM: 'RM',
+    RN: 'RN',
+    RU: 'RU',
+    SM: 'SM',
+    SG: 'SG',
+    SA: 'SA',
+    SC: 'SC',
+    GD: 'GD',
+    SR: 'SR',
+    SN: 'SN',
+    II2: 'II',
+    SD: 'SD',
+    SI: 'SI',
+    SK: 'SK',
+    SL: 'SL',
+    SO: 'SO',
+    ST: 'ST',
+    ES: 'ES',
+    SU: 'SU',
+    SW: 'SW',
+    SS: 'SS',
+    SV: 'SV',
+    TL: 'TL',
+    TY: 'TY',
+    TG: 'TG',
+    TA: 'TA',
+    TT: 'TT',
+    TE: 'TE',
+    TH: 'TH',
+    BO: 'BO',
+    TI: 'TI',
+    TO: 'TO',
+    TS: 'TS',
+    TN: 'TN',
+    TR: 'TR',
+    TK: 'TK',
+    TW: 'TW',
+    UG: 'UG',
+    UK: 'UK',
+    UR: 'UR',
+    UZ: 'UZ',
+    VE: 'VE',
+    VI: 'VI',
+    VO: 'VO',
+    WA: 'WA',
+    CY: 'CY',
+    FY: 'FY',
+    WO: 'WO',
+    XH: 'XH',
+    YI: 'YI',
+    YO: 'YO',
+    ZA: 'ZA',
+    ZU: 'ZU'
 } as const;
 
 export type CompanyPublicInfoDtoLanguagesEnum = typeof CompanyPublicInfoDtoLanguagesEnum[keyof typeof CompanyPublicInfoDtoLanguagesEnum];
@@ -6518,13 +6701,6 @@ export const EuBeAdditionalDataDtoCountryOfCitizenshipEnum = {
 } as const;
 
 export type EuBeAdditionalDataDtoCountryOfCitizenshipEnum = typeof EuBeAdditionalDataDtoCountryOfCitizenshipEnum[keyof typeof EuBeAdditionalDataDtoCountryOfCitizenshipEnum];
-
-/**
- * @type ExpenseCategoryRef
- * Either a populated ExpenseCategoryResponseDto or its id string.
- * @export
- */
-export type ExpenseCategoryRef = ExpenseCategoryResponseDto | string;
 
 /**
  * 
@@ -15026,15 +15202,34 @@ export interface RefreshSecret200Response {
 /**
  * 
  * @export
+ * @interface RefundItemDto
+ */
+export interface RefundItemDto {
+    /**
+     * The ID of the item to be refunded.
+     * @type {string}
+     * @memberof RefundItemDto
+     */
+    'item': string;
+    /**
+     * The price to be refunded.
+     * @type {number}
+     * @memberof RefundItemDto
+     */
+    'price': number;
+}
+/**
+ * 
+ * @export
  * @interface RefundRequestDto
  */
 export interface RefundRequestDto {
     /**
      * An array of items and prices to be refunded.
-     * @type {Array<Array<A>>}
+     * @type {Array<RefundItemDto>}
      * @memberof RefundRequestDto
      */
-    'refundItems': Array<Array<A>>;
+    'refundItems': Array<RefundItemDto>;
     /**
      * A comment to be added to the refund request.
      * @type {string}

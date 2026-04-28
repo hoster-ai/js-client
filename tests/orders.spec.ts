@@ -7,7 +7,7 @@ describe("Orders API", () => {
 
   beforeEach(() => {
     client = new Client("http://localhost:3000");
-    ordersApi = client.orders();
+    ordersApi = client.admin.orders;
   });
 
   describe("API Instance", () => {
@@ -17,13 +17,13 @@ describe("Orders API", () => {
 
     it("should create orders API with access token", () => {
       client.setAccessToken("test-token");
-      const api = client.orders();
+      const api = client.admin.orders;
       expect(api).toBeInstanceOf(OrdersApi);
     });
 
     it("should return same OrdersApi type from multiple calls", () => {
-      const api1 = client.orders();
-      const api2 = client.orders();
+      const api1 = client.admin.orders;
+      const api2 = client.admin.orders;
       expect(api1).toBeInstanceOf(OrdersApi);
       expect(api2).toBeInstanceOf(OrdersApi);
     });
@@ -159,7 +159,7 @@ describe("Orders API", () => {
 
     it.skip("should process item refund", async () => {
       const refundData: RefundRequestDto = {
-        refundItems: [["item-123", "10.00"]],
+        refundItems: [{ item: "item-123", price: 10.0 }],
         comment: "Customer request"
       };
 

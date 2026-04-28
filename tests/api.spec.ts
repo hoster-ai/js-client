@@ -1,7 +1,6 @@
 import { Client } from "../client";
 import {
   AddonsApi,
-  AffiliatesApi,
   TemplatesApi,
   CompaniesApi,
   CouponsApi,
@@ -13,7 +12,7 @@ import {
   IssuesApi,
   ItemsApi,
   OrdersApi,
-  PoliciesApi,
+  PricePolicyApi,
   ProductCategoriesApi,
   ProductsApi,
   TldsApi,
@@ -28,103 +27,92 @@ describe("ApiClient", () => {
   });
 
   it("should create addons API", () => {
-    const api = client.addons();
+    const api = client.admin.addons;
     expect(api).toBeInstanceOf(AddonsApi);
   });
 
-  it("should create affiliates API", () => {
-    const api = client.affiliates();
-    expect(api).toBeInstanceOf(AffiliatesApi);
-  });
-
   it("should create templates API", () => {
-    const api = client.templates();
+    const api = client.admin.templates;
     expect(api).toBeInstanceOf(TemplatesApi);
   });
 
   it("should create companies API", () => {
-    const api = client.companies();
+    const api = client.admin.companies;
     expect(api).toBeInstanceOf(CompaniesApi);
   });
 
   it("should create coupons API", () => {
-    const api = client.coupons();
+    const api = client.admin.coupons;
     expect(api).toBeInstanceOf(CouponsApi);
   });
 
   it("should create domain categories API", () => {
-    const api = client.domainCategories();
+    const api = client.admin.domainCategories;
     expect(api).toBeInstanceOf(DomainCategoriesApi);
   });
 
   it("should create domain contacts API", () => {
-    const api = client.domainContacts();
+    const api = client.admin.domainContacts;
     expect(api).toBeInstanceOf(DomainContactsApi);
   });
 
   it("should create integrations API", () => {
-    const api = client.integrations();
+    const api = client.admin.integrations;
     expect(api).toBeInstanceOf(IntegrationsApi);
   });
 
   it("should create invoice contacts API", () => {
-    const api = client.invoiceContacts();
+    const api = client.admin.invoiceContacts;
     expect(api).toBeInstanceOf(InvoiceContactsApi);
   });
 
   it("should create invoices API", () => {
-    const api = client.invoices();
+    const api = client.admin.invoices;
     expect(api).toBeInstanceOf(InvoicesApi);
   });
 
   it("should create issues API", () => {
-    const api = client.issues();
+    const api = client.admin.issues;
     expect(api).toBeInstanceOf(IssuesApi);
   });
 
   it("should create items API", () => {
-    const api = client.items();
+    const api = client.admin.items;
     expect(api).toBeInstanceOf(ItemsApi);
   });
 
   it("should create orders API", () => {
-    const api = client.orders();
+    const api = client.admin.orders;
     expect(api).toBeInstanceOf(OrdersApi);
   });
 
-  it("should create policies API", () => {
-    const api = client.policies();
-    expect(api).toBeInstanceOf(PoliciesApi);
+  it("should create price policy API", () => {
+    const api = client.admin.pricePolicy;
+    expect(api).toBeInstanceOf(PricePolicyApi);
   });
 
   it("should create product categories API", () => {
-    const api = client.productCategories();
+    const api = client.admin.productCategories;
     expect(api).toBeInstanceOf(ProductCategoriesApi);
   });
 
   it("should create products API", () => {
-    const api = client.products();
+    const api = client.admin.products;
     expect(api).toBeInstanceOf(ProductsApi);
   });
 
-  it("should create templates API", () => {
-    const api = client.templates();
-    expect(api).toBeInstanceOf(TemplatesApi);
-  });
-
   it("should create TLDs API", () => {
-    const api = client.tlds();
+    const api = client.admin.tlds;
     expect(api).toBeInstanceOf(TldsApi);
   });
 
   it("should create users API", () => {
-    const api = client.users();
+    const api = client.admin.users;
     expect(api).toBeInstanceOf(UsersApi);
   });
 
   it.skip("Try to ban a user without permissions", async () => {
-    return client
-      .users()
+    return client.admin.users
       .banUser("user1", "company1")
       .then((results) => {
         fail('Should not have been successful');
