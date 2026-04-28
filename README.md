@@ -36,7 +36,7 @@ import { Client } from '@hosterai/js-client';
 Then, create a new instance of the client:
 
 ```js
-const client = new Client('https://api.hoster.ai');
+const api = new Client('https://api.hoster.ai');
 ```
 
 If you're running in a development environment, you can omit the URL and the client will default to `http://localhost:3000`.
@@ -44,18 +44,31 @@ If you're running in a development environment, you can omit the URL and the cli
 To authenticate, use the `setAccessToken` method:
 
 ```js
-client.setAccessToken('your access token');
+api.setAccessToken('your access token');
 ```
 
-Then, you can use the client to interact with the API. For example, to get a list of addons:
+Then, you can use the client to interact with the API. The client exposes two namespaces:
+
+- `api.admin.*` — admin/back-office APIs (companies, products, items, invoices, …)
+- `api.client.*` — APIs scoped to the authenticated end-user (client panel)
+
+Each namespace exposes the underlying APIs as **lazy getters** (no parentheses). All APIs share a single `Configuration`, so `api.setAccessToken()` propagates to every API automatically.
+
+Examples:
 
 ```js
-const addons = await client.addons().getAddon("id","testConmany");
+// admin namespace
+const addon = await api.admin.addons.getAddon("addonId", "companyId");
+
+// client namespace (logged-in user perspective)
+const myItems = await api.client.items.getClientItem("itemId");
 ```
 
 ## API Documentation
 
-The client provides methods for interacting with all parts of the Hoster.AI API. Below is a detailed description of each API category:
+The client provides methods for interacting with all parts of the Hoster.AI API. Below is a detailed description of each API category, grouped by namespace.
+
+## Admin namespace (`api.admin.*`)
 
 ### Addons
 
@@ -69,22 +82,7 @@ Methods for managing add-ons.
 
 Example:
 ```js
-const addon = await client.addons().getAddon("addonId", "companyId");
-```
-
-### Affiliates
-
-Methods for managing affiliates.
-
-- `createAffiliate(companyId: string, affiliateRequestDto: AffiliateRequestDto)`: Creates a new affiliate.
-- `deleteAffiliate(companyId: string, id: string)`: Deletes an affiliate.
-- `getAffiliate(companyId: string, id: string)`: Retrieves a specific affiliate by ID.
-- `getAffiliates(companyId: string, productId?: string, currentPage?: number, perPage?: number)`: Lists all affiliates with optional filtering and pagination.
-- `updateAffiliate(companyId: string, id: string, affiliateRequestDto: AffiliateRequestDto)`: Updates an existing affiliate.
-
-Example:
-```js
-const affiliates = await client.affiliates().getAffiliates("companyId");
+const addon = await api.admin.addons.getAddon("addonId", "companyId");
 ```
 
 ### Companies
@@ -113,7 +111,7 @@ Methods for managing companies.
 
 Example:
 ```js
-const company = await client.companies().getCompany("companyId");
+const company = await api.admin.companies.getCompany("companyId");
 ```
 
 ### Coupons
@@ -128,7 +126,7 @@ Methods for managing coupons.
 
 Example:
 ```js
-const coupon = await client.coupons().getCoupon("couponId", "companyId");
+const coupon = await api.admin.coupons.getCoupon("couponId", "companyId");
 ```
 
 ### Domain Categories
@@ -143,7 +141,7 @@ Methods for managing domain categories.
 
 Example:
 ```js
-const categories = await client.domainCategories().getDomainCategories("companyId");
+const categories = await api.admin.domainCategories.getDomainCategories("companyId");
 ```
 
 ### Domain Contacts
@@ -169,9 +167,24 @@ Methods for managing domain contacts.
 
 Example:
 ```js
-const contact = await client.domainContacts().getDomainContact("contactId", "companyId");
+const contact = await api.admin.domainContacts.getDomainContact("contactId", "companyId");
 ```
 
+
+### Group Roles
+
+Methods for managing group roles.
+
+- `createGroupRole(...)`: Creates a new group role.
+- `deleteGroupRole(id: string, ...)`: Deletes a group role.
+- `getGroupRole(id: string, ...)`: Retrieves a specific group role by ID.
+- `getGroupRoles(...)`: Lists all group roles.
+- `updateGroupRole(id: string, ...)`: Updates an existing group role.
+
+Example:
+```js
+const roles = await api.admin.groupRoles.getGroupRoles();
+```
 
 ### Integrations
 
@@ -197,7 +210,7 @@ Methods for managing integrations.
 
 Example:
 ```js
-const integrations = await client.integrations().getIntegrations();
+const integrations = await api.admin.integrations.getIntegrations();
 ```
 
 ### Invoice Contacts
@@ -212,7 +225,7 @@ Methods for managing invoice contacts.
 
 Example:
 ```js
-const invoiceContacts = await client.invoiceContacts().getInvoiceContacts("companyId");
+const invoiceContacts = await api.admin.invoiceContacts.getInvoiceContacts("companyId");
 ```
 
 ### Invoices
@@ -227,7 +240,7 @@ Methods for managing invoices.
 
 Example:
 ```js
-const invoice = await client.invoices().getInvoice("invoiceId");
+const invoice = await api.admin.invoices.getInvoice("invoiceId");
 ```
 
 ### Issues
@@ -243,7 +256,7 @@ Methods for managing issues.
 
 Example:
 ```js
-const issues = await client.issues().getIssues("companyId");
+const issues = await api.admin.issues.getIssues("companyId");
 ```
 
 ### Items
@@ -272,7 +285,7 @@ Methods for managing items.
 
 Example:
 ```js
-const item = await client.items().getItem("companyId", "itemId");
+const item = await api.admin.items.getItem("companyId", "itemId");
 ```
 
 ### Orders
@@ -292,22 +305,22 @@ Methods for managing orders.
 
 Example:
 ```js
-const order = await client.orders().orderControllerGetOrder("companyId", "orderId");
+const order = await api.admin.orders.orderControllerGetOrder("companyId", "orderId");
 ```
 
-### Policies
+### Price Policy
 
-Methods for managing policies.
+Methods for managing price policies. Exposed as `api.admin.pricePolicy` (backed by `PricePolicyApi`).
 
-- `createPolicy(companyId: string, ...)`: Creates a new policy.
-- `deletePolicy(id: string, ...)`: Deletes a policy.
-- `getPolicies(companyId: string, ...)`: Lists all policies.
-- `getPolicy(id: string, ...)`: Retrieves a specific policy by ID.
-- `updatePolicy(companyId: string, id: string, ...)`: Updates an existing policy.
+- `createPolicy(companyId: string, ...)`: Creates a new price policy.
+- `deletePolicy(id: string, ...)`: Deletes a price policy.
+- `getPolicies(companyId: string, ...)`: Lists all price policies.
+- `getPolicy(id: string, ...)`: Retrieves a specific price policy by ID.
+- `updatePolicy(companyId: string, id: string, ...)`: Updates an existing price policy.
 
 Example:
 ```js
-const policies = await client.policies().getPolicies("companyId");
+const policies = await api.admin.pricePolicy.getPolicies("companyId");
 ```
 
 ### Product Categories
@@ -322,7 +335,7 @@ Methods for managing product categories.
 
 Example:
 ```js
-const categories = await client.productCategories().getProductCategories("companyId");
+const categories = await api.admin.productCategories.getProductCategories("companyId");
 ```
 
 ### Products
@@ -341,7 +354,7 @@ Methods for managing products.
 
 Example:
 ```js
-const products = await client.products().getProducts("companyId");
+const products = await api.admin.products.getProducts("companyId");
 ```
 
 ### Templates
@@ -356,7 +369,7 @@ Methods for managing templates.
 
 Example:
 ```js
-const templates = await client.templates().getTemplates("companyId");
+const templates = await api.admin.templates.getTemplates("companyId");
 ```
 
 ### TLDs
@@ -371,7 +384,20 @@ Methods for managing Top-Level Domains (TLDs).
 
 Example:
 ```js
-const tld = await client.tlds().getTld("companyId", "tldId");
+const tld = await api.admin.tlds.getTld("companyId", "tldId");
+```
+
+### Transactions
+
+Methods for managing transactions.
+
+- `createTransaction(...)`: Initiates a transaction and returns a redirect URL for processing.
+- `getTransaction(id: string, ...)`: Retrieves a specific transaction by ID.
+- `getTransactions(...)`: Lists transactions.
+
+Example:
+```js
+const tx = await api.admin.transactions.getTransaction("transactionId");
 ```
 
 ### Users
@@ -403,8 +429,46 @@ Methods for managing users.
 
 Example:
 ```js
-const users = await client.users().getUsers("companyId");
+const users = await api.admin.users.getUsers("companyId");
 ```
+
+## Client namespace (`api.client.*`)
+
+APIs scoped to the authenticated end-user (client panel). These wrap the `Client*Api` classes from the OpenAPI schema.
+
+### Client Invoice Contacts
+
+Manage invoice contacts of the authenticated user.
+
+```js
+const contacts = await api.client.invoiceContacts.getClientInvoiceContacts();
+```
+
+### Client Items
+
+Retrieve items belonging to the authenticated user.
+
+```js
+const item = await api.client.items.getClientItem("itemId");
+```
+
+### Client Orders
+
+Create and manage orders for the authenticated user.
+
+```js
+const order = await api.client.orders.createClientOrder({ /* OrderRequestDto */ });
+```
+
+### Client Users
+
+Manage profile-related operations for the authenticated user (additional notification emails, etc.).
+
+```js
+await api.client.users.addClientAdditionalNotificationEmail("extra@example.com");
+```
+
+---
 
 Each of these methods returns a Promise that resolves with the requested data or rejects with an error if the request fails.
 
