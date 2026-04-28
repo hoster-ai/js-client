@@ -5,8 +5,8 @@
   "main": "dist/client.js",
   "scripts": {
     "test": "jest",
-    "openapi:generate:dev": "rm -rf openapi && openapi-generator-cli generate -i http://localhost:3000/api-json -g typescript-axios -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
-    "openapi:generate:production": "rm -rf openapi && openapi-generator-cli generate -i https://api.hoster.ai/api-json -g typescript-axios -o ./openapi --skip-validate-spec --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
+    "openapi:generate:dev": "rm -rf openapi && openapi-generator-cli generate -i http://localhost:3000/api-json -g typescript-axios -o ./openapi --skip-validate-spec --additional-properties=enumPropertyNaming=original --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
+    "openapi:generate:production": "rm -rf openapi && openapi-generator-cli generate -i https://api.hoster.ai/api-json -g typescript-axios -o ./openapi --skip-validate-spec --additional-properties=enumPropertyNaming=original --global-property='modelTests=false,modelDocs=false,apiTests=false,apiDocs=false,openAPIGeneratorIgnoreFile=false,ignoreFileOverride=openapi/.openapi-generator-ignore'",
     "publish": "npm publish --access public",
     "build": "tsc"
   },

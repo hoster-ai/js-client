@@ -1,5 +1,5 @@
 import { Configuration } from "./openapi";
-import { AddonsApi, AffiliatesApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PoliciesApi, ProductCategoriesApi, ProductsApi, TemplatesApi, TldsApi, UsersApi } from "./openapi/api";
+import { AddonsApi, CompaniesApi, CouponsApi, DomainCategoriesApi, DomainContactsApi, IntegrationsApi, InvoiceContactsApi, InvoicesApi, IssuesApi, ItemsApi, OrdersApi, PoliciesApi, ProductCategoriesApi, ProductsApi, TemplatesApi, TldsApi, UsersApi } from "./openapi/api";
 
 // This is the entrypoint for the openapi package
 export * from './openapi/index';
@@ -30,11 +30,6 @@ export class Client {
   public addons() {
     const addonsApi = new AddonsApi(this.configuration);
     return addonsApi;
-  }
-
-  public affiliates() {
-    const affiliatesApi = new AffiliatesApi(this.configuration);
-    return affiliatesApi;
   }
 
   public companies() {
