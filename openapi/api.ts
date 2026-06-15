@@ -235,6 +235,37 @@ export interface AddonPriceDto {
     'price': number;
 }
 /**
+ * 
+ * @export
+ * @interface AddonPriceInfoDto
+ */
+export interface AddonPriceInfoDto {
+    /**
+     * The unique identifier of the addon.
+     * @type {string}
+     * @memberof AddonPriceInfoDto
+     */
+    'addonId': string;
+    /**
+     * The unique identifier of the addon option.
+     * @type {string}
+     * @memberof AddonPriceInfoDto
+     */
+    'optionId': string;
+    /**
+     * The price value of the addon option.
+     * @type {number}
+     * @memberof AddonPriceInfoDto
+     */
+    'price': number;
+    /**
+     * The fee associated with the addon option.
+     * @type {number}
+     * @memberof AddonPriceInfoDto
+     */
+    'fee': number;
+}
+/**
  * @type AddonRef
  * Either a populated AddonResponseDto or its id string.
  * @export
@@ -1104,6 +1135,88 @@ export type BundledWithItem = ItemResponseDto | string;
 /**
  * 
  * @export
+ * @interface CalculatedProductPriceDto
+ */
+export interface CalculatedProductPriceDto {
+    /**
+     * The unique identifier of the price policy used for this calculated price.
+     * @type {string}
+     * @memberof CalculatedProductPriceDto
+     */
+    'pricePolicy'?: string;
+    /**
+     * The billing duration for which prices were calculated.
+     * @type {string}
+     * @memberof CalculatedProductPriceDto
+     */
+    'duration': CalculatedProductPriceDtoDurationEnum;
+    /**
+     * The calculated base price for the given duration.
+     * @type {number}
+     * @memberof CalculatedProductPriceDto
+     */
+    'basePrice': number;
+    /**
+     * The calculated setup fee for the given duration.
+     * @type {number}
+     * @memberof CalculatedProductPriceDto
+     */
+    'setupFee': number;
+    /**
+     * The calculated subtotal (base price + setup fee) for the given duration.
+     * @type {number}
+     * @memberof CalculatedProductPriceDto
+     */
+    'subtotal': number;
+    /**
+     * The calculated offer price, when applicable.
+     * @type {number}
+     * @memberof CalculatedProductPriceDto
+     */
+    'offerPrice'?: number;
+    /**
+     * The calculated offer fee, when applicable.
+     * @type {number}
+     * @memberof CalculatedProductPriceDto
+     */
+    'offerFee'?: number;
+    /**
+     * The addon option prices when withAddons is requested.
+     * @type {Array<AddonPriceInfoDto>}
+     * @memberof CalculatedProductPriceDto
+     */
+    'addons'?: Array<AddonPriceInfoDto>;
+}
+
+export const CalculatedProductPriceDtoDurationEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3',
+    _4: '4',
+    _5: '5',
+    _6: '6',
+    _7: '7',
+    _8: '8',
+    _9: '9',
+    _10: '10',
+    _11: '11',
+    _12: '12',
+    _24: '24',
+    _36: '36',
+    _48: '48',
+    _60: '60',
+    _72: '72',
+    _84: '84',
+    _96: '96',
+    _108: '108',
+    _120: '120'
+} as const;
+
+export type CalculatedProductPriceDtoDurationEnum = typeof CalculatedProductPriceDtoDurationEnum[keyof typeof CalculatedProductPriceDtoDurationEnum];
+
+/**
+ * 
+ * @export
  * @interface CatAdditionalDataDto
  */
 export interface CatAdditionalDataDto {
@@ -1635,12 +1748,6 @@ export interface CompanyCreateRequestDto {
      * @memberof CompanyCreateRequestDto
      */
     'locked': boolean;
-    /**
-     * When enabled, refund requests may be automatically approved based on business rules.
-     * @type {boolean}
-     * @memberof CompanyCreateRequestDto
-     */
-    'automaticRefunds'?: boolean;
     /**
      * An internal comment associated with the company, not visible to the company owner. This field is optional.
      * @type {string}
@@ -3849,12 +3956,6 @@ export interface CompanyResponseDto {
      * @memberof CompanyResponseDto
      */
     'locked': boolean;
-    /**
-     * When enabled, refund requests may be automatically approved based on business rules.
-     * @type {boolean}
-     * @memberof CompanyResponseDto
-     */
-    'automaticRefunds'?: boolean;
     /**
      * An internal comment associated with the company, not visible to the company owner. This field is optional.
      * @type {string}
@@ -8767,6 +8868,31 @@ export interface GetProduct200Response {
 /**
  * 
  * @export
+ * @interface GetProductCalculatedPrices200Response
+ */
+export interface GetProductCalculatedPrices200Response {
+    /**
+     * The HTTP status code indicating the result of the operation.
+     * @type {any}
+     * @memberof GetProductCalculatedPrices200Response
+     */
+    'code': any;
+    /**
+     * A human-readable message providing more details about the response.
+     * @type {any}
+     * @memberof GetProductCalculatedPrices200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<CalculatedProductPriceDto>}
+     * @memberof GetProductCalculatedPrices200Response
+     */
+    'data': Array<CalculatedProductPriceDto>;
+}
+/**
+ * 
+ * @export
  * @interface GetProductResponseDto
  */
 export interface GetProductResponseDto {
@@ -11663,6 +11789,19 @@ export type ItAdditionalDataDtoEntityTypeEnum = typeof ItAdditionalDataDtoEntity
 /**
  * 
  * @export
+ * @interface ItemAttachToBundleRequest
+ */
+export interface ItemAttachToBundleRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemAttachToBundleRequest
+     */
+    'parentItemId'?: string;
+}
+/**
+ * 
+ * @export
  * @interface ItemClientResponseDto
  */
 export interface ItemClientResponseDto {
@@ -11882,18 +12021,6 @@ export interface ItemClientResponseDto {
      * @memberof ItemClientResponseDto
      */
     'postponedDates'?: Array<string>;
-    /**
-     * Indicates whether a refund has been requested for this item.
-     * @type {boolean}
-     * @memberof ItemClientResponseDto
-     */
-    'refundRequested'?: boolean;
-    /**
-     * The refund amount requested for this item.
-     * @type {number}
-     * @memberof ItemClientResponseDto
-     */
-    'refundValueRequested'?: number;
     /**
      * The date the item created.
      * @type {string}
@@ -12283,18 +12410,6 @@ export interface ItemResponseDto {
      * @memberof ItemResponseDto
      */
     'postponedDates'?: Array<string>;
-    /**
-     * Indicates whether a refund has been requested for this item.
-     * @type {boolean}
-     * @memberof ItemResponseDto
-     */
-    'refundRequested'?: boolean;
-    /**
-     * The refund amount requested for this item.
-     * @type {number}
-     * @memberof ItemResponseDto
-     */
-    'refundValueRequested'?: number;
     /**
      * The date the item created.
      * @type {string}
@@ -15676,12 +15791,6 @@ export interface ProductRequestDto {
      */
     'postponeTimesPerYear'?: number;
     /**
-     * Number of days from item start date during which refund can be requested. 0 disables window.
-     * @type {number}
-     * @memberof ProductRequestDto
-     */
-    'refundWindowDays'?: number;
-    /**
      * A collection of price configurations, including duration-based and dynamic pricing options for the product.
      * @type {Array<PricesDto>}
      * @memberof ProductRequestDto
@@ -15871,12 +15980,6 @@ export interface ProductResponseDto {
      * @memberof ProductResponseDto
      */
     'postponeTimesPerYear'?: number;
-    /**
-     * Number of days from item start date during which refund can be requested. 0 disables window.
-     * @type {number}
-     * @memberof ProductResponseDto
-     */
-    'refundWindowDays'?: number;
     /**
      * A collection of price configurations, including duration-based and dynamic pricing options for the product.
      * @type {Array<PricesDto>}
@@ -16109,12 +16212,6 @@ export interface ProductUpdateRequestDto {
      * @memberof ProductUpdateRequestDto
      */
     'postponeTimesPerYear': number;
-    /**
-     * Number of days from item start date during which refund can be requested. 0 disables window.
-     * @type {number}
-     * @memberof ProductUpdateRequestDto
-     */
-    'refundWindowDays': number;
     /**
      * A collection of price configurations, including duration-based and dynamic pricing options for the product.
      * @type {Array<PricesDto>}
@@ -16558,19 +16655,6 @@ export interface SelectedNotificationIntegrationsDto {
      * @memberof SelectedNotificationIntegrationsDto
      */
     'pushNotification'?: string;
-}
-/**
- * 
- * @export
- * @interface SetAutoRefundsRequest
- */
-export interface SetAutoRefundsRequest {
-    /**
-     * Enable or disable automatic refunds
-     * @type {boolean}
-     * @memberof SetAutoRefundsRequest
-     */
-    'autoRefunds': boolean;
 }
 /**
  * 
@@ -22340,44 +22424,6 @@ export class ClientInvoiceContactsApi extends BaseAPI {
 export const ClientItemsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Allows a client to request a refund for their item.
-         * @summary Request refund for a client item
-         * @param {string} id A unique identifier for the item to request refund.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        clientItemRefund: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('clientItemRefund', 'id', id)
-            const localVarPath = `/client/items/request-refund/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -22635,19 +22681,6 @@ export const ClientItemsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ClientItemsApiAxiosParamCreator(configuration)
     return {
         /**
-         * Allows a client to request a refund for their item.
-         * @summary Request refund for a client item
-         * @param {string} id A unique identifier for the item to request refund.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async clientItemRefund(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.clientItemRefund(id, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.clientItemRefund']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -22739,16 +22772,6 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
     const localVarFp = ClientItemsApiFp(configuration)
     return {
         /**
-         * Allows a client to request a refund for their item.
-         * @summary Request refund for a client item
-         * @param {string} id A unique identifier for the item to request refund.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        clientItemRefund(id: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.clientItemRefund(id, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -22821,18 +22844,6 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
  * @extends {BaseAPI}
  */
 export class ClientItemsApi extends BaseAPI {
-    /**
-     * Allows a client to request a refund for their item.
-     * @summary Request refund for a client item
-     * @param {string} id A unique identifier for the item to request refund.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ClientItemsApi
-     */
-    public clientItemRefund(id: string, options?: RawAxiosRequestConfig) {
-        return ClientItemsApiFp(this.configuration).clientItemRefund(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
     /**
      * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
      * @summary Get Client Item
@@ -24851,53 +24862,6 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
-         * @summary Set Automatic Refunds
-         * @param {string} companyId A unique identifier for the company.
-         * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setAutoRefunds: async (companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('setAutoRefunds', 'companyId', companyId)
-            // verify required parameter 'setAutoRefundsRequest' is not null or undefined
-            assertParamExists('setAutoRefunds', 'setAutoRefundsRequest', setAutoRefundsRequest)
-            const localVarPath = `/Companies/set-autorefunds`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(setAutoRefundsRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Sets the credit balance for a specified company. Returns a boolean indicating success.
          * @summary Set Company Credit Balance
          * @param {string} companyId A unique identifier for the company.
@@ -25673,20 +25637,6 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
-         * @summary Set Automatic Refunds
-         * @param {string} companyId A unique identifier for the company.
-         * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async setAutoRefunds(companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.setAutoRefunds(companyId, setAutoRefundsRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.setAutoRefunds']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Sets the credit balance for a specified company. Returns a boolean indicating success.
          * @summary Set Company Credit Balance
          * @param {string} companyId A unique identifier for the company.
@@ -26006,17 +25956,6 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
             return localVarFp.lockCompany(companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
-         * @summary Set Automatic Refunds
-         * @param {string} companyId A unique identifier for the company.
-         * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setAutoRefunds(companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
-            return localVarFp.setAutoRefunds(companyId, setAutoRefundsRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Sets the credit balance for a specified company. Returns a boolean indicating success.
          * @summary Set Company Credit Balance
          * @param {string} companyId A unique identifier for the company.
@@ -26318,19 +26257,6 @@ export class CompaniesApi extends BaseAPI {
      */
     public lockCompany(companyId: string, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).lockCompany(companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
-     * @summary Set Automatic Refunds
-     * @param {string} companyId A unique identifier for the company.
-     * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CompaniesApi
-     */
-    public setAutoRefunds(companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).setAutoRefunds(companyId, setAutoRefundsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -33487,497 +33413,11 @@ export type FindIssuesIssueCategoryEnum = typeof FindIssuesIssueCategoryEnum[key
 
 
 /**
- * ItemActionsApi - axios parameter creator
- * @export
- */
-export const ItemActionsApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerCreate: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerCreate', 'integrationResponseDto', integrationResponseDto)
-            const localVarPath = `/items/actions/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerDowngrade: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerDowngrade', 'integrationResponseDto', integrationResponseDto)
-            const localVarPath = `/items/actions/downgrade`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerRenew: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerRenew', 'integrationResponseDto', integrationResponseDto)
-            const localVarPath = `/items/actions/renew`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerSuspend: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerSuspend', 'integrationResponseDto', integrationResponseDto)
-            const localVarPath = `/items/actions/suspend`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerUnsuspend: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerUnsuspend', 'integrationResponseDto', integrationResponseDto)
-            const localVarPath = `/items/actions/unsuspend`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerUpgrade: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerUpgrade', 'integrationResponseDto', integrationResponseDto)
-            const localVarPath = `/items/actions/upgrade`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * ItemActionsApi - functional programming interface
- * @export
- */
-export const ItemActionsApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ItemActionsApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerCreate(integrationResponseDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerDowngrade(integrationResponseDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerDowngrade']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerRenew(integrationResponseDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerRenew']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerSuspend(integrationResponseDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerSuspend']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUnsuspend(integrationResponseDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerUnsuspend']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUpgrade(integrationResponseDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerUpgrade']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-    }
-};
-
-/**
- * ItemActionsApi - factory interface
- * @export
- */
-export const ItemActionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ItemActionsApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerCreate(integrationResponseDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerDowngrade(integrationResponseDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerRenew(integrationResponseDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerSuspend(integrationResponseDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerUnsuspend(integrationResponseDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerUpgrade(integrationResponseDto, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * ItemActionsApi - object-oriented interface
- * @export
- * @class ItemActionsApi
- * @extends {BaseAPI}
- */
-export class ItemActionsApi extends BaseAPI {
-    /**
-     * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemActionsApi
-     */
-    public itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerCreate(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemActionsApi
-     */
-    public itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerDowngrade(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemActionsApi
-     */
-    public itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerRenew(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemActionsApi
-     */
-    public itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerSuspend(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemActionsApi
-     */
-    public itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerUnsuspend(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemActionsApi
-     */
-    public itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerUpgrade(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-
-/**
  * ItemsApi - axios parameter creator
  * @export
  */
 export const ItemsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
-        /**
-         * Marks a refund request as accepted and sets item status to refunded.
-         * @summary Accept refund for item
-         * @param {string} id A unique identifier for the item to accept refund.
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        acceptItemRefund: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('acceptItemRefund', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('acceptItemRefund', 'companyId', companyId)
-            const localVarPath = `/items/{id}/refund/accept`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
         /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
@@ -34236,17 +33676,17 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Item Attach To Bundle
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
          * @param {string} companyId A unique identifier for the company.
-         * @param {string} parentId 
+         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemAttachToBundle: async (id: string, companyId: string, parentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        itemAttachToBundle: async (id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('itemAttachToBundle', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('itemAttachToBundle', 'companyId', companyId)
-            // verify required parameter 'parentId' is not null or undefined
-            assertParamExists('itemAttachToBundle', 'parentId', parentId)
+            // verify required parameter 'itemAttachToBundleRequest' is not null or undefined
+            assertParamExists('itemAttachToBundle', 'itemAttachToBundleRequest', itemAttachToBundleRequest)
             const localVarPath = `/items/{id}/bundles/attach`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -34268,15 +33708,14 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['companyId'] = companyId;
             }
 
-            if (parentId !== undefined) {
-                localVarQueryParameter['parentId'] = parentId;
-            }
-
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(itemAttachToBundleRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -34306,6 +33745,99 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             }
 
             const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemControllerItemOwnershipCertificate: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('itemControllerItemOwnershipCertificate', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('itemControllerItemOwnershipCertificate', 'companyId', companyId)
+            const localVarPath = `/items/{id}/ownershipCertificate`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Transfer an item to another user
+         * @param {string} id 
+         * @param {string} userId 
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemControllerItemTransfer: async (id: string, userId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('itemControllerItemTransfer', 'id', id)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('itemControllerItemTransfer', 'userId', userId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('itemControllerItemTransfer', 'companyId', companyId)
+            const localVarPath = `/items/{id}/transfer/{userId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -34464,58 +33996,6 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Marks an item as refund requested for a specific company.
-         * @summary Request refund for an item
-         * @param {string} id A unique identifier for the item to request refund.
-         * @param {string} companyId 
-         * @param {number} refundValue 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemRefund: async (id: string, companyId: string, refundValue: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemRefund', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemRefund', 'companyId', companyId)
-            // verify required parameter 'refundValue' is not null or undefined
-            assertParamExists('itemRefund', 'refundValue', refundValue)
-            const localVarPath = `/items/{id}/refund`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (refundValue !== undefined) {
-                localVarQueryParameter['refundValue'] = refundValue;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
          * @summary Item Retry
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -34592,57 +34072,6 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {string} email 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemTransferControllerItemTransfer: async (id: string, companyId: string, email: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemTransferControllerItemTransfer', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemTransferControllerItemTransfer', 'companyId', companyId)
-            // verify required parameter 'email' is not null or undefined
-            assertParamExists('itemTransferControllerItemTransfer', 'email', email)
-            const localVarPath = `/items/{id}/transfer/{userId}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (email !== undefined) {
-                localVarQueryParameter['email'] = email;
             }
 
 
@@ -34746,51 +34175,6 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(itemUpdateRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Rejects a refund request and clears refundRequested flag (handles bundles).
-         * @summary Reject refund for item
-         * @param {string} id A unique identifier for the item to reject refund.
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        rejectItemRefund: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('rejectItemRefund', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('rejectItemRefund', 'companyId', companyId)
-            const localVarPath = `/items/{id}/refund/reject`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -34904,20 +34288,6 @@ export const ItemsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ItemsApiAxiosParamCreator(configuration)
     return {
         /**
-         * Marks a refund request as accepted and sets item status to refunded.
-         * @summary Accept refund for item
-         * @param {string} id A unique identifier for the item to accept refund.
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async acceptItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.acceptItemRefund(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.acceptItemRefund']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
          * @param {string} companyId A unique identifier for the company.
@@ -34988,12 +34358,12 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @summary Item Attach To Bundle
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
          * @param {string} companyId A unique identifier for the company.
-         * @param {string} parentId 
+         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemAttachToBundle(id: string, companyId: string, parentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemAttachToBundle(id, companyId, parentId, options);
+        async itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemAttachToBundle']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -35010,6 +34380,34 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.itemCancel(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemCancel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemControllerItemOwnershipCertificate(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemControllerItemOwnershipCertificate(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemControllerItemOwnershipCertificate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Transfer an item to another user
+         * @param {string} id 
+         * @param {string} userId 
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemControllerItemTransfer(id: string, userId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemControllerItemTransfer(id, userId, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemControllerItemTransfer']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -35055,21 +34453,6 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Marks an item as refund requested for a specific company.
-         * @summary Request refund for an item
-         * @param {string} id A unique identifier for the item to request refund.
-         * @param {string} companyId 
-         * @param {number} refundValue 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemRefund(id: string, companyId: string, refundValue: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemRefund(id, companyId, refundValue, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemRefund']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
          * @summary Item Retry
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -35095,20 +34478,6 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.itemSuspend(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemSuspend']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {string} email 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemTransferControllerItemTransfer(id: string, companyId: string, email: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemTransferControllerItemTransfer(id, companyId, email, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemTransferControllerItemTransfer']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -35138,20 +34507,6 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.itemUpdate(id, companyId, itemUpdateRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemUpdate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Rejects a refund request and clears refundRequested flag (handles bundles).
-         * @summary Reject refund for item
-         * @param {string} id A unique identifier for the item to reject refund.
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async rejectItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.rejectItemRefund(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.rejectItemRefund']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -35193,17 +34548,6 @@ export const ItemsApiFp = function(configuration?: Configuration) {
 export const ItemsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ItemsApiFp(configuration)
     return {
-        /**
-         * Marks a refund request as accepted and sets item status to refunded.
-         * @summary Accept refund for item
-         * @param {string} id A unique identifier for the item to accept refund.
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        acceptItemRefund(id: string, companyId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.acceptItemRefund(id, companyId, options).then((request) => request(axios, basePath));
-        },
         /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
@@ -35263,12 +34607,12 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @summary Item Attach To Bundle
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
          * @param {string} companyId A unique identifier for the company.
-         * @param {string} parentId 
+         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemAttachToBundle(id: string, companyId: string, parentId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemAttachToBundle(id, companyId, parentId, options).then((request) => request(axios, basePath));
+        itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
@@ -35280,6 +34624,28 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         itemCancel(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.itemCancel(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemControllerItemOwnershipCertificate(id: string, companyId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.itemControllerItemOwnershipCertificate(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Transfer an item to another user
+         * @param {string} id 
+         * @param {string} userId 
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemControllerItemTransfer(id: string, userId: string, companyId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.itemControllerItemTransfer(id, userId, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
@@ -35315,18 +34681,6 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.itemPostpone(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Marks an item as refund requested for a specific company.
-         * @summary Request refund for an item
-         * @param {string} id A unique identifier for the item to request refund.
-         * @param {string} companyId 
-         * @param {number} refundValue 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemRefund(id: string, companyId: string, refundValue: number, options?: any): AxiosPromise<void> {
-            return localVarFp.itemRefund(id, companyId, refundValue, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
          * @summary Item Retry
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -35347,17 +34701,6 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         itemSuspend(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.itemSuspend(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {string} email 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemTransferControllerItemTransfer(id: string, companyId: string, email: string, options?: any): AxiosPromise<void> {
-            return localVarFp.itemTransferControllerItemTransfer(id, companyId, email, options).then((request) => request(axios, basePath));
         },
         /**
          * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
@@ -35381,17 +34724,6 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         itemUpdate(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.itemUpdate(id, companyId, itemUpdateRequestDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Rejects a refund request and clears refundRequested flag (handles bundles).
-         * @summary Reject refund for item
-         * @param {string} id A unique identifier for the item to reject refund.
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        rejectItemRefund(id: string, companyId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.rejectItemRefund(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Restore the original price for an item. The item and order must be in idle status. Returns a boolean indicating success.
@@ -35426,19 +34758,6 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
  * @extends {BaseAPI}
  */
 export class ItemsApi extends BaseAPI {
-    /**
-     * Marks a refund request as accepted and sets item status to refunded.
-     * @summary Accept refund for item
-     * @param {string} id A unique identifier for the item to accept refund.
-     * @param {string} companyId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public acceptItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).acceptItemRefund(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
     /**
      * Retrieve a specific item by its unique ID within a company. Returns the item details.
      * @summary Get Item
@@ -35506,13 +34825,13 @@ export class ItemsApi extends BaseAPI {
      * @summary Item Attach To Bundle
      * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
      * @param {string} companyId A unique identifier for the company.
-     * @param {string} parentId 
+     * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemsApi
      */
-    public itemAttachToBundle(id: string, companyId: string, parentId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemAttachToBundle(id, companyId, parentId, options).then((request) => request(this.axios, this.basePath));
+    public itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -35526,6 +34845,32 @@ export class ItemsApi extends BaseAPI {
      */
     public itemCancel(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).itemCancel(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} companyId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public itemControllerItemOwnershipCertificate(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).itemControllerItemOwnershipCertificate(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Transfer an item to another user
+     * @param {string} id 
+     * @param {string} userId 
+     * @param {string} companyId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public itemControllerItemTransfer(id: string, userId: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).itemControllerItemTransfer(id, userId, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -35568,20 +34913,6 @@ export class ItemsApi extends BaseAPI {
     }
 
     /**
-     * Marks an item as refund requested for a specific company.
-     * @summary Request refund for an item
-     * @param {string} id A unique identifier for the item to request refund.
-     * @param {string} companyId 
-     * @param {number} refundValue 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemRefund(id: string, companyId: string, refundValue: number, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemRefund(id, companyId, refundValue, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
      * @summary Item Retry
      * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -35605,19 +34936,6 @@ export class ItemsApi extends BaseAPI {
      */
     public itemSuspend(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).itemSuspend(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {string} companyId 
-     * @param {string} email 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemTransferControllerItemTransfer(id: string, companyId: string, email: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemTransferControllerItemTransfer(id, companyId, email, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -35645,19 +34963,6 @@ export class ItemsApi extends BaseAPI {
      */
     public itemUpdate(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).itemUpdate(id, companyId, itemUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Rejects a refund request and clears refundRequested flag (handles bundles).
-     * @summary Reject refund for item
-     * @param {string} id A unique identifier for the item to reject refund.
-     * @param {string} companyId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public rejectItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).rejectItemRefund(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -38447,6 +37752,56 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Retrieves calculated prices for all price policies and eligible durations of a product.
+         * @summary Get calculated product prices
+         * @param {string} id A unique identifier for the product.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {boolean} [withAddons] When true, includes addon option prices in each calculated price entry.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProductCalculatedPrices: async (id: string, companyId: string, withAddons?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getProductCalculatedPrices', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getProductCalculatedPrices', 'companyId', companyId)
+            const localVarPath = `/products/{id}/prices`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (withAddons !== undefined) {
+                localVarQueryParameter['withAddons'] = withAddons;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Restores an archived product.
          * @summary Restore an archived product
          * @param {string} id A unique identifier for the product.
@@ -38654,6 +38009,21 @@ export const ProductsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Retrieves calculated prices for all price policies and eligible durations of a product.
+         * @summary Get calculated product prices
+         * @param {string} id A unique identifier for the product.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {boolean} [withAddons] When true, includes addon option prices in each calculated price entry.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProductCalculatedPrices(id: string, companyId: string, withAddons?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetProductCalculatedPrices200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductCalculatedPrices(id, companyId, withAddons, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProductsApi.getProductCalculatedPrices']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Restores an archived product.
          * @summary Restore an archived product
          * @param {string} id A unique identifier for the product.
@@ -38771,6 +38141,18 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          */
         getProduct(id: string, companyId: string, options?: any): AxiosPromise<GetProduct200Response> {
             return localVarFp.getProduct(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves calculated prices for all price policies and eligible durations of a product.
+         * @summary Get calculated product prices
+         * @param {string} id A unique identifier for the product.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {boolean} [withAddons] When true, includes addon option prices in each calculated price entry.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProductCalculatedPrices(id: string, companyId: string, withAddons?: boolean, options?: any): AxiosPromise<GetProductCalculatedPrices200Response> {
+            return localVarFp.getProductCalculatedPrices(id, companyId, withAddons, options).then((request) => request(axios, basePath));
         },
         /**
          * Restores an archived product.
@@ -38897,6 +38279,20 @@ export class ProductsApi extends BaseAPI {
      */
     public getProduct(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).getProduct(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves calculated prices for all price policies and eligible durations of a product.
+     * @summary Get calculated product prices
+     * @param {string} id A unique identifier for the product.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {boolean} [withAddons] When true, includes addon option prices in each calculated price entry.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductsApi
+     */
+    public getProductCalculatedPrices(id: string, companyId: string, withAddons?: boolean, options?: RawAxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).getProductCalculatedPrices(id, companyId, withAddons, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
