@@ -111,6 +111,50 @@ export interface ActivateMaintenanceRequest {
 /**
  * 
  * @export
+ * @interface ActivateOrderRequest
+ */
+export interface ActivateOrderRequest {
+    /**
+     * Amount paid for the order
+     * @type {number}
+     * @memberof ActivateOrderRequest
+     */
+    'amountPaid'?: number;
+    /**
+     * Payment method used
+     * @type {string}
+     * @memberof ActivateOrderRequest
+     */
+    'paymentMethod'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AddOrderComment201Response
+ */
+export interface AddOrderComment201Response {
+    /**
+     * The HTTP status code indicating the result of the operation.
+     * @type {any}
+     * @memberof AddOrderComment201Response
+     */
+    'code': any;
+    /**
+     * A human-readable message providing more details about the response.
+     * @type {any}
+     * @memberof AddOrderComment201Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {CommentResponseDto}
+     * @memberof AddOrderComment201Response
+     */
+    'data': CommentResponseDto;
+}
+/**
+ * 
+ * @export
  * @interface AddUserMinimumPricePolicyRequest
  */
 export interface AddUserMinimumPricePolicyRequest {
@@ -120,6 +164,25 @@ export interface AddUserMinimumPricePolicyRequest {
      * @memberof AddUserMinimumPricePolicyRequest
      */
     'minimumPricePolicy'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AddonFeeDto
+ */
+export interface AddonFeeDto {
+    /**
+     * The ID of the addon.
+     * @type {string}
+     * @memberof AddonFeeDto
+     */
+    'addonId': string;
+    /**
+     * The fee of the addon, excluding VAT.
+     * @type {number}
+     * @memberof AddonFeeDto
+     */
+    'fee': number;
 }
 /**
  * 
@@ -151,6 +214,25 @@ export interface AddonOptionsDto {
      * @memberof AddonOptionsDto
      */
     'policyPrices': Array<PolicyPricesResponseDto>;
+}
+/**
+ * 
+ * @export
+ * @interface AddonPriceDto
+ */
+export interface AddonPriceDto {
+    /**
+     * The ID of the addon.
+     * @type {string}
+     * @memberof AddonPriceDto
+     */
+    'addonId': string;
+    /**
+     * The price of the addon, excluding VAT.
+     * @type {number}
+     * @memberof AddonPriceDto
+     */
+    'price': number;
 }
 /**
  * @type AddonRef
@@ -312,17 +394,17 @@ export type AddonResponseDtoTypeEnum = typeof AddonResponseDtoTypeEnum[keyof typ
  */
 export interface AdminPanelDto {
     /**
-     * 
-     * @type {Tabs}
+     * Tab structure for Admin panel sections.
+     * @type {AdminPanelTabsDto}
      * @memberof AdminPanelDto
      */
-    'tabs'?: Tabs;
+    'tabs'?: AdminPanelTabsDto;
     /**
-     * 
-     * @type {MoreActions}
+     * Additional actions in Admin panel sections.
+     * @type {AdminPanelMoreActionsDto}
      * @memberof AdminPanelDto
      */
-    'moreActions'?: MoreActions;
+    'moreActions'?: AdminPanelMoreActionsDto;
     /**
      * 
      * @type {Menu}
@@ -697,6 +779,13 @@ export const AfnicAdditionalDataDtoBirthCcEnum = {
 export type AfnicAdditionalDataDtoBirthCcEnum = typeof AfnicAdditionalDataDtoBirthCcEnum[keyof typeof AfnicAdditionalDataDtoBirthCcEnum];
 
 /**
+ * @type AnyFieldDto
+ * Discriminated union of every concrete field DTO. Discriminator is the string-literal `type` property.
+ * @export
+ */
+export type AnyFieldDto = { type: 'BOOLEAN' } & BooleanFieldDto | { type: 'COUNTRIES' } & CountriesFieldDto | { type: 'CURRENCY' } & CurrencyFieldDto | { type: 'DATE' } & DateFieldDto | { type: 'EMAIL' } & EmailFieldDto | { type: 'MULTI_SELECT' } & MultiSelectFieldDto | { type: 'NUMBER' } & NumberFieldDto | { type: 'PASSWORD' } & PasswordFieldDto | { type: 'PHONE' } & PhoneFieldDto | { type: 'SELECT' } & SelectFieldDto | { type: 'TEXT' } & TextFieldDto | { type: 'TEXTAREA' } & TextareaFieldDto | { type: 'URL' } & UrlFieldDto;
+
+/**
  * 
  * @export
  * @interface AttachmentDto
@@ -728,6 +817,12 @@ export interface AttachmentDto {
  */
 export interface AttributeFieldDto {
     /**
+     * The concrete field DTO (discriminated by its `type` literal).
+     * @type {AnyFieldDto}
+     * @memberof AttributeFieldDto
+     */
+    'field': AnyFieldDto;
+    /**
      * Whether the field is visible in order view.
      * @type {boolean}
      * @memberof AttributeFieldDto
@@ -751,99 +846,44 @@ export interface AttributeFieldDto {
      * @memberof AttributeFieldDto
      */
     'repeatableMax'?: number;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof AttributeFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof AttributeFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * 
-     * @type {Value}
-     * @memberof AttributeFieldDto
-     */
-    'value': Value;
-    /**
-     * Type of the field.
-     * @type {string}
-     * @memberof AttributeFieldDto
-     */
-    'type': AttributeFieldDtoTypeEnum;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof AttributeFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof AttributeFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AttributeFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Optional regex to validate input.
-     * @type {string}
-     * @memberof AttributeFieldDto
-     */
-    'regexValidation'?: string;
-    /**
-     * Localized error message shown when regex validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof AttributeFieldDto
-     */
-    'regexValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AttributeFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof AttributeFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof AttributeFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof AttributeFieldDto
-     */
-    'downgradable'?: boolean;
 }
-
-export const AttributeFieldDtoTypeEnum = {
-    TEXT_BOX: 'TEXT_BOX',
-    TEXT_AREA: 'TEXT_AREA',
-    SELECT: 'SELECT',
-    MULTI_SELECT: 'MULTI_SELECT',
-    DESCRIPTION: 'DESCRIPTION',
-    RADIO_BOX: 'RADIO_BOX',
-    CHECKBOX: 'CHECKBOX',
-    SLIDER: 'SLIDER'
-} as const;
-
-export type AttributeFieldDtoTypeEnum = typeof AttributeFieldDtoTypeEnum[keyof typeof AttributeFieldDtoTypeEnum];
-
+/**
+ * 
+ * @export
+ * @interface B2COrderRequestDto
+ */
+export interface B2COrderRequestDto {
+    /**
+     * The unique identifier of the user placing the order (B2C customer).
+     * @type {string}
+     * @memberof B2COrderRequestDto
+     */
+    'user': string;
+    /**
+     * 
+     * @type {InvoiceContactInfoRequestDto}
+     * @memberof B2COrderRequestDto
+     */
+    'invoiceContact': InvoiceContactInfoRequestDto;
+    /**
+     * An array of items included in the order. The order must contain at least one item.
+     * @type {Array<string>}
+     * @memberof B2COrderRequestDto
+     */
+    'items': Array<string>;
+    /**
+     * The coupon code for the discount applied to this order. If no coupon is used, this field will be omitted.
+     * @type {string}
+     * @memberof B2COrderRequestDto
+     */
+    'coupon'?: string;
+    /**
+     * Indicates whether the customer has used credits to cover the difference in the order amount when the paid amount was less than the total. If true, the order was partially paid with credits.
+     * @type {boolean}
+     * @memberof B2COrderRequestDto
+     */
+    'useCredits': boolean;
+}
 /**
  * 
  * @export
@@ -878,6 +918,67 @@ export interface BalanceResponseDto {
 /**
  * 
  * @export
+ * @interface BaseFieldDto
+ */
+export interface BaseFieldDto {
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof BaseFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof BaseFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof BaseFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof BaseFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof BaseFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof BaseFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof BaseFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof BaseFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof BaseFieldDto
+     */
+    'downgradable'?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface BaseMenuDto
  */
 export interface BaseMenuDto {
@@ -897,6 +998,86 @@ export interface BaseMenuDto {
 /**
  * 
  * @export
+ * @interface BooleanFieldDto
+ */
+export interface BooleanFieldDto {
+    /**
+     * Discriminator literal — always \'BOOLEAN\' for this DTO.
+     * @type {string}
+     * @memberof BooleanFieldDto
+     */
+    'type': BooleanFieldDtoTypeEnum;
+    /**
+     * Boolean value of the field.
+     * @type {boolean}
+     * @memberof BooleanFieldDto
+     */
+    'value'?: boolean;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof BooleanFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof BooleanFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof BooleanFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof BooleanFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof BooleanFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof BooleanFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof BooleanFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof BooleanFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof BooleanFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const BooleanFieldDtoTypeEnum = {
+    BOOLEAN: 'BOOLEAN'
+} as const;
+
+export type BooleanFieldDtoTypeEnum = typeof BooleanFieldDtoTypeEnum[keyof typeof BooleanFieldDtoTypeEnum];
+
+/**
+ * 
+ * @export
  * @interface BrandRequestDto
  */
 export interface BrandRequestDto {
@@ -913,6 +1094,13 @@ export interface BrandRequestDto {
      */
     'iconUrl'?: string;
 }
+/**
+ * @type BundledWithItem
+ * Unique identifier for the primary item in the bundle under which other items were added.
+ * @export
+ */
+export type BundledWithItem = ItemResponseDto | string;
+
 /**
  * 
  * @export
@@ -1187,23 +1375,30 @@ export interface ClaimsTokenDataDto {
     'claimsToken': string;
 }
 /**
+ * @type ClientCompany
+ * A unique identifier for the client company associated with this item, used to link the item to a specific client organization.
+ * @export
+ */
+export type ClientCompany = CompanyResponseDto | string;
+
+/**
  * 
  * @export
  * @interface ClientPanelDto
  */
 export interface ClientPanelDto {
     /**
-     * 
-     * @type {Tabs1}
+     * Tab structure for Client panel.
+     * @type {ClientPanelTabsDto}
      * @memberof ClientPanelDto
      */
-    'tabs'?: Tabs1;
+    'tabs'?: ClientPanelTabsDto;
     /**
-     * 
-     * @type {MoreActions1}
+     * Additional actions in Client panel.
+     * @type {ClientPanelMoreActionsDto}
      * @memberof ClientPanelDto
      */
-    'moreActions'?: MoreActions1;
+    'moreActions'?: ClientPanelMoreActionsDto;
     /**
      * 
      * @type {Menu1}
@@ -1237,6 +1432,82 @@ export interface ClientPanelTabsDto {
      */
     'item'?: Array<TabDto>;
 }
+/**
+ * 
+ * @export
+ * @interface CommentCreateRequestDto
+ */
+export interface CommentCreateRequestDto {
+    /**
+     * The comment text content
+     * @type {string}
+     * @memberof CommentCreateRequestDto
+     */
+    'text': string;
+}
+/**
+ * 
+ * @export
+ * @interface CommentResponseDto
+ */
+export interface CommentResponseDto {
+    /**
+     * Unique identifier for the comment
+     * @type {string}
+     * @memberof CommentResponseDto
+     */
+    'id'?: string;
+    /**
+     * The comment text content
+     * @type {string}
+     * @memberof CommentResponseDto
+     */
+    'text': string;
+    /**
+     * 
+     * @type {CreatedBy}
+     * @memberof CommentResponseDto
+     */
+    'createdBy': CreatedBy;
+    /**
+     * 
+     * @type {EditedBy}
+     * @memberof CommentResponseDto
+     */
+    'editedBy'?: EditedBy;
+    /**
+     * Timestamp when the comment was created
+     * @type {string}
+     * @memberof CommentResponseDto
+     */
+    'createdAt': string;
+    /**
+     * Timestamp when the comment was last updated
+     * @type {string}
+     * @memberof CommentResponseDto
+     */
+    'updatedAt'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface CommentUpdateRequestDto
+ */
+export interface CommentUpdateRequestDto {
+    /**
+     * The comment text content
+     * @type {string}
+     * @memberof CommentUpdateRequestDto
+     */
+    'text': string;
+}
+/**
+ * @type Company
+ * A unique identifier for the company linked to the item, used to associate the item with a specific organization.
+ * @export
+ */
+export type Company = CompanyResponseDto | string;
+
 /**
  * 
  * @export
@@ -1364,6 +1635,12 @@ export interface CompanyCreateRequestDto {
      * @memberof CompanyCreateRequestDto
      */
     'locked': boolean;
+    /**
+     * When enabled, refund requests may be automatically approved based on business rules.
+     * @type {boolean}
+     * @memberof CompanyCreateRequestDto
+     */
+    'automaticRefunds'?: boolean;
     /**
      * An internal comment associated with the company, not visible to the company owner. This field is optional.
      * @type {string}
@@ -2706,6 +2983,12 @@ export type CompanyInvoiceContactResponseDtoCountryEnum = typeof CompanyInvoiceC
  */
 export interface CompanyPublicInfoDto {
     /**
+     * The unique identifier of the company.
+     * @type {string}
+     * @memberof CompanyPublicInfoDto
+     */
+    'id': string;
+    /**
      * The name of the company. This is a required field and represents the official title or identifier of the company.
      * @type {string}
      * @memberof CompanyPublicInfoDto
@@ -3567,6 +3850,12 @@ export interface CompanyResponseDto {
      */
     'locked': boolean;
     /**
+     * When enabled, refund requests may be automatically approved based on business rules.
+     * @type {boolean}
+     * @memberof CompanyResponseDto
+     */
+    'automaticRefunds'?: boolean;
+    /**
      * An internal comment associated with the company, not visible to the company owner. This field is optional.
      * @type {string}
      * @memberof CompanyResponseDto
@@ -3608,12 +3897,6 @@ export interface CompanyResponseDto {
      * @memberof CompanyResponseDto
      */
     'owner': UserRef;
-    /**
-     * An array of roles representing the access permissions a user has within the company. Each role defines the specific rights a user has to interact with various company resources and functionalities.
-     * @type {Array<UserRolesResponseDto>}
-     * @memberof CompanyResponseDto
-     */
-    'userRoles'?: Array<UserRolesResponseDto>;
     /**
      * This array contains unique identifiers for service integrations attached to the company, along with the roles the integration has access to. These roles define the permissions the integration has within the company system, specifying which actions or resources it can access.
      * @type {Array<IntegrationsInfoResponseDto>}
@@ -4381,6 +4664,339 @@ export interface ContactCodeDto {
 /**
  * 
  * @export
+ * @interface CountriesFieldDto
+ */
+export interface CountriesFieldDto {
+    /**
+     * Discriminator literal — always \'COUNTRIES\' for this DTO.
+     * @type {string}
+     * @memberof CountriesFieldDto
+     */
+    'type': CountriesFieldDtoTypeEnum;
+    /**
+     * Array of ISO 3166-1 alpha-2 country codes.
+     * @type {Array<string>}
+     * @memberof CountriesFieldDto
+     */
+    'value'?: Array<CountriesFieldDtoValueEnum>;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof CountriesFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof CountriesFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof CountriesFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof CountriesFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof CountriesFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof CountriesFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof CountriesFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof CountriesFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof CountriesFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const CountriesFieldDtoTypeEnum = {
+    COUNTRIES: 'COUNTRIES'
+} as const;
+
+export type CountriesFieldDtoTypeEnum = typeof CountriesFieldDtoTypeEnum[keyof typeof CountriesFieldDtoTypeEnum];
+export const CountriesFieldDtoValueEnum = {
+    AF: 'AF',
+    AX: 'AX',
+    AL: 'AL',
+    DZ: 'DZ',
+    AS: 'AS',
+    AD: 'AD',
+    AO: 'AO',
+    AI: 'AI',
+    AQ: 'AQ',
+    AG: 'AG',
+    AR: 'AR',
+    AM: 'AM',
+    AW: 'AW',
+    AU: 'AU',
+    AT: 'AT',
+    AZ: 'AZ',
+    BS: 'BS',
+    BH: 'BH',
+    BD: 'BD',
+    BB: 'BB',
+    BY: 'BY',
+    BE: 'BE',
+    BZ: 'BZ',
+    BJ: 'BJ',
+    BM: 'BM',
+    BT: 'BT',
+    BO: 'BO',
+    BQ: 'BQ',
+    BA: 'BA',
+    BW: 'BW',
+    BV: 'BV',
+    BR: 'BR',
+    IO: 'IO',
+    BN: 'BN',
+    BG: 'BG',
+    BF: 'BF',
+    BI: 'BI',
+    KH: 'KH',
+    CM: 'CM',
+    CA: 'CA',
+    CV: 'CV',
+    KY: 'KY',
+    CF: 'CF',
+    TD: 'TD',
+    CL: 'CL',
+    CN: 'CN',
+    CX: 'CX',
+    CC: 'CC',
+    CO: 'CO',
+    KM: 'KM',
+    CG: 'CG',
+    CD: 'CD',
+    CK: 'CK',
+    CR: 'CR',
+    CI: 'CI',
+    HR: 'HR',
+    CU: 'CU',
+    CW: 'CW',
+    CY: 'CY',
+    CZ: 'CZ',
+    DK: 'DK',
+    DJ: 'DJ',
+    DM: 'DM',
+    DO: 'DO',
+    EC: 'EC',
+    EG: 'EG',
+    SV: 'SV',
+    GQ: 'GQ',
+    ER: 'ER',
+    EE: 'EE',
+    ET: 'ET',
+    FK: 'FK',
+    FO: 'FO',
+    FJ: 'FJ',
+    FI: 'FI',
+    FR: 'FR',
+    GF: 'GF',
+    PF: 'PF',
+    TF: 'TF',
+    GA: 'GA',
+    GM: 'GM',
+    GE: 'GE',
+    DE: 'DE',
+    GH: 'GH',
+    GI: 'GI',
+    GR: 'GR',
+    GL: 'GL',
+    GD: 'GD',
+    GP: 'GP',
+    GU: 'GU',
+    GT: 'GT',
+    GG: 'GG',
+    GN: 'GN',
+    GW: 'GW',
+    GY: 'GY',
+    HT: 'HT',
+    HM: 'HM',
+    VA: 'VA',
+    HN: 'HN',
+    HK: 'HK',
+    HU: 'HU',
+    IS: 'IS',
+    IN: 'IN',
+    ID: 'ID',
+    IR: 'IR',
+    IQ: 'IQ',
+    IE: 'IE',
+    IM: 'IM',
+    IL: 'IL',
+    IT: 'IT',
+    JM: 'JM',
+    JP: 'JP',
+    JE: 'JE',
+    JO: 'JO',
+    KZ: 'KZ',
+    KE: 'KE',
+    KI: 'KI',
+    KP: 'KP',
+    KR: 'KR',
+    KW: 'KW',
+    KG: 'KG',
+    LA: 'LA',
+    LV: 'LV',
+    LB: 'LB',
+    LS: 'LS',
+    LR: 'LR',
+    LY: 'LY',
+    LI: 'LI',
+    LT: 'LT',
+    LU: 'LU',
+    MO: 'MO',
+    MK: 'MK',
+    MG: 'MG',
+    MW: 'MW',
+    MY: 'MY',
+    MV: 'MV',
+    ML: 'ML',
+    MT: 'MT',
+    MH: 'MH',
+    MQ: 'MQ',
+    MR: 'MR',
+    MU: 'MU',
+    TN: 'TN',
+    TR: 'TR',
+    TM: 'TM',
+    TC: 'TC',
+    TV: 'TV',
+    UG: 'UG',
+    UA: 'UA',
+    AE: 'AE',
+    GB: 'GB',
+    US: 'US',
+    UM: 'UM',
+    UY: 'UY',
+    UZ: 'UZ',
+    VU: 'VU',
+    VE: 'VE',
+    VN: 'VN',
+    VG: 'VG',
+    VI: 'VI',
+    WF: 'WF',
+    EH: 'EH',
+    YE: 'YE',
+    ZM: 'ZM',
+    ZW: 'ZW',
+    YT: 'YT',
+    MX: 'MX',
+    FM: 'FM',
+    MD: 'MD',
+    MC: 'MC',
+    MN: 'MN',
+    ME: 'ME',
+    MS: 'MS',
+    MA: 'MA',
+    MZ: 'MZ',
+    MM: 'MM',
+    NA: 'NA',
+    NR: 'NR',
+    NP: 'NP',
+    NL: 'NL',
+    NC: 'NC',
+    NZ: 'NZ',
+    NI: 'NI',
+    NE: 'NE',
+    NG: 'NG',
+    NU: 'NU',
+    NF: 'NF',
+    MP: 'MP',
+    NO: 'NO',
+    OM: 'OM',
+    PK: 'PK',
+    PW: 'PW',
+    PS: 'PS',
+    PA: 'PA',
+    PG: 'PG',
+    PY: 'PY',
+    PE: 'PE',
+    PH: 'PH',
+    PN: 'PN',
+    PL: 'PL',
+    PT: 'PT',
+    PR: 'PR',
+    QA: 'QA',
+    RE: 'RE',
+    RO: 'RO',
+    RU: 'RU',
+    RW: 'RW',
+    BL: 'BL',
+    SH: 'SH',
+    KN: 'KN',
+    LC: 'LC',
+    MF: 'MF',
+    PM: 'PM',
+    VC: 'VC',
+    WS: 'WS',
+    SM: 'SM',
+    ST: 'ST',
+    SA: 'SA',
+    SN: 'SN',
+    RS: 'RS',
+    SC: 'SC',
+    SL: 'SL',
+    SG: 'SG',
+    SX: 'SX',
+    SK: 'SK',
+    SI: 'SI',
+    SB: 'SB',
+    SO: 'SO',
+    ZA: 'ZA',
+    GS: 'GS',
+    SS: 'SS',
+    ES: 'ES',
+    LK: 'LK',
+    SD: 'SD',
+    SR: 'SR',
+    SJ: 'SJ',
+    SZ: 'SZ',
+    SE: 'SE',
+    CH: 'CH',
+    SY: 'SY',
+    TW: 'TW',
+    TJ: 'TJ',
+    TZ: 'TZ',
+    TH: 'TH',
+    TL: 'TL',
+    TG: 'TG',
+    TK: 'TK',
+    TO: 'TO',
+    TT: 'TT'
+} as const;
+
+export type CountriesFieldDtoValueEnum = typeof CountriesFieldDtoValueEnum[keyof typeof CountriesFieldDtoValueEnum];
+
+/**
+ * 
+ * @export
  * @interface CountryDto
  */
 export interface CountryDto {
@@ -4708,6 +5324,12 @@ export interface CouponRequestDto {
      */
     'timesCanBeAppliedPerUser'?: number;
     /**
+     * When enabled, this coupon will not apply to products that already have a discount price. This prevents stacking coupons on already discounted items.
+     * @type {boolean}
+     * @memberof CouponRequestDto
+     */
+    'excludeFromDiscountedProducts'?: boolean;
+    /**
      * The date and time from which the coupon becomes valid and can be applied.
      * @type {string}
      * @memberof CouponRequestDto
@@ -4774,6 +5396,12 @@ export interface CouponResponseDto {
      * @memberof CouponResponseDto
      */
     'timesCanBeAppliedPerUser'?: number;
+    /**
+     * When enabled, this coupon will not apply to products that already have a discount price. This prevents stacking coupons on already discounted items.
+     * @type {boolean}
+     * @memberof CouponResponseDto
+     */
+    'excludeFromDiscountedProducts'?: boolean;
     /**
      * The date and time from which the coupon becomes valid and can be applied.
      * @type {string}
@@ -4847,6 +5475,31 @@ export interface CreateAddon201Response {
      * @memberof CreateAddon201Response
      */
     'data': AddonResponseDto;
+}
+/**
+ * 
+ * @export
+ * @interface CreateClientOrder201Response
+ */
+export interface CreateClientOrder201Response {
+    /**
+     * The HTTP status code indicating the result of the operation.
+     * @type {any}
+     * @memberof CreateClientOrder201Response
+     */
+    'code': any;
+    /**
+     * A human-readable message providing more details about the response.
+     * @type {any}
+     * @memberof CreateClientOrder201Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {OrderResponseDto}
+     * @memberof CreateClientOrder201Response
+     */
+    'data': OrderResponseDto;
 }
 /**
  * 
@@ -5218,6 +5871,138 @@ export interface CreateTransaction200Response {
     'data': TransactionRedirectUrlResponseDto;
 }
 /**
+ * @type CreatedBy
+ * User who created the comment
+ * @export
+ */
+export type CreatedBy = UserResponseDto | string;
+
+/**
+ * 
+ * @export
+ * @interface CurrencyFieldDto
+ */
+export interface CurrencyFieldDto {
+    /**
+     * Discriminator literal — always \'CURRENCY\' for this DTO.
+     * @type {string}
+     * @memberof CurrencyFieldDto
+     */
+    'type': CurrencyFieldDtoTypeEnum;
+    /**
+     * ISO 4217 currency code.
+     * @type {string}
+     * @memberof CurrencyFieldDto
+     */
+    'value'?: CurrencyFieldDtoValueEnum;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof CurrencyFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof CurrencyFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof CurrencyFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof CurrencyFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof CurrencyFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof CurrencyFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof CurrencyFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof CurrencyFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof CurrencyFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const CurrencyFieldDtoTypeEnum = {
+    CURRENCY: 'CURRENCY'
+} as const;
+
+export type CurrencyFieldDtoTypeEnum = typeof CurrencyFieldDtoTypeEnum[keyof typeof CurrencyFieldDtoTypeEnum];
+export const CurrencyFieldDtoValueEnum = {
+    EUR: 'EUR',
+    USD: 'USD',
+    GBP: 'GBP',
+    CHF: 'CHF',
+    SEK: 'SEK',
+    NOK: 'NOK',
+    DKK: 'DKK',
+    PLN: 'PLN',
+    CZK: 'CZK',
+    HUF: 'HUF',
+    RON: 'RON',
+    BGN: 'BGN',
+    TRY: 'TRY',
+    RUB: 'RUB',
+    JPY: 'JPY',
+    CNY: 'CNY',
+    AUD: 'AUD',
+    NZD: 'NZD',
+    CAD: 'CAD',
+    ZAR: 'ZAR',
+    INR: 'INR',
+    MXN: 'MXN',
+    BRL: 'BRL',
+    ARS: 'ARS',
+    CLP: 'CLP',
+    COP: 'COP',
+    PEN: 'PEN',
+    UYU: 'UYU',
+    VES: 'VES',
+    ILS: 'ILS',
+    AED: 'AED',
+    SAR: 'SAR',
+    KRW: 'KRW',
+    SGD: 'SGD',
+    HKD: 'HKD',
+    TWD: 'TWD',
+    THB: 'THB',
+    MYR: 'MYR',
+    IDR: 'IDR',
+    PHP: 'PHP',
+    VND: 'VND'
+} as const;
+
+export type CurrencyFieldDtoValueEnum = typeof CurrencyFieldDtoValueEnum[keyof typeof CurrencyFieldDtoValueEnum];
+
+/**
  * 
  * @export
  * @interface CustomPricesRequestDto
@@ -5277,6 +6062,86 @@ export interface CustomTokenDto {
 /**
  * 
  * @export
+ * @interface DateFieldDto
+ */
+export interface DateFieldDto {
+    /**
+     * Discriminator literal — always \'DATE\' for this DTO.
+     * @type {string}
+     * @memberof DateFieldDto
+     */
+    'type': DateFieldDtoTypeEnum;
+    /**
+     * 
+     * @type {Value}
+     * @memberof DateFieldDto
+     */
+    'value'?: Value;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof DateFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof DateFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof DateFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof DateFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof DateFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof DateFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof DateFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof DateFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof DateFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const DateFieldDtoTypeEnum = {
+    DATE: 'DATE'
+} as const;
+
+export type DateFieldDtoTypeEnum = typeof DateFieldDtoTypeEnum[keyof typeof DateFieldDtoTypeEnum];
+
+/**
+ * 
+ * @export
  * @interface DeAdditionalDataDto
  */
 export interface DeAdditionalDataDto {
@@ -5295,6 +6160,13 @@ export const DeAdditionalDataDtoContactTypeEnum = {
 } as const;
 
 export type DeAdditionalDataDtoContactTypeEnum = typeof DeAdditionalDataDtoContactTypeEnum[keyof typeof DeAdditionalDataDtoContactTypeEnum];
+
+/**
+ * @type DetachedFromOrder
+ * Stores the identifier of the order from which this item was originally detached. This information is useful for tracking the item\'s origin.
+ * @export
+ */
+export type DetachedFromOrder = OrderResponseDto | string;
 
 /**
  * 
@@ -6240,61 +7112,6 @@ export type DomainContactResponseDtoCountryCodeEnum = typeof DomainContactRespon
 /**
  * 
  * @export
- * @interface DomainNameDataRequestDto
- */
-export interface DomainNameDataRequestDto {
-    /**
-     * 
-     * @type {RegistryContactsDto}
-     * @memberof DomainNameDataRequestDto
-     */
-    'contacts': RegistryContactsDto;
-    /**
-     * A list of nameservers associated with the domain. Each nameserver includes the hostname and optional IP addresses.
-     * @type {Array<NameserverDto>}
-     * @memberof DomainNameDataRequestDto
-     */
-    'nameservers'?: Array<NameserverDto>;
-    /**
-     * The EPP (Extensible Provisioning Protocol) code or password associated with the domain name, primarily used for domain transfers.
-     * @type {string}
-     * @memberof DomainNameDataRequestDto
-     */
-    'password'?: string;
-    /**
-     * Indicates whether the domain is locked, preventing unauthorized changes or transfers. Typically used to secure the domain against malicious actions.
-     * @type {boolean}
-     * @memberof DomainNameDataRequestDto
-     */
-    'locked'?: boolean;
-    /**
-     * Indicates whether the domain owner\'s (registrar\'s) information is hidden from public WHOIS records for privacy protection.
-     * @type {boolean}
-     * @memberof DomainNameDataRequestDto
-     */
-    'idShield'?: boolean;
-    /**
-     * A list of domain names registered together as part of a single domain, typically for creating a comprehensive domain setup.
-     * @type {Array<DomainBundleDto>}
-     * @memberof DomainNameDataRequestDto
-     */
-    'bundles'?: Array<DomainBundleDto>;
-    /**
-     * 
-     * @type {DomainAdditionalDto}
-     * @memberof DomainNameDataRequestDto
-     */
-    'additional'?: DomainAdditionalDto;
-    /**
-     * The unique identifier of the top-level domain (TLD) associated with the domain name, representing the domain\'s extension.
-     * @type {string}
-     * @memberof DomainNameDataRequestDto
-     */
-    'tld': string;
-}
-/**
- * 
- * @export
  * @interface DomainNameDataResponseDto
  */
 export interface DomainNameDataResponseDto {
@@ -6479,6 +7296,93 @@ export interface EditCompanyCommentRequest {
     'comment'?: string;
 }
 /**
+ * @type EditedBy
+ * User who last edited the comment
+ * @export
+ */
+export type EditedBy = UserResponseDto | string;
+
+/**
+ * 
+ * @export
+ * @interface EmailFieldDto
+ */
+export interface EmailFieldDto {
+    /**
+     * Discriminator literal — always \'EMAIL\' for this DTO.
+     * @type {string}
+     * @memberof EmailFieldDto
+     */
+    'type': EmailFieldDtoTypeEnum;
+    /**
+     * Email address.
+     * @type {string}
+     * @memberof EmailFieldDto
+     */
+    'value'?: string;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof EmailFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof EmailFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof EmailFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof EmailFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof EmailFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof EmailFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof EmailFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof EmailFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof EmailFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const EmailFieldDtoTypeEnum = {
+    EMAIL: 'EMAIL'
+} as const;
+
+export type EmailFieldDtoTypeEnum = typeof EmailFieldDtoTypeEnum[keyof typeof EmailFieldDtoTypeEnum];
+
+/**
  * 
  * @export
  * @interface EmailPayloadDto
@@ -6486,16 +7390,16 @@ export interface EditCompanyCommentRequest {
 export interface EmailPayloadDto {
     /**
      * The subject of the email
-     * @type {string}
+     * @type {Array<MultilangTextDto>}
      * @memberof EmailPayloadDto
      */
-    'subject': string;
+    'subject'?: Array<MultilangTextDto>;
     /**
-     * The email message content
-     * @type {string}
+     * 
+     * @type {Array<MultilangTextDto>}
      * @memberof EmailPayloadDto
      */
-    'body': string;
+    'body': Array<MultilangTextDto>;
     /**
      * An array of attachments
      * @type {Array<AttachmentDto>}
@@ -6701,105 +7605,6 @@ export const EuBeAdditionalDataDtoCountryOfCitizenshipEnum = {
 } as const;
 
 export type EuBeAdditionalDataDtoCountryOfCitizenshipEnum = typeof EuBeAdditionalDataDtoCountryOfCitizenshipEnum[keyof typeof EuBeAdditionalDataDtoCountryOfCitizenshipEnum];
-
-/**
- * 
- * @export
- * @interface FieldDto
- */
-export interface FieldDto {
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof FieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof FieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * 
-     * @type {Value}
-     * @memberof FieldDto
-     */
-    'value': Value;
-    /**
-     * Type of the field.
-     * @type {string}
-     * @memberof FieldDto
-     */
-    'type': FieldDtoTypeEnum;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof FieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof FieldDto
-     */
-    'disabled': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Optional regex to validate input.
-     * @type {string}
-     * @memberof FieldDto
-     */
-    'regexValidation'?: string;
-    /**
-     * Localized error message shown when regex validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof FieldDto
-     */
-    'regexValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof FieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof FieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof FieldDto
-     */
-    'downgradable'?: boolean;
-}
-
-export const FieldDtoTypeEnum = {
-    TEXT_BOX: 'TEXT_BOX',
-    TEXT_AREA: 'TEXT_AREA',
-    SELECT: 'SELECT',
-    MULTI_SELECT: 'MULTI_SELECT',
-    DESCRIPTION: 'DESCRIPTION',
-    RADIO_BOX: 'RADIO_BOX',
-    CHECKBOX: 'CHECKBOX',
-    SLIDER: 'SLIDER'
-} as const;
-
-export type FieldDtoTypeEnum = typeof FieldDtoTypeEnum[keyof typeof FieldDtoTypeEnum];
 
 /**
  * 
@@ -7172,55 +7977,6 @@ export interface FindProductCategories200Response {
 /**
  * 
  * @export
- * @interface FindTemplates200Response
- */
-export interface FindTemplates200Response {
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'code': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'message': any;
-    /**
-     * 
-     * @type {Array<TemplateResponseDto>}
-     * @memberof FindTemplates200Response
-     */
-    'data': Array<TemplateResponseDto>;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'currentPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'totalPages': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'perPage': any;
-    /**
-     * 
-     * @type {any}
-     * @memberof FindTemplates200Response
-     */
-    'totalResults': any;
-}
-/**
- * 
- * @export
  * @interface FindTlds200Response
  */
 export interface FindTlds200Response {
@@ -7365,6 +8121,55 @@ export interface GetClientItem200Response {
      * @memberof GetClientItem200Response
      */
     'data': ItemClientResponseDto;
+}
+/**
+ * 
+ * @export
+ * @interface GetClientOrders200Response
+ */
+export interface GetClientOrders200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetClientOrders200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetClientOrders200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<OrderResponseDto>}
+     * @memberof GetClientOrders200Response
+     */
+    'data': Array<OrderResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetClientOrders200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetClientOrders200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetClientOrders200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetClientOrders200Response
+     */
+    'totalResults': any;
 }
 /**
  * 
@@ -7691,6 +8496,31 @@ export interface GetItemsForTransfer200Response {
 /**
  * 
  * @export
+ * @interface GetOrderComments200Response
+ */
+export interface GetOrderComments200Response {
+    /**
+     * The HTTP status code indicating the result of the operation.
+     * @type {any}
+     * @memberof GetOrderComments200Response
+     */
+    'code': any;
+    /**
+     * A human-readable message providing more details about the response.
+     * @type {any}
+     * @memberof GetOrderComments200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<CommentResponseDto>}
+     * @memberof GetOrderComments200Response
+     */
+    'data': Array<CommentResponseDto>;
+}
+/**
+ * 
+ * @export
  * @interface GetPaginatedClientItems200Response
  */
 export interface GetPaginatedClientItems200Response {
@@ -7832,6 +8662,55 @@ export interface GetPaginatedItems200Response {
      * 
      * @type {any}
      * @memberof GetPaginatedItems200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
+ * @interface GetPaginatedTemplates200Response
+ */
+export interface GetPaginatedTemplates200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetPaginatedTemplates200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetPaginatedTemplates200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<TemplateResponseDto>}
+     * @memberof GetPaginatedTemplates200Response
+     */
+    'data': Array<TemplateResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetPaginatedTemplates200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetPaginatedTemplates200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetPaginatedTemplates200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetPaginatedTemplates200Response
      */
     'totalResults': any;
 }
@@ -8293,11 +9172,11 @@ export interface InfoDto {
      */
     'onboardingUrl'?: string;
     /**
-     * Configurable attributes that are used in the setup process.
-     * @type {Array<FieldDto>}
+     * Configurable attributes that are used in the setup process. Each item is a concrete field DTO discriminated by its `type` literal.
+     * @type {Array<AnyFieldDto>}
      * @memberof InfoDto
      */
-    'setupAttributes'?: Array<FieldDto>;
+    'setupAttributes'?: Array<AnyFieldDto>;
 }
 
 export const InfoDtoSupportedLanguagesEnum = {
@@ -8660,6 +9539,9 @@ export const InfoDtoListenEventsEnum = {
     item_activated: 'item/activated',
     item_set_inactive: 'item/set-inactive',
     item_processed: 'item/processed',
+    item_refund_requested: 'item/refund-requested',
+    item_refund_accepted: 'item/refund-accepted',
+    item_refund_rejected: 'item/refund-rejected',
     order_paid: 'order/paid',
     test: 'test',
     dead_lettering: 'dead-lettering',
@@ -8794,6 +9676,13 @@ export const InstallCompanyIntegrationRequestAcceptedRolesEnum = {
 } as const;
 
 export type InstallCompanyIntegrationRequestAcceptedRolesEnum = typeof InstallCompanyIntegrationRequestAcceptedRolesEnum[keyof typeof InstallCompanyIntegrationRequestAcceptedRolesEnum];
+
+/**
+ * @type Integration
+ * The integration id of the template
+ * @export
+ */
+export type Integration = IntegrationResponseDto | string;
 
 /**
  * @type IntegrationInfo
@@ -9580,6 +10469,19 @@ export const InvoiceContactCreateRequestDtoCountryEnum = {
 
 export type InvoiceContactCreateRequestDtoCountryEnum = typeof InvoiceContactCreateRequestDtoCountryEnum[keyof typeof InvoiceContactCreateRequestDtoCountryEnum];
 
+/**
+ * 
+ * @export
+ * @interface InvoiceContactInfoRequestDto
+ */
+export interface InvoiceContactInfoRequestDto {
+    /**
+     * A unique identifier assigned to the billing contact. The server will populate firstName, lastName, and companyName from the linked InvoiceContact record.
+     * @type {string}
+     * @memberof InvoiceContactInfoRequestDto
+     */
+    'invoiceContact': string;
+}
 /**
  * 
  * @export
@@ -10761,19 +11663,6 @@ export type ItAdditionalDataDtoEntityTypeEnum = typeof ItAdditionalDataDtoEntity
 /**
  * 
  * @export
- * @interface ItemAttachToBundleRequest
- */
-export interface ItemAttachToBundleRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemAttachToBundleRequest
-     */
-    'parentItemId'?: string;
-}
-/**
- * 
- * @export
  * @interface ItemClientResponseDto
  */
 export interface ItemClientResponseDto {
@@ -10833,28 +11722,28 @@ export interface ItemClientResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {Company}
      * @memberof ItemClientResponseDto
      */
-    'company': CompanyRef;
+    'company': Company;
     /**
      * 
-     * @type {UserRef}
+     * @type {User}
      * @memberof ItemClientResponseDto
      */
-    'user'?: UserRef;
+    'user'?: User;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {ClientCompany}
      * @memberof ItemClientResponseDto
      */
-    'clientCompany'?: CompanyRef;
+    'clientCompany'?: ClientCompany;
     /**
      * 
-     * @type {OrderRef}
+     * @type {DetachedFromOrder}
      * @memberof ItemClientResponseDto
      */
-    'detachedFromOrder'?: OrderRef;
+    'detachedFromOrder'?: DetachedFromOrder;
     /**
      * Stores the identifier of the primary item from which this item originates, in cases where it is not the original item.
      * @type {string}
@@ -10863,16 +11752,16 @@ export interface ItemClientResponseDto {
     'ancestorItemId'?: string;
     /**
      * 
-     * @type {ItemRef}
+     * @type {ParentItem}
      * @memberof ItemClientResponseDto
      */
-    'parentItem'?: ItemRef;
+    'parentItem'?: ParentItem;
     /**
      * 
-     * @type {OrderRef}
+     * @type {Order}
      * @memberof ItemClientResponseDto
      */
-    'order'?: OrderRef;
+    'order'?: Order;
     /**
      * Represents the current state of the item, as defined in ItemStatusEnum. The default value is IDLE.
      * @type {string}
@@ -10881,10 +11770,10 @@ export interface ItemClientResponseDto {
     'status'?: ItemClientResponseDtoStatusEnum;
     /**
      * 
-     * @type {ProductRef}
+     * @type {ProductId}
      * @memberof ItemClientResponseDto
      */
-    'product'?: ProductRef;
+    'product'?: ProductId;
     /**
      * An array of multilingual representations for the product\'s title. Each entry provides the title in a specific language.
      * @type {Array<string>}
@@ -10899,10 +11788,10 @@ export interface ItemClientResponseDto {
     'productVersion'?: number;
     /**
      * 
-     * @type {ProductCategoryRef}
+     * @type {ProductCategory}
      * @memberof ItemClientResponseDto
      */
-    'productCategory'?: ProductCategoryRef;
+    'productCategory'?: ProductCategory;
     /**
      * An array of multilingual representations for the product category\'s title. Each entry provides the title in a specific language.
      * @type {Array<MultilangTextDto>}
@@ -10917,46 +11806,22 @@ export interface ItemClientResponseDto {
     'transferredOut'?: boolean;
     /**
      * 
-     * @type {UserRef}
+     * @type {TransferredFromUser}
      * @memberof ItemClientResponseDto
      */
-    'transferredFromUser'?: UserRef;
+    'transferredFromUser'?: TransferredFromUser;
     /**
      * 
-     * @type {UserRef}
+     * @type {TransferredToUser}
      * @memberof ItemClientResponseDto
      */
-    'transferredToUser'?: UserRef;
+    'transferredToUser'?: TransferredToUser;
     /**
-     * The default price of the item, representing the value of the product excluding VAT or commissions.
-     * @type {number}
+     * 
+     * @type {ItemPricesDto}
      * @memberof ItemClientResponseDto
      */
-    'defaultPrice': number;
-    /**
-     * The default setup fee of the item, representing the value of the product excluding VAT or commissions.
-     * @type {number}
-     * @memberof ItemClientResponseDto
-     */
-    'defaultSetupFee': number;
-    /**
-     * The discount price of the item, representing the value of the product excluding VAT or commissions.
-     * @type {number}
-     * @memberof ItemClientResponseDto
-     */
-    'discountPrice'?: number;
-    /**
-     * The custom price of the item set by the company, representing the value of the product excluding VAT or commissions. If this exist the default price is ignored.
-     * @type {number}
-     * @memberof ItemClientResponseDto
-     */
-    'customPrice'?: number;
-    /**
-     * The custom setup fee of the item set by the company, representing the value of the product excluding VAT or commissions. If this exist the default setup fee is ignored.
-     * @type {number}
-     * @memberof ItemClientResponseDto
-     */
-    'customSetupFee'?: number;
+    'prices': ItemPricesDto;
     /**
      * Indicates whether the item should be excluded from coupon discounts.
      * @type {boolean}
@@ -10964,23 +11829,17 @@ export interface ItemClientResponseDto {
      */
     'excludeFromCoupon'?: boolean;
     /**
-     * The subtotal of the item, representing the value of the product excluding VAT or commissions.
-     * @type {number}
-     * @memberof ItemClientResponseDto
-     */
-    'subtotal': number;
-    /**
      * Unique identifiers for items that are bundled with this item. All bundled items must be renewed when renewing this product.
-     * @type {Array<ItemRef>}
+     * @type {Array<ItemResponseDtoItemBundlesInner>}
      * @memberof ItemClientResponseDto
      */
-    'itemBundles'?: Array<ItemRef>;
+    'itemBundles'?: Array<ItemResponseDtoItemBundlesInner>;
     /**
      * 
-     * @type {ItemRef}
+     * @type {BundledWithItem}
      * @memberof ItemClientResponseDto
      */
-    'bundledWithItem'?: ItemRef;
+    'bundledWithItem'?: BundledWithItem;
     /**
      * List of additional email addresses to which customer notifications will be sent.
      * @type {Array<string>}
@@ -10992,7 +11851,7 @@ export interface ItemClientResponseDto {
      * @type {Array<string>}
      * @memberof ItemClientResponseDto
      */
-    'additionalNotidficationPhoneNumbers'?: Array<string>;
+    'additionalNotificationPhoneNumbers'?: Array<string>;
     /**
      * 
      * @type {DomainNameDataResponseDto}
@@ -11023,6 +11882,18 @@ export interface ItemClientResponseDto {
      * @memberof ItemClientResponseDto
      */
     'postponedDates'?: Array<string>;
+    /**
+     * Indicates whether a refund has been requested for this item.
+     * @type {boolean}
+     * @memberof ItemClientResponseDto
+     */
+    'refundRequested'?: boolean;
+    /**
+     * The refund amount requested for this item.
+     * @type {number}
+     * @memberof ItemClientResponseDto
+     */
+    'refundValueRequested'?: number;
     /**
      * The date the item created.
      * @type {string}
@@ -11093,135 +11964,84 @@ export const ItemClientResponseDtoStatusEnum = {
 export type ItemClientResponseDtoStatusEnum = typeof ItemClientResponseDtoStatusEnum[keyof typeof ItemClientResponseDtoStatusEnum];
 
 /**
+ * 
+ * @export
+ * @interface ItemPricesDto
+ */
+export interface ItemPricesDto {
+    /**
+     * The base price of the item, representing the value of the product excluding VAT or commissions.
+     * @type {number}
+     * @memberof ItemPricesDto
+     */
+    'basePrice': number;
+    /**
+     * The setup fee of the item, representing the value of the product excluding VAT or commissions.
+     * @type {number}
+     * @memberof ItemPricesDto
+     */
+    'setupFee': number;
+    /**
+     * The offer price of the item, representing the promotional value of the product excluding VAT or commissions.
+     * @type {number}
+     * @memberof ItemPricesDto
+     */
+    'offerPrice'?: number;
+    /**
+     * The offer setup fee of the item, representing the promotional setup fee excluding VAT or commissions.
+     * @type {number}
+     * @memberof ItemPricesDto
+     */
+    'offerFee'?: number;
+    /**
+     * The amount deducted from the item due to a coupon discount.
+     * @type {number}
+     * @memberof ItemPricesDto
+     */
+    'couponDiscountValue'?: number;
+    /**
+     * The custom price of the item set by the company, representing the value of the product excluding VAT or commissions. If this exists the default price is ignored.
+     * @type {number}
+     * @memberof ItemPricesDto
+     */
+    'customPrice'?: number;
+    /**
+     * The custom setup fee of the item set by the company, representing the value of the product excluding VAT or commissions. If this exists the default setup fee is ignored.
+     * @type {number}
+     * @memberof ItemPricesDto
+     */
+    'customSetupFee'?: number;
+    /**
+     * The subtotal of the item, representing the value of the product excluding VAT or commissions.
+     * @type {number}
+     * @memberof ItemPricesDto
+     */
+    'subtotal': number;
+    /**
+     * The unused value from the parent item credited during upgrade/downgrade.
+     * @type {number}
+     * @memberof ItemPricesDto
+     */
+    'upgradeRemainder'?: number;
+    /**
+     * Breakdown of addon prices, excluding VAT.
+     * @type {Array<AddonPriceDto>}
+     * @memberof ItemPricesDto
+     */
+    'addonPrices'?: Array<AddonPriceDto>;
+    /**
+     * Breakdown of addon fees, excluding VAT.
+     * @type {Array<AddonFeeDto>}
+     * @memberof ItemPricesDto
+     */
+    'addonFees'?: Array<AddonFeeDto>;
+}
+/**
  * @type ItemRef
  * Either a populated ItemResponseDto or its id string.
  * @export
  */
 export type ItemRef = ItemResponseDto | string;
-
-/**
- * 
- * @export
- * @interface ItemRequestDto
- */
-export interface ItemRequestDto {
-    /**
-     * Represents the name of the item, such as a hosting domain, server IP, or the name of a domain.
-     * @type {string}
-     * @memberof ItemRequestDto
-     */
-    'resourceName': string;
-    /**
-     * The date and time when the item will be postponed.
-     * @type {string}
-     * @memberof ItemRequestDto
-     */
-    'postponedEndDate'?: string;
-    /**
-     * Specifies the action to be performed on the item, as defined in ItemActionsEnum. This action is executed when the order is paid.
-     * @type {string}
-     * @memberof ItemRequestDto
-     */
-    'action': ItemRequestDtoActionEnum;
-    /**
-     * These are additional attributes requested by the integration from the customer who purchases the product. They capture specific details or preferences from the buyer, which may be needed for fulfilling the order or for configuring the product according to the customer\'s needs.
-     * @type {object}
-     * @memberof ItemRequestDto
-     */
-    'itemAttributes'?: object;
-    /**
-     * Contains additional information related to the item, used internally and not visible to simple users.
-     * @type {{ [key: string]: any; }}
-     * @memberof ItemRequestDto
-     */
-    'responseDataFieldNames'?: { [key: string]: any; };
-    /**
-     * Contains additional information related to the item addons. Each key-value pair represents an addon and its chosen option.
-     * @type {{ [key: string]: any; }}
-     * @memberof ItemRequestDto
-     */
-    'itemAddons'?: { [key: string]: any; };
-    /**
-     * Indicates whether the item will automatically renew. Default behavior follows the user\'s specified preference.
-     * @type {boolean}
-     * @memberof ItemRequestDto
-     */
-    'autorenew'?: boolean;
-    /**
-     * A comment associated with the item that can be accessed by all users.
-     * @type {string}
-     * @memberof ItemRequestDto
-     */
-    'publicComment'?: string;
-    /**
-     * Duration of the item\'s subscription in months. A value of 0 represents a one-time payment.
-     * @type {string}
-     * @memberof ItemRequestDto
-     */
-    'duration'?: ItemRequestDtoDurationEnum;
-    /**
-     * A unique identifier for the client company associated with this item, used to link the item to a specific client organization.
-     * @type {string}
-     * @memberof ItemRequestDto
-     */
-    'clientCompany'?: string;
-    /**
-     * A unique identifier for the product associated with this item.
-     * @type {string}
-     * @memberof ItemRequestDto
-     */
-    'product': string;
-    /**
-     * Stores the identifier of the order from which this item was originally detached. This information is useful for tracking the item\'s origin.
-     * @type {string}
-     * @memberof ItemRequestDto
-     */
-    'detachedFromOrder'?: string;
-    /**
-     * 
-     * @type {DomainNameDataRequestDto}
-     * @memberof ItemRequestDto
-     */
-    'domainNameData'?: DomainNameDataRequestDto;
-}
-
-export const ItemRequestDtoActionEnum = {
-    create: 'item/create',
-    suspend: 'item/suspend',
-    unsuspend: 'item/unsuspend',
-    renew: 'item/renew',
-    cancel: 'item/cancel',
-    delete: 'item/delete',
-    upgrade: 'item/upgrade',
-    downgrade: 'item/downgrade'
-} as const;
-
-export type ItemRequestDtoActionEnum = typeof ItemRequestDtoActionEnum[keyof typeof ItemRequestDtoActionEnum];
-export const ItemRequestDtoDurationEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
-
-export type ItemRequestDtoDurationEnum = typeof ItemRequestDtoDurationEnum[keyof typeof ItemRequestDtoDurationEnum];
 
 /**
  * 
@@ -11291,22 +12111,22 @@ export interface ItemResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {Company}
      * @memberof ItemResponseDto
      */
-    'company': CompanyRef;
+    'company': Company;
     /**
      * 
-     * @type {UserRef}
+     * @type {User}
      * @memberof ItemResponseDto
      */
-    'user'?: UserRef;
+    'user'?: User;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {ClientCompany}
      * @memberof ItemResponseDto
      */
-    'clientCompany'?: CompanyRef;
+    'clientCompany'?: ClientCompany;
     /**
      * These are additional attributes required by the integration when the product is created by the seller. They provide specific details about the product that are necessary for the system to properly handle the product within its designated category or use case.
      * @type {{ [key: string]: any; }}
@@ -11315,10 +12135,10 @@ export interface ItemResponseDto {
     'productAttributes'?: { [key: string]: any; };
     /**
      * 
-     * @type {OrderRef}
+     * @type {DetachedFromOrder}
      * @memberof ItemResponseDto
      */
-    'detachedFromOrder'?: OrderRef;
+    'detachedFromOrder'?: DetachedFromOrder;
     /**
      * Stores the identifier of the primary item from which this item originates, in cases where it is not the original item.
      * @type {string}
@@ -11327,16 +12147,16 @@ export interface ItemResponseDto {
     'ancestorItemId'?: string;
     /**
      * 
-     * @type {ItemRef}
+     * @type {ParentItem}
      * @memberof ItemResponseDto
      */
-    'parentItem'?: ItemRef;
+    'parentItem'?: ParentItem;
     /**
      * 
-     * @type {OrderRef}
+     * @type {Order}
      * @memberof ItemResponseDto
      */
-    'order'?: OrderRef;
+    'order'?: Order;
     /**
      * Represents the current state of the item, as defined in ItemStatusEnum. The default value is IDLE.
      * @type {string}
@@ -11345,10 +12165,10 @@ export interface ItemResponseDto {
     'status'?: ItemResponseDtoStatusEnum;
     /**
      * 
-     * @type {ProductRef}
+     * @type {ProductId}
      * @memberof ItemResponseDto
      */
-    'product'?: ProductRef;
+    'product'?: ProductId;
     /**
      * An array of multilingual representations for the product\'s title. Each entry provides the title in a specific language.
      * @type {Array<string>}
@@ -11363,10 +12183,10 @@ export interface ItemResponseDto {
     'productVersion'?: number;
     /**
      * 
-     * @type {ProductCategoryRef}
+     * @type {ProductCategory}
      * @memberof ItemResponseDto
      */
-    'productCategory'?: ProductCategoryRef;
+    'productCategory'?: ProductCategory;
     /**
      * An array of multilingual representations for the product category\'s title. Each entry provides the title in a specific language.
      * @type {Array<MultilangTextDto>}
@@ -11381,16 +12201,16 @@ export interface ItemResponseDto {
     'transferredOut'?: boolean;
     /**
      * 
-     * @type {UserRef}
+     * @type {TransferredFromUser}
      * @memberof ItemResponseDto
      */
-    'transferredFromUser'?: UserRef;
+    'transferredFromUser'?: TransferredFromUser;
     /**
      * 
-     * @type {UserRef}
+     * @type {TransferredToUser}
      * @memberof ItemResponseDto
      */
-    'transferredToUser'?: UserRef;
+    'transferredToUser'?: TransferredToUser;
     /**
      * A comment associated with the item. This information is restricted and cannot be accessed by simple users.
      * @type {string}
@@ -11398,35 +12218,11 @@ export interface ItemResponseDto {
      */
     'privateComment'?: string;
     /**
-     * The default price of the item, representing the value of the product excluding VAT or commissions.
-     * @type {number}
+     * 
+     * @type {ItemPricesDto}
      * @memberof ItemResponseDto
      */
-    'defaultPrice': number;
-    /**
-     * The default setup fee of the item, representing the value of the product excluding VAT or commissions.
-     * @type {number}
-     * @memberof ItemResponseDto
-     */
-    'defaultSetupFee': number;
-    /**
-     * The discount price of the item, representing the value of the product excluding VAT or commissions.
-     * @type {number}
-     * @memberof ItemResponseDto
-     */
-    'discountPrice'?: number;
-    /**
-     * The custom price of the item set by the company, representing the value of the product excluding VAT or commissions. If this exist the default price is ignored.
-     * @type {number}
-     * @memberof ItemResponseDto
-     */
-    'customPrice'?: number;
-    /**
-     * The custom setup fee of the item set by the company, representing the value of the product excluding VAT or commissions. If this exist the default setup fee is ignored.
-     * @type {number}
-     * @memberof ItemResponseDto
-     */
-    'customSetupFee'?: number;
+    'prices': ItemPricesDto;
     /**
      * Indicates whether the item should be excluded from coupon discounts.
      * @type {boolean}
@@ -11434,23 +12230,17 @@ export interface ItemResponseDto {
      */
     'excludeFromCoupon'?: boolean;
     /**
-     * The subtotal of the item, representing the value of the product excluding VAT or commissions.
-     * @type {number}
-     * @memberof ItemResponseDto
-     */
-    'subtotal': number;
-    /**
      * Unique identifiers for items that are bundled with this item. All bundled items must be renewed when renewing this product.
-     * @type {Array<ItemRef>}
+     * @type {Array<ItemResponseDtoItemBundlesInner>}
      * @memberof ItemResponseDto
      */
-    'itemBundles'?: Array<ItemRef>;
+    'itemBundles'?: Array<ItemResponseDtoItemBundlesInner>;
     /**
      * 
-     * @type {ItemRef}
+     * @type {BundledWithItem}
      * @memberof ItemResponseDto
      */
-    'bundledWithItem'?: ItemRef;
+    'bundledWithItem'?: BundledWithItem;
     /**
      * List of additional email addresses to which customer notifications will be sent.
      * @type {Array<string>}
@@ -11462,7 +12252,7 @@ export interface ItemResponseDto {
      * @type {Array<string>}
      * @memberof ItemResponseDto
      */
-    'additionalNotidficationPhoneNumbers'?: Array<string>;
+    'additionalNotificationPhoneNumbers'?: Array<string>;
     /**
      * 
      * @type {DomainNameDataResponseDto}
@@ -11493,6 +12283,18 @@ export interface ItemResponseDto {
      * @memberof ItemResponseDto
      */
     'postponedDates'?: Array<string>;
+    /**
+     * Indicates whether a refund has been requested for this item.
+     * @type {boolean}
+     * @memberof ItemResponseDto
+     */
+    'refundRequested'?: boolean;
+    /**
+     * The refund amount requested for this item.
+     * @type {number}
+     * @memberof ItemResponseDto
+     */
+    'refundValueRequested'?: number;
     /**
      * The date the item created.
      * @type {string}
@@ -11561,6 +12363,12 @@ export const ItemResponseDtoStatusEnum = {
 } as const;
 
 export type ItemResponseDtoStatusEnum = typeof ItemResponseDtoStatusEnum[keyof typeof ItemResponseDtoStatusEnum];
+
+/**
+ * @type ItemResponseDtoItemBundlesInner
+ * @export
+ */
+export type ItemResponseDtoItemBundlesInner = ItemResponseDto | string;
 
 /**
  * 
@@ -12156,31 +12964,85 @@ export const MenuDtoWithUrlTypeEnum = {
 export type MenuDtoWithUrlTypeEnum = typeof MenuDtoWithUrlTypeEnum[keyof typeof MenuDtoWithUrlTypeEnum];
 
 /**
- * Additional actions in Admin panel sections.
+ * 
  * @export
- * @interface MoreActions
+ * @interface MultiSelectFieldDto
  */
-export interface MoreActions {
+export interface MultiSelectFieldDto {
     /**
-     * 
-     * @type {AdminPanelMoreActionsDto}
-     * @memberof MoreActions
+     * Discriminator literal — always \'MULTI_SELECT\' for this DTO.
+     * @type {string}
+     * @memberof MultiSelectFieldDto
      */
-    'moreActions'?: AdminPanelMoreActionsDto;
-}
-/**
- * Additional actions in Client panel.
- * @export
- * @interface MoreActions1
- */
-export interface MoreActions1 {
+    'type': MultiSelectFieldDtoTypeEnum;
     /**
-     * 
-     * @type {ClientPanelMoreActionsDto}
-     * @memberof MoreActions1
+     * Array of selected options.
+     * @type {Array<FieldOptionDto>}
+     * @memberof MultiSelectFieldDto
      */
-    'moreActions'?: ClientPanelMoreActionsDto;
+    'value'?: Array<FieldOptionDto>;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof MultiSelectFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof MultiSelectFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof MultiSelectFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof MultiSelectFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof MultiSelectFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof MultiSelectFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof MultiSelectFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof MultiSelectFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof MultiSelectFieldDto
+     */
+    'downgradable'?: boolean;
 }
+
+export const MultiSelectFieldDtoTypeEnum = {
+    MULTI_SELECT: 'MULTI_SELECT'
+} as const;
+
+export type MultiSelectFieldDtoTypeEnum = typeof MultiSelectFieldDtoTypeEnum[keyof typeof MultiSelectFieldDtoTypeEnum];
+
 /**
  * 
  * @export
@@ -12524,11 +13386,11 @@ export interface NotificationInfoDto {
      */
     'onboardingUrl'?: string;
     /**
-     * Configurable attributes that are used in the setup process.
-     * @type {Array<FieldDto>}
+     * Configurable attributes that are used in the setup process. Each item is a concrete field DTO discriminated by its `type` literal.
+     * @type {Array<AnyFieldDto>}
      * @memberof NotificationInfoDto
      */
-    'setupAttributes'?: Array<FieldDto>;
+    'setupAttributes'?: Array<AnyFieldDto>;
 }
 
 export const NotificationInfoDtoTypeEnum = {
@@ -12898,6 +13760,9 @@ export const NotificationInfoDtoListenEventsEnum = {
     item_activated: 'item/activated',
     item_set_inactive: 'item/set-inactive',
     item_processed: 'item/processed',
+    item_refund_requested: 'item/refund-requested',
+    item_refund_accepted: 'item/refund-accepted',
+    item_refund_rejected: 'item/refund-rejected',
     order_paid: 'order/paid',
     test: 'test',
     dead_lettering: 'dead-lettering',
@@ -13085,61 +13950,117 @@ export interface NotificationTemplatesResponseDto {
     'cancel'?: TemplateRef;
 }
 /**
+ * 
+ * @export
+ * @interface NumberFieldDto
+ */
+export interface NumberFieldDto {
+    /**
+     * Discriminator literal — always \'NUMBER\' for this DTO.
+     * @type {string}
+     * @memberof NumberFieldDto
+     */
+    'type': NumberFieldDtoTypeEnum;
+    /**
+     * Numeric value of the field.
+     * @type {number}
+     * @memberof NumberFieldDto
+     */
+    'value'?: number;
+    /**
+     * Minimum allowed value.
+     * @type {number}
+     * @memberof NumberFieldDto
+     */
+    'min'?: number;
+    /**
+     * Maximum allowed value.
+     * @type {number}
+     * @memberof NumberFieldDto
+     */
+    'max'?: number;
+    /**
+     * When true, only integer values are allowed.
+     * @type {boolean}
+     * @memberof NumberFieldDto
+     */
+    'integer'?: boolean;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof NumberFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof NumberFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof NumberFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof NumberFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof NumberFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof NumberFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof NumberFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof NumberFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof NumberFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const NumberFieldDtoTypeEnum = {
+    NUMBER: 'NUMBER'
+} as const;
+
+export type NumberFieldDtoTypeEnum = typeof NumberFieldDtoTypeEnum[keyof typeof NumberFieldDtoTypeEnum];
+
+/**
+ * @type Order
+ * Represents the unique identifier for the order linked to this item.
+ * @export
+ */
+export type Order = OrderResponseDto | string;
+
+/**
  * @type OrderRef
  * Either a populated OrderResponseDto or its id string.
  * @export
  */
 export type OrderRef = OrderResponseDto | string;
 
-/**
- * 
- * @export
- * @interface OrderRequestDto
- */
-export interface OrderRequestDto {
-    /**
-     * 
-     * @type {UserRef}
-     * @memberof OrderRequestDto
-     */
-    'user': UserRef;
-    /**
-     * Represents an auto-incremented order identifier that is unique within the associated company. If not provided, the numbering will continue automatically from the last value.
-     * @type {number}
-     * @memberof OrderRequestDto
-     */
-    'orderNumber'?: number;
-    /**
-     * Indicates whether the customer has used credits to cover the difference in the order amount when the paid amount was less than the total. If true, the order was partially paid with credits.
-     * @type {boolean}
-     * @memberof OrderRequestDto
-     */
-    'useCredits': boolean;
-    /**
-     * A unique identifier assigned to the client company associated with this order, ensuring the order is linked to the correct client company.
-     * @type {string}
-     * @memberof OrderRequestDto
-     */
-    'clientCompany'?: string;
-    /**
-     * A unique identifier assigned to the invoice contact associated with this order.
-     * @type {string}
-     * @memberof OrderRequestDto
-     */
-    'invoiceContact': string;
-    /**
-     * The unique identifier for the discount coupon applied to this order. If no coupon is used, this field will be omitted.
-     * @type {string}
-     * @memberof OrderRequestDto
-     */
-    'coupon'?: string;
-    /**
-     * An array of items included in the order. The order must contain at least one item.
-     * @type {Array<string>}
-     * @memberof OrderRequestDto
-     */
-    'items': Array<string>;
-}
 /**
  * 
  * @export
@@ -13305,6 +14226,99 @@ export interface PaginatedResponse {
     'totalResults': number;
 }
 /**
+ * @type ParentItem
+ * Captures the identifier of the immediately preceding item from which this item derives, in scenarios where it is not the primary item (e.g., during creation or transfer).
+ * @export
+ */
+export type ParentItem = ItemResponseDto | string;
+
+/**
+ * 
+ * @export
+ * @interface PasswordFieldDto
+ */
+export interface PasswordFieldDto {
+    /**
+     * Discriminator literal — always \'PASSWORD\' for this DTO.
+     * @type {string}
+     * @memberof PasswordFieldDto
+     */
+    'type': PasswordFieldDtoTypeEnum;
+    /**
+     * Password value.
+     * @type {string}
+     * @memberof PasswordFieldDto
+     */
+    'value'?: string;
+    /**
+     * Minimum allowed length.
+     * @type {number}
+     * @memberof PasswordFieldDto
+     */
+    'minLength'?: number;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof PasswordFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof PasswordFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof PasswordFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof PasswordFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof PasswordFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof PasswordFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof PasswordFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof PasswordFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof PasswordFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const PasswordFieldDtoTypeEnum = {
+    PASSWORD: 'PASSWORD'
+} as const;
+
+export type PasswordFieldDtoTypeEnum = typeof PasswordFieldDtoTypeEnum[keyof typeof PasswordFieldDtoTypeEnum];
+
+/**
  * 
  * @export
  * @interface PaymentSubscriptionResponseDto
@@ -13323,6 +14337,86 @@ export interface PaymentSubscriptionResponseDto {
      */
     'integration': IntegrationRef;
 }
+/**
+ * 
+ * @export
+ * @interface PhoneFieldDto
+ */
+export interface PhoneFieldDto {
+    /**
+     * Discriminator literal — always \'PHONE\' for this DTO.
+     * @type {string}
+     * @memberof PhoneFieldDto
+     */
+    'type': PhoneFieldDtoTypeEnum;
+    /**
+     * Phone number in E.164 format (e.g. +14155552671).
+     * @type {string}
+     * @memberof PhoneFieldDto
+     */
+    'value'?: string;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof PhoneFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof PhoneFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof PhoneFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof PhoneFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof PhoneFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof PhoneFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof PhoneFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof PhoneFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof PhoneFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const PhoneFieldDtoTypeEnum = {
+    PHONE: 'PHONE'
+} as const;
+
+export type PhoneFieldDtoTypeEnum = typeof PhoneFieldDtoTypeEnum[keyof typeof PhoneFieldDtoTypeEnum];
+
 /**
  * 
  * @export
@@ -13359,12 +14453,6 @@ export interface PolicyPricesRequestDto {
      * @memberof PolicyPricesRequestDto
      */
     'offerCreatePrice'?: number;
-    /**
-     * Creates the price number for a renew offer.
-     * @type {number}
-     * @memberof PolicyPricesRequestDto
-     */
-    'offerRenewPrice'?: number;
     /**
      * Creates the price number for a setup offer.
      * @type {number}
@@ -13453,12 +14541,6 @@ export interface PolicyPricesResponseDto {
      * @memberof PolicyPricesResponseDto
      */
     'offerCreatePrice'?: number;
-    /**
-     * Creates the price number for a renew offer.
-     * @type {number}
-     * @memberof PolicyPricesResponseDto
-     */
-    'offerRenewPrice'?: number;
     /**
      * Creates the price number for a setup offer.
      * @type {number}
@@ -13756,12 +14838,6 @@ export interface PricesDto {
      */
     'offerCreatePrice'?: number;
     /**
-     * Creates the price number for a renew offer.
-     * @type {number}
-     * @memberof PricesDto
-     */
-    'offerRenewPrice'?: number;
-    /**
      * Creates the price number for a setup offer.
      * @type {number}
      * @memberof PricesDto
@@ -13838,6 +14914,13 @@ export interface ProAdditionalDataDto {
      */
     'licenceNumber'?: string;
 }
+/**
+ * @type ProductCategory
+ *  A unique identifier for the category of the product associated with the item. It links the item to its respective product category, providing classification and organizational context.
+ * @export
+ */
+export type ProductCategory = ProductCategoryResponseDto | string;
+
 /**
  * 
  * @export
@@ -13945,6 +15028,13 @@ export interface ProductCategoryUpdateRequestDto {
     'iconUrl'?: string;
 }
 /**
+ * @type ProductId
+ * A unique identifier for the specific product associated with this item.
+ * @export
+ */
+export type ProductId = ProductResponseDto | string;
+
+/**
  * 
  * @export
  * @interface ProductInfoDto
@@ -14035,23 +15125,23 @@ export interface ProductInfoDto {
      */
     'onboardingUrl'?: string;
     /**
-     * Configurable attributes that are used in the setup process.
-     * @type {Array<FieldDto>}
+     * Configurable attributes that are used in the setup process. Each item is a concrete field DTO discriminated by its `type` literal.
+     * @type {Array<AnyFieldDto>}
      * @memberof ProductInfoDto
      */
-    'setupAttributes'?: Array<FieldDto>;
+    'setupAttributes'?: Array<AnyFieldDto>;
 }
 
 export const ProductInfoDtoSupportedActionsEnum = {
-    create: 'create',
-    renew: 'renew',
-    upgrade: 'upgrade',
-    downgrade: 'downgrade',
-    transfer: 'transfer',
-    trade: 'trade',
-    suspend: 'suspend',
-    unsuspend: 'unsuspend',
-    delete: 'delete'
+    CREATE: 'CREATE',
+    RENEW: 'RENEW',
+    UPGRADE: 'UPGRADE',
+    DOWNGRADE: 'DOWNGRADE',
+    TRANSFER: 'TRANSFER',
+    TRADE: 'TRADE',
+    SUSPEND: 'SUSPEND',
+    UNSUSPEND: 'UNSUSPEND',
+    DELETE: 'DELETE'
 } as const;
 
 export type ProductInfoDtoSupportedActionsEnum = typeof ProductInfoDtoSupportedActionsEnum[keyof typeof ProductInfoDtoSupportedActionsEnum];
@@ -14415,6 +15505,9 @@ export const ProductInfoDtoListenEventsEnum = {
     item_activated: 'item/activated',
     item_set_inactive: 'item/set-inactive',
     item_processed: 'item/processed',
+    item_refund_requested: 'item/refund-requested',
+    item_refund_accepted: 'item/refund-accepted',
+    item_refund_rejected: 'item/refund-rejected',
     order_paid: 'order/paid',
     test: 'test',
     dead_lettering: 'dead-lettering',
@@ -14582,6 +15675,12 @@ export interface ProductRequestDto {
      * @memberof ProductRequestDto
      */
     'postponeTimesPerYear'?: number;
+    /**
+     * Number of days from item start date during which refund can be requested. 0 disables window.
+     * @type {number}
+     * @memberof ProductRequestDto
+     */
+    'refundWindowDays'?: number;
     /**
      * A collection of price configurations, including duration-based and dynamic pricing options for the product.
      * @type {Array<PricesDto>}
@@ -14772,6 +15871,12 @@ export interface ProductResponseDto {
      * @memberof ProductResponseDto
      */
     'postponeTimesPerYear'?: number;
+    /**
+     * Number of days from item start date during which refund can be requested. 0 disables window.
+     * @type {number}
+     * @memberof ProductResponseDto
+     */
+    'refundWindowDays'?: number;
     /**
      * A collection of price configurations, including duration-based and dynamic pricing options for the product.
      * @type {Array<PricesDto>}
@@ -15005,6 +16110,12 @@ export interface ProductUpdateRequestDto {
      */
     'postponeTimesPerYear': number;
     /**
+     * Number of days from item start date during which refund can be requested. 0 disables window.
+     * @type {number}
+     * @memberof ProductUpdateRequestDto
+     */
+    'refundWindowDays': number;
+    /**
      * A collection of price configurations, including duration-based and dynamic pricing options for the product.
      * @type {Array<PricesDto>}
      * @memberof ProductUpdateRequestDto
@@ -15157,22 +16268,22 @@ export interface ProxyServiceDataDto {
 export interface PushPayloadDto {
     /**
      * The title of the push message
-     * @type {string}
+     * @type {Array<MultilangTextDto>}
      * @memberof PushPayloadDto
      */
-    'title': string;
+    'title': Array<MultilangTextDto>;
     /**
      * The subtitle of the push message
-     * @type {string}
+     * @type {Array<MultilangTextDto>}
      * @memberof PushPayloadDto
      */
-    'subtitle'?: string;
+    'subtitle'?: Array<MultilangTextDto>;
     /**
      * The content of the push message
-     * @type {string}
+     * @type {Array<MultilangTextDto>}
      * @memberof PushPayloadDto
      */
-    'body': string;
+    'body': Array<MultilangTextDto>;
 }
 /**
  * 
@@ -15198,44 +16309,6 @@ export interface RefreshSecret200Response {
      * @memberof RefreshSecret200Response
      */
     'data': string;
-}
-/**
- * 
- * @export
- * @interface RefundItemDto
- */
-export interface RefundItemDto {
-    /**
-     * The ID of the item to be refunded.
-     * @type {string}
-     * @memberof RefundItemDto
-     */
-    'item': string;
-    /**
-     * The price to be refunded.
-     * @type {number}
-     * @memberof RefundItemDto
-     */
-    'price': number;
-}
-/**
- * 
- * @export
- * @interface RefundRequestDto
- */
-export interface RefundRequestDto {
-    /**
-     * An array of items and prices to be refunded.
-     * @type {Array<RefundItemDto>}
-     * @memberof RefundRequestDto
-     */
-    'refundItems': Array<RefundItemDto>;
-    /**
-     * A comment to be added to the refund request.
-     * @type {string}
-     * @memberof RefundRequestDto
-     */
-    'comment'?: string;
 }
 /**
  * 
@@ -15384,6 +16457,86 @@ export type RuleResponseDtoConditionOperatorEnum = typeof RuleResponseDtoConditi
 /**
  * 
  * @export
+ * @interface SelectFieldDto
+ */
+export interface SelectFieldDto {
+    /**
+     * Discriminator literal — always \'SELECT\' for this DTO.
+     * @type {string}
+     * @memberof SelectFieldDto
+     */
+    'type': SelectFieldDtoTypeEnum;
+    /**
+     * Selected option.
+     * @type {FieldOptionDto}
+     * @memberof SelectFieldDto
+     */
+    'value'?: FieldOptionDto;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof SelectFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof SelectFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof SelectFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof SelectFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof SelectFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof SelectFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof SelectFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof SelectFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof SelectFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const SelectFieldDtoTypeEnum = {
+    SELECT: 'SELECT'
+} as const;
+
+export type SelectFieldDtoTypeEnum = typeof SelectFieldDtoTypeEnum[keyof typeof SelectFieldDtoTypeEnum];
+
+/**
+ * 
+ * @export
  * @interface SelectedNotificationIntegrationsDto
  */
 export interface SelectedNotificationIntegrationsDto {
@@ -15405,6 +16558,19 @@ export interface SelectedNotificationIntegrationsDto {
      * @memberof SelectedNotificationIntegrationsDto
      */
     'pushNotification'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SetAutoRefundsRequest
+ */
+export interface SetAutoRefundsRequest {
+    /**
+     * Enable or disable automatic refunds
+     * @type {boolean}
+     * @memberof SetAutoRefundsRequest
+     */
+    'autoRefunds': boolean;
 }
 /**
  * 
@@ -15559,10 +16725,10 @@ export interface SingleResponseDto {
 export interface SmsPayloadDto {
     /**
      * The SMS message content
-     * @type {string}
+     * @type {Array<MultilangTextDto>}
      * @memberof SmsPayloadDto
      */
-    'body': string;
+    'body': Array<MultilangTextDto>;
 }
 /**
  * 
@@ -15597,39 +16763,6 @@ export interface TabDto {
     'url': string;
 }
 /**
- * Tab structure for Admin panel sections.
- * @export
- * @interface Tabs
- */
-export interface Tabs {
-    /**
-     * 
-     * @type {AdminPanelTabsDto}
-     * @memberof Tabs
-     */
-    'tabs'?: AdminPanelTabsDto;
-}
-/**
- * Tab structure for Client panel.
- * @export
- * @interface Tabs1
- */
-export interface Tabs1 {
-    /**
-     * 
-     * @type {ClientPanelTabsDto}
-     * @memberof Tabs1
-     */
-    'tabs'?: ClientPanelTabsDto;
-}
-/**
- * @type TemplateData
- * An array tha cantains necessary data for the templates.
- * @export
- */
-export type TemplateData = EmailPayloadDto | PushPayloadDto | SmsPayloadDto;
-
-/**
  * @type TemplateRef
  * Either a populated TemplateResponseDto or its id string.
  * @export
@@ -15643,52 +16776,72 @@ export type TemplateRef = TemplateResponseDto | string;
  */
 export interface TemplateRequestDto {
     /**
-     * The title of the template.
+     * The name of the template.
      * @type {string}
      * @memberof TemplateRequestDto
      */
-    'title'?: string;
+    'name': string;
     /**
      * The notification type of the template.
+     * @type {Array<string>}
+     * @memberof TemplateRequestDto
+     */
+    'channels': Array<TemplateRequestDtoChannelsEnum>;
+    /**
+     * The category of the template.
      * @type {string}
      * @memberof TemplateRequestDto
      */
-    'notificationType': TemplateRequestDtoNotificationTypeEnum;
-    /**
-     * 
-     * @type {TemplateData}
-     * @memberof TemplateRequestDto
-     */
-    'data': TemplateData;
+    'category'?: TemplateRequestDtoCategoryEnum;
     /**
      * The event associated with the template.
      * @type {string}
      * @memberof TemplateRequestDto
      */
-    'event'?: TemplateRequestDtoEventEnum;
+    'trigger'?: TemplateRequestDtoTriggerEnum;
+    /**
+     * 
+     * @type {EmailPayloadDto}
+     * @memberof TemplateRequestDto
+     */
+    'emailPayload'?: EmailPayloadDto;
+    /**
+     * 
+     * @type {SmsPayloadDto}
+     * @memberof TemplateRequestDto
+     */
+    'smsPayload'?: SmsPayloadDto;
+    /**
+     * 
+     * @type {PushPayloadDto}
+     * @memberof TemplateRequestDto
+     */
+    'pushPayload'?: PushPayloadDto;
     /**
      * The integration id of the template
-     * @type {string}
+     * @type {Array<string>}
      * @memberof TemplateRequestDto
      */
-    'integration': string;
-    /**
-     * The product id the template is associated with
-     * @type {string}
-     * @memberof TemplateRequestDto
-     */
-    'product'?: string;
+    'integrations'?: Array<string>;
 }
 
-export const TemplateRequestDtoNotificationTypeEnum = {
+export const TemplateRequestDtoChannelsEnum = {
     email: 'email',
-    chat: 'chat',
     push: 'push',
     sms: 'sms'
 } as const;
 
-export type TemplateRequestDtoNotificationTypeEnum = typeof TemplateRequestDtoNotificationTypeEnum[keyof typeof TemplateRequestDtoNotificationTypeEnum];
-export const TemplateRequestDtoEventEnum = {
+export type TemplateRequestDtoChannelsEnum = typeof TemplateRequestDtoChannelsEnum[keyof typeof TemplateRequestDtoChannelsEnum];
+export const TemplateRequestDtoCategoryEnum = {
+    clients: 'clients',
+    producs: 'producs',
+    orders: 'orders',
+    invoices: 'invoices',
+    support: 'support'
+} as const;
+
+export type TemplateRequestDtoCategoryEnum = typeof TemplateRequestDtoCategoryEnum[keyof typeof TemplateRequestDtoCategoryEnum];
+export const TemplateRequestDtoTriggerEnum = {
     user_created: 'user/created',
     user_updated: 'user/updated',
     user_deleted: 'user/deleted',
@@ -15860,13 +17013,16 @@ export const TemplateRequestDtoEventEnum = {
     item_activated: 'item/activated',
     item_set_inactive: 'item/set-inactive',
     item_processed: 'item/processed',
+    item_refund_requested: 'item/refund-requested',
+    item_refund_accepted: 'item/refund-accepted',
+    item_refund_rejected: 'item/refund-rejected',
     order_paid: 'order/paid',
     test: 'test',
     dead_lettering: 'dead-lettering',
     core_queue: 'core-queue'
 } as const;
 
-export type TemplateRequestDtoEventEnum = typeof TemplateRequestDtoEventEnum[keyof typeof TemplateRequestDtoEventEnum];
+export type TemplateRequestDtoTriggerEnum = typeof TemplateRequestDtoTriggerEnum[keyof typeof TemplateRequestDtoTriggerEnum];
 
 /**
  * 
@@ -15875,29 +17031,47 @@ export type TemplateRequestDtoEventEnum = typeof TemplateRequestDtoEventEnum[key
  */
 export interface TemplateResponseDto {
     /**
-     * The title of the template.
+     * The name of the template.
      * @type {string}
      * @memberof TemplateResponseDto
      */
-    'title'?: string;
+    'name': string;
     /**
      * The notification type of the template.
+     * @type {Array<string>}
+     * @memberof TemplateResponseDto
+     */
+    'channels': Array<TemplateResponseDtoChannelsEnum>;
+    /**
+     * The category of the template.
      * @type {string}
      * @memberof TemplateResponseDto
      */
-    'notificationType': TemplateResponseDtoNotificationTypeEnum;
-    /**
-     * 
-     * @type {TemplateData}
-     * @memberof TemplateResponseDto
-     */
-    'data': TemplateData;
+    'category'?: TemplateResponseDtoCategoryEnum;
     /**
      * The event associated with the template.
      * @type {string}
      * @memberof TemplateResponseDto
      */
-    'event'?: TemplateResponseDtoEventEnum;
+    'trigger'?: TemplateResponseDtoTriggerEnum;
+    /**
+     * 
+     * @type {EmailPayloadDto}
+     * @memberof TemplateResponseDto
+     */
+    'emailPayload'?: EmailPayloadDto;
+    /**
+     * 
+     * @type {SmsPayloadDto}
+     * @memberof TemplateResponseDto
+     */
+    'smsPayload'?: SmsPayloadDto;
+    /**
+     * 
+     * @type {PushPayloadDto}
+     * @memberof TemplateResponseDto
+     */
+    'pushPayload'?: PushPayloadDto;
     /**
      * The unique identifier of the template.
      * @type {string}
@@ -15915,7 +17089,13 @@ export interface TemplateResponseDto {
      * @type {IntegrationRef}
      * @memberof TemplateResponseDto
      */
-    'integration': IntegrationRef;
+    'createdFromIntegration': IntegrationRef;
+    /**
+     * 
+     * @type {Integration}
+     * @memberof TemplateResponseDto
+     */
+    'integrations'?: Integration;
     /**
      * 
      * @type {ProductRef}
@@ -15923,11 +17103,11 @@ export interface TemplateResponseDto {
      */
     'product'?: ProductRef;
     /**
-     * Indicates if the template is deletable or not.
+     * Indicates if the template is a default template or not.
      * @type {boolean}
      * @memberof TemplateResponseDto
      */
-    'deletable'?: boolean;
+    'default': boolean;
     /**
      * The date when the template was created.
      * @type {string}
@@ -15942,15 +17122,23 @@ export interface TemplateResponseDto {
     'updatedAt'?: string;
 }
 
-export const TemplateResponseDtoNotificationTypeEnum = {
+export const TemplateResponseDtoChannelsEnum = {
     email: 'email',
-    chat: 'chat',
     push: 'push',
     sms: 'sms'
 } as const;
 
-export type TemplateResponseDtoNotificationTypeEnum = typeof TemplateResponseDtoNotificationTypeEnum[keyof typeof TemplateResponseDtoNotificationTypeEnum];
-export const TemplateResponseDtoEventEnum = {
+export type TemplateResponseDtoChannelsEnum = typeof TemplateResponseDtoChannelsEnum[keyof typeof TemplateResponseDtoChannelsEnum];
+export const TemplateResponseDtoCategoryEnum = {
+    clients: 'clients',
+    producs: 'producs',
+    orders: 'orders',
+    invoices: 'invoices',
+    support: 'support'
+} as const;
+
+export type TemplateResponseDtoCategoryEnum = typeof TemplateResponseDtoCategoryEnum[keyof typeof TemplateResponseDtoCategoryEnum];
+export const TemplateResponseDtoTriggerEnum = {
     user_created: 'user/created',
     user_updated: 'user/updated',
     user_deleted: 'user/deleted',
@@ -16122,13 +17310,224 @@ export const TemplateResponseDtoEventEnum = {
     item_activated: 'item/activated',
     item_set_inactive: 'item/set-inactive',
     item_processed: 'item/processed',
+    item_refund_requested: 'item/refund-requested',
+    item_refund_accepted: 'item/refund-accepted',
+    item_refund_rejected: 'item/refund-rejected',
     order_paid: 'order/paid',
     test: 'test',
     dead_lettering: 'dead-lettering',
     core_queue: 'core-queue'
 } as const;
 
-export type TemplateResponseDtoEventEnum = typeof TemplateResponseDtoEventEnum[keyof typeof TemplateResponseDtoEventEnum];
+export type TemplateResponseDtoTriggerEnum = typeof TemplateResponseDtoTriggerEnum[keyof typeof TemplateResponseDtoTriggerEnum];
+
+/**
+ * 
+ * @export
+ * @interface TextFieldDto
+ */
+export interface TextFieldDto {
+    /**
+     * Discriminator literal — always \'TEXT\' for this DTO.
+     * @type {string}
+     * @memberof TextFieldDto
+     */
+    'type': TextFieldDtoTypeEnum;
+    /**
+     * Text value of the field.
+     * @type {string}
+     * @memberof TextFieldDto
+     */
+    'value'?: string;
+    /**
+     * Minimum allowed character length.
+     * @type {number}
+     * @memberof TextFieldDto
+     */
+    'minLength'?: number;
+    /**
+     * Maximum allowed character length.
+     * @type {number}
+     * @memberof TextFieldDto
+     */
+    'maxLength'?: number;
+    /**
+     * Optional regex to validate input.
+     * @type {string}
+     * @memberof TextFieldDto
+     */
+    'regexValidation'?: string;
+    /**
+     * Localized error message shown when regex validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof TextFieldDto
+     */
+    'regexValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof TextFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof TextFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof TextFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof TextFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof TextFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof TextFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof TextFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof TextFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof TextFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const TextFieldDtoTypeEnum = {
+    TEXT: 'TEXT'
+} as const;
+
+export type TextFieldDtoTypeEnum = typeof TextFieldDtoTypeEnum[keyof typeof TextFieldDtoTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface TextareaFieldDto
+ */
+export interface TextareaFieldDto {
+    /**
+     * Discriminator literal — always \'TEXTAREA\' for this DTO.
+     * @type {string}
+     * @memberof TextareaFieldDto
+     */
+    'type': TextareaFieldDtoTypeEnum;
+    /**
+     * Text value of the field.
+     * @type {string}
+     * @memberof TextareaFieldDto
+     */
+    'value'?: string;
+    /**
+     * Minimum allowed character length.
+     * @type {number}
+     * @memberof TextareaFieldDto
+     */
+    'minLength'?: number;
+    /**
+     * Maximum allowed character length.
+     * @type {number}
+     * @memberof TextareaFieldDto
+     */
+    'maxLength'?: number;
+    /**
+     * Optional regex to validate input.
+     * @type {string}
+     * @memberof TextareaFieldDto
+     */
+    'regexValidation'?: string;
+    /**
+     * Localized error message shown when regex validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof TextareaFieldDto
+     */
+    'regexValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof TextareaFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof TextareaFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof TextareaFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof TextareaFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof TextareaFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof TextareaFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof TextareaFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof TextareaFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof TextareaFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const TextareaFieldDtoTypeEnum = {
+    TEXTAREA: 'TEXTAREA'
+} as const;
+
+export type TextareaFieldDtoTypeEnum = typeof TextareaFieldDtoTypeEnum[keyof typeof TextareaFieldDtoTypeEnum];
 
 /**
  * @type TldRef
@@ -19023,6 +20422,20 @@ export const TransactionResponseDtoStatusEnum = {
 export type TransactionResponseDtoStatusEnum = typeof TransactionResponseDtoStatusEnum[keyof typeof TransactionResponseDtoStatusEnum];
 
 /**
+ * @type TransferredFromUser
+ * Stores the unique identifier of the user account from which the item was transferred, allowing for historical tracking.
+ * @export
+ */
+export type TransferredFromUser = UserResponseDto | string;
+
+/**
+ * @type TransferredToUser
+ * Stores the unique identifier of the user account to which the item was transferred, allowing for historical tracking.
+ * @export
+ */
+export type TransferredToUser = UserResponseDto | string;
+
+/**
  * 
  * @export
  * @interface UKDirectDataDto
@@ -19432,6 +20845,86 @@ export interface UpdateUserTagsRequest {
 /**
  * 
  * @export
+ * @interface UrlFieldDto
+ */
+export interface UrlFieldDto {
+    /**
+     * Discriminator literal — always \'URL\' for this DTO.
+     * @type {string}
+     * @memberof UrlFieldDto
+     */
+    'type': UrlFieldDtoTypeEnum;
+    /**
+     * URL.
+     * @type {string}
+     * @memberof UrlFieldDto
+     */
+    'value'?: string;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof UrlFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof UrlFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof UrlFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof UrlFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * Whether the field is hidden.
+     * @type {boolean}
+     * @memberof UrlFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Whether remote validation should be triggered for this field.
+     * @type {boolean}
+     * @memberof UrlFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof UrlFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof UrlFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof UrlFieldDto
+     */
+    'downgradable'?: boolean;
+}
+
+export const UrlFieldDtoTypeEnum = {
+    URL: 'URL'
+} as const;
+
+export type UrlFieldDtoTypeEnum = typeof UrlFieldDtoTypeEnum[keyof typeof UrlFieldDtoTypeEnum];
+
+/**
+ * 
+ * @export
  * @interface UsAdditionalDataDto
  */
 export interface UsAdditionalDataDto {
@@ -19467,6 +20960,13 @@ export const UsAdditionalDataDtoCategoryEnum = {
 } as const;
 
 export type UsAdditionalDataDtoCategoryEnum = typeof UsAdditionalDataDtoCategoryEnum[keyof typeof UsAdditionalDataDtoCategoryEnum];
+
+/**
+ * @type User
+ * A unique identifier for the user associated with this item, used to link the item to a specific user account.
+ * @export
+ */
+export type User = UserResponseDto | string;
 
 /**
  * 
@@ -19864,44 +21364,6 @@ export type UserResponseDtoDefaultLanguageEnum = typeof UserResponseDtoDefaultLa
 /**
  * 
  * @export
- * @interface UserRolesRequestDto
- */
-export interface UserRolesRequestDto {
-    /**
-     * A unique identifier for user.
-     * @type {string}
-     * @memberof UserRolesRequestDto
-     */
-    'user': string;
-    /**
-     * An id of the group role.
-     * @type {string}
-     * @memberof UserRolesRequestDto
-     */
-    'groupRole': string;
-}
-/**
- * 
- * @export
- * @interface UserRolesResponseDto
- */
-export interface UserRolesResponseDto {
-    /**
-     * 
-     * @type {UserRef}
-     * @memberof UserRolesResponseDto
-     */
-    'user': UserRef;
-    /**
-     * 
-     * @type {GroupRoleRef}
-     * @memberof UserRolesResponseDto
-     */
-    'groupRole': GroupRoleRef;
-}
-/**
- * 
- * @export
  * @interface ValidateTIN200Response
  */
 export interface ValidateTIN200Response {
@@ -19926,10 +21388,10 @@ export interface ValidateTIN200Response {
 }
 /**
  * @type Value
- * Value of the field. String/Number, or FieldOptionDto/FieldOptionDto[] depending on type.
+ * ISO 8601 date or date-time string.
  * @export
  */
-export type Value = FieldOptionDto | any | number | string;
+export type Value = string;
 
 /**
  * 
@@ -20878,6 +22340,44 @@ export class ClientInvoiceContactsApi extends BaseAPI {
 export const ClientItemsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Allows a client to request a refund for their item.
+         * @summary Request refund for a client item
+         * @param {string} id A unique identifier for the item to request refund.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clientItemRefund: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('clientItemRefund', 'id', id)
+            const localVarPath = `/client/items/request-refund/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -21135,6 +22635,19 @@ export const ClientItemsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ClientItemsApiAxiosParamCreator(configuration)
     return {
         /**
+         * Allows a client to request a refund for their item.
+         * @summary Request refund for a client item
+         * @param {string} id A unique identifier for the item to request refund.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async clientItemRefund(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.clientItemRefund(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.clientItemRefund']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -21226,6 +22739,16 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
     const localVarFp = ClientItemsApiFp(configuration)
     return {
         /**
+         * Allows a client to request a refund for their item.
+         * @summary Request refund for a client item
+         * @param {string} id A unique identifier for the item to request refund.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clientItemRefund(id: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.clientItemRefund(id, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -21298,6 +22821,18 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
  * @extends {BaseAPI}
  */
 export class ClientItemsApi extends BaseAPI {
+    /**
+     * Allows a client to request a refund for their item.
+     * @summary Request refund for a client item
+     * @param {string} id A unique identifier for the item to request refund.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClientItemsApi
+     */
+    public clientItemRefund(id: string, options?: RawAxiosRequestConfig) {
+        return ClientItemsApiFp(this.configuration).clientItemRefund(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
      * @summary Get Client Item
@@ -21383,14 +22918,57 @@ export class ClientItemsApi extends BaseAPI {
 export const ClientOrdersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @param {OrderRequestDto} orderRequestDto 
+         * Changes the invoice contact for a pending order. Only the order owner can change the invoice contact.
+         * @summary Change invoice contact for a client order
+         * @param {string} id Order ID
+         * @param {string} newInvoiceContactId New invoice contact ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clientOrderControllerCreateOrder: async (orderRequestDto: OrderRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'orderRequestDto' is not null or undefined
-            assertParamExists('clientOrderControllerCreateOrder', 'orderRequestDto', orderRequestDto)
+        changeClientOrderInvoiceContact: async (id: string, newInvoiceContactId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('changeClientOrderInvoiceContact', 'id', id)
+            // verify required parameter 'newInvoiceContactId' is not null or undefined
+            assertParamExists('changeClientOrderInvoiceContact', 'newInvoiceContactId', newInvoiceContactId)
+            const localVarPath = `/client/orders/{id}/invoice-contact/{newInvoiceContactId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"newInvoiceContactId"}}`, encodeURIComponent(String(newInvoiceContactId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a new B2C order for the authenticated client user.
+         * @summary Create a client order
+         * @param {B2COrderRequestDto} b2COrderRequestDto Order creation request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createClientOrder: async (b2COrderRequestDto: B2COrderRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'b2COrderRequestDto' is not null or undefined
+            assertParamExists('createClientOrder', 'b2COrderRequestDto', b2COrderRequestDto)
             const localVarPath = `/client/orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -21414,7 +22992,7 @@ export const ClientOrdersApiAxiosParamCreator = function (configuration?: Config
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(orderRequestDto, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(b2COrderRequestDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -21422,26 +23000,55 @@ export const ClientOrdersApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
-         * 
-         * @param {number} currentPage 
-         * @param {number} perPage 
-         * @param {string} status 
-         * @param {number} orderNumber 
-         * @param {boolean} archived 
+         * Retrieves a specific order by ID. Users with company rights can see all orders, simple users can only see their own orders.
+         * @summary Get a specific client order
+         * @param {string} id Order ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clientOrderControllerGetClientOrders: async (currentPage: number, perPage: number, status: string, orderNumber: number, archived: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'currentPage' is not null or undefined
-            assertParamExists('clientOrderControllerGetClientOrders', 'currentPage', currentPage)
-            // verify required parameter 'perPage' is not null or undefined
-            assertParamExists('clientOrderControllerGetClientOrders', 'perPage', perPage)
-            // verify required parameter 'status' is not null or undefined
-            assertParamExists('clientOrderControllerGetClientOrders', 'status', status)
-            // verify required parameter 'orderNumber' is not null or undefined
-            assertParamExists('clientOrderControllerGetClientOrders', 'orderNumber', orderNumber)
-            // verify required parameter 'archived' is not null or undefined
-            assertParamExists('clientOrderControllerGetClientOrders', 'archived', archived)
+        getClientOrder: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getClientOrder', 'id', id)
+            const localVarPath = `/client/orders/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a paginated list of orders for the authenticated client user. Users with company rights see all orders, simple users see only their own orders.
+         * @summary Get client orders
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {GetClientOrdersStatusEnum} [status] Filter by order status
+         * @param {number} [orderNumber] Filter by order number
+         * @param {boolean} [archived] Filter by archived status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getClientOrders: async (currentPage?: number, perPage?: number, status?: GetClientOrdersStatusEnum, orderNumber?: number, archived?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/client/orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -21489,43 +23096,6 @@ export const ClientOrdersApiAxiosParamCreator = function (configuration?: Config
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        clientOrderControllerGetOrder: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('clientOrderControllerGetOrder', 'id', id)
-            const localVarPath = `/client/orders/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -21537,43 +23107,60 @@ export const ClientOrdersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ClientOrdersApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
-         * @param {OrderRequestDto} orderRequestDto 
+         * Changes the invoice contact for a pending order. Only the order owner can change the invoice contact.
+         * @summary Change invoice contact for a client order
+         * @param {string} id Order ID
+         * @param {string} newInvoiceContactId New invoice contact ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async clientOrderControllerCreateOrder(orderRequestDto: OrderRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.clientOrderControllerCreateOrder(orderRequestDto, options);
+        async changeClientOrderInvoiceContact(id: string, newInvoiceContactId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.changeClientOrderInvoiceContact(id, newInvoiceContactId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClientOrdersApi.clientOrderControllerCreateOrder']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ClientOrdersApi.changeClientOrderInvoiceContact']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {number} currentPage 
-         * @param {number} perPage 
-         * @param {string} status 
-         * @param {number} orderNumber 
-         * @param {boolean} archived 
+         * Creates a new B2C order for the authenticated client user.
+         * @summary Create a client order
+         * @param {B2COrderRequestDto} b2COrderRequestDto Order creation request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async clientOrderControllerGetClientOrders(currentPage: number, perPage: number, status: string, orderNumber: number, archived: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.clientOrderControllerGetClientOrders(currentPage, perPage, status, orderNumber, archived, options);
+        async createClientOrder(b2COrderRequestDto: B2COrderRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createClientOrder(b2COrderRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClientOrdersApi.clientOrderControllerGetClientOrders']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ClientOrdersApi.createClientOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} id 
+         * Retrieves a specific order by ID. Users with company rights can see all orders, simple users can only see their own orders.
+         * @summary Get a specific client order
+         * @param {string} id Order ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async clientOrderControllerGetOrder(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.clientOrderControllerGetOrder(id, options);
+        async getClientOrder(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getClientOrder(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClientOrdersApi.clientOrderControllerGetOrder']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ClientOrdersApi.getClientOrder']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Retrieves a paginated list of orders for the authenticated client user. Users with company rights see all orders, simple users see only their own orders.
+         * @summary Get client orders
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {GetClientOrdersStatusEnum} [status] Filter by order status
+         * @param {number} [orderNumber] Filter by order number
+         * @param {boolean} [archived] Filter by archived status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getClientOrders(currentPage?: number, perPage?: number, status?: GetClientOrdersStatusEnum, orderNumber?: number, archived?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetClientOrders200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getClientOrders(currentPage, perPage, status, orderNumber, archived, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientOrdersApi.getClientOrders']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -21587,35 +23174,49 @@ export const ClientOrdersApiFactory = function (configuration?: Configuration, b
     const localVarFp = ClientOrdersApiFp(configuration)
     return {
         /**
-         * 
-         * @param {OrderRequestDto} orderRequestDto 
+         * Changes the invoice contact for a pending order. Only the order owner can change the invoice contact.
+         * @summary Change invoice contact for a client order
+         * @param {string} id Order ID
+         * @param {string} newInvoiceContactId New invoice contact ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clientOrderControllerCreateOrder(orderRequestDto: OrderRequestDto, options?: any): AxiosPromise<void> {
-            return localVarFp.clientOrderControllerCreateOrder(orderRequestDto, options).then((request) => request(axios, basePath));
+        changeClientOrderInvoiceContact(id: string, newInvoiceContactId: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+            return localVarFp.changeClientOrderInvoiceContact(id, newInvoiceContactId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {number} currentPage 
-         * @param {number} perPage 
-         * @param {string} status 
-         * @param {number} orderNumber 
-         * @param {boolean} archived 
+         * Creates a new B2C order for the authenticated client user.
+         * @summary Create a client order
+         * @param {B2COrderRequestDto} b2COrderRequestDto Order creation request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clientOrderControllerGetClientOrders(currentPage: number, perPage: number, status: string, orderNumber: number, archived: boolean, options?: any): AxiosPromise<void> {
-            return localVarFp.clientOrderControllerGetClientOrders(currentPage, perPage, status, orderNumber, archived, options).then((request) => request(axios, basePath));
+        createClientOrder(b2COrderRequestDto: B2COrderRequestDto, options?: any): AxiosPromise<CreateClientOrder201Response> {
+            return localVarFp.createClientOrder(b2COrderRequestDto, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} id 
+         * Retrieves a specific order by ID. Users with company rights can see all orders, simple users can only see their own orders.
+         * @summary Get a specific client order
+         * @param {string} id Order ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clientOrderControllerGetOrder(id: string, options?: any): AxiosPromise<void> {
-            return localVarFp.clientOrderControllerGetOrder(id, options).then((request) => request(axios, basePath));
+        getClientOrder(id: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+            return localVarFp.getClientOrder(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieves a paginated list of orders for the authenticated client user. Users with company rights see all orders, simple users see only their own orders.
+         * @summary Get client orders
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {GetClientOrdersStatusEnum} [status] Filter by order status
+         * @param {number} [orderNumber] Filter by order number
+         * @param {boolean} [archived] Filter by archived status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getClientOrders(currentPage?: number, perPage?: number, status?: GetClientOrdersStatusEnum, orderNumber?: number, archived?: boolean, options?: any): AxiosPromise<GetClientOrders200Response> {
+            return localVarFp.getClientOrders(currentPage, perPage, status, orderNumber, archived, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -21628,43 +23229,71 @@ export const ClientOrdersApiFactory = function (configuration?: Configuration, b
  */
 export class ClientOrdersApi extends BaseAPI {
     /**
-     * 
-     * @param {OrderRequestDto} orderRequestDto 
+     * Changes the invoice contact for a pending order. Only the order owner can change the invoice contact.
+     * @summary Change invoice contact for a client order
+     * @param {string} id Order ID
+     * @param {string} newInvoiceContactId New invoice contact ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ClientOrdersApi
      */
-    public clientOrderControllerCreateOrder(orderRequestDto: OrderRequestDto, options?: RawAxiosRequestConfig) {
-        return ClientOrdersApiFp(this.configuration).clientOrderControllerCreateOrder(orderRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public changeClientOrderInvoiceContact(id: string, newInvoiceContactId: string, options?: RawAxiosRequestConfig) {
+        return ClientOrdersApiFp(this.configuration).changeClientOrderInvoiceContact(id, newInvoiceContactId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {number} currentPage 
-     * @param {number} perPage 
-     * @param {string} status 
-     * @param {number} orderNumber 
-     * @param {boolean} archived 
+     * Creates a new B2C order for the authenticated client user.
+     * @summary Create a client order
+     * @param {B2COrderRequestDto} b2COrderRequestDto Order creation request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ClientOrdersApi
      */
-    public clientOrderControllerGetClientOrders(currentPage: number, perPage: number, status: string, orderNumber: number, archived: boolean, options?: RawAxiosRequestConfig) {
-        return ClientOrdersApiFp(this.configuration).clientOrderControllerGetClientOrders(currentPage, perPage, status, orderNumber, archived, options).then((request) => request(this.axios, this.basePath));
+    public createClientOrder(b2COrderRequestDto: B2COrderRequestDto, options?: RawAxiosRequestConfig) {
+        return ClientOrdersApiFp(this.configuration).createClientOrder(b2COrderRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} id 
+     * Retrieves a specific order by ID. Users with company rights can see all orders, simple users can only see their own orders.
+     * @summary Get a specific client order
+     * @param {string} id Order ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ClientOrdersApi
      */
-    public clientOrderControllerGetOrder(id: string, options?: RawAxiosRequestConfig) {
-        return ClientOrdersApiFp(this.configuration).clientOrderControllerGetOrder(id, options).then((request) => request(this.axios, this.basePath));
+    public getClientOrder(id: string, options?: RawAxiosRequestConfig) {
+        return ClientOrdersApiFp(this.configuration).getClientOrder(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieves a paginated list of orders for the authenticated client user. Users with company rights see all orders, simple users see only their own orders.
+     * @summary Get client orders
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {GetClientOrdersStatusEnum} [status] Filter by order status
+     * @param {number} [orderNumber] Filter by order number
+     * @param {boolean} [archived] Filter by archived status
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClientOrdersApi
+     */
+    public getClientOrders(currentPage?: number, perPage?: number, status?: GetClientOrdersStatusEnum, orderNumber?: number, archived?: boolean, options?: RawAxiosRequestConfig) {
+        return ClientOrdersApiFp(this.configuration).getClientOrders(currentPage, perPage, status, orderNumber, archived, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
+/**
+ * @export
+ */
+export const GetClientOrdersStatusEnum = {
+    idle: 'idle',
+    inprogress: 'inprogress',
+    completed: 'completed',
+    canceled: 'canceled',
+    archived: 'archived',
+    refunded: 'refunded'
+} as const;
+export type GetClientOrdersStatusEnum = typeof GetClientOrdersStatusEnum[keyof typeof GetClientOrdersStatusEnum];
 
 
 /**
@@ -22702,6 +24331,51 @@ export type UpdateClientUserInvoiceIntervalInvoiceIntervalEnum = typeof UpdateCl
 export const CompaniesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Removes all roles for a specified user within a company. Returns a boolean indicating success.
+         * @summary Remove User Access from Company
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} userId The ID of the user to remove access from.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        companyRemoveUserRoles: async (companyId: string, userId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('companyRemoveUserRoles', 'companyId', companyId)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('companyRemoveUserRoles', 'userId', userId)
+            const localVarPath = `/Companies/{userId}/remove-access`
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates the roles of a user within a specific company.
          * @summary Update user roles in a company
          * @param {string} email The email of the user.
@@ -23170,6 +24844,53 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
+         * @summary Set Automatic Refunds
+         * @param {string} companyId A unique identifier for the company.
+         * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        setAutoRefunds: async (companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('setAutoRefunds', 'companyId', companyId)
+            // verify required parameter 'setAutoRefundsRequest' is not null or undefined
+            assertParamExists('setAutoRefunds', 'setAutoRefundsRequest', setAutoRefundsRequest)
+            const localVarPath = `/Companies/set-autorefunds`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(setAutoRefundsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -23788,6 +25509,20 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CompaniesApiAxiosParamCreator(configuration)
     return {
         /**
+         * Removes all roles for a specified user within a company. Returns a boolean indicating success.
+         * @summary Remove User Access from Company
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} userId The ID of the user to remove access from.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async companyRemoveUserRoles(companyId: string, userId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.companyRemoveUserRoles(companyId, userId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.companyRemoveUserRoles']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Updates the roles of a user within a specific company.
          * @summary Update user roles in a company
          * @param {string} email The email of the user.
@@ -23935,6 +25670,20 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.lockCompany(companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CompaniesApi.lockCompany']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
+         * @summary Set Automatic Refunds
+         * @param {string} companyId A unique identifier for the company.
+         * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async setAutoRefunds(companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.setAutoRefunds(companyId, setAutoRefundsRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.setAutoRefunds']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -24129,6 +25878,17 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
     const localVarFp = CompaniesApiFp(configuration)
     return {
         /**
+         * Removes all roles for a specified user within a company. Returns a boolean indicating success.
+         * @summary Remove User Access from Company
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} userId The ID of the user to remove access from.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        companyRemoveUserRoles(companyId: string, userId: string, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
+            return localVarFp.companyRemoveUserRoles(companyId, userId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Updates the roles of a user within a specific company.
          * @summary Update user roles in a company
          * @param {string} email The email of the user.
@@ -24244,6 +26004,17 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          */
         lockCompany(companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.lockCompany(companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
+         * @summary Set Automatic Refunds
+         * @param {string} companyId A unique identifier for the company.
+         * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        setAutoRefunds(companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
+            return localVarFp.setAutoRefunds(companyId, setAutoRefundsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Sets the credit balance for a specified company. Returns a boolean indicating success.
@@ -24398,6 +26169,19 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
  */
 export class CompaniesApi extends BaseAPI {
     /**
+     * Removes all roles for a specified user within a company. Returns a boolean indicating success.
+     * @summary Remove User Access from Company
+     * @param {string} companyId A unique identifier for the company.
+     * @param {string} userId The ID of the user to remove access from.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public companyRemoveUserRoles(companyId: string, userId: string, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).companyRemoveUserRoles(companyId, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Updates the roles of a user within a specific company.
      * @summary Update user roles in a company
      * @param {string} email The email of the user.
@@ -24534,6 +26318,19 @@ export class CompaniesApi extends BaseAPI {
      */
     public lockCompany(companyId: string, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).lockCompany(companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
+     * @summary Set Automatic Refunds
+     * @param {string} companyId A unique identifier for the company.
+     * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesApi
+     */
+    public setAutoRefunds(companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).setAutoRefunds(companyId, setAutoRefundsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -31690,11 +33487,497 @@ export type FindIssuesIssueCategoryEnum = typeof FindIssuesIssueCategoryEnum[key
 
 
 /**
+ * ItemActionsApi - axios parameter creator
+ * @export
+ */
+export const ItemActionsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerCreate: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerCreate', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/create`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerDowngrade: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerDowngrade', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/downgrade`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerRenew: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerRenew', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/renew`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerSuspend: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerSuspend', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/suspend`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerUnsuspend: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerUnsuspend', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/unsuspend`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerUpgrade: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerUpgrade', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/upgrade`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ItemActionsApi - functional programming interface
+ * @export
+ */
+export const ItemActionsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ItemActionsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerCreate(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerCreate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerDowngrade(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerDowngrade']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerRenew(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerRenew']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerSuspend(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerSuspend']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUnsuspend(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerUnsuspend']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUpgrade(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerUpgrade']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ItemActionsApi - factory interface
+ * @export
+ */
+export const ItemActionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ItemActionsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerCreate(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerDowngrade(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerRenew(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerSuspend(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerUnsuspend(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerUpgrade(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ItemActionsApi - object-oriented interface
+ * @export
+ * @class ItemActionsApi
+ * @extends {BaseAPI}
+ */
+export class ItemActionsApi extends BaseAPI {
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerCreate(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerDowngrade(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerRenew(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerSuspend(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerUnsuspend(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerUpgrade(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
  * ItemsApi - axios parameter creator
  * @export
  */
 export const ItemsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Marks a refund request as accepted and sets item status to refunded.
+         * @summary Accept refund for item
+         * @param {string} id A unique identifier for the item to accept refund.
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        acceptItemRefund: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('acceptItemRefund', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('acceptItemRefund', 'companyId', companyId)
+            const localVarPath = `/items/{id}/refund/accept`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
@@ -31953,17 +34236,17 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Item Attach To Bundle
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
          * @param {string} companyId A unique identifier for the company.
-         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
+         * @param {string} parentId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemAttachToBundle: async (id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        itemAttachToBundle: async (id: string, companyId: string, parentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('itemAttachToBundle', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('itemAttachToBundle', 'companyId', companyId)
-            // verify required parameter 'itemAttachToBundleRequest' is not null or undefined
-            assertParamExists('itemAttachToBundle', 'itemAttachToBundleRequest', itemAttachToBundleRequest)
+            // verify required parameter 'parentId' is not null or undefined
+            assertParamExists('itemAttachToBundle', 'parentId', parentId)
             const localVarPath = `/items/{id}/bundles/attach`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -31985,14 +34268,15 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['companyId'] = companyId;
             }
 
+            if (parentId !== undefined) {
+                localVarQueryParameter['parentId'] = parentId;
+            }
+
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(itemAttachToBundleRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -32022,94 +34306,6 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             }
 
             const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemControllerItemOwnershipCertificate: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemControllerItemOwnershipCertificate', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemControllerItemOwnershipCertificate', 'companyId', companyId)
-            const localVarPath = `/items/{id}/ownershipCertificate`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemControllerItemTransfer: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemControllerItemTransfer', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemControllerItemTransfer', 'companyId', companyId)
-            const localVarPath = `/items/{id}/transfer/{userId}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -32268,6 +34464,58 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Marks an item as refund requested for a specific company.
+         * @summary Request refund for an item
+         * @param {string} id A unique identifier for the item to request refund.
+         * @param {string} companyId 
+         * @param {number} refundValue 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemRefund: async (id: string, companyId: string, refundValue: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('itemRefund', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('itemRefund', 'companyId', companyId)
+            // verify required parameter 'refundValue' is not null or undefined
+            assertParamExists('itemRefund', 'refundValue', refundValue)
+            const localVarPath = `/items/{id}/refund`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (refundValue !== undefined) {
+                localVarQueryParameter['refundValue'] = refundValue;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
          * @summary Item Retry
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -32344,6 +34592,57 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} companyId 
+         * @param {string} email 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemTransferControllerItemTransfer: async (id: string, companyId: string, email: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('itemTransferControllerItemTransfer', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('itemTransferControllerItemTransfer', 'companyId', companyId)
+            // verify required parameter 'email' is not null or undefined
+            assertParamExists('itemTransferControllerItemTransfer', 'email', email)
+            const localVarPath = `/items/{id}/transfer/{userId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (email !== undefined) {
+                localVarQueryParameter['email'] = email;
             }
 
 
@@ -32447,6 +34746,51 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(itemUpdateRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Rejects a refund request and clears refundRequested flag (handles bundles).
+         * @summary Reject refund for item
+         * @param {string} id A unique identifier for the item to reject refund.
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rejectItemRefund: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('rejectItemRefund', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('rejectItemRefund', 'companyId', companyId)
+            const localVarPath = `/items/{id}/refund/reject`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -32560,6 +34904,20 @@ export const ItemsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ItemsApiAxiosParamCreator(configuration)
     return {
         /**
+         * Marks a refund request as accepted and sets item status to refunded.
+         * @summary Accept refund for item
+         * @param {string} id A unique identifier for the item to accept refund.
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async acceptItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.acceptItemRefund(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.acceptItemRefund']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
          * @param {string} companyId A unique identifier for the company.
@@ -32630,12 +34988,12 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @summary Item Attach To Bundle
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
          * @param {string} companyId A unique identifier for the company.
-         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
+         * @param {string} parentId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options);
+        async itemAttachToBundle(id: string, companyId: string, parentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemAttachToBundle(id, companyId, parentId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemAttachToBundle']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -32652,32 +35010,6 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.itemCancel(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemCancel']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemControllerItemOwnershipCertificate(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemControllerItemOwnershipCertificate(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemControllerItemOwnershipCertificate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemControllerItemTransfer(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemControllerItemTransfer(id, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemControllerItemTransfer']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -32723,6 +35055,21 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Marks an item as refund requested for a specific company.
+         * @summary Request refund for an item
+         * @param {string} id A unique identifier for the item to request refund.
+         * @param {string} companyId 
+         * @param {number} refundValue 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemRefund(id: string, companyId: string, refundValue: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemRefund(id, companyId, refundValue, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemRefund']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
          * @summary Item Retry
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -32748,6 +35095,20 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.itemSuspend(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemSuspend']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} companyId 
+         * @param {string} email 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemTransferControllerItemTransfer(id: string, companyId: string, email: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemTransferControllerItemTransfer(id, companyId, email, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemTransferControllerItemTransfer']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -32777,6 +35138,20 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.itemUpdate(id, companyId, itemUpdateRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemUpdate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Rejects a refund request and clears refundRequested flag (handles bundles).
+         * @summary Reject refund for item
+         * @param {string} id A unique identifier for the item to reject refund.
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rejectItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rejectItemRefund(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.rejectItemRefund']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -32818,6 +35193,17 @@ export const ItemsApiFp = function(configuration?: Configuration) {
 export const ItemsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ItemsApiFp(configuration)
     return {
+        /**
+         * Marks a refund request as accepted and sets item status to refunded.
+         * @summary Accept refund for item
+         * @param {string} id A unique identifier for the item to accept refund.
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        acceptItemRefund(id: string, companyId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.acceptItemRefund(id, companyId, options).then((request) => request(axios, basePath));
+        },
         /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
@@ -32877,12 +35263,12 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @summary Item Attach To Bundle
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
          * @param {string} companyId A unique identifier for the company.
-         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
+         * @param {string} parentId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options).then((request) => request(axios, basePath));
+        itemAttachToBundle(id: string, companyId: string, parentId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.itemAttachToBundle(id, companyId, parentId, options).then((request) => request(axios, basePath));
         },
         /**
          * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
@@ -32894,26 +35280,6 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         itemCancel(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.itemCancel(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemControllerItemOwnershipCertificate(id: string, companyId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.itemControllerItemOwnershipCertificate(id, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemControllerItemTransfer(id: string, companyId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.itemControllerItemTransfer(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
@@ -32949,6 +35315,18 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.itemPostpone(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Marks an item as refund requested for a specific company.
+         * @summary Request refund for an item
+         * @param {string} id A unique identifier for the item to request refund.
+         * @param {string} companyId 
+         * @param {number} refundValue 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemRefund(id: string, companyId: string, refundValue: number, options?: any): AxiosPromise<void> {
+            return localVarFp.itemRefund(id, companyId, refundValue, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
          * @summary Item Retry
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -32969,6 +35347,17 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         itemSuspend(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.itemSuspend(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {string} companyId 
+         * @param {string} email 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemTransferControllerItemTransfer(id: string, companyId: string, email: string, options?: any): AxiosPromise<void> {
+            return localVarFp.itemTransferControllerItemTransfer(id, companyId, email, options).then((request) => request(axios, basePath));
         },
         /**
          * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
@@ -32992,6 +35381,17 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         itemUpdate(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.itemUpdate(id, companyId, itemUpdateRequestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Rejects a refund request and clears refundRequested flag (handles bundles).
+         * @summary Reject refund for item
+         * @param {string} id A unique identifier for the item to reject refund.
+         * @param {string} companyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rejectItemRefund(id: string, companyId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.rejectItemRefund(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Restore the original price for an item. The item and order must be in idle status. Returns a boolean indicating success.
@@ -33026,6 +35426,19 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
  * @extends {BaseAPI}
  */
 export class ItemsApi extends BaseAPI {
+    /**
+     * Marks a refund request as accepted and sets item status to refunded.
+     * @summary Accept refund for item
+     * @param {string} id A unique identifier for the item to accept refund.
+     * @param {string} companyId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public acceptItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).acceptItemRefund(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Retrieve a specific item by its unique ID within a company. Returns the item details.
      * @summary Get Item
@@ -33093,13 +35506,13 @@ export class ItemsApi extends BaseAPI {
      * @summary Item Attach To Bundle
      * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
      * @param {string} companyId A unique identifier for the company.
-     * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
+     * @param {string} parentId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemsApi
      */
-    public itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options).then((request) => request(this.axios, this.basePath));
+    public itemAttachToBundle(id: string, companyId: string, parentId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).itemAttachToBundle(id, companyId, parentId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -33113,30 +35526,6 @@ export class ItemsApi extends BaseAPI {
      */
     public itemCancel(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).itemCancel(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {string} companyId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemControllerItemOwnershipCertificate(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemControllerItemOwnershipCertificate(id, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {string} companyId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemControllerItemTransfer(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemControllerItemTransfer(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -33179,6 +35568,20 @@ export class ItemsApi extends BaseAPI {
     }
 
     /**
+     * Marks an item as refund requested for a specific company.
+     * @summary Request refund for an item
+     * @param {string} id A unique identifier for the item to request refund.
+     * @param {string} companyId 
+     * @param {number} refundValue 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public itemRefund(id: string, companyId: string, refundValue: number, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).itemRefund(id, companyId, refundValue, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
      * @summary Item Retry
      * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -33202,6 +35605,19 @@ export class ItemsApi extends BaseAPI {
      */
     public itemSuspend(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).itemSuspend(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} companyId 
+     * @param {string} email 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public itemTransferControllerItemTransfer(id: string, companyId: string, email: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).itemTransferControllerItemTransfer(id, companyId, email, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -33229,6 +35645,19 @@ export class ItemsApi extends BaseAPI {
      */
     public itemUpdate(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).itemUpdate(id, companyId, itemUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Rejects a refund request and clears refundRequested flag (handles bundles).
+     * @summary Reject refund for item
+     * @param {string} id A unique identifier for the item to reject refund.
+     * @param {string} companyId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public rejectItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).rejectItemRefund(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -33262,79 +35691,30 @@ export class ItemsApi extends BaseAPI {
 
 
 /**
- * OrdersApi - axios parameter creator
+ * OrderCouponsApi - axios parameter creator
  * @export
  */
-export const OrdersApiAxiosParamCreator = function (configuration?: Configuration) {
+export const OrderCouponsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {ItemRequestDto} itemRequestDto 
+         * Adds a coupon to a pending order. Only pending orders can have coupons added.
+         * @summary Add a coupon to an order
+         * @param {string} id Order ID
+         * @param {string} couponId Coupon ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerAddItem: async (id: string, companyId: string, itemRequestDto: ItemRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addCouponToOrder: async (id: string, couponId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('orderControllerAddItem', 'id', id)
+            assertParamExists('addCouponToOrder', 'id', id)
+            // verify required parameter 'couponId' is not null or undefined
+            assertParamExists('addCouponToOrder', 'couponId', couponId)
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerAddItem', 'companyId', companyId)
-            // verify required parameter 'itemRequestDto' is not null or undefined
-            assertParamExists('orderControllerAddItem', 'itemRequestDto', itemRequestDto)
-            const localVarPath = `/orders/{id}/add-item`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(itemRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {string} newInvoiceContactId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderControllerChangeInvoiceContact: async (id: string, companyId: string, newInvoiceContactId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('orderControllerChangeInvoiceContact', 'id', id)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerChangeInvoiceContact', 'companyId', companyId)
-            // verify required parameter 'newInvoiceContactId' is not null or undefined
-            assertParamExists('orderControllerChangeInvoiceContact', 'newInvoiceContactId', newInvoiceContactId)
-            const localVarPath = `/orders/{id}/invoice-contact/{newInvoiceContactId}`
+            assertParamExists('addCouponToOrder', 'companyId', companyId)
+            const localVarPath = `/orders/{id}/add-coupon/{couponId}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"newInvoiceContactId"}}`, encodeURIComponent(String(newInvoiceContactId)));
+                .replace(`{${"couponId"}}`, encodeURIComponent(String(couponId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -33366,274 +35746,380 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {OrderRequestDto} orderRequestDto 
+         * Removes a coupon from a pending order. Only pending orders can have coupons removed.
+         * @summary Remove a coupon from an order
+         * @param {string} id Order ID
+         * @param {string} couponId Coupon ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerCreateOrder: async (companyId: string, orderRequestDto: OrderRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerCreateOrder', 'companyId', companyId)
-            // verify required parameter 'orderRequestDto' is not null or undefined
-            assertParamExists('orderControllerCreateOrder', 'orderRequestDto', orderRequestDto)
-            const localVarPath = `/orders`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(orderRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderControllerDeleteOrder: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeCouponFromOrder: async (id: string, couponId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('orderControllerDeleteOrder', 'id', id)
+            assertParamExists('removeCouponFromOrder', 'id', id)
+            // verify required parameter 'couponId' is not null or undefined
+            assertParamExists('removeCouponFromOrder', 'couponId', couponId)
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerDeleteOrder', 'companyId', companyId)
-            const localVarPath = `/orders/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} companyId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderControllerGetOrder: async (companyId: string, id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerGetOrder', 'companyId', companyId)
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('orderControllerGetOrder', 'id', id)
-            const localVarPath = `/orders/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} companyId 
-         * @param {number} currentPage 
-         * @param {number} perPage 
-         * @param {string} status 
-         * @param {number} orderNumber 
-         * @param {boolean} archived 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderControllerGetPaginatedOrders: async (companyId: string, currentPage: number, perPage: number, status: string, orderNumber: number, archived: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerGetPaginatedOrders', 'companyId', companyId)
-            // verify required parameter 'currentPage' is not null or undefined
-            assertParamExists('orderControllerGetPaginatedOrders', 'currentPage', currentPage)
-            // verify required parameter 'perPage' is not null or undefined
-            assertParamExists('orderControllerGetPaginatedOrders', 'perPage', perPage)
-            // verify required parameter 'status' is not null or undefined
-            assertParamExists('orderControllerGetPaginatedOrders', 'status', status)
-            // verify required parameter 'orderNumber' is not null or undefined
-            assertParamExists('orderControllerGetPaginatedOrders', 'orderNumber', orderNumber)
-            // verify required parameter 'archived' is not null or undefined
-            assertParamExists('orderControllerGetPaginatedOrders', 'archived', archived)
-            const localVarPath = `/orders`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-            if (currentPage !== undefined) {
-                localVarQueryParameter['currentPage'] = currentPage;
-            }
-
-            if (perPage !== undefined) {
-                localVarQueryParameter['perPage'] = perPage;
-            }
-
-            if (status !== undefined) {
-                localVarQueryParameter['status'] = status;
-            }
-
-            if (orderNumber !== undefined) {
-                localVarQueryParameter['orderNumber'] = orderNumber;
-            }
-
-            if (archived !== undefined) {
-                localVarQueryParameter['archived'] = archived;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} companyId 
-         * @param {RefundRequestDto} refundRequestDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderControllerItemRefund: async (companyId: string, refundRequestDto: RefundRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerItemRefund', 'companyId', companyId)
-            // verify required parameter 'refundRequestDto' is not null or undefined
-            assertParamExists('orderControllerItemRefund', 'refundRequestDto', refundRequestDto)
-            const localVarPath = `/orders/refund`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(refundRequestDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {string} itemId 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderControllerRemoveItem: async (id: string, itemId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('orderControllerRemoveItem', 'id', id)
-            // verify required parameter 'itemId' is not null or undefined
-            assertParamExists('orderControllerRemoveItem', 'itemId', itemId)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerRemoveItem', 'companyId', companyId)
-            const localVarPath = `/orders/{id}/remove-item/{itemId}`
+            assertParamExists('removeCouponFromOrder', 'companyId', companyId)
+            const localVarPath = `/orders/{id}/remove-coupon/{couponId}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"itemId"}}`, encodeURIComponent(String(itemId)));
+                .replace(`{${"couponId"}}`, encodeURIComponent(String(couponId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * OrderCouponsApi - functional programming interface
+ * @export
+ */
+export const OrderCouponsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = OrderCouponsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Adds a coupon to a pending order. Only pending orders can have coupons added.
+         * @summary Add a coupon to an order
+         * @param {string} id Order ID
+         * @param {string} couponId Coupon ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addCouponToOrder(id: string, couponId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addCouponToOrder(id, couponId, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['OrderCouponsApi.addCouponToOrder']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Removes a coupon from a pending order. Only pending orders can have coupons removed.
+         * @summary Remove a coupon from an order
+         * @param {string} id Order ID
+         * @param {string} couponId Coupon ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async removeCouponFromOrder(id: string, couponId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.removeCouponFromOrder(id, couponId, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['OrderCouponsApi.removeCouponFromOrder']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * OrderCouponsApi - factory interface
+ * @export
+ */
+export const OrderCouponsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = OrderCouponsApiFp(configuration)
+    return {
+        /**
+         * Adds a coupon to a pending order. Only pending orders can have coupons added.
+         * @summary Add a coupon to an order
+         * @param {string} id Order ID
+         * @param {string} couponId Coupon ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addCouponToOrder(id: string, couponId: string, companyId: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+            return localVarFp.addCouponToOrder(id, couponId, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes a coupon from a pending order. Only pending orders can have coupons removed.
+         * @summary Remove a coupon from an order
+         * @param {string} id Order ID
+         * @param {string} couponId Coupon ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        removeCouponFromOrder(id: string, couponId: string, companyId: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+            return localVarFp.removeCouponFromOrder(id, couponId, companyId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * OrderCouponsApi - object-oriented interface
+ * @export
+ * @class OrderCouponsApi
+ * @extends {BaseAPI}
+ */
+export class OrderCouponsApi extends BaseAPI {
+    /**
+     * Adds a coupon to a pending order. Only pending orders can have coupons added.
+     * @summary Add a coupon to an order
+     * @param {string} id Order ID
+     * @param {string} couponId Coupon ID
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderCouponsApi
+     */
+    public addCouponToOrder(id: string, couponId: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrderCouponsApiFp(this.configuration).addCouponToOrder(id, couponId, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes a coupon from a pending order. Only pending orders can have coupons removed.
+     * @summary Remove a coupon from an order
+     * @param {string} id Order ID
+     * @param {string} couponId Coupon ID
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderCouponsApi
+     */
+    public removeCouponFromOrder(id: string, couponId: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrderCouponsApiFp(this.configuration).removeCouponFromOrder(id, couponId, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * OrdersApi - axios parameter creator
+ * @export
+ */
+export const OrdersApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Activates an order if it is in IDLE status. This triggers the order activation flow.
+         * @summary Activate an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {ActivateOrderRequest} [activateOrderRequest] Optional payment details
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        activateOrder: async (id: string, companyId: string, activateOrderRequest?: ActivateOrderRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('activateOrder', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('activateOrder', 'companyId', companyId)
+            const localVarPath = `/orders/{id}/activate`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(activateOrderRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Adds a new comment to a specific order.
+         * @summary Add a comment to an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {CommentCreateRequestDto} commentCreateRequestDto Comment creation request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addOrderComment: async (id: string, companyId: string, commentCreateRequestDto: CommentCreateRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('addOrderComment', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('addOrderComment', 'companyId', companyId)
+            // verify required parameter 'commentCreateRequestDto' is not null or undefined
+            assertParamExists('addOrderComment', 'commentCreateRequestDto', commentCreateRequestDto)
+            const localVarPath = `/orders/{id}/comments`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(commentCreateRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Archives an order by setting its archived flag to true.
+         * @summary Archive an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        archiveOrder: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('archiveOrder', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('archiveOrder', 'companyId', companyId)
+            const localVarPath = `/orders/{id}/archive`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Cancels an order if it is in IDLE status. Orders with trial items cannot be canceled.
+         * @summary Cancel an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelOrder: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('cancelOrder', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('cancelOrder', 'companyId', companyId)
+            const localVarPath = `/orders/{id}/cancel`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes an order. Only pending or canceled orders can be deleted.
+         * @summary Delete an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteOrder: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('deleteOrder', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('deleteOrder', 'companyId', companyId)
+            const localVarPath = `/orders/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -33665,20 +36151,167 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {string} id 
-         * @param {Array<string>} emails 
+         * Deletes a comment from an order.
+         * @summary Delete an order comment
+         * @param {string} id Order ID
+         * @param {string} commentId Comment ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerResendOrderEmail: async (companyId: string, id: string, emails: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerResendOrderEmail', 'companyId', companyId)
+        deleteOrderComment: async (id: string, commentId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('orderControllerResendOrderEmail', 'id', id)
-            // verify required parameter 'emails' is not null or undefined
-            assertParamExists('orderControllerResendOrderEmail', 'emails', emails)
+            assertParamExists('deleteOrderComment', 'id', id)
+            // verify required parameter 'commentId' is not null or undefined
+            assertParamExists('deleteOrderComment', 'commentId', commentId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('deleteOrderComment', 'companyId', companyId)
+            const localVarPath = `/orders/{id}/comments/{commentId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"commentId"}}`, encodeURIComponent(String(commentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Edits an existing comment on an order.
+         * @summary Edit an order comment
+         * @param {string} id Order ID
+         * @param {string} commentId Comment ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {CommentUpdateRequestDto} commentUpdateRequestDto Comment update request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        editOrderComment: async (id: string, commentId: string, companyId: string, commentUpdateRequestDto: CommentUpdateRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('editOrderComment', 'id', id)
+            // verify required parameter 'commentId' is not null or undefined
+            assertParamExists('editOrderComment', 'commentId', commentId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('editOrderComment', 'companyId', companyId)
+            // verify required parameter 'commentUpdateRequestDto' is not null or undefined
+            assertParamExists('editOrderComment', 'commentUpdateRequestDto', commentUpdateRequestDto)
+            const localVarPath = `/orders/{id}/comments/{commentId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"commentId"}}`, encodeURIComponent(String(commentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(commentUpdateRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves all comments for a specific order.
+         * @summary Get order comments
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrderComments: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('getOrderComments', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getOrderComments', 'companyId', companyId)
+            const localVarPath = `/orders/{id}/comments`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Resend the order confirmation email to the customer.
+         * @summary Resend order email
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resendOrderEmail: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('resendOrderEmail', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('resendOrderEmail', 'companyId', companyId)
             const localVarPath = `/orders/{id}/resend-order-email`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -33700,10 +36333,6 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarQueryParameter['companyId'] = companyId;
             }
 
-            if (emails) {
-                localVarQueryParameter['emails'] = emails;
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -33716,18 +36345,20 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {Array<string>} emails 
+         * Resend the payment confirmation email to the customer.
+         * @summary Resend payment email
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerResendPaymentEmail: async (companyId: string, emails: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        resendPaymentEmail: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('resendPaymentEmail', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('orderControllerResendPaymentEmail', 'companyId', companyId)
-            // verify required parameter 'emails' is not null or undefined
-            assertParamExists('orderControllerResendPaymentEmail', 'emails', emails)
-            const localVarPath = `/orders/{id}/resend-payment-email`;
+            assertParamExists('resendPaymentEmail', 'companyId', companyId)
+            const localVarPath = `/orders/{id}/resend-payment-email`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -33747,8 +36378,49 @@ export const OrdersApiAxiosParamCreator = function (configuration?: Configuratio
                 localVarQueryParameter['companyId'] = companyId;
             }
 
-            if (emails) {
-                localVarQueryParameter['emails'] = emails;
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Restores an archived order by setting its archived flag to false.
+         * @summary Restore an archived order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        restoreOrder: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('restoreOrder', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('restoreOrder', 'companyId', companyId)
+            const localVarPath = `/orders/{id}/restore`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
             }
 
 
@@ -33773,141 +36445,162 @@ export const OrdersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = OrdersApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {ItemRequestDto} itemRequestDto 
+         * Activates an order if it is in IDLE status. This triggers the order activation flow.
+         * @summary Activate an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {ActivateOrderRequest} [activateOrderRequest] Optional payment details
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerAddItem(id: string, companyId: string, itemRequestDto: ItemRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerAddItem(id, companyId, itemRequestDto, options);
+        async activateOrder(id: string, companyId: string, activateOrderRequest?: ActivateOrderRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.activateOrder(id, companyId, activateOrderRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerAddItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.activateOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {string} newInvoiceContactId 
+         * Adds a new comment to a specific order.
+         * @summary Add a comment to an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {CommentCreateRequestDto} commentCreateRequestDto Comment creation request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerChangeInvoiceContact(id: string, companyId: string, newInvoiceContactId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerChangeInvoiceContact(id, companyId, newInvoiceContactId, options);
+        async addOrderComment(id: string, companyId: string, commentCreateRequestDto: CommentCreateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddOrderComment201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addOrderComment(id, companyId, commentCreateRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerChangeInvoiceContact']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.addOrderComment']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {OrderRequestDto} orderRequestDto 
+         * Archives an order by setting its archived flag to true.
+         * @summary Archive an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerCreateOrder(companyId: string, orderRequestDto: OrderRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerCreateOrder(companyId, orderRequestDto, options);
+        async archiveOrder(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.archiveOrder(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerCreateOrder']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.archiveOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
+         * Cancels an order if it is in IDLE status. Orders with trial items cannot be canceled.
+         * @summary Cancel an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerDeleteOrder(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerDeleteOrder(id, companyId, options);
+        async cancelOrder(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelOrder(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerDeleteOrder']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.cancelOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {string} id 
+         * Deletes an order. Only pending or canceled orders can be deleted.
+         * @summary Delete an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerGetOrder(companyId: string, id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerGetOrder(companyId, id, options);
+        async deleteOrder(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteOrder(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerGetOrder']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.deleteOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {number} currentPage 
-         * @param {number} perPage 
-         * @param {string} status 
-         * @param {number} orderNumber 
-         * @param {boolean} archived 
+         * Deletes a comment from an order.
+         * @summary Delete an order comment
+         * @param {string} id Order ID
+         * @param {string} commentId Comment ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerGetPaginatedOrders(companyId: string, currentPage: number, perPage: number, status: string, orderNumber: number, archived: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerGetPaginatedOrders(companyId, currentPage, perPage, status, orderNumber, archived, options);
+        async deleteOrderComment(id: string, commentId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteOrderComment(id, commentId, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerGetPaginatedOrders']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.deleteOrderComment']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {RefundRequestDto} refundRequestDto 
+         * Edits an existing comment on an order.
+         * @summary Edit an order comment
+         * @param {string} id Order ID
+         * @param {string} commentId Comment ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {CommentUpdateRequestDto} commentUpdateRequestDto Comment update request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerItemRefund(companyId: string, refundRequestDto: RefundRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerItemRefund(companyId, refundRequestDto, options);
+        async editOrderComment(id: string, commentId: string, companyId: string, commentUpdateRequestDto: CommentUpdateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddOrderComment201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.editOrderComment(id, commentId, companyId, commentUpdateRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerItemRefund']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.editOrderComment']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} id 
-         * @param {string} itemId 
-         * @param {string} companyId 
+         * Retrieves all comments for a specific order.
+         * @summary Get order comments
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerRemoveItem(id: string, itemId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerRemoveItem(id, itemId, companyId, options);
+        async getOrderComments(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrderComments200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderComments(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerRemoveItem']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.getOrderComments']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {string} id 
-         * @param {Array<string>} emails 
+         * Resend the order confirmation email to the customer.
+         * @summary Resend order email
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerResendOrderEmail(companyId: string, id: string, emails: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerResendOrderEmail(companyId, id, emails, options);
+        async resendOrderEmail(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.resendOrderEmail(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerResendOrderEmail']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.resendOrderEmail']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {Array<string>} emails 
+         * Resend the payment confirmation email to the customer.
+         * @summary Resend payment email
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orderControllerResendPaymentEmail(companyId: string, emails: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderControllerResendPaymentEmail(companyId, emails, options);
+        async resendPaymentEmail(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.resendPaymentEmail(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['OrdersApi.orderControllerResendPaymentEmail']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.resendPaymentEmail']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Restores an archived order by setting its archived flag to false.
+         * @summary Restore an archived order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async restoreOrder(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.restoreOrder(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['OrdersApi.restoreOrder']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -33921,112 +36614,130 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = OrdersApiFp(configuration)
     return {
         /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {ItemRequestDto} itemRequestDto 
+         * Activates an order if it is in IDLE status. This triggers the order activation flow.
+         * @summary Activate an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {ActivateOrderRequest} [activateOrderRequest] Optional payment details
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerAddItem(id: string, companyId: string, itemRequestDto: ItemRequestDto, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerAddItem(id, companyId, itemRequestDto, options).then((request) => request(axios, basePath));
+        activateOrder(id: string, companyId: string, activateOrderRequest?: ActivateOrderRequest, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
+            return localVarFp.activateOrder(id, companyId, activateOrderRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
-         * @param {string} newInvoiceContactId 
+         * Adds a new comment to a specific order.
+         * @summary Add a comment to an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {CommentCreateRequestDto} commentCreateRequestDto Comment creation request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerChangeInvoiceContact(id: string, companyId: string, newInvoiceContactId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerChangeInvoiceContact(id, companyId, newInvoiceContactId, options).then((request) => request(axios, basePath));
+        addOrderComment(id: string, companyId: string, commentCreateRequestDto: CommentCreateRequestDto, options?: any): AxiosPromise<AddOrderComment201Response> {
+            return localVarFp.addOrderComment(id, companyId, commentCreateRequestDto, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {OrderRequestDto} orderRequestDto 
+         * Archives an order by setting its archived flag to true.
+         * @summary Archive an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerCreateOrder(companyId: string, orderRequestDto: OrderRequestDto, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerCreateOrder(companyId, orderRequestDto, options).then((request) => request(axios, basePath));
+        archiveOrder(id: string, companyId: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+            return localVarFp.archiveOrder(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} id 
-         * @param {string} companyId 
+         * Cancels an order if it is in IDLE status. Orders with trial items cannot be canceled.
+         * @summary Cancel an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerDeleteOrder(id: string, companyId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerDeleteOrder(id, companyId, options).then((request) => request(axios, basePath));
+        cancelOrder(id: string, companyId: string, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
+            return localVarFp.cancelOrder(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {string} id 
+         * Deletes an order. Only pending or canceled orders can be deleted.
+         * @summary Delete an order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerGetOrder(companyId: string, id: string, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerGetOrder(companyId, id, options).then((request) => request(axios, basePath));
+        deleteOrder(id: string, companyId: string, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
+            return localVarFp.deleteOrder(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {number} currentPage 
-         * @param {number} perPage 
-         * @param {string} status 
-         * @param {number} orderNumber 
-         * @param {boolean} archived 
+         * Deletes a comment from an order.
+         * @summary Delete an order comment
+         * @param {string} id Order ID
+         * @param {string} commentId Comment ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerGetPaginatedOrders(companyId: string, currentPage: number, perPage: number, status: string, orderNumber: number, archived: boolean, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerGetPaginatedOrders(companyId, currentPage, perPage, status, orderNumber, archived, options).then((request) => request(axios, basePath));
+        deleteOrderComment(id: string, commentId: string, companyId: string, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
+            return localVarFp.deleteOrderComment(id, commentId, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {RefundRequestDto} refundRequestDto 
+         * Edits an existing comment on an order.
+         * @summary Edit an order comment
+         * @param {string} id Order ID
+         * @param {string} commentId Comment ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {CommentUpdateRequestDto} commentUpdateRequestDto Comment update request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerItemRefund(companyId: string, refundRequestDto: RefundRequestDto, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerItemRefund(companyId, refundRequestDto, options).then((request) => request(axios, basePath));
+        editOrderComment(id: string, commentId: string, companyId: string, commentUpdateRequestDto: CommentUpdateRequestDto, options?: any): AxiosPromise<AddOrderComment201Response> {
+            return localVarFp.editOrderComment(id, commentId, companyId, commentUpdateRequestDto, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} id 
-         * @param {string} itemId 
-         * @param {string} companyId 
+         * Retrieves all comments for a specific order.
+         * @summary Get order comments
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerRemoveItem(id: string, itemId: string, companyId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerRemoveItem(id, itemId, companyId, options).then((request) => request(axios, basePath));
+        getOrderComments(id: string, companyId: string, options?: any): AxiosPromise<GetOrderComments200Response> {
+            return localVarFp.getOrderComments(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {string} id 
-         * @param {Array<string>} emails 
+         * Resend the order confirmation email to the customer.
+         * @summary Resend order email
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerResendOrderEmail(companyId: string, id: string, emails: Array<string>, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerResendOrderEmail(companyId, id, emails, options).then((request) => request(axios, basePath));
+        resendOrderEmail(id: string, companyId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.resendOrderEmail(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @param {string} companyId 
-         * @param {Array<string>} emails 
+         * Resend the payment confirmation email to the customer.
+         * @summary Resend payment email
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orderControllerResendPaymentEmail(companyId: string, emails: Array<string>, options?: any): AxiosPromise<void> {
-            return localVarFp.orderControllerResendPaymentEmail(companyId, emails, options).then((request) => request(axios, basePath));
+        resendPaymentEmail(id: string, companyId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.resendPaymentEmail(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Restores an archived order by setting its archived flag to false.
+         * @summary Restore an archived order
+         * @param {string} id Order ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        restoreOrder(id: string, companyId: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+            return localVarFp.restoreOrder(id, companyId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -34039,131 +36750,151 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
  */
 export class OrdersApi extends BaseAPI {
     /**
-     * 
-     * @param {string} id 
-     * @param {string} companyId 
-     * @param {ItemRequestDto} itemRequestDto 
+     * Activates an order if it is in IDLE status. This triggers the order activation flow.
+     * @summary Activate an order
+     * @param {string} id Order ID
+     * @param {string} companyId A unique identifier for the company.
+     * @param {ActivateOrderRequest} [activateOrderRequest] Optional payment details
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerAddItem(id: string, companyId: string, itemRequestDto: ItemRequestDto, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerAddItem(id, companyId, itemRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public activateOrder(id: string, companyId: string, activateOrderRequest?: ActivateOrderRequest, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).activateOrder(id, companyId, activateOrderRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} id 
-     * @param {string} companyId 
-     * @param {string} newInvoiceContactId 
+     * Adds a new comment to a specific order.
+     * @summary Add a comment to an order
+     * @param {string} id Order ID
+     * @param {string} companyId A unique identifier for the company.
+     * @param {CommentCreateRequestDto} commentCreateRequestDto Comment creation request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerChangeInvoiceContact(id: string, companyId: string, newInvoiceContactId: string, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerChangeInvoiceContact(id, companyId, newInvoiceContactId, options).then((request) => request(this.axios, this.basePath));
+    public addOrderComment(id: string, companyId: string, commentCreateRequestDto: CommentCreateRequestDto, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).addOrderComment(id, companyId, commentCreateRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} companyId 
-     * @param {OrderRequestDto} orderRequestDto 
+     * Archives an order by setting its archived flag to true.
+     * @summary Archive an order
+     * @param {string} id Order ID
+     * @param {string} companyId A unique identifier for the company.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerCreateOrder(companyId: string, orderRequestDto: OrderRequestDto, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerCreateOrder(companyId, orderRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public archiveOrder(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).archiveOrder(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} id 
-     * @param {string} companyId 
+     * Cancels an order if it is in IDLE status. Orders with trial items cannot be canceled.
+     * @summary Cancel an order
+     * @param {string} id Order ID
+     * @param {string} companyId A unique identifier for the company.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerDeleteOrder(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerDeleteOrder(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    public cancelOrder(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).cancelOrder(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} companyId 
-     * @param {string} id 
+     * Deletes an order. Only pending or canceled orders can be deleted.
+     * @summary Delete an order
+     * @param {string} id Order ID
+     * @param {string} companyId A unique identifier for the company.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerGetOrder(companyId: string, id: string, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerGetOrder(companyId, id, options).then((request) => request(this.axios, this.basePath));
+    public deleteOrder(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).deleteOrder(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} companyId 
-     * @param {number} currentPage 
-     * @param {number} perPage 
-     * @param {string} status 
-     * @param {number} orderNumber 
-     * @param {boolean} archived 
+     * Deletes a comment from an order.
+     * @summary Delete an order comment
+     * @param {string} id Order ID
+     * @param {string} commentId Comment ID
+     * @param {string} companyId A unique identifier for the company.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerGetPaginatedOrders(companyId: string, currentPage: number, perPage: number, status: string, orderNumber: number, archived: boolean, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerGetPaginatedOrders(companyId, currentPage, perPage, status, orderNumber, archived, options).then((request) => request(this.axios, this.basePath));
+    public deleteOrderComment(id: string, commentId: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).deleteOrderComment(id, commentId, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} companyId 
-     * @param {RefundRequestDto} refundRequestDto 
+     * Edits an existing comment on an order.
+     * @summary Edit an order comment
+     * @param {string} id Order ID
+     * @param {string} commentId Comment ID
+     * @param {string} companyId A unique identifier for the company.
+     * @param {CommentUpdateRequestDto} commentUpdateRequestDto Comment update request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerItemRefund(companyId: string, refundRequestDto: RefundRequestDto, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerItemRefund(companyId, refundRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public editOrderComment(id: string, commentId: string, companyId: string, commentUpdateRequestDto: CommentUpdateRequestDto, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).editOrderComment(id, commentId, companyId, commentUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} id 
-     * @param {string} itemId 
-     * @param {string} companyId 
+     * Retrieves all comments for a specific order.
+     * @summary Get order comments
+     * @param {string} id Order ID
+     * @param {string} companyId A unique identifier for the company.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerRemoveItem(id: string, itemId: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerRemoveItem(id, itemId, companyId, options).then((request) => request(this.axios, this.basePath));
+    public getOrderComments(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).getOrderComments(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} companyId 
-     * @param {string} id 
-     * @param {Array<string>} emails 
+     * Resend the order confirmation email to the customer.
+     * @summary Resend order email
+     * @param {string} id Order ID
+     * @param {string} companyId A unique identifier for the company.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerResendOrderEmail(companyId: string, id: string, emails: Array<string>, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerResendOrderEmail(companyId, id, emails, options).then((request) => request(this.axios, this.basePath));
+    public resendOrderEmail(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).resendOrderEmail(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * 
-     * @param {string} companyId 
-     * @param {Array<string>} emails 
+     * Resend the payment confirmation email to the customer.
+     * @summary Resend payment email
+     * @param {string} id Order ID
+     * @param {string} companyId A unique identifier for the company.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrdersApi
      */
-    public orderControllerResendPaymentEmail(companyId: string, emails: Array<string>, options?: RawAxiosRequestConfig) {
-        return OrdersApiFp(this.configuration).orderControllerResendPaymentEmail(companyId, emails, options).then((request) => request(this.axios, this.basePath));
+    public resendPaymentEmail(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).resendPaymentEmail(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Restores an archived order by setting its archived flag to false.
+     * @summary Restore an archived order
+     * @param {string} id Order ID
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrdersApi
+     */
+    public restoreOrder(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return OrdersApiFp(this.configuration).restoreOrder(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -36205,7 +38936,7 @@ export class ProductsApi extends BaseAPI {
 export const TemplatesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Creates a new template . Returns a TemplateDto.
+         * Creates a new template for a company.
          * @summary Create a template
          * @param {string} companyId A unique identifier for the company.
          * @param {TemplateRequestDto} templateRequestDto 
@@ -36252,18 +38983,18 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Deletes a certain template. Returns null.
+         * Deletes a template.
          * @summary Delete a template
-         * @param {string} id Template ID
          * @param {string} companyId A unique identifier for the company.
+         * @param {string} id A unique identifier for the template.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteTemplate: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('deleteTemplate', 'id', id)
+        deleteTemplate: async (companyId: string, id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('deleteTemplate', 'companyId', companyId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('deleteTemplate', 'id', id)
             const localVarPath = `/templates/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -36297,19 +39028,20 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Retrieves a list all templates. Returns an array of TemplateResponseDto.
-         * @summary Get list of all templates
+         * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
+         * @summary List templates for a company
          * @param {string} companyId A unique identifier for the company.
-         * @param {FindTemplatesActionEnum} [action] get templates by action
-         * @param {string} [title] 
+         * @param {GetPaginatedTemplatesChannelEnum} channel Filter templates by notification channel.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findTemplates: async (companyId: string, action?: FindTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPaginatedTemplates: async (companyId: string, channel: GetPaginatedTemplatesChannelEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('findTemplates', 'companyId', companyId)
+            assertParamExists('getPaginatedTemplates', 'companyId', companyId)
+            // verify required parameter 'channel' is not null or undefined
+            assertParamExists('getPaginatedTemplates', 'channel', channel)
             const localVarPath = `/templates`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -36330,12 +39062,8 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['companyId'] = companyId;
             }
 
-            if (action !== undefined) {
-                localVarQueryParameter['action'] = action;
-            }
-
-            if (title !== undefined) {
-                localVarQueryParameter['title'] = title;
+            if (channel !== undefined) {
+                localVarQueryParameter['channel'] = channel;
             }
 
             if (currentPage !== undefined) {
@@ -36358,10 +39086,10 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Retrieves a certain template. Returns a TemplateDto.
-         * @summary Get a template
+         * Retrieves a single template by its ID.
+         * @summary Get a template by ID
          * @param {string} companyId A unique identifier for the company.
-         * @param {string} id ID
+         * @param {string} id A unique identifier for the template.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -36403,10 +39131,10 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Updates a certain template. Returns a TemplateResponseDto.
+         * Updates an existing template.
          * @summary Update a template
          * @param {string} companyId A unique identifier for the company.
-         * @param {string} id Template ID
+         * @param {string} id A unique identifier for the template.
          * @param {TemplateRequestDto} templateRequestDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -36427,7 +39155,7 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -36464,7 +39192,7 @@ export const TemplatesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = TemplatesApiAxiosParamCreator(configuration)
     return {
         /**
-         * Creates a new template . Returns a TemplateDto.
+         * Creates a new template for a company.
          * @summary Create a template
          * @param {string} companyId A unique identifier for the company.
          * @param {TemplateRequestDto} templateRequestDto 
@@ -36478,41 +39206,40 @@ export const TemplatesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Deletes a certain template. Returns null.
+         * Deletes a template.
          * @summary Delete a template
-         * @param {string} id Template ID
          * @param {string} companyId A unique identifier for the company.
+         * @param {string} id A unique identifier for the template.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteTemplate(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteTemplate(id, companyId, options);
+        async deleteTemplate(companyId: string, id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteTemplate(companyId, id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TemplatesApi.deleteTemplate']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a list all templates. Returns an array of TemplateResponseDto.
-         * @summary Get list of all templates
+         * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
+         * @summary List templates for a company
          * @param {string} companyId A unique identifier for the company.
-         * @param {FindTemplatesActionEnum} [action] get templates by action
-         * @param {string} [title] 
+         * @param {GetPaginatedTemplatesChannelEnum} channel Filter templates by notification channel.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findTemplates(companyId: string, action?: FindTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindTemplates200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findTemplates(companyId, action, title, currentPage, perPage, options);
+        async getPaginatedTemplates(companyId: string, channel: GetPaginatedTemplatesChannelEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedTemplates200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatedTemplates(companyId, channel, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['TemplatesApi.findTemplates']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['TemplatesApi.getPaginatedTemplates']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieves a certain template. Returns a TemplateDto.
-         * @summary Get a template
+         * Retrieves a single template by its ID.
+         * @summary Get a template by ID
          * @param {string} companyId A unique identifier for the company.
-         * @param {string} id ID
+         * @param {string} id A unique identifier for the template.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -36523,15 +39250,15 @@ export const TemplatesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Updates a certain template. Returns a TemplateResponseDto.
+         * Updates an existing template.
          * @summary Update a template
          * @param {string} companyId A unique identifier for the company.
-         * @param {string} id Template ID
+         * @param {string} id A unique identifier for the template.
          * @param {TemplateRequestDto} templateRequestDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateTemplate(companyId: string, id: string, templateRequestDto: TemplateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTemplate201Response>> {
+        async updateTemplate(companyId: string, id: string, templateRequestDto: TemplateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateTemplate(companyId, id, templateRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TemplatesApi.updateTemplate']?.[localVarOperationServerIndex]?.url;
@@ -36548,7 +39275,7 @@ export const TemplatesApiFactory = function (configuration?: Configuration, base
     const localVarFp = TemplatesApiFp(configuration)
     return {
         /**
-         * Creates a new template . Returns a TemplateDto.
+         * Creates a new template for a company.
          * @summary Create a template
          * @param {string} companyId A unique identifier for the company.
          * @param {TemplateRequestDto} templateRequestDto 
@@ -36559,35 +39286,34 @@ export const TemplatesApiFactory = function (configuration?: Configuration, base
             return localVarFp.createTemplate(companyId, templateRequestDto, options).then((request) => request(axios, basePath));
         },
         /**
-         * Deletes a certain template. Returns null.
+         * Deletes a template.
          * @summary Delete a template
-         * @param {string} id Template ID
          * @param {string} companyId A unique identifier for the company.
+         * @param {string} id A unique identifier for the template.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteTemplate(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.deleteTemplate(id, companyId, options).then((request) => request(axios, basePath));
+        deleteTemplate(companyId: string, id: string, options?: any): AxiosPromise<void> {
+            return localVarFp.deleteTemplate(companyId, id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieves a list all templates. Returns an array of TemplateResponseDto.
-         * @summary Get list of all templates
+         * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
+         * @summary List templates for a company
          * @param {string} companyId A unique identifier for the company.
-         * @param {FindTemplatesActionEnum} [action] get templates by action
-         * @param {string} [title] 
+         * @param {GetPaginatedTemplatesChannelEnum} channel Filter templates by notification channel.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findTemplates(companyId: string, action?: FindTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindTemplates200Response> {
-            return localVarFp.findTemplates(companyId, action, title, currentPage, perPage, options).then((request) => request(axios, basePath));
+        getPaginatedTemplates(companyId: string, channel: GetPaginatedTemplatesChannelEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetPaginatedTemplates200Response> {
+            return localVarFp.getPaginatedTemplates(companyId, channel, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieves a certain template. Returns a TemplateDto.
-         * @summary Get a template
+         * Retrieves a single template by its ID.
+         * @summary Get a template by ID
          * @param {string} companyId A unique identifier for the company.
-         * @param {string} id ID
+         * @param {string} id A unique identifier for the template.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -36595,15 +39321,15 @@ export const TemplatesApiFactory = function (configuration?: Configuration, base
             return localVarFp.getTemplate(companyId, id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Updates a certain template. Returns a TemplateResponseDto.
+         * Updates an existing template.
          * @summary Update a template
          * @param {string} companyId A unique identifier for the company.
-         * @param {string} id Template ID
+         * @param {string} id A unique identifier for the template.
          * @param {TemplateRequestDto} templateRequestDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateTemplate(companyId: string, id: string, templateRequestDto: TemplateRequestDto, options?: any): AxiosPromise<CreateTemplate201Response> {
+        updateTemplate(companyId: string, id: string, templateRequestDto: TemplateRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.updateTemplate(companyId, id, templateRequestDto, options).then((request) => request(axios, basePath));
         },
     };
@@ -36617,7 +39343,7 @@ export const TemplatesApiFactory = function (configuration?: Configuration, base
  */
 export class TemplatesApi extends BaseAPI {
     /**
-     * Creates a new template . Returns a TemplateDto.
+     * Creates a new template for a company.
      * @summary Create a template
      * @param {string} companyId A unique identifier for the company.
      * @param {TemplateRequestDto} templateRequestDto 
@@ -36630,39 +39356,38 @@ export class TemplatesApi extends BaseAPI {
     }
 
     /**
-     * Deletes a certain template. Returns null.
+     * Deletes a template.
      * @summary Delete a template
-     * @param {string} id Template ID
      * @param {string} companyId A unique identifier for the company.
+     * @param {string} id A unique identifier for the template.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TemplatesApi
      */
-    public deleteTemplate(id: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return TemplatesApiFp(this.configuration).deleteTemplate(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    public deleteTemplate(companyId: string, id: string, options?: RawAxiosRequestConfig) {
+        return TemplatesApiFp(this.configuration).deleteTemplate(companyId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Retrieves a list all templates. Returns an array of TemplateResponseDto.
-     * @summary Get list of all templates
+     * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
+     * @summary List templates for a company
      * @param {string} companyId A unique identifier for the company.
-     * @param {FindTemplatesActionEnum} [action] get templates by action
-     * @param {string} [title] 
+     * @param {GetPaginatedTemplatesChannelEnum} channel Filter templates by notification channel.
      * @param {number} [currentPage] current page
      * @param {number} [perPage] per Page 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TemplatesApi
      */
-    public findTemplates(companyId: string, action?: FindTemplatesActionEnum, title?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
-        return TemplatesApiFp(this.configuration).findTemplates(companyId, action, title, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
+    public getPaginatedTemplates(companyId: string, channel: GetPaginatedTemplatesChannelEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return TemplatesApiFp(this.configuration).getPaginatedTemplates(companyId, channel, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Retrieves a certain template. Returns a TemplateDto.
-     * @summary Get a template
+     * Retrieves a single template by its ID.
+     * @summary Get a template by ID
      * @param {string} companyId A unique identifier for the company.
-     * @param {string} id ID
+     * @param {string} id A unique identifier for the template.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TemplatesApi
@@ -36672,10 +39397,10 @@ export class TemplatesApi extends BaseAPI {
     }
 
     /**
-     * Updates a certain template. Returns a TemplateResponseDto.
+     * Updates an existing template.
      * @summary Update a template
      * @param {string} companyId A unique identifier for the company.
-     * @param {string} id Template ID
+     * @param {string} id A unique identifier for the template.
      * @param {TemplateRequestDto} templateRequestDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -36689,17 +39414,12 @@ export class TemplatesApi extends BaseAPI {
 /**
  * @export
  */
-export const FindTemplatesActionEnum = {
-    create: 'item/create',
-    suspend: 'item/suspend',
-    unsuspend: 'item/unsuspend',
-    renew: 'item/renew',
-    cancel: 'item/cancel',
-    delete: 'item/delete',
-    upgrade: 'item/upgrade',
-    downgrade: 'item/downgrade'
+export const GetPaginatedTemplatesChannelEnum = {
+    email: 'email',
+    push: 'push',
+    sms: 'sms'
 } as const;
-export type FindTemplatesActionEnum = typeof FindTemplatesActionEnum[keyof typeof FindTemplatesActionEnum];
+export type GetPaginatedTemplatesChannelEnum = typeof GetPaginatedTemplatesChannelEnum[keyof typeof GetPaginatedTemplatesChannelEnum];
 
 
 /**
