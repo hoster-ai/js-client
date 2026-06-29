@@ -67,11 +67,11 @@ export interface ActionDto {
      */
     'label'?: string;
     /**
-     * Method by which the action\'s URL should be opened.
-     * @type {string}
+     * 
+     * @type {OpenMethodEnum}
      * @memberof ActionDto
      */
-    'openMethod': ActionDtoOpenMethodEnum;
+    'openMethod': OpenMethodEnum;
     /**
      * URL to navigate to when the action is triggered.
      * @type {string}
@@ -80,14 +80,6 @@ export interface ActionDto {
     'url': string;
 }
 
-export const ActionDtoOpenMethodEnum = {
-    ajax_call: 'ajax_call',
-    small_iframe: 'small_iframe',
-    medium_iframe: 'medium_iframe',
-    large_iframe: 'large_iframe'
-} as const;
-
-export type ActionDtoOpenMethodEnum = typeof ActionDtoOpenMethodEnum[keyof typeof ActionDtoOpenMethodEnum];
 
 /**
  * 
@@ -297,11 +289,11 @@ export interface AddonRequestDto {
      */
     'iconUrl'?: string;
     /**
-     * Defines the type of input element that the addon will display on the frontend. This determines how the addon will be presented to the user, such as a text box, checkbox, radio button, etc.
-     * @type {string}
+     * 
+     * @type {InputTypeEnum}
      * @memberof AddonRequestDto
      */
-    'type': AddonRequestDtoTypeEnum;
+    'type': InputTypeEnum;
     /**
      * Indicates whether the addon is mandatory for the user to select or not.
      * @type {boolean}
@@ -322,16 +314,6 @@ export interface AddonRequestDto {
     'options': Array<AddonOptionsDto>;
 }
 
-export const AddonRequestDtoTypeEnum = {
-    TEXT_BOX: 'TEXT_BOX',
-    TEXT_AREA: 'TEXT_AREA',
-    LIST: 'LIST',
-    RADIO_BOX: 'RADIO_BOX',
-    CHECKBOX: 'CHECKBOX',
-    SLIDER: 'SLIDER'
-} as const;
-
-export type AddonRequestDtoTypeEnum = typeof AddonRequestDtoTypeEnum[keyof typeof AddonRequestDtoTypeEnum];
 
 /**
  * 
@@ -358,11 +340,11 @@ export interface AddonResponseDto {
      */
     'iconUrl'?: string;
     /**
-     * Defines the type of input element that the addon will display on the frontend. This determines how the addon will be presented to the user, such as a text box, checkbox, radio button, etc.
-     * @type {string}
+     * 
+     * @type {InputTypeEnum}
      * @memberof AddonResponseDto
      */
-    'type': AddonResponseDtoTypeEnum;
+    'type': InputTypeEnum;
     /**
      * Indicates whether the addon is mandatory for the user to select or not.
      * @type {boolean}
@@ -407,16 +389,6 @@ export interface AddonResponseDto {
     'updatedAt'?: string;
 }
 
-export const AddonResponseDtoTypeEnum = {
-    TEXT_BOX: 'TEXT_BOX',
-    TEXT_AREA: 'TEXT_AREA',
-    LIST: 'LIST',
-    RADIO_BOX: 'RADIO_BOX',
-    CHECKBOX: 'CHECKBOX',
-    SLIDER: 'SLIDER'
-} as const;
-
-export type AddonResponseDtoTypeEnum = typeof AddonResponseDtoTypeEnum[keyof typeof AddonResponseDtoTypeEnum];
 
 /**
  * 
@@ -536,11 +508,11 @@ export interface AfnicAdditionalDataDto {
      */
     'birthDate': string;
     /**
-     * This field represents the ISO country code for the contact\'s birthplace.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof AfnicAdditionalDataDto
      */
-    'birthCc': AfnicAdditionalDataDtoBirthCcEnum;
+    'birthCc': CountryEnum;
     /**
      * This field represents the birth city of the contact.
      * @type {string}
@@ -555,266 +527,6 @@ export interface AfnicAdditionalDataDto {
     'birthPc'?: string;
 }
 
-export const AfnicAdditionalDataDtoBirthCcEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type AfnicAdditionalDataDtoBirthCcEnum = typeof AfnicAdditionalDataDtoBirthCcEnum[keyof typeof AfnicAdditionalDataDtoBirthCcEnum];
-
-/**
- * @type AnyFieldDto
- * Discriminated union of every concrete field DTO. Discriminator is the string-literal `type` property.
- * @export
- */
-export type AnyFieldDto = { type: 'BOOLEAN' } & BooleanFieldDto | { type: 'COUNTRIES' } & CountriesFieldDto | { type: 'CURRENCY' } & CurrencyFieldDto | { type: 'DATE' } & DateFieldDto | { type: 'EMAIL' } & EmailFieldDto | { type: 'MULTI_SELECT' } & MultiSelectFieldDto | { type: 'NUMBER' } & NumberFieldDto | { type: 'PASSWORD' } & PasswordFieldDto | { type: 'PHONE' } & PhoneFieldDto | { type: 'SELECT' } & SelectFieldDto | { type: 'TEXT' } & TextFieldDto | { type: 'TEXTAREA' } & TextareaFieldDto | { type: 'URL' } & UrlFieldDto;
 
 /**
  * 
@@ -848,12 +560,6 @@ export interface AttachmentDto {
  */
 export interface AttributeFieldDto {
     /**
-     * The concrete field DTO (discriminated by its `type` literal).
-     * @type {AnyFieldDto}
-     * @memberof AttributeFieldDto
-     */
-    'field': AnyFieldDto;
-    /**
      * Whether the field is visible in order view.
      * @type {boolean}
      * @memberof AttributeFieldDto
@@ -877,7 +583,87 @@ export interface AttributeFieldDto {
      * @memberof AttributeFieldDto
      */
     'repeatableMax'?: number;
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof AttributeFieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof AttributeFieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * 
+     * @type {Value}
+     * @memberof AttributeFieldDto
+     */
+    'value': Value;
+    /**
+     * 
+     * @type {FieldTypeEnum}
+     * @memberof AttributeFieldDto
+     */
+    'type': FieldTypeEnum;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof AttributeFieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof AttributeFieldDto
+     */
+    'disabled': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AttributeFieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Optional regex to validate input.
+     * @type {string}
+     * @memberof AttributeFieldDto
+     */
+    'regexValidation'?: string;
+    /**
+     * Localized error message shown when regex validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof AttributeFieldDto
+     */
+    'regexValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AttributeFieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof AttributeFieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof AttributeFieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof AttributeFieldDto
+     */
+    'downgradable'?: boolean;
 }
+
+
 /**
  * 
  * @export
@@ -947,66 +733,20 @@ export interface BalanceResponseDto {
     'creditBalance': number;
 }
 /**
- * 
+ * The type of balance associated with the transaction. This field indicates whether the transaction is related to the users credit or discount balance.
  * @export
- * @interface BaseFieldDto
+ * @enum {string}
  */
-export interface BaseFieldDto {
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof BaseFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof BaseFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof BaseFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof BaseFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof BaseFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof BaseFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof BaseFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof BaseFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof BaseFieldDto
-     */
-    'downgradable'?: boolean;
-}
+
+export const BalanceTypeEnum = {
+    BALANCE: 'BALANCE',
+    RESERVED_BALANCE: 'RESERVED_BALANCE',
+    DISCOUNT_BALANCE: 'DISCOUNT_BALANCE'
+} as const;
+
+export type BalanceTypeEnum = typeof BalanceTypeEnum[keyof typeof BalanceTypeEnum];
+
+
 /**
  * 
  * @export
@@ -1027,84 +767,19 @@ export interface BaseMenuDto {
     'label': string;
 }
 /**
- * 
+ * Specifies the method of billing for the product. The type indicates how the product is charged, whether it is billed per hour, per month, as a subscription, or based on a snapshot or prorated basis. The default value is InvoiceTypeEnum.SUBSCRIPTION.
  * @export
- * @interface BooleanFieldDto
+ * @enum {string}
  */
-export interface BooleanFieldDto {
-    /**
-     * Discriminator literal — always \'BOOLEAN\' for this DTO.
-     * @type {string}
-     * @memberof BooleanFieldDto
-     */
-    'type': BooleanFieldDtoTypeEnum;
-    /**
-     * Boolean value of the field.
-     * @type {boolean}
-     * @memberof BooleanFieldDto
-     */
-    'value'?: boolean;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof BooleanFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof BooleanFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof BooleanFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof BooleanFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof BooleanFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof BooleanFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof BooleanFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof BooleanFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof BooleanFieldDto
-     */
-    'downgradable'?: boolean;
-}
 
-export const BooleanFieldDtoTypeEnum = {
-    BOOLEAN: 'BOOLEAN'
+export const BillingMethodEnum = {
+    SUBSCRIPTION: 'SUBSCRIPTION',
+    SNAPSHOT: 'SNAPSHOT',
+    PRORATA: 'PRORATA'
 } as const;
 
-export type BooleanFieldDtoTypeEnum = typeof BooleanFieldDtoTypeEnum[keyof typeof BooleanFieldDtoTypeEnum];
+export type BillingMethodEnum = typeof BillingMethodEnum[keyof typeof BillingMethodEnum];
+
 
 /**
  * 
@@ -1145,11 +820,11 @@ export interface CalculatedProductPriceDto {
      */
     'pricePolicy'?: string;
     /**
-     * The billing duration for which prices were calculated.
-     * @type {string}
+     * 
+     * @type {DurationEnum}
      * @memberof CalculatedProductPriceDto
      */
-    'duration': CalculatedProductPriceDtoDurationEnum;
+    'duration': DurationEnum;
     /**
      * The calculated base price for the given duration.
      * @type {number}
@@ -1188,31 +863,6 @@ export interface CalculatedProductPriceDto {
     'addons'?: Array<AddonPriceInfoDto>;
 }
 
-export const CalculatedProductPriceDtoDurationEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
-
-export type CalculatedProductPriceDtoDurationEnum = typeof CalculatedProductPriceDtoDurationEnum[keyof typeof CalculatedProductPriceDtoDurationEnum];
 
 /**
  * 
@@ -1221,11 +871,11 @@ export type CalculatedProductPriceDtoDurationEnum = typeof CalculatedProductPric
  */
 export interface CatAdditionalDataDto {
     /**
-     * This field represents the language of the contact in the form of an enum.
-     * @type {string}
+     * 
+     * @type {LanguageEnum}
      * @memberof CatAdditionalDataDto
      */
-    'language': CatAdditionalDataDtoLanguageEnum;
+    'language': LanguageEnum;
     /**
      * The name of the person responsible for maintaining this contact.
      * @type {string}
@@ -1234,194 +884,6 @@ export interface CatAdditionalDataDto {
     'maintainer'?: string;
 }
 
-export const CatAdditionalDataDtoLanguageEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type CatAdditionalDataDtoLanguageEnum = typeof CatAdditionalDataDtoLanguageEnum[keyof typeof CatAdditionalDataDtoLanguageEnum];
 
 /**
  * 
@@ -1548,6 +1010,32 @@ export interface ClientPanelTabsDto {
 /**
  * 
  * @export
+ * @interface ClientRefundItemDto
+ */
+export interface ClientRefundItemDto {
+    /**
+     * The ID of the item to be refunded.
+     * @type {string}
+     * @memberof ClientRefundItemDto
+     */
+    'item': string;
+}
+/**
+ * 
+ * @export
+ * @interface ClientRefundRequestDto
+ */
+export interface ClientRefundRequestDto {
+    /**
+     * An array of item IDs to be fully refunded.
+     * @type {Array<ClientRefundItemDto>}
+     * @memberof ClientRefundRequestDto
+     */
+    'refundItems': Array<ClientRefundItemDto>;
+}
+/**
+ * 
+ * @export
  * @interface CommentCreateRequestDto
  */
 export interface CommentCreateRequestDto {
@@ -1634,12 +1122,6 @@ export interface CompanyBalanceResponseDto {
      */
     'balance': number;
     /**
-     * Represents the amount of credit available to the company. This can be used for purchasing services or may reflect a pre-paid amount.
-     * @type {number}
-     * @memberof CompanyBalanceResponseDto
-     */
-    'creditBalance': number;
-    /**
      * The current balance of the company\'s wallet. This is the total amount of funds available to the company in their wallet.
      * @type {number}
      * @memberof CompanyBalanceResponseDto
@@ -1665,11 +1147,11 @@ export interface CompanyCreateRequestDto {
      */
     'publicPhone'?: string;
     /**
-     * The currency code of the company. This is optional and should be in a valid currency code format.
-     * @type {string}
+     * 
+     * @type {CurrencyCodeEnum}
      * @memberof CompanyCreateRequestDto
      */
-    'currency'?: CompanyCreateRequestDtoCurrencyEnum;
+    'currency'?: CurrencyCodeEnum;
     /**
      * The public email address that users can use to contact the company. This is optional and should be in a valid email format.
      * @type {string}
@@ -1731,17 +1213,11 @@ export interface CompanyCreateRequestDto {
      */
     'selectedInvoiceIntegration'?: string;
     /**
-     * Represents the amount of credit available to the company. This can be used for purchasing services or may reflect a pre-paid amount.
-     * @type {number}
-     * @memberof CompanyCreateRequestDto
-     */
-    'creditBalance': number;
-    /**
      * The payment method used by the company. This can be used for purchasing services or may reflect a pre-paid amount.
-     * @type {Array<string>}
+     * @type {Array<PaymentMethodsEnum>}
      * @memberof CompanyCreateRequestDto
      */
-    'paymentMethods'?: Array<CompanyCreateRequestDtoPaymentMethodsEnum>;
+    'paymentMethods'?: Array<PaymentMethodsEnum>;
     /**
      * Indicates whether the company is restricted from making payments. When enabled, the company can manage their account and orders but cannot complete payment transactions.
      * @type {boolean}
@@ -1749,23 +1225,29 @@ export interface CompanyCreateRequestDto {
      */
     'locked': boolean;
     /**
+     * When enabled, refund requests may be automatically approved based on business rules.
+     * @type {boolean}
+     * @memberof CompanyCreateRequestDto
+     */
+    'automaticRefunds'?: boolean;
+    /**
      * An internal comment associated with the company, not visible to the company owner. This field is optional.
      * @type {string}
      * @memberof CompanyCreateRequestDto
      */
     'comment'?: string;
     /**
-     * An enum that defines the default language used by the company. If no translations are available, this language will be used. Additionally, it serves as the fallback language if the user has not selected a different preference.
-     * @type {string}
+     * 
+     * @type {LanguageEnum}
      * @memberof CompanyCreateRequestDto
      */
-    'defaultLanguage'?: CompanyCreateRequestDtoDefaultLanguageEnum;
+    'defaultLanguage'?: LanguageEnum;
     /**
      * An array that specifies all the languages required for translations in multilingual fields. These languages determine the set of translations to be provided for product-related content or other fields that support multiple languages.
-     * @type {Array<string>}
+     * @type {Array<LanguageEnum>}
      * @memberof CompanyCreateRequestDto
      */
-    'supportedLanguages': Array<CompanyCreateRequestDtoSupportedLanguagesEnum>;
+    'supportedLanguages': Array<LanguageEnum>;
     /**
      * 
      * @type {CompanyInvoiceContactRequestDto}
@@ -1792,543 +1274,6 @@ export interface CompanyCreateRequestDto {
     'popularTlds'?: Array<PopularTldRequestDto>;
 }
 
-export const CompanyCreateRequestDtoCurrencyEnum = {
-    USD: 'USD',
-    CAD: 'CAD',
-    EUR: 'EUR',
-    AED: 'AED',
-    AFN: 'AFN',
-    ALL: 'ALL',
-    AMD: 'AMD',
-    ARS: 'ARS',
-    AUD: 'AUD',
-    AZN: 'AZN',
-    BAM: 'BAM',
-    BDT: 'BDT',
-    BGN: 'BGN',
-    BHD: 'BHD',
-    BIF: 'BIF',
-    BND: 'BND',
-    BOB: 'BOB',
-    BRL: 'BRL',
-    BWP: 'BWP',
-    BYN: 'BYN',
-    BZD: 'BZD',
-    CDF: 'CDF',
-    CHF: 'CHF',
-    CLP: 'CLP',
-    CNY: 'CNY',
-    COP: 'COP',
-    CRC: 'CRC',
-    CVE: 'CVE',
-    CZK: 'CZK',
-    DJF: 'DJF',
-    DKK: 'DKK',
-    DOP: 'DOP',
-    DZD: 'DZD',
-    EEK: 'EEK',
-    EGP: 'EGP',
-    ERN: 'ERN',
-    ETB: 'ETB',
-    GBP: 'GBP',
-    GEL: 'GEL',
-    GHS: 'GHS',
-    GNF: 'GNF',
-    GTQ: 'GTQ',
-    HKD: 'HKD',
-    HNL: 'HNL',
-    HRK: 'HRK',
-    HUF: 'HUF',
-    IDR: 'IDR',
-    ILS: 'ILS',
-    INR: 'INR',
-    IQD: 'IQD',
-    IRR: 'IRR',
-    ISK: 'ISK',
-    JMD: 'JMD',
-    JOD: 'JOD',
-    JPY: 'JPY',
-    KES: 'KES',
-    KHR: 'KHR',
-    KMF: 'KMF',
-    KRW: 'KRW',
-    KWD: 'KWD',
-    KZT: 'KZT',
-    LBP: 'LBP',
-    LKR: 'LKR',
-    LTL: 'LTL',
-    LVL: 'LVL',
-    LYD: 'LYD',
-    MAD: 'MAD',
-    MDL: 'MDL',
-    MGA: 'MGA',
-    MKD: 'MKD',
-    MMK: 'MMK',
-    MOP: 'MOP',
-    MUR: 'MUR',
-    MXN: 'MXN',
-    MYR: 'MYR',
-    MZN: 'MZN',
-    NAD: 'NAD',
-    NGN: 'NGN',
-    NIO: 'NIO',
-    NOK: 'NOK',
-    NPR: 'NPR',
-    NZD: 'NZD',
-    OMR: 'OMR',
-    PAB: 'PAB',
-    PEN: 'PEN',
-    PHP: 'PHP',
-    PKR: 'PKR',
-    PLN: 'PLN',
-    PYG: 'PYG',
-    QAR: 'QAR',
-    RON: 'RON',
-    RSD: 'RSD',
-    RUB: 'RUB',
-    RWF: 'RWF',
-    SAR: 'SAR',
-    SDG: 'SDG',
-    SEK: 'SEK',
-    SGD: 'SGD',
-    SOS: 'SOS',
-    SYP: 'SYP',
-    THB: 'THB',
-    TND: 'TND',
-    TOP: 'TOP',
-    TRY: 'TRY',
-    TTD: 'TTD',
-    TWD: 'TWD',
-    TZS: 'TZS',
-    UAH: 'UAH',
-    UGX: 'UGX',
-    UYU: 'UYU',
-    UZS: 'UZS',
-    VEF: 'VEF',
-    VND: 'VND',
-    XAF: 'XAF',
-    XOF: 'XOF',
-    YER: 'YER',
-    ZAR: 'ZAR',
-    ZMK: 'ZMK',
-    ZWL: 'ZWL'
-} as const;
-
-export type CompanyCreateRequestDtoCurrencyEnum = typeof CompanyCreateRequestDtoCurrencyEnum[keyof typeof CompanyCreateRequestDtoCurrencyEnum];
-export const CompanyCreateRequestDtoPaymentMethodsEnum = {
-    card: 'card',
-    us_bank_account: 'us_bank_account',
-    bacs_debit: 'bacs_debit',
-    au_becs_debit: 'au_becs_debit',
-    nz_bank_account: 'nz_bank_account',
-    sepa_debit: 'sepa_debit',
-    acss_debit: 'acss_debit',
-    bancontact: 'bancontact',
-    blik: 'blik',
-    eps: 'eps',
-    fpx: 'fpx',
-    ideal: 'ideal',
-    p24: 'p24',
-    pay_by_bank: 'pay_by_bank',
-    twint: 'twint',
-    customer_balance: 'customer_balance',
-    affirm: 'affirm',
-    afterpay_clearpay: 'afterpay_clearpay',
-    alma: 'alma',
-    klarna: 'klarna',
-    boleto: 'boleto',
-    konbini: 'konbini',
-    multibanco: 'multibanco',
-    oxxo: 'oxxo',
-    alipay: 'alipay',
-    apple_pay: 'apple_pay',
-    google_pay: 'google_pay',
-    cashapp: 'cashapp',
-    grabpay: 'grabpay',
-    mobilepay: 'mobilepay',
-    paypal: 'paypal',
-    revolut_pay: 'revolut_pay',
-    vipps: 'vipps',
-    wechat_pay: 'wechat_pay'
-} as const;
-
-export type CompanyCreateRequestDtoPaymentMethodsEnum = typeof CompanyCreateRequestDtoPaymentMethodsEnum[keyof typeof CompanyCreateRequestDtoPaymentMethodsEnum];
-export const CompanyCreateRequestDtoDefaultLanguageEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type CompanyCreateRequestDtoDefaultLanguageEnum = typeof CompanyCreateRequestDtoDefaultLanguageEnum[keyof typeof CompanyCreateRequestDtoDefaultLanguageEnum];
-export const CompanyCreateRequestDtoSupportedLanguagesEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type CompanyCreateRequestDtoSupportedLanguagesEnum = typeof CompanyCreateRequestDtoSupportedLanguagesEnum[keyof typeof CompanyCreateRequestDtoSupportedLanguagesEnum];
 
 /**
  * 
@@ -2434,11 +1379,11 @@ export interface CompanyInvoiceContactRequestDto {
      */
     'city': string;
     /**
-     * The country where the contact is located.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof CompanyInvoiceContactRequestDto
      */
-    'country': CompanyInvoiceContactRequestDtoCountryEnum;
+    'country': CountryEnum;
     /**
      * The state or region where the contact is located.
      * @type {string}
@@ -2465,259 +1410,6 @@ export interface CompanyInvoiceContactRequestDto {
     'profession'?: string;
 }
 
-export const CompanyInvoiceContactRequestDtoCountryEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type CompanyInvoiceContactRequestDtoCountryEnum = typeof CompanyInvoiceContactRequestDtoCountryEnum[keyof typeof CompanyInvoiceContactRequestDtoCountryEnum];
 
 /**
  * 
@@ -2792,11 +1484,11 @@ export interface CompanyInvoiceContactResponseDto {
      */
     'city': string;
     /**
-     * The country where the contact is located.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof CompanyInvoiceContactResponseDto
      */
-    'country': CompanyInvoiceContactResponseDtoCountryEnum;
+    'country': CountryEnum;
     /**
      * The state or region where the contact is located.
      * @type {string}
@@ -2829,259 +1521,6 @@ export interface CompanyInvoiceContactResponseDto {
     'profession'?: string;
 }
 
-export const CompanyInvoiceContactResponseDtoCountryEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type CompanyInvoiceContactResponseDtoCountryEnum = typeof CompanyInvoiceContactResponseDtoCountryEnum[keyof typeof CompanyInvoiceContactResponseDtoCountryEnum];
 
 /**
  * 
@@ -3168,11 +1607,11 @@ export interface CompanyPublicInfoDto {
      */
     'city'?: string;
     /**
-     * The country where the company is officially registered.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof CompanyPublicInfoDto
      */
-    'country'?: CompanyPublicInfoDtoCountryEnum;
+    'country'?: CountryEnum;
     /**
      * The state, region, or administrative division where the company is located.
      * @type {string}
@@ -3204,648 +1643,19 @@ export interface CompanyPublicInfoDto {
      */
     'tenantId'?: string;
     /**
-     * An enum that defines the default language used by the company. If no translations are available, this language will be used. Additionally, it serves as the fallback language if the user has not selected a different preference.
-     * @type {string}
+     * 
+     * @type {LanguageEnum}
      * @memberof CompanyPublicInfoDto
      */
-    'defaultLanguage'?: CompanyPublicInfoDtoDefaultLanguageEnum;
+    'defaultLanguage'?: LanguageEnum;
     /**
      * An array that specifies all the languages required for translations in multilingual fields. These languages determine the set of translations to be provided for product-related content or other fields that support multiple languages.
-     * @type {Array<string>}
+     * @type {Array<LanguageEnum>}
      * @memberof CompanyPublicInfoDto
      */
-    'languages'?: Array<CompanyPublicInfoDtoLanguagesEnum>;
+    'languages'?: Array<LanguageEnum>;
 }
 
-export const CompanyPublicInfoDtoCountryEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type CompanyPublicInfoDtoCountryEnum = typeof CompanyPublicInfoDtoCountryEnum[keyof typeof CompanyPublicInfoDtoCountryEnum];
-export const CompanyPublicInfoDtoDefaultLanguageEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type CompanyPublicInfoDtoDefaultLanguageEnum = typeof CompanyPublicInfoDtoDefaultLanguageEnum[keyof typeof CompanyPublicInfoDtoDefaultLanguageEnum];
-export const CompanyPublicInfoDtoLanguagesEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type CompanyPublicInfoDtoLanguagesEnum = typeof CompanyPublicInfoDtoLanguagesEnum[keyof typeof CompanyPublicInfoDtoLanguagesEnum];
 
 /**
  * @type CompanyRef
@@ -3873,11 +1683,11 @@ export interface CompanyResponseDto {
      */
     'publicPhone'?: string;
     /**
-     * The currency code of the company. This is optional and should be in a valid currency code format.
-     * @type {string}
+     * 
+     * @type {CurrencyCodeEnum}
      * @memberof CompanyResponseDto
      */
-    'currency'?: CompanyResponseDtoCurrencyEnum;
+    'currency'?: CurrencyCodeEnum;
     /**
      * The public email address that users can use to contact the company. This is optional and should be in a valid email format.
      * @type {string}
@@ -3939,17 +1749,11 @@ export interface CompanyResponseDto {
      */
     'selectedInvoiceIntegration'?: string;
     /**
-     * Represents the amount of credit available to the company. This can be used for purchasing services or may reflect a pre-paid amount.
-     * @type {number}
-     * @memberof CompanyResponseDto
-     */
-    'creditBalance': number;
-    /**
      * The payment method used by the company. This can be used for purchasing services or may reflect a pre-paid amount.
-     * @type {Array<string>}
+     * @type {Array<PaymentMethodsEnum>}
      * @memberof CompanyResponseDto
      */
-    'paymentMethods'?: Array<CompanyResponseDtoPaymentMethodsEnum>;
+    'paymentMethods'?: Array<PaymentMethodsEnum>;
     /**
      * Indicates whether the company is restricted from making payments. When enabled, the company can manage their account and orders but cannot complete payment transactions.
      * @type {boolean}
@@ -3957,23 +1761,29 @@ export interface CompanyResponseDto {
      */
     'locked': boolean;
     /**
+     * When enabled, refund requests may be automatically approved based on business rules.
+     * @type {boolean}
+     * @memberof CompanyResponseDto
+     */
+    'automaticRefunds'?: boolean;
+    /**
      * An internal comment associated with the company, not visible to the company owner. This field is optional.
      * @type {string}
      * @memberof CompanyResponseDto
      */
     'comment'?: string;
     /**
-     * An enum that defines the default language used by the company. If no translations are available, this language will be used. Additionally, it serves as the fallback language if the user has not selected a different preference.
-     * @type {string}
+     * 
+     * @type {LanguageEnum}
      * @memberof CompanyResponseDto
      */
-    'defaultLanguage'?: CompanyResponseDtoDefaultLanguageEnum;
+    'defaultLanguage'?: LanguageEnum;
     /**
      * An array that specifies all the languages required for translations in multilingual fields. These languages determine the set of translations to be provided for product-related content or other fields that support multiple languages.
-     * @type {Array<string>}
+     * @type {Array<LanguageEnum>}
      * @memberof CompanyResponseDto
      */
-    'supportedLanguages': Array<CompanyResponseDtoSupportedLanguagesEnum>;
+    'supportedLanguages': Array<LanguageEnum>;
     /**
      * A unique identifier for the company.
      * @type {string}
@@ -4042,543 +1852,6 @@ export interface CompanyResponseDto {
     'updatedAt'?: string;
 }
 
-export const CompanyResponseDtoCurrencyEnum = {
-    USD: 'USD',
-    CAD: 'CAD',
-    EUR: 'EUR',
-    AED: 'AED',
-    AFN: 'AFN',
-    ALL: 'ALL',
-    AMD: 'AMD',
-    ARS: 'ARS',
-    AUD: 'AUD',
-    AZN: 'AZN',
-    BAM: 'BAM',
-    BDT: 'BDT',
-    BGN: 'BGN',
-    BHD: 'BHD',
-    BIF: 'BIF',
-    BND: 'BND',
-    BOB: 'BOB',
-    BRL: 'BRL',
-    BWP: 'BWP',
-    BYN: 'BYN',
-    BZD: 'BZD',
-    CDF: 'CDF',
-    CHF: 'CHF',
-    CLP: 'CLP',
-    CNY: 'CNY',
-    COP: 'COP',
-    CRC: 'CRC',
-    CVE: 'CVE',
-    CZK: 'CZK',
-    DJF: 'DJF',
-    DKK: 'DKK',
-    DOP: 'DOP',
-    DZD: 'DZD',
-    EEK: 'EEK',
-    EGP: 'EGP',
-    ERN: 'ERN',
-    ETB: 'ETB',
-    GBP: 'GBP',
-    GEL: 'GEL',
-    GHS: 'GHS',
-    GNF: 'GNF',
-    GTQ: 'GTQ',
-    HKD: 'HKD',
-    HNL: 'HNL',
-    HRK: 'HRK',
-    HUF: 'HUF',
-    IDR: 'IDR',
-    ILS: 'ILS',
-    INR: 'INR',
-    IQD: 'IQD',
-    IRR: 'IRR',
-    ISK: 'ISK',
-    JMD: 'JMD',
-    JOD: 'JOD',
-    JPY: 'JPY',
-    KES: 'KES',
-    KHR: 'KHR',
-    KMF: 'KMF',
-    KRW: 'KRW',
-    KWD: 'KWD',
-    KZT: 'KZT',
-    LBP: 'LBP',
-    LKR: 'LKR',
-    LTL: 'LTL',
-    LVL: 'LVL',
-    LYD: 'LYD',
-    MAD: 'MAD',
-    MDL: 'MDL',
-    MGA: 'MGA',
-    MKD: 'MKD',
-    MMK: 'MMK',
-    MOP: 'MOP',
-    MUR: 'MUR',
-    MXN: 'MXN',
-    MYR: 'MYR',
-    MZN: 'MZN',
-    NAD: 'NAD',
-    NGN: 'NGN',
-    NIO: 'NIO',
-    NOK: 'NOK',
-    NPR: 'NPR',
-    NZD: 'NZD',
-    OMR: 'OMR',
-    PAB: 'PAB',
-    PEN: 'PEN',
-    PHP: 'PHP',
-    PKR: 'PKR',
-    PLN: 'PLN',
-    PYG: 'PYG',
-    QAR: 'QAR',
-    RON: 'RON',
-    RSD: 'RSD',
-    RUB: 'RUB',
-    RWF: 'RWF',
-    SAR: 'SAR',
-    SDG: 'SDG',
-    SEK: 'SEK',
-    SGD: 'SGD',
-    SOS: 'SOS',
-    SYP: 'SYP',
-    THB: 'THB',
-    TND: 'TND',
-    TOP: 'TOP',
-    TRY: 'TRY',
-    TTD: 'TTD',
-    TWD: 'TWD',
-    TZS: 'TZS',
-    UAH: 'UAH',
-    UGX: 'UGX',
-    UYU: 'UYU',
-    UZS: 'UZS',
-    VEF: 'VEF',
-    VND: 'VND',
-    XAF: 'XAF',
-    XOF: 'XOF',
-    YER: 'YER',
-    ZAR: 'ZAR',
-    ZMK: 'ZMK',
-    ZWL: 'ZWL'
-} as const;
-
-export type CompanyResponseDtoCurrencyEnum = typeof CompanyResponseDtoCurrencyEnum[keyof typeof CompanyResponseDtoCurrencyEnum];
-export const CompanyResponseDtoPaymentMethodsEnum = {
-    card: 'card',
-    us_bank_account: 'us_bank_account',
-    bacs_debit: 'bacs_debit',
-    au_becs_debit: 'au_becs_debit',
-    nz_bank_account: 'nz_bank_account',
-    sepa_debit: 'sepa_debit',
-    acss_debit: 'acss_debit',
-    bancontact: 'bancontact',
-    blik: 'blik',
-    eps: 'eps',
-    fpx: 'fpx',
-    ideal: 'ideal',
-    p24: 'p24',
-    pay_by_bank: 'pay_by_bank',
-    twint: 'twint',
-    customer_balance: 'customer_balance',
-    affirm: 'affirm',
-    afterpay_clearpay: 'afterpay_clearpay',
-    alma: 'alma',
-    klarna: 'klarna',
-    boleto: 'boleto',
-    konbini: 'konbini',
-    multibanco: 'multibanco',
-    oxxo: 'oxxo',
-    alipay: 'alipay',
-    apple_pay: 'apple_pay',
-    google_pay: 'google_pay',
-    cashapp: 'cashapp',
-    grabpay: 'grabpay',
-    mobilepay: 'mobilepay',
-    paypal: 'paypal',
-    revolut_pay: 'revolut_pay',
-    vipps: 'vipps',
-    wechat_pay: 'wechat_pay'
-} as const;
-
-export type CompanyResponseDtoPaymentMethodsEnum = typeof CompanyResponseDtoPaymentMethodsEnum[keyof typeof CompanyResponseDtoPaymentMethodsEnum];
-export const CompanyResponseDtoDefaultLanguageEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type CompanyResponseDtoDefaultLanguageEnum = typeof CompanyResponseDtoDefaultLanguageEnum[keyof typeof CompanyResponseDtoDefaultLanguageEnum];
-export const CompanyResponseDtoSupportedLanguagesEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type CompanyResponseDtoSupportedLanguagesEnum = typeof CompanyResponseDtoSupportedLanguagesEnum[keyof typeof CompanyResponseDtoSupportedLanguagesEnum];
 
 /**
  * 
@@ -4588,10 +1861,10 @@ export type CompanyResponseDtoSupportedLanguagesEnum = typeof CompanyResponseDto
 export interface CompanyRoleResponseDto {
     /**
      * A list of roles granted to the user, defining its permissions and access levels.
-     * @type {Array<string>}
+     * @type {Array<RolesEnum>}
      * @memberof CompanyRoleResponseDto
      */
-    'roles': Array<CompanyRoleResponseDtoRolesEnum>;
+    'roles': Array<RolesEnum>;
     /**
      * 
      * @type {GroupRoleRef}
@@ -4599,64 +1872,6 @@ export interface CompanyRoleResponseDto {
      */
     'groupRole'?: GroupRoleRef;
 }
-
-export const CompanyRoleResponseDtoRolesEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
-    FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
-    ORDER_READ: 'ORDER_READ',
-    ORDER_WRITE: 'ORDER_WRITE',
-    ADDON_READ: 'ADDON_READ',
-    ADDON_WRITE: 'ADDON_WRITE',
-    AFFILIATE_READ: 'AFFILIATE_READ',
-    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
-    COMPANY_READ: 'COMPANY_READ',
-    COMPANY_WRITE: 'COMPANY_WRITE',
-    TEMPLATE_READ: 'TEMPLATE_READ',
-    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
-    COUPON_READ: 'COUPON_READ',
-    COUPON_WRITE: 'COUPON_WRITE',
-    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
-    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
-    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
-    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
-    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
-    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
-    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
-    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
-    INVOICE_READ: 'INVOICE_READ',
-    INVOICE_WRITE: 'INVOICE_WRITE',
-    IP_GROUPS_READ: 'IP_GROUPS_READ',
-    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
-    IPS_READ: 'IPS_READ',
-    IPS_WRITE: 'IPS_WRITE',
-    ITEMS_READ: 'ITEMS_READ',
-    ITEMS_WRITE: 'ITEMS_WRITE',
-    ORDERS_READ: 'ORDERS_READ',
-    ORDERS_WRITE: 'ORDERS_WRITE',
-    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
-    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
-    POLICIES_READ: 'POLICIES_READ',
-    POLICIES_WRITE: 'POLICIES_WRITE',
-    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
-    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
-    PRODUCTS_READ: 'PRODUCTS_READ',
-    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
-    SETTINGS_READ: 'SETTINGS_READ',
-    SETTINGS_WRITE: 'SETTINGS_WRITE',
-    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
-    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
-    TLDS_READ: 'TLDS_READ',
-    TLDS_WRITE: 'TLDS_WRITE',
-    USERS_READ: 'USERS_READ',
-    USERS_WRITE: 'USERS_WRITE',
-    ISSUES_WRITE: 'ISSUES_WRITE',
-    ISSUES_READ: 'ISSUES_READ',
-    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
-} as const;
-
-export type CompanyRoleResponseDtoRolesEnum = typeof CompanyRoleResponseDtoRolesEnum[keyof typeof CompanyRoleResponseDtoRolesEnum];
-
 /**
  * 
  * @export
@@ -4670,6 +1885,46 @@ export interface CompanyUpdateUserRolesRequest {
      */
     'groupRoleId': string;
 }
+/**
+ * The condition operator of the rule.
+ * @export
+ * @enum {string}
+ */
+
+export const ConditionOperatorsEnum = {
+    Less_Than: '<',
+    Greater_Than: '>',
+    Less_Than_Or_Equal_To: '<=',
+    Greater_Than_Or_Equal_To: '>=',
+    Equal: '='
+} as const;
+
+export type ConditionOperatorsEnum = typeof ConditionOperatorsEnum[keyof typeof ConditionOperatorsEnum];
+
+
+/**
+ * Specifies which additional data needs to be requested from the user for contacts associated with this TLD.
+ * @export
+ * @enum {string}
+ */
+
+export const ContactAdditionalDataEnum = {
+    AFNIC: 'AFNIC',
+    CAT: 'CAT',
+    DE: 'DE',
+    ES: 'ES',
+    EU: 'EU',
+    IT: 'IT',
+    LV: 'LV',
+    NL: 'NL',
+    PRO: 'PRO',
+    UK: 'UK',
+    US: 'US'
+} as const;
+
+export type ContactAdditionalDataEnum = typeof ContactAdditionalDataEnum[keyof typeof ContactAdditionalDataEnum];
+
+
 /**
  * 
  * @export
@@ -4765,339 +2020,6 @@ export interface ContactCodeDto {
 /**
  * 
  * @export
- * @interface CountriesFieldDto
- */
-export interface CountriesFieldDto {
-    /**
-     * Discriminator literal — always \'COUNTRIES\' for this DTO.
-     * @type {string}
-     * @memberof CountriesFieldDto
-     */
-    'type': CountriesFieldDtoTypeEnum;
-    /**
-     * Array of ISO 3166-1 alpha-2 country codes.
-     * @type {Array<string>}
-     * @memberof CountriesFieldDto
-     */
-    'value'?: Array<CountriesFieldDtoValueEnum>;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof CountriesFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof CountriesFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof CountriesFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof CountriesFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof CountriesFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof CountriesFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof CountriesFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof CountriesFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof CountriesFieldDto
-     */
-    'downgradable'?: boolean;
-}
-
-export const CountriesFieldDtoTypeEnum = {
-    COUNTRIES: 'COUNTRIES'
-} as const;
-
-export type CountriesFieldDtoTypeEnum = typeof CountriesFieldDtoTypeEnum[keyof typeof CountriesFieldDtoTypeEnum];
-export const CountriesFieldDtoValueEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type CountriesFieldDtoValueEnum = typeof CountriesFieldDtoValueEnum[keyof typeof CountriesFieldDtoValueEnum];
-
-/**
- * 
- * @export
  * @interface CountryDto
  */
 export interface CountryDto {
@@ -5108,11 +2030,11 @@ export interface CountryDto {
      */
     'name': string;
     /**
-     * Country code.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof CountryDto
      */
-    'code': CountryDtoCodeEnum;
+    'code': CountryEnum;
     /**
      * Whether the country is in Europe.
      * @type {boolean}
@@ -5121,7 +2043,14 @@ export interface CountryDto {
     'isEurope'?: boolean;
 }
 
-export const CountryDtoCodeEnum = {
+
+/**
+ * The country where the contact is located.
+ * @export
+ * @enum {string}
+ */
+
+export const CountryEnum = {
     AF: 'AF',
     AX: 'AX',
     AL: 'AL',
@@ -5373,7 +2302,23 @@ export const CountryDtoCodeEnum = {
     TT: 'TT'
 } as const;
 
-export type CountryDtoCodeEnum = typeof CountryDtoCodeEnum[keyof typeof CountryDtoCodeEnum];
+export type CountryEnum = typeof CountryEnum[keyof typeof CountryEnum];
+
+
+/**
+ * An array of actions on which the coupon rule applies. These actions define when the discount is triggered, such as on creation or renewal.
+ * @export
+ * @enum {string}
+ */
+
+export const CouponActionsApplyEnum = {
+    CREATE: 'CREATE',
+    RENEW: 'RENEW',
+    SETUP: 'SETUP'
+} as const;
+
+export type CouponActionsApplyEnum = typeof CouponActionsApplyEnum[keyof typeof CouponActionsApplyEnum];
+
 
 /**
  * @type CouponRef
@@ -5552,6 +2497,20 @@ export interface CouponResponseDto {
      */
     'updatedAt'?: string;
 }
+/**
+ * The type of discount applied by this rule. It can be a fixed amount or a percentage-based discount.
+ * @export
+ * @enum {string}
+ */
+
+export const CouponTypeEnum = {
+    PERCENTAGE: 'PERCENTAGE',
+    FIXED: 'FIXED'
+} as const;
+
+export type CouponTypeEnum = typeof CouponTypeEnum[keyof typeof CouponTypeEnum];
+
+
 /**
  * 
  * @export
@@ -5979,129 +2938,135 @@ export interface CreateTransaction200Response {
 export type CreatedBy = UserResponseDto | string;
 
 /**
- * 
+ * The currency code of the company. This is optional and should be in a valid currency code format.
  * @export
- * @interface CurrencyFieldDto
+ * @enum {string}
  */
-export interface CurrencyFieldDto {
-    /**
-     * Discriminator literal — always \'CURRENCY\' for this DTO.
-     * @type {string}
-     * @memberof CurrencyFieldDto
-     */
-    'type': CurrencyFieldDtoTypeEnum;
-    /**
-     * ISO 4217 currency code.
-     * @type {string}
-     * @memberof CurrencyFieldDto
-     */
-    'value'?: CurrencyFieldDtoValueEnum;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof CurrencyFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof CurrencyFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof CurrencyFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof CurrencyFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof CurrencyFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof CurrencyFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof CurrencyFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof CurrencyFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof CurrencyFieldDto
-     */
-    'downgradable'?: boolean;
-}
 
-export const CurrencyFieldDtoTypeEnum = {
-    CURRENCY: 'CURRENCY'
-} as const;
-
-export type CurrencyFieldDtoTypeEnum = typeof CurrencyFieldDtoTypeEnum[keyof typeof CurrencyFieldDtoTypeEnum];
-export const CurrencyFieldDtoValueEnum = {
-    EUR: 'EUR',
+export const CurrencyCodeEnum = {
     USD: 'USD',
-    GBP: 'GBP',
-    CHF: 'CHF',
-    SEK: 'SEK',
-    NOK: 'NOK',
-    DKK: 'DKK',
-    PLN: 'PLN',
-    CZK: 'CZK',
-    HUF: 'HUF',
-    RON: 'RON',
-    BGN: 'BGN',
-    TRY: 'TRY',
-    RUB: 'RUB',
-    JPY: 'JPY',
-    CNY: 'CNY',
-    AUD: 'AUD',
-    NZD: 'NZD',
     CAD: 'CAD',
-    ZAR: 'ZAR',
-    INR: 'INR',
-    MXN: 'MXN',
-    BRL: 'BRL',
-    ARS: 'ARS',
-    CLP: 'CLP',
-    COP: 'COP',
-    PEN: 'PEN',
-    UYU: 'UYU',
-    VES: 'VES',
-    ILS: 'ILS',
+    EUR: 'EUR',
     AED: 'AED',
-    SAR: 'SAR',
-    KRW: 'KRW',
-    SGD: 'SGD',
+    AFN: 'AFN',
+    ALL: 'ALL',
+    AMD: 'AMD',
+    ARS: 'ARS',
+    AUD: 'AUD',
+    AZN: 'AZN',
+    BAM: 'BAM',
+    BDT: 'BDT',
+    BGN: 'BGN',
+    BHD: 'BHD',
+    BIF: 'BIF',
+    BND: 'BND',
+    BOB: 'BOB',
+    BRL: 'BRL',
+    BWP: 'BWP',
+    BYN: 'BYN',
+    BZD: 'BZD',
+    CDF: 'CDF',
+    CHF: 'CHF',
+    CLP: 'CLP',
+    CNY: 'CNY',
+    COP: 'COP',
+    CRC: 'CRC',
+    CVE: 'CVE',
+    CZK: 'CZK',
+    DJF: 'DJF',
+    DKK: 'DKK',
+    DOP: 'DOP',
+    DZD: 'DZD',
+    EEK: 'EEK',
+    EGP: 'EGP',
+    ERN: 'ERN',
+    ETB: 'ETB',
+    GBP: 'GBP',
+    GEL: 'GEL',
+    GHS: 'GHS',
+    GNF: 'GNF',
+    GTQ: 'GTQ',
     HKD: 'HKD',
-    TWD: 'TWD',
-    THB: 'THB',
-    MYR: 'MYR',
+    HNL: 'HNL',
+    HRK: 'HRK',
+    HUF: 'HUF',
     IDR: 'IDR',
+    ILS: 'ILS',
+    INR: 'INR',
+    IQD: 'IQD',
+    IRR: 'IRR',
+    ISK: 'ISK',
+    JMD: 'JMD',
+    JOD: 'JOD',
+    JPY: 'JPY',
+    KES: 'KES',
+    KHR: 'KHR',
+    KMF: 'KMF',
+    KRW: 'KRW',
+    KWD: 'KWD',
+    KZT: 'KZT',
+    LBP: 'LBP',
+    LKR: 'LKR',
+    LTL: 'LTL',
+    LVL: 'LVL',
+    LYD: 'LYD',
+    MAD: 'MAD',
+    MDL: 'MDL',
+    MGA: 'MGA',
+    MKD: 'MKD',
+    MMK: 'MMK',
+    MOP: 'MOP',
+    MUR: 'MUR',
+    MXN: 'MXN',
+    MYR: 'MYR',
+    MZN: 'MZN',
+    NAD: 'NAD',
+    NGN: 'NGN',
+    NIO: 'NIO',
+    NOK: 'NOK',
+    NPR: 'NPR',
+    NZD: 'NZD',
+    OMR: 'OMR',
+    PAB: 'PAB',
+    PEN: 'PEN',
     PHP: 'PHP',
-    VND: 'VND'
+    PKR: 'PKR',
+    PLN: 'PLN',
+    PYG: 'PYG',
+    QAR: 'QAR',
+    RON: 'RON',
+    RSD: 'RSD',
+    RUB: 'RUB',
+    RWF: 'RWF',
+    SAR: 'SAR',
+    SDG: 'SDG',
+    SEK: 'SEK',
+    SGD: 'SGD',
+    SOS: 'SOS',
+    SYP: 'SYP',
+    THB: 'THB',
+    TND: 'TND',
+    TOP: 'TOP',
+    TRY: 'TRY',
+    TTD: 'TTD',
+    TWD: 'TWD',
+    TZS: 'TZS',
+    UAH: 'UAH',
+    UGX: 'UGX',
+    UYU: 'UYU',
+    UZS: 'UZS',
+    VEF: 'VEF',
+    VND: 'VND',
+    XAF: 'XAF',
+    XOF: 'XOF',
+    YER: 'YER',
+    ZAR: 'ZAR',
+    ZMK: 'ZMK',
+    ZWL: 'ZWL'
 } as const;
 
-export type CurrencyFieldDtoValueEnum = typeof CurrencyFieldDtoValueEnum[keyof typeof CurrencyFieldDtoValueEnum];
+export type CurrencyCodeEnum = typeof CurrencyCodeEnum[keyof typeof CurrencyCodeEnum];
+
 
 /**
  * 
@@ -6163,104 +3128,32 @@ export interface CustomTokenDto {
 /**
  * 
  * @export
- * @interface DateFieldDto
- */
-export interface DateFieldDto {
-    /**
-     * Discriminator literal — always \'DATE\' for this DTO.
-     * @type {string}
-     * @memberof DateFieldDto
-     */
-    'type': DateFieldDtoTypeEnum;
-    /**
-     * 
-     * @type {Value}
-     * @memberof DateFieldDto
-     */
-    'value'?: Value;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof DateFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof DateFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof DateFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof DateFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof DateFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof DateFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof DateFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof DateFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof DateFieldDto
-     */
-    'downgradable'?: boolean;
-}
-
-export const DateFieldDtoTypeEnum = {
-    DATE: 'DATE'
-} as const;
-
-export type DateFieldDtoTypeEnum = typeof DateFieldDtoTypeEnum[keyof typeof DateFieldDtoTypeEnum];
-
-/**
- * 
- * @export
  * @interface DeAdditionalDataDto
  */
 export interface DeAdditionalDataDto {
     /**
-     * Accepted values: PERSON - ROLE - ORG
-     * @type {string}
+     * 
+     * @type {DeContactTypeEnum}
      * @memberof DeAdditionalDataDto
      */
-    'contactType': DeAdditionalDataDtoContactTypeEnum;
+    'contactType': DeContactTypeEnum;
 }
 
-export const DeAdditionalDataDtoContactTypeEnum = {
+
+/**
+ * Accepted values: PERSON - ROLE - ORG
+ * @export
+ * @enum {string}
+ */
+
+export const DeContactTypeEnum = {
     PERSON: 'PERSON',
     ROLE: 'ROLE',
     ORG: 'ORG'
 } as const;
 
-export type DeAdditionalDataDtoContactTypeEnum = typeof DeAdditionalDataDtoContactTypeEnum[keyof typeof DeAdditionalDataDtoContactTypeEnum];
+export type DeContactTypeEnum = typeof DeContactTypeEnum[keyof typeof DeContactTypeEnum];
+
 
 /**
  * @type DetachedFromOrder
@@ -6268,6 +3161,28 @@ export type DeAdditionalDataDtoContactTypeEnum = typeof DeAdditionalDataDtoConta
  * @export
  */
 export type DetachedFromOrder = OrderResponseDto | string;
+
+/**
+ * Specifies which additional data needs to be requested from the user for domains under this TLD.
+ * @export
+ * @enum {string}
+ */
+
+export const DomainAdditionalDataEnum = {
+    CAT_PARAMETER: 'CAT_PARAMETER',
+    CHALLENGE_PARAMETER: 'CHALLENGE_PARAMETER',
+    CLAIMS_TOKEN: 'CLAIMS_TOKEN',
+    DONUTS_PRICE_CATEGORY: 'DONUTS_PRICE_CATEGORY',
+    INTENTED_USE: 'INTENTED_USE',
+    PREMIUM_PRICE_CATEGORY: 'PREMIUM_PRICE_CATEGORY',
+    PROXY_SERVICE: 'PROXY_SERVICE',
+    SUNRISE: 'SUNRISE',
+    UK_DIRECT: 'UK_DIRECT',
+    XXX_MEMBER: 'XXX_MEMBER'
+} as const;
+
+export type DomainAdditionalDataEnum = typeof DomainAdditionalDataEnum[keyof typeof DomainAdditionalDataEnum];
+
 
 /**
  * 
@@ -6387,19 +3302,13 @@ export interface DomainBundleDto {
      */
     'chargeable': boolean;
     /**
-     * Specifies how the domain name is managed: DNAME for alias, DOMAIN for standalone.
-     * @type {string}
+     * 
+     * @type {DomainRecordTypeEnum}
      * @memberof DomainBundleDto
      */
-    'recordType': DomainBundleDtoRecordTypeEnum;
+    'recordType': DomainRecordTypeEnum;
 }
 
-export const DomainBundleDtoRecordTypeEnum = {
-    DOMAIN: 'DOMAIN',
-    DNAME: 'DNAME'
-} as const;
-
-export type DomainBundleDtoRecordTypeEnum = typeof DomainBundleDtoRecordTypeEnum[keyof typeof DomainBundleDtoRecordTypeEnum];
 
 /**
  * @type DomainCategoryRef
@@ -6537,11 +3446,11 @@ export interface DomainContactRequestDto {
      */
     'postcode': string;
     /**
-     * The ISO 3166-1-alpha-2 code for the country of the contact. This code represents the contact\'s country and must be a valid 2-letter country code.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof DomainContactRequestDto
      */
-    'countryCode': DomainContactRequestDtoCountryCodeEnum;
+    'countryCode': CountryEnum;
     /**
      * The telephone number of the contact, including the international dialing code. The format should be +<InternationalDialingCode>.<TelephoneNumber>.
      * @type {string}
@@ -6574,259 +3483,6 @@ export interface DomainContactRequestDto {
     'user': string;
 }
 
-export const DomainContactRequestDtoCountryCodeEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type DomainContactRequestDtoCountryCodeEnum = typeof DomainContactRequestDtoCountryCodeEnum[keyof typeof DomainContactRequestDtoCountryCodeEnum];
 
 /**
  * 
@@ -6889,11 +3545,11 @@ export interface DomainContactResponseDto {
      */
     'postcode': string;
     /**
-     * The ISO 3166-1-alpha-2 code for the country of the contact. This code represents the contact\'s country and must be a valid 2-letter country code.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof DomainContactResponseDto
      */
-    'countryCode': DomainContactResponseDtoCountryCodeEnum;
+    'countryCode': CountryEnum;
     /**
      * The telephone number of the contact, including the international dialing code. The format should be +<InternationalDialingCode>.<TelephoneNumber>.
      * @type {string}
@@ -6956,259 +3612,6 @@ export interface DomainContactResponseDto {
     'updatedAt'?: string;
 }
 
-export const DomainContactResponseDtoCountryCodeEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type DomainContactResponseDtoCountryCodeEnum = typeof DomainContactResponseDtoCountryCodeEnum[keyof typeof DomainContactResponseDtoCountryCodeEnum];
 
 /**
  * 
@@ -7334,20 +3737,41 @@ export interface DomainPricesDto {
     'hardQuarantineFee'?: number;
 }
 /**
+ * Specifies how the domain name is managed: DNAME for alias, DOMAIN for standalone.
+ * @export
+ * @enum {string}
+ */
+
+export const DomainRecordTypeEnum = {
+    DOMAIN: 'DOMAIN',
+    DNAME: 'DNAME'
+} as const;
+
+export type DomainRecordTypeEnum = typeof DomainRecordTypeEnum[keyof typeof DomainRecordTypeEnum];
+
+
+/**
  * 
  * @export
  * @interface DonutsPriceCategoryDataDto
  */
 export interface DonutsPriceCategoryDataDto {
     /**
-     * An additional parameter if the domain checked is a Donuts premium domain
-     * @type {string}
+     * 
+     * @type {DonutsPriceCategoryEnum}
      * @memberof DonutsPriceCategoryDataDto
      */
-    'priceCategory': DonutsPriceCategoryDataDtoPriceCategoryEnum;
+    'priceCategory': DonutsPriceCategoryEnum;
 }
 
-export const DonutsPriceCategoryDataDtoPriceCategoryEnum = {
+
+/**
+ * An additional parameter if the domain checked is a Donuts premium domain
+ * @export
+ * @enum {string}
+ */
+
+export const DonutsPriceCategoryEnum = {
     Category1: 'Category1',
     Category2: 'Category2',
     Category3: 'Category3',
@@ -7362,7 +3786,41 @@ export const DonutsPriceCategoryDataDtoPriceCategoryEnum = {
     Category12: 'Category12'
 } as const;
 
-export type DonutsPriceCategoryDataDtoPriceCategoryEnum = typeof DonutsPriceCategoryDataDtoPriceCategoryEnum[keyof typeof DonutsPriceCategoryDataDtoPriceCategoryEnum];
+export type DonutsPriceCategoryEnum = typeof DonutsPriceCategoryEnum[keyof typeof DonutsPriceCategoryEnum];
+
+
+/**
+ * Price acoording to duration.
+ * @export
+ * @enum {string}
+ */
+
+export const DurationEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3',
+    _4: '4',
+    _5: '5',
+    _6: '6',
+    _7: '7',
+    _8: '8',
+    _9: '9',
+    _10: '10',
+    _11: '11',
+    _12: '12',
+    _24: '24',
+    _36: '36',
+    _48: '48',
+    _60: '60',
+    _72: '72',
+    _84: '84',
+    _96: '96',
+    _108: '108',
+    _120: '120'
+} as const;
+
+export type DurationEnum = typeof DurationEnum[keyof typeof DurationEnum];
+
 
 /**
  * 
@@ -7402,86 +3860,6 @@ export interface EditCompanyCommentRequest {
  * @export
  */
 export type EditedBy = UserResponseDto | string;
-
-/**
- * 
- * @export
- * @interface EmailFieldDto
- */
-export interface EmailFieldDto {
-    /**
-     * Discriminator literal — always \'EMAIL\' for this DTO.
-     * @type {string}
-     * @memberof EmailFieldDto
-     */
-    'type': EmailFieldDtoTypeEnum;
-    /**
-     * Email address.
-     * @type {string}
-     * @memberof EmailFieldDto
-     */
-    'value'?: string;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof EmailFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof EmailFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof EmailFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof EmailFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof EmailFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof EmailFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof EmailFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof EmailFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof EmailFieldDto
-     */
-    'downgradable'?: boolean;
-}
-
-export const EmailFieldDtoTypeEnum = {
-    EMAIL: 'EMAIL'
-} as const;
-
-export type EmailFieldDtoTypeEnum = typeof EmailFieldDtoTypeEnum[keyof typeof EmailFieldDtoTypeEnum];
 
 /**
  * 
@@ -7546,27 +3924,27 @@ export interface EsAdditionalDataDto {
      */
     'identificationType': number;
     /**
-     * The personal or corporate ID number of the contact. If the IdentificationType is 1 (DNI-NFI) or 3 (NIE), then this field will be validated to ensure the format is correct.
-     * @type {number}
+     * 
+     * @type {EsIdentificationTypeEnum}
      * @memberof EsAdditionalDataDto
      */
-    'identificationNumber': EsAdditionalDataDtoIdentificationNumberEnum;
+    'identificationNumber': EsIdentificationTypeEnum;
     /**
-     *  These entities are grouped into two types:  - Contacts type \'natural person\': Contacts registered to natural persons or individuals, that is, real persons capable of assuming rights and liabilities, capable of signing documents.  - Contacts type \'juridical person\': Contacts registered to organizations or juridical persons, that is, collective entities that may assume rights and liabilities, though in a limited fashion, such companies, associations, governmental agencies and organizations, etc.  For Contacts type \'natural person\' this field must be set to 1.  For ContactsValue type \'juridical person\' this field must be set to one of the following values:  value - Legal Entity Type * 39 - Economic Interest Grouping * 47 - Association * 59 - Sports Association * 68 - Trade Association * 124 - Savings Bank * 150 - Community Property * 152 - Condominium * 164 - Religious Order or Institution * 181 - Consulate * 197 - Public Law Association * 203 - Embassy * 229 - Municipality * 269 - Sports Federation * 286 - Foundation * 365 - Mutual Insurance Company * 434 - Provincial Government Body * 436 - National Government Body * 439 - Political Party * 476 - Trade Union * 510 - Farm Partnership * 524 - Public Limited Company / Corporation * 525 - Sports Public Limited Company * 554 - Partnership * 560 - General Partnership * 562 - Limited Partnership * 566 - Cooperative * 608 - Worker-owned Company * 612 - Limited Liability Company * 713 - Spanish (company) Branch * 717 - Temporary Consortium / Joint Venture * 744 - Worker-owned Limited Company * 745 - Provincial Government Entity * 746 - National Government Entity * 747 - Local Government Entity * 877 - Others * 878 - Designation of Origin Regulatory Council 
-     * @type {number}
+     * 
+     * @type {EsContactTypeEnum}
      * @memberof EsAdditionalDataDto
      */
-    'contactType': EsAdditionalDataDtoContactTypeEnum;
+    'contactType': EsContactTypeEnum;
 }
 
-export const EsAdditionalDataDtoIdentificationNumberEnum = {
-    NUMBER_0: 0,
-    NUMBER_1: 1,
-    NUMBER_3: 3
-} as const;
 
-export type EsAdditionalDataDtoIdentificationNumberEnum = typeof EsAdditionalDataDtoIdentificationNumberEnum[keyof typeof EsAdditionalDataDtoIdentificationNumberEnum];
-export const EsAdditionalDataDtoContactTypeEnum = {
+/**
+ *  These entities are grouped into two types:  - Contacts type \'natural person\': Contacts registered to natural persons or individuals, that is, real persons capable of assuming rights and liabilities, capable of signing documents.  - Contacts type \'juridical person\': Contacts registered to organizations or juridical persons, that is, collective entities that may assume rights and liabilities, though in a limited fashion, such companies, associations, governmental agencies and organizations, etc.  For Contacts type \'natural person\' this field must be set to 1.  For ContactsValue type \'juridical person\' this field must be set to one of the following values:  value - Legal Entity Type * 39 - Economic Interest Grouping * 47 - Association * 59 - Sports Association * 68 - Trade Association * 124 - Savings Bank * 150 - Community Property * 152 - Condominium * 164 - Religious Order or Institution * 181 - Consulate * 197 - Public Law Association * 203 - Embassy * 229 - Municipality * 269 - Sports Federation * 286 - Foundation * 365 - Mutual Insurance Company * 434 - Provincial Government Body * 436 - National Government Body * 439 - Political Party * 476 - Trade Union * 510 - Farm Partnership * 524 - Public Limited Company / Corporation * 525 - Sports Public Limited Company * 554 - Partnership * 560 - General Partnership * 562 - Limited Partnership * 566 - Cooperative * 608 - Worker-owned Company * 612 - Limited Liability Company * 713 - Spanish (company) Branch * 717 - Temporary Consortium / Joint Venture * 744 - Worker-owned Limited Company * 745 - Provincial Government Entity * 746 - National Government Entity * 747 - Local Government Entity * 877 - Others * 878 - Designation of Origin Regulatory Council 
+ * @export
+ * @enum {string}
+ */
+
+export const EsContactTypeEnum = {
     NUMBER_1: 1,
     NUMBER_39: 39,
     NUMBER_47: 47,
@@ -7607,7 +3985,23 @@ export const EsAdditionalDataDtoContactTypeEnum = {
     NUMBER_879: 879
 } as const;
 
-export type EsAdditionalDataDtoContactTypeEnum = typeof EsAdditionalDataDtoContactTypeEnum[keyof typeof EsAdditionalDataDtoContactTypeEnum];
+export type EsContactTypeEnum = typeof EsContactTypeEnum[keyof typeof EsContactTypeEnum];
+
+
+/**
+ * The personal or corporate ID number of the contact. If the IdentificationType is 1 (DNI-NFI) or 3 (NIE), then this field will be validated to ensure the format is correct.
+ * @export
+ * @enum {string}
+ */
+
+export const EsIdentificationTypeEnum = {
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_3: 3
+} as const;
+
+export type EsIdentificationTypeEnum = typeof EsIdentificationTypeEnum[keyof typeof EsIdentificationTypeEnum];
+
 
 /**
  * 
@@ -7616,11 +4010,11 @@ export type EsAdditionalDataDtoContactTypeEnum = typeof EsAdditionalDataDtoConta
  */
 export interface EuBeAdditionalDataDto {
     /**
-     * Accepted values: bg, cs, da, de, el, en, es, et, fi, fr, ga, hr, hu, it, lt, lv, mt, nl, pl, pt, ro, sk, sl, sv
-     * @type {string}
+     * 
+     * @type {EuropeLanguageEnum}
      * @memberof EuBeAdditionalDataDto
      */
-    'language': EuBeAdditionalDataDtoLanguageEnum;
+    'language': EuropeLanguageEnum;
     /**
      * A required string with a maximum length of 20 characters
      * @type {string}
@@ -7640,42 +4034,21 @@ export interface EuBeAdditionalDataDto {
      */
     'naturalPerson': boolean;
     /**
-     * Accepted values: AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI, ES, SE
-     * @type {string}
+     * 
+     * @type {EuropeCountryEnum}
      * @memberof EuBeAdditionalDataDto
      */
-    'countryOfCitizenship'?: EuBeAdditionalDataDtoCountryOfCitizenshipEnum;
+    'countryOfCitizenship'?: EuropeCountryEnum;
 }
 
-export const EuBeAdditionalDataDtoLanguageEnum = {
-    bg: 'bg',
-    cs: 'cs',
-    da: 'da',
-    de: 'de',
-    el: 'el',
-    en: 'en',
-    es: 'es',
-    et: 'et',
-    fi: 'fi',
-    fr: 'fr',
-    ga: 'ga',
-    hr: 'hr',
-    hu: 'hu',
-    it: 'it',
-    lt: 'lt',
-    lv: 'lv',
-    mt: 'mt',
-    nl: 'nl',
-    pl: 'pl',
-    pt: 'pt',
-    ro: 'ro',
-    sk: 'sk',
-    sl: 'sl',
-    sv: 'sv'
-} as const;
 
-export type EuBeAdditionalDataDtoLanguageEnum = typeof EuBeAdditionalDataDtoLanguageEnum[keyof typeof EuBeAdditionalDataDtoLanguageEnum];
-export const EuBeAdditionalDataDtoCountryOfCitizenshipEnum = {
+/**
+ * Accepted values: AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU, MT, NL, PL, PT, RO, SK, SI, ES, SE
+ * @export
+ * @enum {string}
+ */
+
+export const EuropeCountryEnum = {
     AT: 'AT',
     BE: 'BE',
     BG: 'BG',
@@ -7705,7 +4078,321 @@ export const EuBeAdditionalDataDtoCountryOfCitizenshipEnum = {
     SE: 'SE'
 } as const;
 
-export type EuBeAdditionalDataDtoCountryOfCitizenshipEnum = typeof EuBeAdditionalDataDtoCountryOfCitizenshipEnum[keyof typeof EuBeAdditionalDataDtoCountryOfCitizenshipEnum];
+export type EuropeCountryEnum = typeof EuropeCountryEnum[keyof typeof EuropeCountryEnum];
+
+
+/**
+ * Accepted values: bg, cs, da, de, el, en, es, et, fi, fr, ga, hr, hu, it, lt, lv, mt, nl, pl, pt, ro, sk, sl, sv
+ * @export
+ * @enum {string}
+ */
+
+export const EuropeLanguageEnum = {
+    bg: 'bg',
+    cs: 'cs',
+    da: 'da',
+    de: 'de',
+    el: 'el',
+    en: 'en',
+    es: 'es',
+    et: 'et',
+    fi: 'fi',
+    fr: 'fr',
+    ga: 'ga',
+    hr: 'hr',
+    hu: 'hu',
+    it: 'it',
+    lt: 'lt',
+    lv: 'lv',
+    mt: 'mt',
+    nl: 'nl',
+    pl: 'pl',
+    pt: 'pt',
+    ro: 'ro',
+    sk: 'sk',
+    sl: 'sl',
+    sv: 'sv'
+} as const;
+
+export type EuropeLanguageEnum = typeof EuropeLanguageEnum[keyof typeof EuropeLanguageEnum];
+
+
+/**
+ * The event associated with the template.
+ * @export
+ * @enum {string}
+ */
+
+export const EventsEnum = {
+    user_created: 'user/created',
+    user_updated: 'user/updated',
+    user_deleted: 'user/deleted',
+    user_banned: 'user/banned',
+    user_unbanned: 'user/unbanned',
+    user_company_access_added: 'user/company/access/added',
+    user_company_access_removed: 'user/company/access/removed',
+    user_locked: 'user/locked',
+    user_credit_balance_updated: 'user/credit-balance/updated',
+    user_unlocked: 'user/unlocked',
+    user_password_updated: 'user/password/updated',
+    user_email_updated: 'user/email/updated',
+    user_currency_updated: 'user/currency/updated',
+    user_invoice_contact_updated: 'user/invoice-contact/updated',
+    user_policy_updated: 'user/policy/updated',
+    user_languages_updated: 'user/languages/updated',
+    user_custom_price_policies_updated: 'user/custom-price-policies/updated',
+    user_custom_addon_price_policies_updated: 'user/custom-addon-price-policies/updated',
+    user_custom_affiliate_added: 'user/custom-affiliate/added',
+    user_custom_affiliate_removed: 'user/custom-affiliate/removed',
+    user_invoice_interval_updated: 'user/invoice-interval/updated',
+    user_additional_notification_email_removed: 'user/additional-notification-email/removed',
+    user_additional_notification_email_added: 'user/additional-notification-email/added',
+    user_comment_added: 'user/comment/added',
+    user_comment_removed: 'user/comment/removed',
+    user_comment_updated: 'user/comment/updated',
+    user_tags_updated: 'user/tags/updated',
+    user_setting_added: 'user/setting/added',
+    user_setting_removed: 'user/setting/removed',
+    user_setting_updated: 'user/setting/updated',
+    user_start_selling: 'user/start-selling',
+    user_roles_updated: 'user/roles/updated',
+    user_roles_added: 'user/roles/added',
+    user_roles_deleted: 'user/roles/deleted',
+    message_created: 'message/created',
+    message_updated: 'message/updated',
+    message_deleted: 'message/deleted',
+    notification_sent: 'notification/sent',
+    policy_created: 'policy/created',
+    policy_updated: 'policy/updated',
+    policy_deleted: 'policy/deleted',
+    product_category_created: 'product-category/created',
+    product_category_updated: 'product-category/updated',
+    product_category_deleted: 'product-category/deleted',
+    invoice_contact_created: 'invoice-contact/created',
+    invoice_contact_updated: 'invoice-contact/updated',
+    invoice_contact_deleted: 'invoice-contact/deleted',
+    invoice_created: 'invoice/created',
+    invoice_updated: 'invoice/updated',
+    invoice_deleted: 'invoice/deleted',
+    currency_created: 'currency/created',
+    currency_updated: 'currency/updated',
+    currency_deleted: 'currency/deleted',
+    affiliate_created: 'affiliate/created',
+    affiliate_updated: 'affiliate/updated',
+    affiliate_deleted: 'affiliate/deleted',
+    company_created: 'company/created',
+    company_updated: 'company/updated',
+    company_deleted: 'company/deleted',
+    organization_integration_attached: 'organization/integration/attached',
+    organization_integration_detached: 'organization/integration/detached',
+    tld_created: 'tld/created',
+    tld_updated: 'tld/updated',
+    tld_deleted: 'tld/deleted',
+    integration_created: 'integration/created',
+    integration_updated: 'integration/updated',
+    integration_deleted: 'integration/deleted',
+    integration_installed: 'integration/installed',
+    integration_uninstalled: 'integration/uninstalled',
+    integration_activated: 'integration/activated',
+    integration_deactivated: 'integration/deactivated',
+    integration_maintenance_started: 'integration/maintenance-started',
+    integration_maintenance_finished: 'integration/maintenance-finished',
+    domain_contact_created: 'domain-contact/created',
+    domain_contact_updated: 'domain-contact/updated',
+    domain_contact_deleted: 'domain-contact/deleted',
+    domain_category_created: 'domain-category/created',
+    domain_category_updated: 'domain-category/updated',
+    domain_category_deleted: 'domain-category/deleted',
+    addon_created: 'addon/created',
+    addon_updated: 'addon/updated',
+    addon_deleted: 'addon/deleted',
+    transaction_created: 'transaction/created',
+    transaction_canceled: 'transaction/canceled',
+    transaction_failed: 'transaction/failed',
+    transaction_subscribed: 'transaction/subscribed',
+    transaction_unsubscribed: 'transaction/unsubscribed',
+    transaction_updated: 'transaction/updated',
+    transaction_deleted: 'transaction/deleted',
+    transaction_completed: 'transaction/completed',
+    transaction_refunded: 'transaction/refunded',
+    template_created: 'template/created',
+    template_updated: 'template/updated',
+    template_deleted: 'template/deleted',
+    coupon_created: 'coupon/created',
+    coupon_updated: 'coupon/updated',
+    coupon_deleted: 'coupon/deleted',
+    template_integration_created: 'template-integration/created',
+    template_integration_updated: 'template-integration/updated',
+    template_integration_deleted: 'template-integration/deleted',
+    order_created: 'order/created',
+    order_status_in_progress: 'order/status/in-progress',
+    order_status_completed: 'order/status/completed',
+    order_status_canceled: 'order/status/canceled',
+    order_status_pending: 'order/status/pending',
+    order_status_archived: 'order/status/archived',
+    order_insufficient_balance: 'order/insufficient-balance',
+    order_item_detached: 'order/item-detached',
+    order_invoice_contact_changed: 'order/invoice-contact-changed',
+    order_updated: 'order/updated',
+    order_deleted: 'order/deleted',
+    setting_created: 'setting/created',
+    setting_updated: 'setting/updated',
+    setting_deleted: 'setting/deleted',
+    issue_created: 'issue/created',
+    issue_updated: 'issue/updated',
+    issue_deleted: 'issue/deleted',
+    task_created: 'task/created',
+    task_updated: 'task/updated',
+    task_deleted: 'task/deleted',
+    task_canceled: 'task/canceled',
+    task_in_progress: 'task/in-progress',
+    task_completed: 'task/completed',
+    task_percentage_updated: 'task/percentage/updated',
+    product_created: 'product/created',
+    product_updated: 'product/updated',
+    product_deleted: 'product/deleted',
+    product_auto_renew_updated: 'product/auto-renew/updated',
+    product_enabled: 'product/enabled',
+    product_disabled: 'product/disabled',
+    product_version_created: 'product/version-created',
+    ip_group_created: 'ip-group/created',
+    ip_group_updated: 'ip-group/updated',
+    ip_group_deleted: 'ip-group/deleted',
+    ip_created: 'ip/created',
+    ip_updated: 'ip/updated',
+    ip_deleted: 'ip/deleted',
+    domain_name_created: 'domain-name/created',
+    domain_name_updated: 'domain-name/updated',
+    domain_name_deleted: 'domain-name/deleted',
+    domain_name_locked: 'domain-name/locked',
+    domain_name_unlocked: 'domain-name/unlocked',
+    domain_name_idshield_activated: 'domain-name/idshield-activated',
+    domain_name_idshield_deactivated: 'domain-name/idshield-deactivated',
+    domain_name_bundle_added: 'domain-name/bundle-added',
+    domain_name_bundle_removed: 'domain-name/bundle-removed',
+    domain_name_registrant_updated: 'domain-name/registrant-updated',
+    domain_name_admin_updated: 'domain-name/admin-updated',
+    domain_name_tech_updated: 'domain-name/tech-updated',
+    domain_name_billing_updated: 'domain-name/billing-updated',
+    domain_name_additional_updated: 'domain-name/additional-updated',
+    item_created: 'item/created',
+    item_updated: 'item/updated',
+    item_deleted: 'item/deleted',
+    item_renewed: 'item/renewed',
+    item_upgraded: 'item/upgraded',
+    item_downgraded: 'item/downgraded',
+    item_ip_attached: 'item/ip-attached',
+    item_ip_detached: 'item/ip-detached',
+    item_detached_from_order: 'item/detached-from-order',
+    item_postponed: 'item/postponed',
+    item_transferred_in: 'item/transferred-in',
+    item_canceled: 'item/canceled',
+    item_suspended: 'item/suspended',
+    item_unsuspended: 'item/unsuspended',
+    item_affiliate_added: 'item/affiliate/added',
+    item_bundle_attached: 'item/bundle/attached',
+    item_bundle_detached: 'item/bundle/detached',
+    item_activated: 'item/activated',
+    item_set_inactive: 'item/set-inactive',
+    item_processed: 'item/processed',
+    item_refund_requested: 'item/refund-requested',
+    item_refund_accepted: 'item/refund-accepted',
+    item_refund_rejected: 'item/refund-rejected',
+    order_paid: 'order/paid',
+    test: 'test',
+    dead_lettering: 'dead-lettering',
+    core_queue: 'core-queue'
+} as const;
+
+export type EventsEnum = typeof EventsEnum[keyof typeof EventsEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface FieldDto
+ */
+export interface FieldDto {
+    /**
+     * Unique identifier for the field.
+     * @type {string}
+     * @memberof FieldDto
+     */
+    'id': string;
+    /**
+     * Multilingual label for the field.
+     * @type {Array<MultilangTextDto>}
+     * @memberof FieldDto
+     */
+    'label': Array<MultilangTextDto>;
+    /**
+     * 
+     * @type {Value}
+     * @memberof FieldDto
+     */
+    'value': Value;
+    /**
+     * 
+     * @type {FieldTypeEnum}
+     * @memberof FieldDto
+     */
+    'type': FieldTypeEnum;
+    /**
+     * Whether the field is required.
+     * @type {boolean}
+     * @memberof FieldDto
+     */
+    'required': boolean;
+    /**
+     * Whether the field is disabled.
+     * @type {boolean}
+     * @memberof FieldDto
+     */
+    'disabled': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FieldDto
+     */
+    'hidden'?: boolean;
+    /**
+     * Optional regex to validate input.
+     * @type {string}
+     * @memberof FieldDto
+     */
+    'regexValidation'?: string;
+    /**
+     * Localized error message shown when regex validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof FieldDto
+     */
+    'regexValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof FieldDto
+     */
+    'triggersRemoteValidation'?: boolean;
+    /**
+     * Localized error message shown when remote validation fails.
+     * @type {Array<MultilangTextDto>}
+     * @memberof FieldDto
+     */
+    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
+    /**
+     * Whether the item attribute is upgradable by the user.
+     * @type {boolean}
+     * @memberof FieldDto
+     */
+    'upgradable'?: boolean;
+    /**
+     * Whether the item attribute is downgradable by the user.
+     * @type {boolean}
+     * @memberof FieldDto
+     */
+    'downgradable'?: boolean;
+}
+
 
 /**
  * 
@@ -7732,6 +4419,26 @@ export interface FieldOptionDto {
      */
     'disabled'?: boolean;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const FieldTypeEnum = {
+    TEXT_BOX: 'TEXT_BOX',
+    TEXT_AREA: 'TEXT_AREA',
+    SELECT: 'SELECT',
+    MULTI_SELECT: 'MULTI_SELECT',
+    DESCRIPTION: 'DESCRIPTION',
+    RADIO_BOX: 'RADIO_BOX',
+    CHECKBOX: 'CHECKBOX',
+    SLIDER: 'SLIDER'
+} as const;
+
+export type FieldTypeEnum = typeof FieldTypeEnum[keyof typeof FieldTypeEnum];
+
+
 /**
  * 
  * @export
@@ -9061,69 +5768,11 @@ export interface GroupRoleRequestDto {
     'description'?: string;
     /**
      * A list of permissions granted to the group role, defining its access levels.
-     * @type {Array<string>}
+     * @type {Array<RolesEnum>}
      * @memberof GroupRoleRequestDto
      */
-    'permisions': Array<GroupRoleRequestDtoPermisionsEnum>;
+    'permisions': Array<RolesEnum>;
 }
-
-export const GroupRoleRequestDtoPermisionsEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
-    FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
-    ORDER_READ: 'ORDER_READ',
-    ORDER_WRITE: 'ORDER_WRITE',
-    ADDON_READ: 'ADDON_READ',
-    ADDON_WRITE: 'ADDON_WRITE',
-    AFFILIATE_READ: 'AFFILIATE_READ',
-    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
-    COMPANY_READ: 'COMPANY_READ',
-    COMPANY_WRITE: 'COMPANY_WRITE',
-    TEMPLATE_READ: 'TEMPLATE_READ',
-    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
-    COUPON_READ: 'COUPON_READ',
-    COUPON_WRITE: 'COUPON_WRITE',
-    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
-    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
-    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
-    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
-    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
-    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
-    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
-    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
-    INVOICE_READ: 'INVOICE_READ',
-    INVOICE_WRITE: 'INVOICE_WRITE',
-    IP_GROUPS_READ: 'IP_GROUPS_READ',
-    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
-    IPS_READ: 'IPS_READ',
-    IPS_WRITE: 'IPS_WRITE',
-    ITEMS_READ: 'ITEMS_READ',
-    ITEMS_WRITE: 'ITEMS_WRITE',
-    ORDERS_READ: 'ORDERS_READ',
-    ORDERS_WRITE: 'ORDERS_WRITE',
-    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
-    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
-    POLICIES_READ: 'POLICIES_READ',
-    POLICIES_WRITE: 'POLICIES_WRITE',
-    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
-    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
-    PRODUCTS_READ: 'PRODUCTS_READ',
-    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
-    SETTINGS_READ: 'SETTINGS_READ',
-    SETTINGS_WRITE: 'SETTINGS_WRITE',
-    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
-    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
-    TLDS_READ: 'TLDS_READ',
-    TLDS_WRITE: 'TLDS_WRITE',
-    USERS_READ: 'USERS_READ',
-    USERS_WRITE: 'USERS_WRITE',
-    ISSUES_WRITE: 'ISSUES_WRITE',
-    ISSUES_READ: 'ISSUES_READ',
-    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
-} as const;
-
-export type GroupRoleRequestDtoPermisionsEnum = typeof GroupRoleRequestDtoPermisionsEnum[keyof typeof GroupRoleRequestDtoPermisionsEnum];
-
 /**
  * 
  * @export
@@ -9144,10 +5793,10 @@ export interface GroupRoleResponseDto {
     'description'?: string;
     /**
      * A list of permissions granted to the group role, defining its access levels.
-     * @type {Array<string>}
+     * @type {Array<RolesEnum>}
      * @memberof GroupRoleResponseDto
      */
-    'permisions': Array<GroupRoleResponseDtoPermisionsEnum>;
+    'permisions': Array<RolesEnum>;
     /**
      * A unique identifier for the group role, used for precise referencing within the system.
      * @type {string}
@@ -9179,64 +5828,6 @@ export interface GroupRoleResponseDto {
      */
     'updatedAt'?: string;
 }
-
-export const GroupRoleResponseDtoPermisionsEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
-    FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
-    ORDER_READ: 'ORDER_READ',
-    ORDER_WRITE: 'ORDER_WRITE',
-    ADDON_READ: 'ADDON_READ',
-    ADDON_WRITE: 'ADDON_WRITE',
-    AFFILIATE_READ: 'AFFILIATE_READ',
-    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
-    COMPANY_READ: 'COMPANY_READ',
-    COMPANY_WRITE: 'COMPANY_WRITE',
-    TEMPLATE_READ: 'TEMPLATE_READ',
-    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
-    COUPON_READ: 'COUPON_READ',
-    COUPON_WRITE: 'COUPON_WRITE',
-    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
-    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
-    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
-    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
-    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
-    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
-    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
-    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
-    INVOICE_READ: 'INVOICE_READ',
-    INVOICE_WRITE: 'INVOICE_WRITE',
-    IP_GROUPS_READ: 'IP_GROUPS_READ',
-    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
-    IPS_READ: 'IPS_READ',
-    IPS_WRITE: 'IPS_WRITE',
-    ITEMS_READ: 'ITEMS_READ',
-    ITEMS_WRITE: 'ITEMS_WRITE',
-    ORDERS_READ: 'ORDERS_READ',
-    ORDERS_WRITE: 'ORDERS_WRITE',
-    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
-    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
-    POLICIES_READ: 'POLICIES_READ',
-    POLICIES_WRITE: 'POLICIES_WRITE',
-    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
-    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
-    PRODUCTS_READ: 'PRODUCTS_READ',
-    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
-    SETTINGS_READ: 'SETTINGS_READ',
-    SETTINGS_WRITE: 'SETTINGS_WRITE',
-    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
-    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
-    TLDS_READ: 'TLDS_READ',
-    TLDS_WRITE: 'TLDS_WRITE',
-    USERS_READ: 'USERS_READ',
-    USERS_WRITE: 'USERS_WRITE',
-    ISSUES_WRITE: 'ISSUES_WRITE',
-    ISSUES_READ: 'ISSUES_READ',
-    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
-} as const;
-
-export type GroupRoleResponseDtoPermisionsEnum = typeof GroupRoleResponseDtoPermisionsEnum[keyof typeof GroupRoleResponseDtoPermisionsEnum];
-
 /**
  * 
  * @export
@@ -9263,22 +5854,22 @@ export interface InfoDto {
     'description'?: string;
     /**
      * Locales supported by the integration.
-     * @type {Array<string>}
+     * @type {Array<LanguageEnum>}
      * @memberof InfoDto
      */
-    'supportedLanguages': Array<InfoDtoSupportedLanguagesEnum>;
+    'supportedLanguages': Array<LanguageEnum>;
     /**
      * Platform events the integration can subscribe to.
-     * @type {Array<string>}
+     * @type {Array<EventsEnum>}
      * @memberof InfoDto
      */
-    'listenEvents'?: Array<InfoDtoListenEventsEnum>;
+    'listenEvents'?: Array<EventsEnum>;
     /**
      * Roles required for this integration to operate.
-     * @type {Array<string>}
+     * @type {Array<RolesEnum>}
      * @memberof InfoDto
      */
-    'requiredRoles'?: Array<InfoDtoRequiredRolesEnum>;
+    'requiredRoles'?: Array<RolesEnum>;
     /**
      * Admin UI links, tabs, and actions provided by the integration.
      * @type {AdminPanelDto}
@@ -9298,439 +5889,29 @@ export interface InfoDto {
      */
     'onboardingUrl'?: string;
     /**
-     * Configurable attributes that are used in the setup process. Each item is a concrete field DTO discriminated by its `type` literal.
-     * @type {Array<AnyFieldDto>}
+     * Configurable attributes that are used in the setup process.
+     * @type {Array<FieldDto>}
      * @memberof InfoDto
      */
-    'setupAttributes'?: Array<AnyFieldDto>;
+    'setupAttributes'?: Array<FieldDto>;
 }
+/**
+ * Defines the type of input element that the addon will display on the frontend. This determines how the addon will be presented to the user, such as a text box, checkbox, radio button, etc.
+ * @export
+ * @enum {string}
+ */
 
-export const InfoDtoSupportedLanguagesEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
+export const InputTypeEnum = {
+    TEXT_BOX: 'TEXT_BOX',
+    TEXT_AREA: 'TEXT_AREA',
+    LIST: 'LIST',
+    RADIO_BOX: 'RADIO_BOX',
+    CHECKBOX: 'CHECKBOX',
+    SLIDER: 'SLIDER'
 } as const;
 
-export type InfoDtoSupportedLanguagesEnum = typeof InfoDtoSupportedLanguagesEnum[keyof typeof InfoDtoSupportedLanguagesEnum];
-export const InfoDtoListenEventsEnum = {
-    user_created: 'user/created',
-    user_updated: 'user/updated',
-    user_deleted: 'user/deleted',
-    user_banned: 'user/banned',
-    user_unbanned: 'user/unbanned',
-    user_company_access_added: 'user/company/access/added',
-    user_company_access_removed: 'user/company/access/removed',
-    user_locked: 'user/locked',
-    user_credit_balance_updated: 'user/credit-balance/updated',
-    user_unlocked: 'user/unlocked',
-    user_password_updated: 'user/password/updated',
-    user_email_updated: 'user/email/updated',
-    user_currency_updated: 'user/currency/updated',
-    user_invoice_contact_updated: 'user/invoice-contact/updated',
-    user_policy_updated: 'user/policy/updated',
-    user_languages_updated: 'user/languages/updated',
-    user_custom_price_policies_updated: 'user/custom-price-policies/updated',
-    user_custom_addon_price_policies_updated: 'user/custom-addon-price-policies/updated',
-    user_custom_affiliate_added: 'user/custom-affiliate/added',
-    user_custom_affiliate_removed: 'user/custom-affiliate/removed',
-    user_invoice_interval_updated: 'user/invoice-interval/updated',
-    user_additional_notification_email_removed: 'user/additional-notification-email/removed',
-    user_additional_notification_email_added: 'user/additional-notification-email/added',
-    user_comment_added: 'user/comment/added',
-    user_comment_removed: 'user/comment/removed',
-    user_comment_updated: 'user/comment/updated',
-    user_tags_updated: 'user/tags/updated',
-    user_setting_added: 'user/setting/added',
-    user_setting_removed: 'user/setting/removed',
-    user_setting_updated: 'user/setting/updated',
-    user_start_selling: 'user/start-selling',
-    user_roles_updated: 'user/roles/updated',
-    user_roles_added: 'user/roles/added',
-    user_roles_deleted: 'user/roles/deleted',
-    message_created: 'message/created',
-    message_updated: 'message/updated',
-    message_deleted: 'message/deleted',
-    notification_sent: 'notification/sent',
-    policy_created: 'policy/created',
-    policy_updated: 'policy/updated',
-    policy_deleted: 'policy/deleted',
-    product_category_created: 'product-category/created',
-    product_category_updated: 'product-category/updated',
-    product_category_deleted: 'product-category/deleted',
-    invoice_contact_created: 'invoice-contact/created',
-    invoice_contact_updated: 'invoice-contact/updated',
-    invoice_contact_deleted: 'invoice-contact/deleted',
-    invoice_created: 'invoice/created',
-    invoice_updated: 'invoice/updated',
-    invoice_deleted: 'invoice/deleted',
-    currency_created: 'currency/created',
-    currency_updated: 'currency/updated',
-    currency_deleted: 'currency/deleted',
-    affiliate_created: 'affiliate/created',
-    affiliate_updated: 'affiliate/updated',
-    affiliate_deleted: 'affiliate/deleted',
-    company_created: 'company/created',
-    company_updated: 'company/updated',
-    company_deleted: 'company/deleted',
-    organization_integration_attached: 'organization/integration/attached',
-    organization_integration_detached: 'organization/integration/detached',
-    tld_created: 'tld/created',
-    tld_updated: 'tld/updated',
-    tld_deleted: 'tld/deleted',
-    integration_created: 'integration/created',
-    integration_updated: 'integration/updated',
-    integration_deleted: 'integration/deleted',
-    integration_installed: 'integration/installed',
-    integration_uninstalled: 'integration/uninstalled',
-    integration_activated: 'integration/activated',
-    integration_deactivated: 'integration/deactivated',
-    integration_maintenance_started: 'integration/maintenance-started',
-    integration_maintenance_finished: 'integration/maintenance-finished',
-    domain_contact_created: 'domain-contact/created',
-    domain_contact_updated: 'domain-contact/updated',
-    domain_contact_deleted: 'domain-contact/deleted',
-    domain_category_created: 'domain-category/created',
-    domain_category_updated: 'domain-category/updated',
-    domain_category_deleted: 'domain-category/deleted',
-    addon_created: 'addon/created',
-    addon_updated: 'addon/updated',
-    addon_deleted: 'addon/deleted',
-    transaction_created: 'transaction/created',
-    transaction_canceled: 'transaction/canceled',
-    transaction_failed: 'transaction/failed',
-    transaction_subscribed: 'transaction/subscribed',
-    transaction_unsubscribed: 'transaction/unsubscribed',
-    transaction_updated: 'transaction/updated',
-    transaction_deleted: 'transaction/deleted',
-    transaction_completed: 'transaction/completed',
-    transaction_refunded: 'transaction/refunded',
-    template_created: 'template/created',
-    template_updated: 'template/updated',
-    template_deleted: 'template/deleted',
-    coupon_created: 'coupon/created',
-    coupon_updated: 'coupon/updated',
-    coupon_deleted: 'coupon/deleted',
-    template_integration_created: 'template-integration/created',
-    template_integration_updated: 'template-integration/updated',
-    template_integration_deleted: 'template-integration/deleted',
-    order_created: 'order/created',
-    order_status_in_progress: 'order/status/in-progress',
-    order_status_completed: 'order/status/completed',
-    order_status_canceled: 'order/status/canceled',
-    order_status_pending: 'order/status/pending',
-    order_status_archived: 'order/status/archived',
-    order_insufficient_balance: 'order/insufficient-balance',
-    order_item_detached: 'order/item-detached',
-    order_invoice_contact_changed: 'order/invoice-contact-changed',
-    order_updated: 'order/updated',
-    order_deleted: 'order/deleted',
-    setting_created: 'setting/created',
-    setting_updated: 'setting/updated',
-    setting_deleted: 'setting/deleted',
-    issue_created: 'issue/created',
-    issue_updated: 'issue/updated',
-    issue_deleted: 'issue/deleted',
-    task_created: 'task/created',
-    task_updated: 'task/updated',
-    task_deleted: 'task/deleted',
-    task_canceled: 'task/canceled',
-    task_in_progress: 'task/in-progress',
-    task_completed: 'task/completed',
-    task_percentage_updated: 'task/percentage/updated',
-    product_created: 'product/created',
-    product_updated: 'product/updated',
-    product_deleted: 'product/deleted',
-    product_auto_renew_updated: 'product/auto-renew/updated',
-    product_enabled: 'product/enabled',
-    product_disabled: 'product/disabled',
-    product_version_created: 'product/version-created',
-    ip_group_created: 'ip-group/created',
-    ip_group_updated: 'ip-group/updated',
-    ip_group_deleted: 'ip-group/deleted',
-    ip_created: 'ip/created',
-    ip_updated: 'ip/updated',
-    ip_deleted: 'ip/deleted',
-    domain_name_created: 'domain-name/created',
-    domain_name_updated: 'domain-name/updated',
-    domain_name_deleted: 'domain-name/deleted',
-    domain_name_locked: 'domain-name/locked',
-    domain_name_unlocked: 'domain-name/unlocked',
-    domain_name_idshield_activated: 'domain-name/idshield-activated',
-    domain_name_idshield_deactivated: 'domain-name/idshield-deactivated',
-    domain_name_bundle_added: 'domain-name/bundle-added',
-    domain_name_bundle_removed: 'domain-name/bundle-removed',
-    domain_name_registrant_updated: 'domain-name/registrant-updated',
-    domain_name_admin_updated: 'domain-name/admin-updated',
-    domain_name_tech_updated: 'domain-name/tech-updated',
-    domain_name_billing_updated: 'domain-name/billing-updated',
-    domain_name_additional_updated: 'domain-name/additional-updated',
-    item_created: 'item/created',
-    item_updated: 'item/updated',
-    item_deleted: 'item/deleted',
-    item_renewed: 'item/renewed',
-    item_upgraded: 'item/upgraded',
-    item_downgraded: 'item/downgraded',
-    item_ip_attached: 'item/ip-attached',
-    item_ip_detached: 'item/ip-detached',
-    item_detached_from_order: 'item/detached-from-order',
-    item_postponed: 'item/postponed',
-    item_transferred_in: 'item/transferred-in',
-    item_canceled: 'item/canceled',
-    item_suspended: 'item/suspended',
-    item_unsuspended: 'item/unsuspended',
-    item_affiliate_added: 'item/affiliate/added',
-    item_bundle_attached: 'item/bundle/attached',
-    item_bundle_detached: 'item/bundle/detached',
-    item_activated: 'item/activated',
-    item_set_inactive: 'item/set-inactive',
-    item_processed: 'item/processed',
-    item_refund_requested: 'item/refund-requested',
-    item_refund_accepted: 'item/refund-accepted',
-    item_refund_rejected: 'item/refund-rejected',
-    order_paid: 'order/paid',
-    test: 'test',
-    dead_lettering: 'dead-lettering',
-    core_queue: 'core-queue'
-} as const;
+export type InputTypeEnum = typeof InputTypeEnum[keyof typeof InputTypeEnum];
 
-export type InfoDtoListenEventsEnum = typeof InfoDtoListenEventsEnum[keyof typeof InfoDtoListenEventsEnum];
-export const InfoDtoRequiredRolesEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
-    FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
-    ORDER_READ: 'ORDER_READ',
-    ORDER_WRITE: 'ORDER_WRITE',
-    ADDON_READ: 'ADDON_READ',
-    ADDON_WRITE: 'ADDON_WRITE',
-    AFFILIATE_READ: 'AFFILIATE_READ',
-    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
-    COMPANY_READ: 'COMPANY_READ',
-    COMPANY_WRITE: 'COMPANY_WRITE',
-    TEMPLATE_READ: 'TEMPLATE_READ',
-    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
-    COUPON_READ: 'COUPON_READ',
-    COUPON_WRITE: 'COUPON_WRITE',
-    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
-    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
-    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
-    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
-    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
-    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
-    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
-    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
-    INVOICE_READ: 'INVOICE_READ',
-    INVOICE_WRITE: 'INVOICE_WRITE',
-    IP_GROUPS_READ: 'IP_GROUPS_READ',
-    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
-    IPS_READ: 'IPS_READ',
-    IPS_WRITE: 'IPS_WRITE',
-    ITEMS_READ: 'ITEMS_READ',
-    ITEMS_WRITE: 'ITEMS_WRITE',
-    ORDERS_READ: 'ORDERS_READ',
-    ORDERS_WRITE: 'ORDERS_WRITE',
-    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
-    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
-    POLICIES_READ: 'POLICIES_READ',
-    POLICIES_WRITE: 'POLICIES_WRITE',
-    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
-    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
-    PRODUCTS_READ: 'PRODUCTS_READ',
-    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
-    SETTINGS_READ: 'SETTINGS_READ',
-    SETTINGS_WRITE: 'SETTINGS_WRITE',
-    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
-    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
-    TLDS_READ: 'TLDS_READ',
-    TLDS_WRITE: 'TLDS_WRITE',
-    USERS_READ: 'USERS_READ',
-    USERS_WRITE: 'USERS_WRITE',
-    ISSUES_WRITE: 'ISSUES_WRITE',
-    ISSUES_READ: 'ISSUES_READ',
-    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
-} as const;
-
-export type InfoDtoRequiredRolesEnum = typeof InfoDtoRequiredRolesEnum[keyof typeof InfoDtoRequiredRolesEnum];
 
 /**
  * 
@@ -9740,75 +5921,36 @@ export type InfoDtoRequiredRolesEnum = typeof InfoDtoRequiredRolesEnum[keyof typ
 export interface InstallCompanyIntegrationRequest {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<RolesEnum>}
      * @memberof InstallCompanyIntegrationRequest
      */
-    'acceptedRoles'?: Array<InstallCompanyIntegrationRequestAcceptedRolesEnum>;
+    'acceptedRoles'?: Array<RolesEnum>;
 }
-
-export const InstallCompanyIntegrationRequestAcceptedRolesEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
-    FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
-    ORDER_READ: 'ORDER_READ',
-    ORDER_WRITE: 'ORDER_WRITE',
-    ADDON_READ: 'ADDON_READ',
-    ADDON_WRITE: 'ADDON_WRITE',
-    AFFILIATE_READ: 'AFFILIATE_READ',
-    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
-    COMPANY_READ: 'COMPANY_READ',
-    COMPANY_WRITE: 'COMPANY_WRITE',
-    TEMPLATE_READ: 'TEMPLATE_READ',
-    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
-    COUPON_READ: 'COUPON_READ',
-    COUPON_WRITE: 'COUPON_WRITE',
-    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
-    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
-    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
-    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
-    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
-    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
-    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
-    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
-    INVOICE_READ: 'INVOICE_READ',
-    INVOICE_WRITE: 'INVOICE_WRITE',
-    IP_GROUPS_READ: 'IP_GROUPS_READ',
-    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
-    IPS_READ: 'IPS_READ',
-    IPS_WRITE: 'IPS_WRITE',
-    ITEMS_READ: 'ITEMS_READ',
-    ITEMS_WRITE: 'ITEMS_WRITE',
-    ORDERS_READ: 'ORDERS_READ',
-    ORDERS_WRITE: 'ORDERS_WRITE',
-    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
-    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
-    POLICIES_READ: 'POLICIES_READ',
-    POLICIES_WRITE: 'POLICIES_WRITE',
-    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
-    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
-    PRODUCTS_READ: 'PRODUCTS_READ',
-    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
-    SETTINGS_READ: 'SETTINGS_READ',
-    SETTINGS_WRITE: 'SETTINGS_WRITE',
-    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
-    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
-    TLDS_READ: 'TLDS_READ',
-    TLDS_WRITE: 'TLDS_WRITE',
-    USERS_READ: 'USERS_READ',
-    USERS_WRITE: 'USERS_WRITE',
-    ISSUES_WRITE: 'ISSUES_WRITE',
-    ISSUES_READ: 'ISSUES_READ',
-    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
-} as const;
-
-export type InstallCompanyIntegrationRequestAcceptedRolesEnum = typeof InstallCompanyIntegrationRequestAcceptedRolesEnum[keyof typeof InstallCompanyIntegrationRequestAcceptedRolesEnum];
-
 /**
  * @type Integration
  * The integration id of the template
  * @export
  */
 export type Integration = IntegrationResponseDto | string;
+
+/**
+ * The type of the service integration.
+ * @export
+ * @enum {string}
+ */
+
+export const IntegrationEnum = {
+    product: 'product',
+    notification: 'notification',
+    domain: 'domain',
+    application: 'application',
+    dns: 'dns',
+    payment: 'payment',
+    invoice: 'invoice'
+} as const;
+
+export type IntegrationEnum = typeof IntegrationEnum[keyof typeof IntegrationEnum];
+
 
 /**
  * @type IntegrationInfo
@@ -9837,11 +5979,11 @@ export interface IntegrationRequestDto {
      */
     'title': string;
     /**
-     * The type of the service integration.
-     * @type {string}
+     * 
+     * @type {IntegrationEnum}
      * @memberof IntegrationRequestDto
      */
-    'type': IntegrationRequestDtoTypeEnum;
+    'type': IntegrationEnum;
     /**
      * Indicates whether the integration is public or not. Only public integrations will appear in the marketplace(the list of integrations a company may install)
      * @type {boolean}
@@ -9880,17 +6022,6 @@ export interface IntegrationRequestDto {
     'info': IntegrationInfo;
 }
 
-export const IntegrationRequestDtoTypeEnum = {
-    product: 'product',
-    notification: 'notification',
-    domain: 'domain',
-    application: 'application',
-    dns: 'dns',
-    payment: 'payment',
-    invoice: 'invoice'
-} as const;
-
-export type IntegrationRequestDtoTypeEnum = typeof IntegrationRequestDtoTypeEnum[keyof typeof IntegrationRequestDtoTypeEnum];
 
 /**
  * 
@@ -9905,11 +6036,11 @@ export interface IntegrationResponseDto {
      */
     'title': string;
     /**
-     * The type of the service integration.
-     * @type {string}
+     * 
+     * @type {IntegrationEnum}
      * @memberof IntegrationResponseDto
      */
-    'type': IntegrationResponseDtoTypeEnum;
+    'type': IntegrationEnum;
     /**
      * Indicates whether the integration is public or not. Only public integrations will appear in the marketplace(the list of integrations a company may install)
      * @type {boolean}
@@ -9965,11 +6096,11 @@ export interface IntegrationResponseDto {
      */
     'active': boolean;
     /**
-     * Indicates whether the integration is validated or not.
-     * @type {string}
+     * 
+     * @type {IntegrationValidationStatusEnum}
      * @memberof IntegrationResponseDto
      */
-    'validationStatus': IntegrationResponseDtoValidationStatusEnum;
+    'validationStatus': IntegrationValidationStatusEnum;
     /**
      * The date and time when the service integration was created.
      * @type {string}
@@ -9984,24 +6115,6 @@ export interface IntegrationResponseDto {
     'updatedAt'?: string;
 }
 
-export const IntegrationResponseDtoTypeEnum = {
-    product: 'product',
-    notification: 'notification',
-    domain: 'domain',
-    application: 'application',
-    dns: 'dns',
-    payment: 'payment',
-    invoice: 'invoice'
-} as const;
-
-export type IntegrationResponseDtoTypeEnum = typeof IntegrationResponseDtoTypeEnum[keyof typeof IntegrationResponseDtoTypeEnum];
-export const IntegrationResponseDtoValidationStatusEnum = {
-    not_validated: 'not_validated',
-    in_progress: 'in_progress',
-    validated: 'validated'
-} as const;
-
-export type IntegrationResponseDtoValidationStatusEnum = typeof IntegrationResponseDtoValidationStatusEnum[keyof typeof IntegrationResponseDtoValidationStatusEnum];
 
 /**
  * 
@@ -10041,6 +6154,21 @@ export interface IntegrationUpdateRequestDto {
     'maintenanceEndDate'?: string;
 }
 /**
+ * Indicates whether the integration is validated or not.
+ * @export
+ * @enum {string}
+ */
+
+export const IntegrationValidationStatusEnum = {
+    not_validated: 'not_validated',
+    in_progress: 'in_progress',
+    validated: 'validated'
+} as const;
+
+export type IntegrationValidationStatusEnum = typeof IntegrationValidationStatusEnum[keyof typeof IntegrationValidationStatusEnum];
+
+
+/**
  * 
  * @export
  * @interface IntegrationsInfoRequestDto
@@ -10048,10 +6176,10 @@ export interface IntegrationUpdateRequestDto {
 export interface IntegrationsInfoRequestDto {
     /**
      * A list of roles that the user has explicitly granted access to this integration.
-     * @type {Array<string>}
+     * @type {Array<RolesEnum>}
      * @memberof IntegrationsInfoRequestDto
      */
-    'acceptedRoles': Array<IntegrationsInfoRequestDtoAcceptedRolesEnum>;
+    'acceptedRoles': Array<RolesEnum>;
     /**
      * The unique identifier of the integration associated with this configuration.
      * @type {string}
@@ -10059,64 +6187,6 @@ export interface IntegrationsInfoRequestDto {
      */
     'integration': string;
 }
-
-export const IntegrationsInfoRequestDtoAcceptedRolesEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
-    FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
-    ORDER_READ: 'ORDER_READ',
-    ORDER_WRITE: 'ORDER_WRITE',
-    ADDON_READ: 'ADDON_READ',
-    ADDON_WRITE: 'ADDON_WRITE',
-    AFFILIATE_READ: 'AFFILIATE_READ',
-    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
-    COMPANY_READ: 'COMPANY_READ',
-    COMPANY_WRITE: 'COMPANY_WRITE',
-    TEMPLATE_READ: 'TEMPLATE_READ',
-    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
-    COUPON_READ: 'COUPON_READ',
-    COUPON_WRITE: 'COUPON_WRITE',
-    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
-    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
-    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
-    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
-    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
-    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
-    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
-    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
-    INVOICE_READ: 'INVOICE_READ',
-    INVOICE_WRITE: 'INVOICE_WRITE',
-    IP_GROUPS_READ: 'IP_GROUPS_READ',
-    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
-    IPS_READ: 'IPS_READ',
-    IPS_WRITE: 'IPS_WRITE',
-    ITEMS_READ: 'ITEMS_READ',
-    ITEMS_WRITE: 'ITEMS_WRITE',
-    ORDERS_READ: 'ORDERS_READ',
-    ORDERS_WRITE: 'ORDERS_WRITE',
-    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
-    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
-    POLICIES_READ: 'POLICIES_READ',
-    POLICIES_WRITE: 'POLICIES_WRITE',
-    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
-    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
-    PRODUCTS_READ: 'PRODUCTS_READ',
-    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
-    SETTINGS_READ: 'SETTINGS_READ',
-    SETTINGS_WRITE: 'SETTINGS_WRITE',
-    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
-    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
-    TLDS_READ: 'TLDS_READ',
-    TLDS_WRITE: 'TLDS_WRITE',
-    USERS_READ: 'USERS_READ',
-    USERS_WRITE: 'USERS_WRITE',
-    ISSUES_WRITE: 'ISSUES_WRITE',
-    ISSUES_READ: 'ISSUES_READ',
-    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
-} as const;
-
-export type IntegrationsInfoRequestDtoAcceptedRolesEnum = typeof IntegrationsInfoRequestDtoAcceptedRolesEnum[keyof typeof IntegrationsInfoRequestDtoAcceptedRolesEnum];
-
 /**
  * 
  * @export
@@ -10125,10 +6195,10 @@ export type IntegrationsInfoRequestDtoAcceptedRolesEnum = typeof IntegrationsInf
 export interface IntegrationsInfoResponseDto {
     /**
      * A list of roles that the user has explicitly granted access to this integration.
-     * @type {Array<string>}
+     * @type {Array<RolesEnum>}
      * @memberof IntegrationsInfoResponseDto
      */
-    'acceptedRoles': Array<IntegrationsInfoResponseDtoAcceptedRolesEnum>;
+    'acceptedRoles': Array<RolesEnum>;
     /**
      * 
      * @type {IntegrationRef}
@@ -10136,64 +6206,6 @@ export interface IntegrationsInfoResponseDto {
      */
     'integration': IntegrationRef;
 }
-
-export const IntegrationsInfoResponseDtoAcceptedRolesEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
-    FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
-    ORDER_READ: 'ORDER_READ',
-    ORDER_WRITE: 'ORDER_WRITE',
-    ADDON_READ: 'ADDON_READ',
-    ADDON_WRITE: 'ADDON_WRITE',
-    AFFILIATE_READ: 'AFFILIATE_READ',
-    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
-    COMPANY_READ: 'COMPANY_READ',
-    COMPANY_WRITE: 'COMPANY_WRITE',
-    TEMPLATE_READ: 'TEMPLATE_READ',
-    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
-    COUPON_READ: 'COUPON_READ',
-    COUPON_WRITE: 'COUPON_WRITE',
-    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
-    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
-    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
-    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
-    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
-    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
-    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
-    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
-    INVOICE_READ: 'INVOICE_READ',
-    INVOICE_WRITE: 'INVOICE_WRITE',
-    IP_GROUPS_READ: 'IP_GROUPS_READ',
-    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
-    IPS_READ: 'IPS_READ',
-    IPS_WRITE: 'IPS_WRITE',
-    ITEMS_READ: 'ITEMS_READ',
-    ITEMS_WRITE: 'ITEMS_WRITE',
-    ORDERS_READ: 'ORDERS_READ',
-    ORDERS_WRITE: 'ORDERS_WRITE',
-    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
-    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
-    POLICIES_READ: 'POLICIES_READ',
-    POLICIES_WRITE: 'POLICIES_WRITE',
-    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
-    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
-    PRODUCTS_READ: 'PRODUCTS_READ',
-    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
-    SETTINGS_READ: 'SETTINGS_READ',
-    SETTINGS_WRITE: 'SETTINGS_WRITE',
-    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
-    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
-    TLDS_READ: 'TLDS_READ',
-    TLDS_WRITE: 'TLDS_WRITE',
-    USERS_READ: 'USERS_READ',
-    USERS_WRITE: 'USERS_WRITE',
-    ISSUES_WRITE: 'ISSUES_WRITE',
-    ISSUES_READ: 'ISSUES_READ',
-    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
-} as const;
-
-export type IntegrationsInfoResponseDtoAcceptedRolesEnum = typeof IntegrationsInfoResponseDtoAcceptedRolesEnum[keyof typeof IntegrationsInfoResponseDtoAcceptedRolesEnum];
-
 /**
  * 
  * @export
@@ -10304,11 +6316,11 @@ export interface InvoiceContactCreateRequestDto {
      */
     'city': string;
     /**
-     * The country where the contact is located.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof InvoiceContactCreateRequestDto
      */
-    'country': InvoiceContactCreateRequestDtoCountryEnum;
+    'country': CountryEnum;
     /**
      * The state or region where the contact is located.
      * @type {string}
@@ -10341,259 +6353,6 @@ export interface InvoiceContactCreateRequestDto {
     'userId': string;
 }
 
-export const InvoiceContactCreateRequestDtoCountryEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type InvoiceContactCreateRequestDtoCountryEnum = typeof InvoiceContactCreateRequestDtoCountryEnum[keyof typeof InvoiceContactCreateRequestDtoCountryEnum];
 
 /**
  * 
@@ -10725,11 +6484,11 @@ export interface InvoiceContactResponseDto {
      */
     'city': string;
     /**
-     * The country where the contact is located.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof InvoiceContactResponseDto
      */
-    'country': InvoiceContactResponseDtoCountryEnum;
+    'country': CountryEnum;
     /**
      * The state or region where the contact is located.
      * @type {string}
@@ -10792,259 +6551,6 @@ export interface InvoiceContactResponseDto {
     'updatedAt'?: string;
 }
 
-export const InvoiceContactResponseDtoCountryEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type InvoiceContactResponseDtoCountryEnum = typeof InvoiceContactResponseDtoCountryEnum[keyof typeof InvoiceContactResponseDtoCountryEnum];
 
 /**
  * 
@@ -11125,11 +6631,11 @@ export interface InvoiceContactUpdateRequestDto {
      */
     'city': string;
     /**
-     * The country where the contact is located.
-     * @type {string}
+     * 
+     * @type {CountryEnum}
      * @memberof InvoiceContactUpdateRequestDto
      */
-    'country': InvoiceContactUpdateRequestDtoCountryEnum;
+    'country': CountryEnum;
     /**
      * The state or region where the contact is located.
      * @type {string}
@@ -11156,259 +6662,6 @@ export interface InvoiceContactUpdateRequestDto {
     'profession'?: string;
 }
 
-export const InvoiceContactUpdateRequestDtoCountryEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type InvoiceContactUpdateRequestDtoCountryEnum = typeof InvoiceContactUpdateRequestDtoCountryEnum[keyof typeof InvoiceContactUpdateRequestDtoCountryEnum];
 
 /**
  * 
@@ -11423,6 +6676,36 @@ export interface InvoiceContactUpdateVATRateRequestDto {
      */
     'vatRate': number;
 }
+/**
+ * Indicates the invoice frequency. If not set, the company\'s default invoice interval will be used when the value is null.
+ * @export
+ * @enum {string}
+ */
+
+export const InvoiceIntervalEnum = {
+    instant: 'instant',
+    weekly: 'weekly',
+    monthly: 'monthly',
+    per_request: 'per request'
+} as const;
+
+export type InvoiceIntervalEnum = typeof InvoiceIntervalEnum[keyof typeof InvoiceIntervalEnum];
+
+
+/**
+ * The type of link: \'pdf\' for PDF documents or \'link\' for web links.
+ * @export
+ * @enum {string}
+ */
+
+export const InvoiceLinkTypeEnum = {
+    pdf: 'pdf',
+    link: 'link'
+} as const;
+
+export type InvoiceLinkTypeEnum = typeof InvoiceLinkTypeEnum[keyof typeof InvoiceLinkTypeEnum];
+
+
 /**
  * @type InvoiceRef
  * Either a populated InvoiceResponseDto or its id string.
@@ -11473,11 +6756,11 @@ export interface InvoiceResponseDto {
      */
     'integration': IntegrationRef;
     /**
-     * Indicates the current processing state of the invoice. Possible values: \'PENDING\' (awaiting payment), \'SUCCESS\' (successfully paid), and \'FAILED\' (payment was unsuccessful).
-     * @type {string}
+     * 
+     * @type {InvoiceStatusEnum}
      * @memberof InvoiceResponseDto
      */
-    'invoiceStatus': InvoiceResponseDtoInvoiceStatusEnum;
+    'invoiceStatus': InvoiceStatusEnum;
     /**
      * The link to the invoice document or resource.
      * @type {string}
@@ -11485,17 +6768,17 @@ export interface InvoiceResponseDto {
      */
     'link'?: string;
     /**
-     * The type of link: \'pdf\' for PDF documents or \'link\' for web links.
-     * @type {string}
+     * 
+     * @type {InvoiceLinkTypeEnum}
      * @memberof InvoiceResponseDto
      */
-    'linkType'?: InvoiceResponseDtoLinkTypeEnum;
+    'linkType'?: InvoiceLinkTypeEnum;
     /**
-     * The type of invoice: \'proforma\', \'invoice\', or \'credit_note\'.
-     * @type {string}
+     * 
+     * @type {InvoiceTypeEnum}
      * @memberof InvoiceResponseDto
      */
-    'invoiceType': InvoiceResponseDtoInvoiceTypeEnum;
+    'invoiceType': InvoiceTypeEnum;
     /**
      * An array of transaction IDs associated with the invoice.
      * @type {Array<TransactionRef>}
@@ -11509,11 +6792,11 @@ export interface InvoiceResponseDto {
      */
     'parentInvoice'?: InvoiceRef;
     /**
-     * The interval at which the invoice is generated.
-     * @type {string}
+     * 
+     * @type {InvoiceIntervalEnum}
      * @memberof InvoiceResponseDto
      */
-    'invoiceInterval'?: InvoiceResponseDtoInvoiceIntervalEnum;
+    'invoiceInterval'?: InvoiceIntervalEnum;
     /**
      * The date and time when the invoice was created.
      * @type {string}
@@ -11528,35 +6811,52 @@ export interface InvoiceResponseDto {
     'updatedAt'?: string;
 }
 
-export const InvoiceResponseDtoInvoiceStatusEnum = {
+
+/**
+ * Indicates the current processing state of the invoice. Possible values: \'PENDING\' (awaiting payment), \'SUCCESS\' (successfully paid), and \'FAILED\' (payment was unsuccessful).
+ * @export
+ * @enum {string}
+ */
+
+export const InvoiceStatusEnum = {
     PENDING: 'PENDING',
     SUCCESS: 'SUCCESS',
     FAILED: 'FAILED',
     REQUESTED: 'REQUESTED'
 } as const;
 
-export type InvoiceResponseDtoInvoiceStatusEnum = typeof InvoiceResponseDtoInvoiceStatusEnum[keyof typeof InvoiceResponseDtoInvoiceStatusEnum];
-export const InvoiceResponseDtoLinkTypeEnum = {
-    pdf: 'pdf',
-    link: 'link'
-} as const;
+export type InvoiceStatusEnum = typeof InvoiceStatusEnum[keyof typeof InvoiceStatusEnum];
 
-export type InvoiceResponseDtoLinkTypeEnum = typeof InvoiceResponseDtoLinkTypeEnum[keyof typeof InvoiceResponseDtoLinkTypeEnum];
-export const InvoiceResponseDtoInvoiceTypeEnum = {
+
+/**
+ * The type of invoice: \'proforma\', \'invoice\', or \'credit_note\'.
+ * @export
+ * @enum {string}
+ */
+
+export const InvoiceTypeEnum = {
     proforma: 'proforma',
     invoice: 'invoice',
     credit_note: 'credit_note'
 } as const;
 
-export type InvoiceResponseDtoInvoiceTypeEnum = typeof InvoiceResponseDtoInvoiceTypeEnum[keyof typeof InvoiceResponseDtoInvoiceTypeEnum];
-export const InvoiceResponseDtoInvoiceIntervalEnum = {
-    instant: 'instant',
-    weekly: 'weekly',
-    monthly: 'monthly',
-    per_request: 'per request'
+export type InvoiceTypeEnum = typeof InvoiceTypeEnum[keyof typeof InvoiceTypeEnum];
+
+
+/**
+ * Indicates the category of the issue.
+ * @export
+ * @enum {string}
+ */
+
+export const IssueCategoryEnum = {
+    order: 'order',
+    order_item: 'order_item',
+    other: 'other'
 } as const;
 
-export type InvoiceResponseDtoInvoiceIntervalEnum = typeof InvoiceResponseDtoInvoiceIntervalEnum[keyof typeof InvoiceResponseDtoInvoiceIntervalEnum];
+export type IssueCategoryEnum = typeof IssueCategoryEnum[keyof typeof IssueCategoryEnum];
+
 
 /**
  * 
@@ -11577,17 +6877,17 @@ export interface IssueRequestDto {
      */
     'description': MultilangTextDto;
     /**
-     * Indicates the category of the issue.
-     * @type {string}
+     * 
+     * @type {IssueCategoryEnum}
      * @memberof IssueRequestDto
      */
-    'category': IssueRequestDtoCategoryEnum;
+    'category': IssueCategoryEnum;
     /**
-     * Indicates the priority of the issue.
-     * @type {string}
+     * 
+     * @type {IssuesPriorityEnum}
      * @memberof IssueRequestDto
      */
-    'priority': IssueRequestDtoPriorityEnum;
+    'priority': IssuesPriorityEnum;
     /**
      * Defines if the issue is resolved or not.
      * @type {boolean}
@@ -11626,20 +6926,6 @@ export interface IssueRequestDto {
     'createdFromIntegration'?: string;
 }
 
-export const IssueRequestDtoCategoryEnum = {
-    order: 'order',
-    order_item: 'order_item',
-    other: 'other'
-} as const;
-
-export type IssueRequestDtoCategoryEnum = typeof IssueRequestDtoCategoryEnum[keyof typeof IssueRequestDtoCategoryEnum];
-export const IssueRequestDtoPriorityEnum = {
-    low: 'low',
-    normal: 'normal',
-    critical: 'critical'
-} as const;
-
-export type IssueRequestDtoPriorityEnum = typeof IssueRequestDtoPriorityEnum[keyof typeof IssueRequestDtoPriorityEnum];
 
 /**
  * 
@@ -11660,17 +6946,17 @@ export interface IssueResponseDto {
      */
     'description': MultilangTextDto;
     /**
-     * Indicates the category of the issue.
-     * @type {string}
+     * 
+     * @type {IssueCategoryEnum}
      * @memberof IssueResponseDto
      */
-    'category': IssueResponseDtoCategoryEnum;
+    'category': IssueCategoryEnum;
     /**
-     * Indicates the priority of the issue.
-     * @type {string}
+     * 
+     * @type {IssuesPriorityEnum}
      * @memberof IssueResponseDto
      */
-    'priority': IssueResponseDtoPriorityEnum;
+    'priority': IssuesPriorityEnum;
     /**
      * Defines if the issue is resolved or not.
      * @type {boolean}
@@ -11733,20 +7019,21 @@ export interface IssueResponseDto {
     'updatedAt'?: string;
 }
 
-export const IssueResponseDtoCategoryEnum = {
-    order: 'order',
-    order_item: 'order_item',
-    other: 'other'
-} as const;
 
-export type IssueResponseDtoCategoryEnum = typeof IssueResponseDtoCategoryEnum[keyof typeof IssueResponseDtoCategoryEnum];
-export const IssueResponseDtoPriorityEnum = {
+/**
+ * Indicates the priority of the issue.
+ * @export
+ * @enum {string}
+ */
+
+export const IssuesPriorityEnum = {
     low: 'low',
     normal: 'normal',
     critical: 'critical'
 } as const;
 
-export type IssueResponseDtoPriorityEnum = typeof IssueResponseDtoPriorityEnum[keyof typeof IssueResponseDtoPriorityEnum];
+export type IssuesPriorityEnum = typeof IssuesPriorityEnum[keyof typeof IssuesPriorityEnum];
+
 
 /**
  * 
@@ -11761,11 +7048,11 @@ export interface ItAdditionalDataDto {
      */
     'nationality': string;
     /**
-     * - 1. Italian and foreign natural persons     - 2. Companies/one man companies     - 3. Freelance workers/professionals     - 4. Non-profit organisations     - 5. Public organisations     - 6. Other subjects     - 7. Foreigners who match 2-6
-     * @type {number}
+     * 
+     * @type {ItEntityTypeEnum}
      * @memberof ItAdditionalDataDto
      */
-    'entityType': ItAdditionalDataDtoEntityTypeEnum;
+    'entityType': ItEntityTypeEnum;
     /**
      * The registration code (e.g. codice fiscal, document number, VAT number or numeric tax code) of the contact
      * @type {string}
@@ -11774,7 +7061,14 @@ export interface ItAdditionalDataDto {
     'regCode': string;
 }
 
-export const ItAdditionalDataDtoEntityTypeEnum = {
+
+/**
+ * - 1. Italian and foreign natural persons     - 2. Companies/one man companies     - 3. Freelance workers/professionals     - 4. Non-profit organisations     - 5. Public organisations     - 6. Other subjects     - 7. Foreigners who match 2-6
+ * @export
+ * @enum {string}
+ */
+
+export const ItEntityTypeEnum = {
     NUMBER_1: 1,
     NUMBER_2: 2,
     NUMBER_3: 3,
@@ -11784,21 +7078,29 @@ export const ItAdditionalDataDtoEntityTypeEnum = {
     NUMBER_7: 7
 } as const;
 
-export type ItAdditionalDataDtoEntityTypeEnum = typeof ItAdditionalDataDtoEntityTypeEnum[keyof typeof ItAdditionalDataDtoEntityTypeEnum];
+export type ItEntityTypeEnum = typeof ItEntityTypeEnum[keyof typeof ItEntityTypeEnum];
+
 
 /**
- * 
+ * Specifies the action to be performed on the item, as defined in ItemActionsEnum. This action is executed when the order is paid.
  * @export
- * @interface ItemAttachToBundleRequest
+ * @enum {string}
  */
-export interface ItemAttachToBundleRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ItemAttachToBundleRequest
-     */
-    'parentItemId'?: string;
-}
+
+export const ItemActionsEnum = {
+    create: 'item/create',
+    suspend: 'item/suspend',
+    unsuspend: 'item/unsuspend',
+    renew: 'item/renew',
+    cancel: 'item/cancel',
+    delete: 'item/delete',
+    upgrade: 'item/upgrade',
+    downgrade: 'item/downgrade'
+} as const;
+
+export type ItemActionsEnum = typeof ItemActionsEnum[keyof typeof ItemActionsEnum];
+
+
 /**
  * 
  * @export
@@ -11818,11 +7120,11 @@ export interface ItemClientResponseDto {
      */
     'postponedEndDate'?: string;
     /**
-     * Specifies the action to be performed on the item, as defined in ItemActionsEnum. This action is executed when the order is paid.
-     * @type {string}
+     * 
+     * @type {ItemActionsEnum}
      * @memberof ItemClientResponseDto
      */
-    'action': ItemClientResponseDtoActionEnum;
+    'action': ItemActionsEnum;
     /**
      * These are additional attributes requested by the integration from the customer who purchases the product. They capture specific details or preferences from the buyer, which may be needed for fulfilling the order or for configuring the product according to the customer\'s needs.
      * @type {object}
@@ -11848,11 +7150,11 @@ export interface ItemClientResponseDto {
      */
     'publicComment'?: string;
     /**
-     * Duration of the item\'s subscription in months. A value of 0 represents a one-time payment.
-     * @type {string}
+     * 
+     * @type {DurationEnum}
      * @memberof ItemClientResponseDto
      */
-    'duration'?: ItemClientResponseDtoDurationEnum;
+    'duration'?: DurationEnum;
     /**
      * A unique identifier for the item, used for precise referencing within the system.
      * @type {string}
@@ -11902,11 +7204,11 @@ export interface ItemClientResponseDto {
      */
     'order'?: Order;
     /**
-     * Represents the current state of the item, as defined in ItemStatusEnum. The default value is IDLE.
-     * @type {string}
+     * 
+     * @type {ItemStatusEnum}
      * @memberof ItemClientResponseDto
      */
-    'status'?: ItemClientResponseDtoStatusEnum;
+    'status'?: ItemStatusEnum;
     /**
      * 
      * @type {ProductId}
@@ -12022,6 +7324,18 @@ export interface ItemClientResponseDto {
      */
     'postponedDates'?: Array<string>;
     /**
+     * Indicates whether a refund has been requested for this item.
+     * @type {boolean}
+     * @memberof ItemClientResponseDto
+     */
+    'refundRequested'?: boolean;
+    /**
+     * The refund amount requested for this item.
+     * @type {number}
+     * @memberof ItemClientResponseDto
+     */
+    'refundValueRequested'?: number;
+    /**
      * The date the item created.
      * @type {string}
      * @memberof ItemClientResponseDto
@@ -12035,60 +7349,6 @@ export interface ItemClientResponseDto {
     'updatedAt'?: string;
 }
 
-export const ItemClientResponseDtoActionEnum = {
-    create: 'item/create',
-    suspend: 'item/suspend',
-    unsuspend: 'item/unsuspend',
-    renew: 'item/renew',
-    cancel: 'item/cancel',
-    delete: 'item/delete',
-    upgrade: 'item/upgrade',
-    downgrade: 'item/downgrade'
-} as const;
-
-export type ItemClientResponseDtoActionEnum = typeof ItemClientResponseDtoActionEnum[keyof typeof ItemClientResponseDtoActionEnum];
-export const ItemClientResponseDtoDurationEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
-
-export type ItemClientResponseDtoDurationEnum = typeof ItemClientResponseDtoDurationEnum[keyof typeof ItemClientResponseDtoDurationEnum];
-export const ItemClientResponseDtoStatusEnum = {
-    idle: 'idle',
-    inprogress: 'inprogress',
-    suspended: 'suspended',
-    active: 'active',
-    inactive: 'inactive',
-    expired: 'expired',
-    trial: 'trial',
-    soft_deleted: 'soft_deleted',
-    hard_deleted: 'hard_deleted',
-    error: 'error',
-    canceled: 'canceled',
-    postponed: 'postponed',
-    refunded: 'refunded'
-} as const;
-
-export type ItemClientResponseDtoStatusEnum = typeof ItemClientResponseDtoStatusEnum[keyof typeof ItemClientResponseDtoStatusEnum];
 
 /**
  * 
@@ -12189,11 +7449,11 @@ export interface ItemResponseDto {
      */
     'postponedEndDate'?: string;
     /**
-     * Specifies the action to be performed on the item, as defined in ItemActionsEnum. This action is executed when the order is paid.
-     * @type {string}
+     * 
+     * @type {ItemActionsEnum}
      * @memberof ItemResponseDto
      */
-    'action': ItemResponseDtoActionEnum;
+    'action': ItemActionsEnum;
     /**
      * These are additional attributes requested by the integration from the customer who purchases the product. They capture specific details or preferences from the buyer, which may be needed for fulfilling the order or for configuring the product according to the customer\'s needs.
      * @type {object}
@@ -12225,11 +7485,11 @@ export interface ItemResponseDto {
      */
     'publicComment'?: string;
     /**
-     * Duration of the item\'s subscription in months. A value of 0 represents a one-time payment.
-     * @type {string}
+     * 
+     * @type {DurationEnum}
      * @memberof ItemResponseDto
      */
-    'duration'?: ItemResponseDtoDurationEnum;
+    'duration'?: DurationEnum;
     /**
      * A unique identifier for the item, used for precise referencing within the system.
      * @type {string}
@@ -12285,11 +7545,11 @@ export interface ItemResponseDto {
      */
     'order'?: Order;
     /**
-     * Represents the current state of the item, as defined in ItemStatusEnum. The default value is IDLE.
-     * @type {string}
+     * 
+     * @type {ItemStatusEnum}
      * @memberof ItemResponseDto
      */
-    'status'?: ItemResponseDtoStatusEnum;
+    'status'?: ItemStatusEnum;
     /**
      * 
      * @type {ProductId}
@@ -12411,6 +7671,18 @@ export interface ItemResponseDto {
      */
     'postponedDates'?: Array<string>;
     /**
+     * Indicates whether a refund has been requested for this item.
+     * @type {boolean}
+     * @memberof ItemResponseDto
+     */
+    'refundRequested'?: boolean;
+    /**
+     * The refund amount requested for this item.
+     * @type {number}
+     * @memberof ItemResponseDto
+     */
+    'refundValueRequested'?: number;
+    /**
      * The date the item created.
      * @type {string}
      * @memberof ItemResponseDto
@@ -12424,44 +7696,20 @@ export interface ItemResponseDto {
     'updatedAt'?: string;
 }
 
-export const ItemResponseDtoActionEnum = {
-    create: 'item/create',
-    suspend: 'item/suspend',
-    unsuspend: 'item/unsuspend',
-    renew: 'item/renew',
-    cancel: 'item/cancel',
-    delete: 'item/delete',
-    upgrade: 'item/upgrade',
-    downgrade: 'item/downgrade'
-} as const;
 
-export type ItemResponseDtoActionEnum = typeof ItemResponseDtoActionEnum[keyof typeof ItemResponseDtoActionEnum];
-export const ItemResponseDtoDurationEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
+/**
+ * @type ItemResponseDtoItemBundlesInner
+ * @export
+ */
+export type ItemResponseDtoItemBundlesInner = ItemResponseDto | string;
 
-export type ItemResponseDtoDurationEnum = typeof ItemResponseDtoDurationEnum[keyof typeof ItemResponseDtoDurationEnum];
-export const ItemResponseDtoStatusEnum = {
+/**
+ * Represents the current state of the item, as defined in ItemStatusEnum. The default value is IDLE.
+ * @export
+ * @enum {string}
+ */
+
+export const ItemStatusEnum = {
     idle: 'idle',
     inprogress: 'inprogress',
     suspended: 'suspended',
@@ -12477,13 +7725,8 @@ export const ItemResponseDtoStatusEnum = {
     refunded: 'refunded'
 } as const;
 
-export type ItemResponseDtoStatusEnum = typeof ItemResponseDtoStatusEnum[keyof typeof ItemResponseDtoStatusEnum];
+export type ItemStatusEnum = typeof ItemStatusEnum[keyof typeof ItemStatusEnum];
 
-/**
- * @type ItemResponseDtoItemBundlesInner
- * @export
- */
-export type ItemResponseDtoItemBundlesInner = ItemResponseDto | string;
 
 /**
  * 
@@ -12541,401 +7784,221 @@ export interface ItemUpdateRequestDto {
     'endDate': string;
 }
 /**
+ * Specifies the user\'s preferred default language, primarily used for localization of notifications and user-facing content.
+ * @export
+ * @enum {string}
+ */
+
+export const LanguageEnum = {
+    AB: 'AB',
+    AA: 'AA',
+    AF: 'AF',
+    AK: 'AK',
+    SQ: 'SQ',
+    AM: 'AM',
+    AR: 'AR',
+    AN: 'AN',
+    HY: 'HY',
+    AS: 'AS',
+    AV: 'AV',
+    AE: 'AE',
+    AY: 'AY',
+    AZ: 'AZ',
+    BM: 'BM',
+    BA: 'BA',
+    EU: 'EU',
+    BE: 'BE',
+    BN: 'BN',
+    BI: 'BI',
+    BS: 'BS',
+    BR: 'BR',
+    BG: 'BG',
+    MY: 'MY',
+    CA: 'CA',
+    KM: 'KM',
+    CH: 'CH',
+    CE: 'CE',
+    NY: 'NY',
+    ZH: 'ZH',
+    CU: 'CU',
+    CV: 'CV',
+    KW: 'KW',
+    CO: 'CO',
+    CR: 'CR',
+    HR: 'HR',
+    CS: 'CS',
+    DA: 'DA',
+    DV: 'DV',
+    NL: 'NL',
+    DZ: 'DZ',
+    EN: 'EN',
+    EO: 'EO',
+    ET: 'ET',
+    EE: 'EE',
+    FO: 'FO',
+    FJ: 'FJ',
+    FI: 'FI',
+    FR: 'FR',
+    FF: 'FF',
+    GL: 'GL',
+    LG: 'LG',
+    KA: 'KA',
+    DE: 'DE',
+    EL: 'EL',
+    GN: 'GN',
+    GU: 'GU',
+    HT: 'HT',
+    HA: 'HA',
+    HE: 'HE',
+    HZ: 'HZ',
+    HI: 'HI',
+    HO: 'HO',
+    HU: 'HU',
+    IS: 'IS',
+    IO: 'IO',
+    IG: 'IG',
+    ID: 'ID',
+    IA: 'IA',
+    IE: 'IE',
+    IU: 'IU',
+    IK: 'IK',
+    GA: 'GA',
+    IT: 'IT',
+    JA: 'JA',
+    JV: 'JV',
+    KL: 'KL',
+    KN: 'KN',
+    KR: 'KR',
+    KS: 'KS',
+    KK: 'KK',
+    KI: 'KI',
+    RW: 'RW',
+    KY: 'KY',
+    KV: 'KV',
+    KG: 'KG',
+    KO: 'KO',
+    KJ: 'KJ',
+    KU: 'KU',
+    LO: 'LO',
+    LA: 'LA',
+    LV: 'LV',
+    LI: 'LI',
+    LN: 'LN',
+    LT: 'LT',
+    LU: 'LU',
+    LB: 'LB',
+    MK: 'MK',
+    MG: 'MG',
+    MS: 'MS',
+    ML: 'ML',
+    MT: 'MT',
+    GV: 'GV',
+    MI: 'MI',
+    MR: 'MR',
+    MH: 'MH',
+    MN: 'MN',
+    NA: 'NA',
+    NV: 'NV',
+    ND: 'ND',
+    NR: 'NR',
+    NG: 'NG',
+    NE: 'NE',
+    SE: 'SE',
+    NO: 'NO',
+    NB: 'NB',
+    NN: 'NN',
+    II: 'II',
+    OC: 'OC',
+    OJ: 'OJ',
+    OR: 'OR',
+    OM: 'OM',
+    OS: 'OS',
+    PI: 'PI',
+    PS: 'PS',
+    FA: 'FA',
+    PL: 'PL',
+    PT: 'PT',
+    PA: 'PA',
+    QU: 'QU',
+    RO: 'RO',
+    RM: 'RM',
+    RN: 'RN',
+    RU: 'RU',
+    SM: 'SM',
+    SG: 'SG',
+    SA: 'SA',
+    SC: 'SC',
+    GD: 'GD',
+    SR: 'SR',
+    SN: 'SN',
+    II2: 'II',
+    SD: 'SD',
+    SI: 'SI',
+    SK: 'SK',
+    SL: 'SL',
+    SO: 'SO',
+    ST: 'ST',
+    ES: 'ES',
+    SU: 'SU',
+    SW: 'SW',
+    SS: 'SS',
+    SV: 'SV',
+    TL: 'TL',
+    TY: 'TY',
+    TG: 'TG',
+    TA: 'TA',
+    TT: 'TT',
+    TE: 'TE',
+    TH: 'TH',
+    BO: 'BO',
+    TI: 'TI',
+    TO: 'TO',
+    TS: 'TS',
+    TN: 'TN',
+    TR: 'TR',
+    TK: 'TK',
+    TW: 'TW',
+    UG: 'UG',
+    UK: 'UK',
+    UR: 'UR',
+    UZ: 'UZ',
+    VE: 'VE',
+    VI: 'VI',
+    VO: 'VO',
+    WA: 'WA',
+    CY: 'CY',
+    FY: 'FY',
+    WO: 'WO',
+    XH: 'XH',
+    YI: 'YI',
+    YO: 'YO',
+    ZA: 'ZA',
+    ZU: 'ZU'
+} as const;
+
+export type LanguageEnum = typeof LanguageEnum[keyof typeof LanguageEnum];
+
+
+/**
  * 
  * @export
  * @interface LanguagesRequestDto
  */
 export interface LanguagesRequestDto {
     /**
-     * An enum that defines the default language used by the company. If no translations are available, this language will be used. Additionally, it serves as the fallback language if the user has not selected a different preference.
-     * @type {string}
+     * 
+     * @type {LanguageEnum}
      * @memberof LanguagesRequestDto
      */
-    'defaultLanguage': LanguagesRequestDtoDefaultLanguageEnum;
+    'defaultLanguage': LanguageEnum;
     /**
      * An array that specifies all the languages required for translations in multilingual fields. These languages determine the set of translations to be provided for product-related content or other fields that support multiple languages.
-     * @type {Array<string>}
+     * @type {Array<LanguageEnum>}
      * @memberof LanguagesRequestDto
      */
-    'supportedLanguages': Array<LanguagesRequestDtoSupportedLanguagesEnum>;
+    'supportedLanguages': Array<LanguageEnum>;
 }
 
-export const LanguagesRequestDtoDefaultLanguageEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type LanguagesRequestDtoDefaultLanguageEnum = typeof LanguagesRequestDtoDefaultLanguageEnum[keyof typeof LanguagesRequestDtoDefaultLanguageEnum];
-export const LanguagesRequestDtoSupportedLanguagesEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type LanguagesRequestDtoSupportedLanguagesEnum = typeof LanguagesRequestDtoSupportedLanguagesEnum[keyof typeof LanguagesRequestDtoSupportedLanguagesEnum];
 
 /**
  * 
@@ -13081,95 +8144,15 @@ export type MenuDtoWithUrlTypeEnum = typeof MenuDtoWithUrlTypeEnum[keyof typeof 
 /**
  * 
  * @export
- * @interface MultiSelectFieldDto
- */
-export interface MultiSelectFieldDto {
-    /**
-     * Discriminator literal — always \'MULTI_SELECT\' for this DTO.
-     * @type {string}
-     * @memberof MultiSelectFieldDto
-     */
-    'type': MultiSelectFieldDtoTypeEnum;
-    /**
-     * Array of selected options.
-     * @type {Array<FieldOptionDto>}
-     * @memberof MultiSelectFieldDto
-     */
-    'value'?: Array<FieldOptionDto>;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof MultiSelectFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof MultiSelectFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof MultiSelectFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof MultiSelectFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof MultiSelectFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof MultiSelectFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof MultiSelectFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof MultiSelectFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof MultiSelectFieldDto
-     */
-    'downgradable'?: boolean;
-}
-
-export const MultiSelectFieldDtoTypeEnum = {
-    MULTI_SELECT: 'MULTI_SELECT'
-} as const;
-
-export type MultiSelectFieldDtoTypeEnum = typeof MultiSelectFieldDtoTypeEnum[keyof typeof MultiSelectFieldDtoTypeEnum];
-
-/**
- * 
- * @export
  * @interface MultilangTextDto
  */
 export interface MultilangTextDto {
     /**
-     * The language of the text.
-     * @type {string}
+     * 
+     * @type {LanguageEnum}
      * @memberof MultilangTextDto
      */
-    'language': MultilangTextDtoLanguageEnum;
+    'language': LanguageEnum;
     /**
      * The text content in the specified language.
      * @type {string}
@@ -13178,194 +8161,6 @@ export interface MultilangTextDto {
     'text': string;
 }
 
-export const MultilangTextDtoLanguageEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type MultilangTextDtoLanguageEnum = typeof MultilangTextDtoLanguageEnum[keyof typeof MultilangTextDtoLanguageEnum];
 
 /**
  * 
@@ -13399,11 +8194,11 @@ export interface NameserverDto {
  */
 export interface NlAdditionalDataDto {
     /**
-     * The legal form of the contact, e.g., \'B.V.\' or \'N.V.\'
-     * @type {string}
+     * 
+     * @type {NlLegalTypeEnum}
      * @memberof NlAdditionalDataDto
      */
-    'legalType': NlAdditionalDataDtoLegalTypeEnum;
+    'legalType': NlLegalTypeEnum;
     /**
      * The registration number associated with the legal form, if applicable.
      * @type {string}
@@ -13412,7 +8207,14 @@ export interface NlAdditionalDataDto {
     'legalTypeRegistrationNumber'?: string;
 }
 
-export const NlAdditionalDataDtoLegalTypeEnum = {
+
+/**
+ * The legal form of the contact, e.g., \'B.V.\' or \'N.V.\'
+ * @export
+ * @enum {string}
+ */
+
+export const NlLegalTypeEnum = {
     ANDERS: 'ANDERS',
     BGG: 'BGG',
     BRO: 'BRO',
@@ -13426,7 +8228,8 @@ export const NlAdditionalDataDtoLegalTypeEnum = {
     OWM: 'OWM'
 } as const;
 
-export type NlAdditionalDataDtoLegalTypeEnum = typeof NlAdditionalDataDtoLegalTypeEnum[keyof typeof NlAdditionalDataDtoLegalTypeEnum];
+export type NlLegalTypeEnum = typeof NlLegalTypeEnum[keyof typeof NlLegalTypeEnum];
+
 
 /**
  * 
@@ -13435,11 +8238,11 @@ export type NlAdditionalDataDtoLegalTypeEnum = typeof NlAdditionalDataDtoLegalTy
  */
 export interface NotificationInfoDto {
     /**
-     * Notification channel type.
-     * @type {string}
+     * 
+     * @type {NotificationTypeEnum}
      * @memberof NotificationInfoDto
      */
-    'type': NotificationInfoDtoTypeEnum;
+    'type': NotificationTypeEnum;
     /**
      * Optional metering units for pay-per-use billing.
      * @type {Array<UnitDto>}
@@ -13466,22 +8269,22 @@ export interface NotificationInfoDto {
     'description'?: string;
     /**
      * Locales supported by the integration.
-     * @type {Array<string>}
+     * @type {Array<LanguageEnum>}
      * @memberof NotificationInfoDto
      */
-    'supportedLanguages': Array<NotificationInfoDtoSupportedLanguagesEnum>;
+    'supportedLanguages': Array<LanguageEnum>;
     /**
      * Platform events the integration can subscribe to.
-     * @type {Array<string>}
+     * @type {Array<EventsEnum>}
      * @memberof NotificationInfoDto
      */
-    'listenEvents'?: Array<NotificationInfoDtoListenEventsEnum>;
+    'listenEvents'?: Array<EventsEnum>;
     /**
      * Roles required for this integration to operate.
-     * @type {Array<string>}
+     * @type {Array<RolesEnum>}
      * @memberof NotificationInfoDto
      */
-    'requiredRoles'?: Array<NotificationInfoDtoRequiredRolesEnum>;
+    'requiredRoles'?: Array<RolesEnum>;
     /**
      * Admin UI links, tabs, and actions provided by the integration.
      * @type {AdminPanelDto}
@@ -13501,446 +8304,13 @@ export interface NotificationInfoDto {
      */
     'onboardingUrl'?: string;
     /**
-     * Configurable attributes that are used in the setup process. Each item is a concrete field DTO discriminated by its `type` literal.
-     * @type {Array<AnyFieldDto>}
+     * Configurable attributes that are used in the setup process.
+     * @type {Array<FieldDto>}
      * @memberof NotificationInfoDto
      */
-    'setupAttributes'?: Array<AnyFieldDto>;
+    'setupAttributes'?: Array<FieldDto>;
 }
 
-export const NotificationInfoDtoTypeEnum = {
-    email: 'email',
-    sms: 'sms',
-    push: 'push'
-} as const;
-
-export type NotificationInfoDtoTypeEnum = typeof NotificationInfoDtoTypeEnum[keyof typeof NotificationInfoDtoTypeEnum];
-export const NotificationInfoDtoSupportedLanguagesEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type NotificationInfoDtoSupportedLanguagesEnum = typeof NotificationInfoDtoSupportedLanguagesEnum[keyof typeof NotificationInfoDtoSupportedLanguagesEnum];
-export const NotificationInfoDtoListenEventsEnum = {
-    user_created: 'user/created',
-    user_updated: 'user/updated',
-    user_deleted: 'user/deleted',
-    user_banned: 'user/banned',
-    user_unbanned: 'user/unbanned',
-    user_company_access_added: 'user/company/access/added',
-    user_company_access_removed: 'user/company/access/removed',
-    user_locked: 'user/locked',
-    user_credit_balance_updated: 'user/credit-balance/updated',
-    user_unlocked: 'user/unlocked',
-    user_password_updated: 'user/password/updated',
-    user_email_updated: 'user/email/updated',
-    user_currency_updated: 'user/currency/updated',
-    user_invoice_contact_updated: 'user/invoice-contact/updated',
-    user_policy_updated: 'user/policy/updated',
-    user_languages_updated: 'user/languages/updated',
-    user_custom_price_policies_updated: 'user/custom-price-policies/updated',
-    user_custom_addon_price_policies_updated: 'user/custom-addon-price-policies/updated',
-    user_custom_affiliate_added: 'user/custom-affiliate/added',
-    user_custom_affiliate_removed: 'user/custom-affiliate/removed',
-    user_invoice_interval_updated: 'user/invoice-interval/updated',
-    user_additional_notification_email_removed: 'user/additional-notification-email/removed',
-    user_additional_notification_email_added: 'user/additional-notification-email/added',
-    user_comment_added: 'user/comment/added',
-    user_comment_removed: 'user/comment/removed',
-    user_comment_updated: 'user/comment/updated',
-    user_tags_updated: 'user/tags/updated',
-    user_setting_added: 'user/setting/added',
-    user_setting_removed: 'user/setting/removed',
-    user_setting_updated: 'user/setting/updated',
-    user_start_selling: 'user/start-selling',
-    user_roles_updated: 'user/roles/updated',
-    user_roles_added: 'user/roles/added',
-    user_roles_deleted: 'user/roles/deleted',
-    message_created: 'message/created',
-    message_updated: 'message/updated',
-    message_deleted: 'message/deleted',
-    notification_sent: 'notification/sent',
-    policy_created: 'policy/created',
-    policy_updated: 'policy/updated',
-    policy_deleted: 'policy/deleted',
-    product_category_created: 'product-category/created',
-    product_category_updated: 'product-category/updated',
-    product_category_deleted: 'product-category/deleted',
-    invoice_contact_created: 'invoice-contact/created',
-    invoice_contact_updated: 'invoice-contact/updated',
-    invoice_contact_deleted: 'invoice-contact/deleted',
-    invoice_created: 'invoice/created',
-    invoice_updated: 'invoice/updated',
-    invoice_deleted: 'invoice/deleted',
-    currency_created: 'currency/created',
-    currency_updated: 'currency/updated',
-    currency_deleted: 'currency/deleted',
-    affiliate_created: 'affiliate/created',
-    affiliate_updated: 'affiliate/updated',
-    affiliate_deleted: 'affiliate/deleted',
-    company_created: 'company/created',
-    company_updated: 'company/updated',
-    company_deleted: 'company/deleted',
-    organization_integration_attached: 'organization/integration/attached',
-    organization_integration_detached: 'organization/integration/detached',
-    tld_created: 'tld/created',
-    tld_updated: 'tld/updated',
-    tld_deleted: 'tld/deleted',
-    integration_created: 'integration/created',
-    integration_updated: 'integration/updated',
-    integration_deleted: 'integration/deleted',
-    integration_installed: 'integration/installed',
-    integration_uninstalled: 'integration/uninstalled',
-    integration_activated: 'integration/activated',
-    integration_deactivated: 'integration/deactivated',
-    integration_maintenance_started: 'integration/maintenance-started',
-    integration_maintenance_finished: 'integration/maintenance-finished',
-    domain_contact_created: 'domain-contact/created',
-    domain_contact_updated: 'domain-contact/updated',
-    domain_contact_deleted: 'domain-contact/deleted',
-    domain_category_created: 'domain-category/created',
-    domain_category_updated: 'domain-category/updated',
-    domain_category_deleted: 'domain-category/deleted',
-    addon_created: 'addon/created',
-    addon_updated: 'addon/updated',
-    addon_deleted: 'addon/deleted',
-    transaction_created: 'transaction/created',
-    transaction_canceled: 'transaction/canceled',
-    transaction_failed: 'transaction/failed',
-    transaction_subscribed: 'transaction/subscribed',
-    transaction_unsubscribed: 'transaction/unsubscribed',
-    transaction_updated: 'transaction/updated',
-    transaction_deleted: 'transaction/deleted',
-    transaction_completed: 'transaction/completed',
-    transaction_refunded: 'transaction/refunded',
-    template_created: 'template/created',
-    template_updated: 'template/updated',
-    template_deleted: 'template/deleted',
-    coupon_created: 'coupon/created',
-    coupon_updated: 'coupon/updated',
-    coupon_deleted: 'coupon/deleted',
-    template_integration_created: 'template-integration/created',
-    template_integration_updated: 'template-integration/updated',
-    template_integration_deleted: 'template-integration/deleted',
-    order_created: 'order/created',
-    order_status_in_progress: 'order/status/in-progress',
-    order_status_completed: 'order/status/completed',
-    order_status_canceled: 'order/status/canceled',
-    order_status_pending: 'order/status/pending',
-    order_status_archived: 'order/status/archived',
-    order_insufficient_balance: 'order/insufficient-balance',
-    order_item_detached: 'order/item-detached',
-    order_invoice_contact_changed: 'order/invoice-contact-changed',
-    order_updated: 'order/updated',
-    order_deleted: 'order/deleted',
-    setting_created: 'setting/created',
-    setting_updated: 'setting/updated',
-    setting_deleted: 'setting/deleted',
-    issue_created: 'issue/created',
-    issue_updated: 'issue/updated',
-    issue_deleted: 'issue/deleted',
-    task_created: 'task/created',
-    task_updated: 'task/updated',
-    task_deleted: 'task/deleted',
-    task_canceled: 'task/canceled',
-    task_in_progress: 'task/in-progress',
-    task_completed: 'task/completed',
-    task_percentage_updated: 'task/percentage/updated',
-    product_created: 'product/created',
-    product_updated: 'product/updated',
-    product_deleted: 'product/deleted',
-    product_auto_renew_updated: 'product/auto-renew/updated',
-    product_enabled: 'product/enabled',
-    product_disabled: 'product/disabled',
-    product_version_created: 'product/version-created',
-    ip_group_created: 'ip-group/created',
-    ip_group_updated: 'ip-group/updated',
-    ip_group_deleted: 'ip-group/deleted',
-    ip_created: 'ip/created',
-    ip_updated: 'ip/updated',
-    ip_deleted: 'ip/deleted',
-    domain_name_created: 'domain-name/created',
-    domain_name_updated: 'domain-name/updated',
-    domain_name_deleted: 'domain-name/deleted',
-    domain_name_locked: 'domain-name/locked',
-    domain_name_unlocked: 'domain-name/unlocked',
-    domain_name_idshield_activated: 'domain-name/idshield-activated',
-    domain_name_idshield_deactivated: 'domain-name/idshield-deactivated',
-    domain_name_bundle_added: 'domain-name/bundle-added',
-    domain_name_bundle_removed: 'domain-name/bundle-removed',
-    domain_name_registrant_updated: 'domain-name/registrant-updated',
-    domain_name_admin_updated: 'domain-name/admin-updated',
-    domain_name_tech_updated: 'domain-name/tech-updated',
-    domain_name_billing_updated: 'domain-name/billing-updated',
-    domain_name_additional_updated: 'domain-name/additional-updated',
-    item_created: 'item/created',
-    item_updated: 'item/updated',
-    item_deleted: 'item/deleted',
-    item_renewed: 'item/renewed',
-    item_upgraded: 'item/upgraded',
-    item_downgraded: 'item/downgraded',
-    item_ip_attached: 'item/ip-attached',
-    item_ip_detached: 'item/ip-detached',
-    item_detached_from_order: 'item/detached-from-order',
-    item_postponed: 'item/postponed',
-    item_transferred_in: 'item/transferred-in',
-    item_canceled: 'item/canceled',
-    item_suspended: 'item/suspended',
-    item_unsuspended: 'item/unsuspended',
-    item_affiliate_added: 'item/affiliate/added',
-    item_bundle_attached: 'item/bundle/attached',
-    item_bundle_detached: 'item/bundle/detached',
-    item_activated: 'item/activated',
-    item_set_inactive: 'item/set-inactive',
-    item_processed: 'item/processed',
-    item_refund_requested: 'item/refund-requested',
-    item_refund_accepted: 'item/refund-accepted',
-    item_refund_rejected: 'item/refund-rejected',
-    order_paid: 'order/paid',
-    test: 'test',
-    dead_lettering: 'dead-lettering',
-    core_queue: 'core-queue'
-} as const;
-
-export type NotificationInfoDtoListenEventsEnum = typeof NotificationInfoDtoListenEventsEnum[keyof typeof NotificationInfoDtoListenEventsEnum];
-export const NotificationInfoDtoRequiredRolesEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
-    FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
-    ORDER_READ: 'ORDER_READ',
-    ORDER_WRITE: 'ORDER_WRITE',
-    ADDON_READ: 'ADDON_READ',
-    ADDON_WRITE: 'ADDON_WRITE',
-    AFFILIATE_READ: 'AFFILIATE_READ',
-    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
-    COMPANY_READ: 'COMPANY_READ',
-    COMPANY_WRITE: 'COMPANY_WRITE',
-    TEMPLATE_READ: 'TEMPLATE_READ',
-    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
-    COUPON_READ: 'COUPON_READ',
-    COUPON_WRITE: 'COUPON_WRITE',
-    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
-    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
-    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
-    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
-    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
-    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
-    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
-    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
-    INVOICE_READ: 'INVOICE_READ',
-    INVOICE_WRITE: 'INVOICE_WRITE',
-    IP_GROUPS_READ: 'IP_GROUPS_READ',
-    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
-    IPS_READ: 'IPS_READ',
-    IPS_WRITE: 'IPS_WRITE',
-    ITEMS_READ: 'ITEMS_READ',
-    ITEMS_WRITE: 'ITEMS_WRITE',
-    ORDERS_READ: 'ORDERS_READ',
-    ORDERS_WRITE: 'ORDERS_WRITE',
-    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
-    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
-    POLICIES_READ: 'POLICIES_READ',
-    POLICIES_WRITE: 'POLICIES_WRITE',
-    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
-    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
-    PRODUCTS_READ: 'PRODUCTS_READ',
-    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
-    SETTINGS_READ: 'SETTINGS_READ',
-    SETTINGS_WRITE: 'SETTINGS_WRITE',
-    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
-    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
-    TLDS_READ: 'TLDS_READ',
-    TLDS_WRITE: 'TLDS_WRITE',
-    USERS_READ: 'USERS_READ',
-    USERS_WRITE: 'USERS_WRITE',
-    ISSUES_WRITE: 'ISSUES_WRITE',
-    ISSUES_READ: 'ISSUES_READ',
-    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
-} as const;
-
-export type NotificationInfoDtoRequiredRolesEnum = typeof NotificationInfoDtoRequiredRolesEnum[keyof typeof NotificationInfoDtoRequiredRolesEnum];
 
 /**
  * 
@@ -14065,102 +8435,35 @@ export interface NotificationTemplatesResponseDto {
     'cancel'?: TemplateRef;
 }
 /**
- * 
+ * The notification type of the template.
  * @export
- * @interface NumberFieldDto
+ * @enum {string}
  */
-export interface NumberFieldDto {
-    /**
-     * Discriminator literal — always \'NUMBER\' for this DTO.
-     * @type {string}
-     * @memberof NumberFieldDto
-     */
-    'type': NumberFieldDtoTypeEnum;
-    /**
-     * Numeric value of the field.
-     * @type {number}
-     * @memberof NumberFieldDto
-     */
-    'value'?: number;
-    /**
-     * Minimum allowed value.
-     * @type {number}
-     * @memberof NumberFieldDto
-     */
-    'min'?: number;
-    /**
-     * Maximum allowed value.
-     * @type {number}
-     * @memberof NumberFieldDto
-     */
-    'max'?: number;
-    /**
-     * When true, only integer values are allowed.
-     * @type {boolean}
-     * @memberof NumberFieldDto
-     */
-    'integer'?: boolean;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof NumberFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof NumberFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof NumberFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof NumberFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof NumberFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof NumberFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof NumberFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof NumberFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof NumberFieldDto
-     */
-    'downgradable'?: boolean;
-}
 
-export const NumberFieldDtoTypeEnum = {
-    NUMBER: 'NUMBER'
+export const NotificationTypeEnum = {
+    email: 'email',
+    push: 'push',
+    sms: 'sms'
 } as const;
 
-export type NumberFieldDtoTypeEnum = typeof NumberFieldDtoTypeEnum[keyof typeof NumberFieldDtoTypeEnum];
+export type NotificationTypeEnum = typeof NotificationTypeEnum[keyof typeof NotificationTypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const OpenMethodEnum = {
+    ajax_call: 'ajax_call',
+    small_iframe: 'small_iframe',
+    medium_iframe: 'medium_iframe',
+    large_iframe: 'large_iframe'
+} as const;
+
+export type OpenMethodEnum = typeof OpenMethodEnum[keyof typeof OpenMethodEnum];
+
 
 /**
  * @type Order
@@ -14231,11 +8534,11 @@ export interface OrderResponseDto {
      */
     'coupon'?: CouponRef;
     /**
-     * The current status of the order, indicating its progress or state in the order lifecycle (e.g., pending, completed, canceled). If not provided, it defaults to \'PENDING\'.
-     * @type {string}
+     * 
+     * @type {OrderStatusEnum}
      * @memberof OrderResponseDto
      */
-    'status'?: OrderResponseDtoStatusEnum;
+    'status'?: OrderStatusEnum;
     /**
      * A list of invoice IDs associated with this order. If present, these invoices are linked to the order for billing purposes.
      * @type {Array<InvoiceRef>}
@@ -14280,7 +8583,14 @@ export interface OrderResponseDto {
     'updatedAt'?: string;
 }
 
-export const OrderResponseDtoStatusEnum = {
+
+/**
+ * The current status of the order, indicating its progress or state in the order lifecycle (e.g., pending, completed, canceled). If not provided, it defaults to \'PENDING\'.
+ * @export
+ * @enum {string}
+ */
+
+export const OrderStatusEnum = {
     idle: 'idle',
     inprogress: 'inprogress',
     completed: 'completed',
@@ -14289,7 +8599,8 @@ export const OrderResponseDtoStatusEnum = {
     refunded: 'refunded'
 } as const;
 
-export type OrderResponseDtoStatusEnum = typeof OrderResponseDtoStatusEnum[keyof typeof OrderResponseDtoStatusEnum];
+export type OrderStatusEnum = typeof OrderStatusEnum[keyof typeof OrderStatusEnum];
+
 
 /**
  * 
@@ -14348,90 +8659,50 @@ export interface PaginatedResponse {
 export type ParentItem = ItemResponseDto | string;
 
 /**
- * 
+ * The payment method used by the company. This can be used for purchasing services or may reflect a pre-paid amount.
  * @export
- * @interface PasswordFieldDto
+ * @enum {string}
  */
-export interface PasswordFieldDto {
-    /**
-     * Discriminator literal — always \'PASSWORD\' for this DTO.
-     * @type {string}
-     * @memberof PasswordFieldDto
-     */
-    'type': PasswordFieldDtoTypeEnum;
-    /**
-     * Password value.
-     * @type {string}
-     * @memberof PasswordFieldDto
-     */
-    'value'?: string;
-    /**
-     * Minimum allowed length.
-     * @type {number}
-     * @memberof PasswordFieldDto
-     */
-    'minLength'?: number;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof PasswordFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof PasswordFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof PasswordFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof PasswordFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof PasswordFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof PasswordFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof PasswordFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof PasswordFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof PasswordFieldDto
-     */
-    'downgradable'?: boolean;
-}
 
-export const PasswordFieldDtoTypeEnum = {
-    PASSWORD: 'PASSWORD'
+export const PaymentMethodsEnum = {
+    card: 'card',
+    us_bank_account: 'us_bank_account',
+    bacs_debit: 'bacs_debit',
+    au_becs_debit: 'au_becs_debit',
+    nz_bank_account: 'nz_bank_account',
+    sepa_debit: 'sepa_debit',
+    acss_debit: 'acss_debit',
+    bancontact: 'bancontact',
+    blik: 'blik',
+    eps: 'eps',
+    fpx: 'fpx',
+    ideal: 'ideal',
+    p24: 'p24',
+    pay_by_bank: 'pay_by_bank',
+    twint: 'twint',
+    customer_balance: 'customer_balance',
+    affirm: 'affirm',
+    afterpay_clearpay: 'afterpay_clearpay',
+    alma: 'alma',
+    klarna: 'klarna',
+    boleto: 'boleto',
+    konbini: 'konbini',
+    multibanco: 'multibanco',
+    oxxo: 'oxxo',
+    alipay: 'alipay',
+    apple_pay: 'apple_pay',
+    google_pay: 'google_pay',
+    cashapp: 'cashapp',
+    grabpay: 'grabpay',
+    mobilepay: 'mobilepay',
+    paypal: 'paypal',
+    revolut_pay: 'revolut_pay',
+    vipps: 'vipps',
+    wechat_pay: 'wechat_pay'
 } as const;
 
-export type PasswordFieldDtoTypeEnum = typeof PasswordFieldDtoTypeEnum[keyof typeof PasswordFieldDtoTypeEnum];
+export type PaymentMethodsEnum = typeof PaymentMethodsEnum[keyof typeof PaymentMethodsEnum];
+
 
 /**
  * 
@@ -14455,82 +8726,16 @@ export interface PaymentSubscriptionResponseDto {
 /**
  * 
  * @export
- * @interface PhoneFieldDto
+ * @enum {string}
  */
-export interface PhoneFieldDto {
-    /**
-     * Discriminator literal — always \'PHONE\' for this DTO.
-     * @type {string}
-     * @memberof PhoneFieldDto
-     */
-    'type': PhoneFieldDtoTypeEnum;
-    /**
-     * Phone number in E.164 format (e.g. +14155552671).
-     * @type {string}
-     * @memberof PhoneFieldDto
-     */
-    'value'?: string;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof PhoneFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof PhoneFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof PhoneFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof PhoneFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof PhoneFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof PhoneFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof PhoneFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof PhoneFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof PhoneFieldDto
-     */
-    'downgradable'?: boolean;
-}
 
-export const PhoneFieldDtoTypeEnum = {
-    PHONE: 'PHONE'
+export const PaymentTypeEnum = {
+    ORDER: 'ORDER',
+    CREDITS: 'CREDITS'
 } as const;
 
-export type PhoneFieldDtoTypeEnum = typeof PhoneFieldDtoTypeEnum[keyof typeof PhoneFieldDtoTypeEnum];
+export type PaymentTypeEnum = typeof PaymentTypeEnum[keyof typeof PaymentTypeEnum];
+
 
 /**
  * 
@@ -14539,11 +8744,11 @@ export type PhoneFieldDtoTypeEnum = typeof PhoneFieldDtoTypeEnum[keyof typeof Ph
  */
 export interface PolicyPricesRequestDto {
     /**
-     * Price acoording to duration.
-     * @type {string}
+     * 
+     * @type {DurationEnum}
      * @memberof PolicyPricesRequestDto
      */
-    'duration': PolicyPricesRequestDtoDurationEnum;
+    'duration': DurationEnum;
     /**
      * The created price number.
      * @type {number}
@@ -14594,31 +8799,6 @@ export interface PolicyPricesRequestDto {
     'pricePolicy': string;
 }
 
-export const PolicyPricesRequestDtoDurationEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
-
-export type PolicyPricesRequestDtoDurationEnum = typeof PolicyPricesRequestDtoDurationEnum[keyof typeof PolicyPricesRequestDtoDurationEnum];
 
 /**
  * 
@@ -14627,11 +8807,11 @@ export type PolicyPricesRequestDtoDurationEnum = typeof PolicyPricesRequestDtoDu
  */
 export interface PolicyPricesResponseDto {
     /**
-     * Price acoording to duration.
-     * @type {string}
+     * 
+     * @type {DurationEnum}
      * @memberof PolicyPricesResponseDto
      */
-    'duration': PolicyPricesResponseDtoDurationEnum;
+    'duration': DurationEnum;
     /**
      * The created price number.
      * @type {number}
@@ -14682,31 +8862,6 @@ export interface PolicyPricesResponseDto {
     'pricePolicy': any;
 }
 
-export const PolicyPricesResponseDtoDurationEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
-
-export type PolicyPricesResponseDtoDurationEnum = typeof PolicyPricesResponseDtoDurationEnum[keyof typeof PolicyPricesResponseDtoDurationEnum];
 
 /**
  * 
@@ -14753,14 +8908,21 @@ export interface PopularTldResponseDto {
  */
 export interface PremiumPriceCategoryDataDto {
     /**
-     * Some domains are specified by the registry as having a premium price category and as such are more expensive to register, renew and transfer. This is only required for domains that the registry specify have a premium price category associated with
-     * @type {string}
+     * 
+     * @type {PremiumPriceCategoryEnum}
      * @memberof PremiumPriceCategoryDataDto
      */
-    'priceCategory': PremiumPriceCategoryDataDtoPriceCategoryEnum;
+    'priceCategory': PremiumPriceCategoryEnum;
 }
 
-export const PremiumPriceCategoryDataDtoPriceCategoryEnum = {
+
+/**
+ * Some domains are specified by the registry as having a premium price category and as such are more expensive to register, renew and transfer. This is only required for domains that the registry specify have a premium price category associated with
+ * @export
+ * @enum {string}
+ */
+
+export const PremiumPriceCategoryEnum = {
     _2: 'pricecategory 2',
     _3: 'pricecategory 3',
     _4: 'pricecategory 4',
@@ -14778,7 +8940,8 @@ export const PremiumPriceCategoryDataDtoPriceCategoryEnum = {
     _16: 'pricecategory 16'
 } as const;
 
-export type PremiumPriceCategoryDataDtoPriceCategoryEnum = typeof PremiumPriceCategoryDataDtoPriceCategoryEnum[keyof typeof PremiumPriceCategoryDataDtoPriceCategoryEnum];
+export type PremiumPriceCategoryEnum = typeof PremiumPriceCategoryEnum[keyof typeof PremiumPriceCategoryEnum];
+
 
 /**
  * 
@@ -14923,11 +9086,11 @@ export interface PricePolicyResponseDto {
  */
 export interface PricesDto {
     /**
-     * Price acoording to duration.
-     * @type {string}
+     * 
+     * @type {DurationEnum}
      * @memberof PricesDto
      */
-    'duration': PricesDtoDurationEnum;
+    'duration': DurationEnum;
     /**
      * The created price number.
      * @type {number}
@@ -14972,31 +9135,6 @@ export interface PricesDto {
     'dynamicPrices'?: Array<DynamicPriceDto>;
 }
 
-export const PricesDtoDurationEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
-
-export type PricesDtoDurationEnum = typeof PricesDtoDurationEnum[keyof typeof PricesDtoDurationEnum];
 
 /**
  * 
@@ -15029,6 +9167,27 @@ export interface ProAdditionalDataDto {
      */
     'licenceNumber'?: string;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ProductActionsEnum = {
+    CREATE: 'CREATE',
+    RENEW: 'RENEW',
+    UPGRADE: 'UPGRADE',
+    DOWNGRADE: 'DOWNGRADE',
+    TRANSFER: 'TRANSFER',
+    TRADE: 'TRADE',
+    SUSPEND: 'SUSPEND',
+    UNSUSPEND: 'UNSUSPEND',
+    DELETE: 'DELETE'
+} as const;
+
+export type ProductActionsEnum = typeof ProductActionsEnum[keyof typeof ProductActionsEnum];
+
+
 /**
  * @type ProductCategory
  *  A unique identifier for the category of the product associated with the item. It links the item to its respective product category, providing classification and organizational context.
@@ -15181,10 +9340,10 @@ export interface ProductInfoDto {
     'responseDataFieldNames'?: { [key: string]: string; };
     /**
      * Actions supported by this integration.
-     * @type {Array<string>}
+     * @type {Array<ProductActionsEnum>}
      * @memberof ProductInfoDto
      */
-    'supportedActions': Array<ProductInfoDtoSupportedActionsEnum>;
+    'supportedActions': Array<ProductActionsEnum>;
     /**
      * Integration display title.
      * @type {string}
@@ -15205,22 +9364,22 @@ export interface ProductInfoDto {
     'description'?: string;
     /**
      * Locales supported by the integration.
-     * @type {Array<string>}
+     * @type {Array<LanguageEnum>}
      * @memberof ProductInfoDto
      */
-    'supportedLanguages': Array<ProductInfoDtoSupportedLanguagesEnum>;
+    'supportedLanguages': Array<LanguageEnum>;
     /**
      * Platform events the integration can subscribe to.
-     * @type {Array<string>}
+     * @type {Array<EventsEnum>}
      * @memberof ProductInfoDto
      */
-    'listenEvents'?: Array<ProductInfoDtoListenEventsEnum>;
+    'listenEvents'?: Array<EventsEnum>;
     /**
      * Roles required for this integration to operate.
-     * @type {Array<string>}
+     * @type {Array<RolesEnum>}
      * @memberof ProductInfoDto
      */
-    'requiredRoles'?: Array<ProductInfoDtoRequiredRolesEnum>;
+    'requiredRoles'?: Array<RolesEnum>;
     /**
      * Admin UI links, tabs, and actions provided by the integration.
      * @type {AdminPanelDto}
@@ -15240,453 +9399,12 @@ export interface ProductInfoDto {
      */
     'onboardingUrl'?: string;
     /**
-     * Configurable attributes that are used in the setup process. Each item is a concrete field DTO discriminated by its `type` literal.
-     * @type {Array<AnyFieldDto>}
+     * Configurable attributes that are used in the setup process.
+     * @type {Array<FieldDto>}
      * @memberof ProductInfoDto
      */
-    'setupAttributes'?: Array<AnyFieldDto>;
+    'setupAttributes'?: Array<FieldDto>;
 }
-
-export const ProductInfoDtoSupportedActionsEnum = {
-    CREATE: 'CREATE',
-    RENEW: 'RENEW',
-    UPGRADE: 'UPGRADE',
-    DOWNGRADE: 'DOWNGRADE',
-    TRANSFER: 'TRANSFER',
-    TRADE: 'TRADE',
-    SUSPEND: 'SUSPEND',
-    UNSUSPEND: 'UNSUSPEND',
-    DELETE: 'DELETE'
-} as const;
-
-export type ProductInfoDtoSupportedActionsEnum = typeof ProductInfoDtoSupportedActionsEnum[keyof typeof ProductInfoDtoSupportedActionsEnum];
-export const ProductInfoDtoSupportedLanguagesEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type ProductInfoDtoSupportedLanguagesEnum = typeof ProductInfoDtoSupportedLanguagesEnum[keyof typeof ProductInfoDtoSupportedLanguagesEnum];
-export const ProductInfoDtoListenEventsEnum = {
-    user_created: 'user/created',
-    user_updated: 'user/updated',
-    user_deleted: 'user/deleted',
-    user_banned: 'user/banned',
-    user_unbanned: 'user/unbanned',
-    user_company_access_added: 'user/company/access/added',
-    user_company_access_removed: 'user/company/access/removed',
-    user_locked: 'user/locked',
-    user_credit_balance_updated: 'user/credit-balance/updated',
-    user_unlocked: 'user/unlocked',
-    user_password_updated: 'user/password/updated',
-    user_email_updated: 'user/email/updated',
-    user_currency_updated: 'user/currency/updated',
-    user_invoice_contact_updated: 'user/invoice-contact/updated',
-    user_policy_updated: 'user/policy/updated',
-    user_languages_updated: 'user/languages/updated',
-    user_custom_price_policies_updated: 'user/custom-price-policies/updated',
-    user_custom_addon_price_policies_updated: 'user/custom-addon-price-policies/updated',
-    user_custom_affiliate_added: 'user/custom-affiliate/added',
-    user_custom_affiliate_removed: 'user/custom-affiliate/removed',
-    user_invoice_interval_updated: 'user/invoice-interval/updated',
-    user_additional_notification_email_removed: 'user/additional-notification-email/removed',
-    user_additional_notification_email_added: 'user/additional-notification-email/added',
-    user_comment_added: 'user/comment/added',
-    user_comment_removed: 'user/comment/removed',
-    user_comment_updated: 'user/comment/updated',
-    user_tags_updated: 'user/tags/updated',
-    user_setting_added: 'user/setting/added',
-    user_setting_removed: 'user/setting/removed',
-    user_setting_updated: 'user/setting/updated',
-    user_start_selling: 'user/start-selling',
-    user_roles_updated: 'user/roles/updated',
-    user_roles_added: 'user/roles/added',
-    user_roles_deleted: 'user/roles/deleted',
-    message_created: 'message/created',
-    message_updated: 'message/updated',
-    message_deleted: 'message/deleted',
-    notification_sent: 'notification/sent',
-    policy_created: 'policy/created',
-    policy_updated: 'policy/updated',
-    policy_deleted: 'policy/deleted',
-    product_category_created: 'product-category/created',
-    product_category_updated: 'product-category/updated',
-    product_category_deleted: 'product-category/deleted',
-    invoice_contact_created: 'invoice-contact/created',
-    invoice_contact_updated: 'invoice-contact/updated',
-    invoice_contact_deleted: 'invoice-contact/deleted',
-    invoice_created: 'invoice/created',
-    invoice_updated: 'invoice/updated',
-    invoice_deleted: 'invoice/deleted',
-    currency_created: 'currency/created',
-    currency_updated: 'currency/updated',
-    currency_deleted: 'currency/deleted',
-    affiliate_created: 'affiliate/created',
-    affiliate_updated: 'affiliate/updated',
-    affiliate_deleted: 'affiliate/deleted',
-    company_created: 'company/created',
-    company_updated: 'company/updated',
-    company_deleted: 'company/deleted',
-    organization_integration_attached: 'organization/integration/attached',
-    organization_integration_detached: 'organization/integration/detached',
-    tld_created: 'tld/created',
-    tld_updated: 'tld/updated',
-    tld_deleted: 'tld/deleted',
-    integration_created: 'integration/created',
-    integration_updated: 'integration/updated',
-    integration_deleted: 'integration/deleted',
-    integration_installed: 'integration/installed',
-    integration_uninstalled: 'integration/uninstalled',
-    integration_activated: 'integration/activated',
-    integration_deactivated: 'integration/deactivated',
-    integration_maintenance_started: 'integration/maintenance-started',
-    integration_maintenance_finished: 'integration/maintenance-finished',
-    domain_contact_created: 'domain-contact/created',
-    domain_contact_updated: 'domain-contact/updated',
-    domain_contact_deleted: 'domain-contact/deleted',
-    domain_category_created: 'domain-category/created',
-    domain_category_updated: 'domain-category/updated',
-    domain_category_deleted: 'domain-category/deleted',
-    addon_created: 'addon/created',
-    addon_updated: 'addon/updated',
-    addon_deleted: 'addon/deleted',
-    transaction_created: 'transaction/created',
-    transaction_canceled: 'transaction/canceled',
-    transaction_failed: 'transaction/failed',
-    transaction_subscribed: 'transaction/subscribed',
-    transaction_unsubscribed: 'transaction/unsubscribed',
-    transaction_updated: 'transaction/updated',
-    transaction_deleted: 'transaction/deleted',
-    transaction_completed: 'transaction/completed',
-    transaction_refunded: 'transaction/refunded',
-    template_created: 'template/created',
-    template_updated: 'template/updated',
-    template_deleted: 'template/deleted',
-    coupon_created: 'coupon/created',
-    coupon_updated: 'coupon/updated',
-    coupon_deleted: 'coupon/deleted',
-    template_integration_created: 'template-integration/created',
-    template_integration_updated: 'template-integration/updated',
-    template_integration_deleted: 'template-integration/deleted',
-    order_created: 'order/created',
-    order_status_in_progress: 'order/status/in-progress',
-    order_status_completed: 'order/status/completed',
-    order_status_canceled: 'order/status/canceled',
-    order_status_pending: 'order/status/pending',
-    order_status_archived: 'order/status/archived',
-    order_insufficient_balance: 'order/insufficient-balance',
-    order_item_detached: 'order/item-detached',
-    order_invoice_contact_changed: 'order/invoice-contact-changed',
-    order_updated: 'order/updated',
-    order_deleted: 'order/deleted',
-    setting_created: 'setting/created',
-    setting_updated: 'setting/updated',
-    setting_deleted: 'setting/deleted',
-    issue_created: 'issue/created',
-    issue_updated: 'issue/updated',
-    issue_deleted: 'issue/deleted',
-    task_created: 'task/created',
-    task_updated: 'task/updated',
-    task_deleted: 'task/deleted',
-    task_canceled: 'task/canceled',
-    task_in_progress: 'task/in-progress',
-    task_completed: 'task/completed',
-    task_percentage_updated: 'task/percentage/updated',
-    product_created: 'product/created',
-    product_updated: 'product/updated',
-    product_deleted: 'product/deleted',
-    product_auto_renew_updated: 'product/auto-renew/updated',
-    product_enabled: 'product/enabled',
-    product_disabled: 'product/disabled',
-    product_version_created: 'product/version-created',
-    ip_group_created: 'ip-group/created',
-    ip_group_updated: 'ip-group/updated',
-    ip_group_deleted: 'ip-group/deleted',
-    ip_created: 'ip/created',
-    ip_updated: 'ip/updated',
-    ip_deleted: 'ip/deleted',
-    domain_name_created: 'domain-name/created',
-    domain_name_updated: 'domain-name/updated',
-    domain_name_deleted: 'domain-name/deleted',
-    domain_name_locked: 'domain-name/locked',
-    domain_name_unlocked: 'domain-name/unlocked',
-    domain_name_idshield_activated: 'domain-name/idshield-activated',
-    domain_name_idshield_deactivated: 'domain-name/idshield-deactivated',
-    domain_name_bundle_added: 'domain-name/bundle-added',
-    domain_name_bundle_removed: 'domain-name/bundle-removed',
-    domain_name_registrant_updated: 'domain-name/registrant-updated',
-    domain_name_admin_updated: 'domain-name/admin-updated',
-    domain_name_tech_updated: 'domain-name/tech-updated',
-    domain_name_billing_updated: 'domain-name/billing-updated',
-    domain_name_additional_updated: 'domain-name/additional-updated',
-    item_created: 'item/created',
-    item_updated: 'item/updated',
-    item_deleted: 'item/deleted',
-    item_renewed: 'item/renewed',
-    item_upgraded: 'item/upgraded',
-    item_downgraded: 'item/downgraded',
-    item_ip_attached: 'item/ip-attached',
-    item_ip_detached: 'item/ip-detached',
-    item_detached_from_order: 'item/detached-from-order',
-    item_postponed: 'item/postponed',
-    item_transferred_in: 'item/transferred-in',
-    item_canceled: 'item/canceled',
-    item_suspended: 'item/suspended',
-    item_unsuspended: 'item/unsuspended',
-    item_affiliate_added: 'item/affiliate/added',
-    item_bundle_attached: 'item/bundle/attached',
-    item_bundle_detached: 'item/bundle/detached',
-    item_activated: 'item/activated',
-    item_set_inactive: 'item/set-inactive',
-    item_processed: 'item/processed',
-    item_refund_requested: 'item/refund-requested',
-    item_refund_accepted: 'item/refund-accepted',
-    item_refund_rejected: 'item/refund-rejected',
-    order_paid: 'order/paid',
-    test: 'test',
-    dead_lettering: 'dead-lettering',
-    core_queue: 'core-queue'
-} as const;
-
-export type ProductInfoDtoListenEventsEnum = typeof ProductInfoDtoListenEventsEnum[keyof typeof ProductInfoDtoListenEventsEnum];
-export const ProductInfoDtoRequiredRolesEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
-    FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
-    ORDER_READ: 'ORDER_READ',
-    ORDER_WRITE: 'ORDER_WRITE',
-    ADDON_READ: 'ADDON_READ',
-    ADDON_WRITE: 'ADDON_WRITE',
-    AFFILIATE_READ: 'AFFILIATE_READ',
-    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
-    COMPANY_READ: 'COMPANY_READ',
-    COMPANY_WRITE: 'COMPANY_WRITE',
-    TEMPLATE_READ: 'TEMPLATE_READ',
-    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
-    COUPON_READ: 'COUPON_READ',
-    COUPON_WRITE: 'COUPON_WRITE',
-    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
-    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
-    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
-    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
-    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
-    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
-    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
-    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
-    INVOICE_READ: 'INVOICE_READ',
-    INVOICE_WRITE: 'INVOICE_WRITE',
-    IP_GROUPS_READ: 'IP_GROUPS_READ',
-    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
-    IPS_READ: 'IPS_READ',
-    IPS_WRITE: 'IPS_WRITE',
-    ITEMS_READ: 'ITEMS_READ',
-    ITEMS_WRITE: 'ITEMS_WRITE',
-    ORDERS_READ: 'ORDERS_READ',
-    ORDERS_WRITE: 'ORDERS_WRITE',
-    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
-    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
-    POLICIES_READ: 'POLICIES_READ',
-    POLICIES_WRITE: 'POLICIES_WRITE',
-    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
-    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
-    PRODUCTS_READ: 'PRODUCTS_READ',
-    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
-    SETTINGS_READ: 'SETTINGS_READ',
-    SETTINGS_WRITE: 'SETTINGS_WRITE',
-    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
-    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
-    TLDS_READ: 'TLDS_READ',
-    TLDS_WRITE: 'TLDS_WRITE',
-    USERS_READ: 'USERS_READ',
-    USERS_WRITE: 'USERS_WRITE',
-    ISSUES_WRITE: 'ISSUES_WRITE',
-    ISSUES_READ: 'ISSUES_READ',
-    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
-} as const;
-
-export type ProductInfoDtoRequiredRolesEnum = typeof ProductInfoDtoRequiredRolesEnum[keyof typeof ProductInfoDtoRequiredRolesEnum];
-
 /**
  * @type ProductRef
  * Either a populated ProductResponseDto or its id string.
@@ -15773,11 +9491,11 @@ export interface ProductRequestDto {
      */
     'hardDeleteDays'?: number;
     /**
-     * Specifies the method of billing for the product. The type indicates how the product is charged, whether it is billed per hour, per month, as a subscription, or based on a snapshot or prorated basis. The default value is InvoiceTypeEnum.SUBSCRIPTION.
-     * @type {string}
+     * 
+     * @type {BillingMethodEnum}
      * @memberof ProductRequestDto
      */
-    'billingMethod'?: ProductRequestDtoBillingMethodEnum;
+    'billingMethod'?: BillingMethodEnum;
     /**
      * The number of days a client can postpone the deactivation of a product after its expiration. The expiration date remains unchanged, but the product\'s deactivation is delayed for the specified duration.
      * @type {number}
@@ -15790,6 +9508,12 @@ export interface ProductRequestDto {
      * @memberof ProductRequestDto
      */
     'postponeTimesPerYear'?: number;
+    /**
+     * Number of days from item start date during which refund can be requested. 0 disables window.
+     * @type {number}
+     * @memberof ProductRequestDto
+     */
+    'refundWindowDays'?: number;
     /**
      * A collection of price configurations, including duration-based and dynamic pricing options for the product.
      * @type {Array<PricesDto>}
@@ -15876,13 +9600,6 @@ export interface ProductRequestDto {
     'tld'?: string;
 }
 
-export const ProductRequestDtoBillingMethodEnum = {
-    SUBSCRIPTION: 'SUBSCRIPTION',
-    SNAPSHOT: 'SNAPSHOT',
-    PRORATA: 'PRORATA'
-} as const;
-
-export type ProductRequestDtoBillingMethodEnum = typeof ProductRequestDtoBillingMethodEnum[keyof typeof ProductRequestDtoBillingMethodEnum];
 
 /**
  * 
@@ -15963,11 +9680,11 @@ export interface ProductResponseDto {
      */
     'hardDeleteDays'?: number;
     /**
-     * Specifies the method of billing for the product. The type indicates how the product is charged, whether it is billed per hour, per month, as a subscription, or based on a snapshot or prorated basis. The default value is InvoiceTypeEnum.SUBSCRIPTION.
-     * @type {string}
+     * 
+     * @type {BillingMethodEnum}
      * @memberof ProductResponseDto
      */
-    'billingMethod'?: ProductResponseDtoBillingMethodEnum;
+    'billingMethod'?: BillingMethodEnum;
     /**
      * The number of days a client can postpone the deactivation of a product after its expiration. The expiration date remains unchanged, but the product\'s deactivation is delayed for the specified duration.
      * @type {number}
@@ -15980,6 +9697,12 @@ export interface ProductResponseDto {
      * @memberof ProductResponseDto
      */
     'postponeTimesPerYear'?: number;
+    /**
+     * Number of days from item start date during which refund can be requested. 0 disables window.
+     * @type {number}
+     * @memberof ProductResponseDto
+     */
+    'refundWindowDays'?: number;
     /**
      * A collection of price configurations, including duration-based and dynamic pricing options for the product.
      * @type {Array<PricesDto>}
@@ -16120,13 +9843,6 @@ export interface ProductResponseDto {
     'updatedAt'?: string;
 }
 
-export const ProductResponseDtoBillingMethodEnum = {
-    SUBSCRIPTION: 'SUBSCRIPTION',
-    SNAPSHOT: 'SNAPSHOT',
-    PRORATA: 'PRORATA'
-} as const;
-
-export type ProductResponseDtoBillingMethodEnum = typeof ProductResponseDtoBillingMethodEnum[keyof typeof ProductResponseDtoBillingMethodEnum];
 
 /**
  * 
@@ -16195,11 +9911,11 @@ export interface ProductUpdateRequestDto {
      */
     'hardDeleteDays': number;
     /**
-     * Specifies the method of billing for the product. The type indicates how the product is charged, whether it is billed per hour, per month, as a subscription, or based on a snapshot or prorated basis. The default value is InvoiceTypeEnum.SUBSCRIPTION.
-     * @type {string}
+     * 
+     * @type {BillingMethodEnum}
      * @memberof ProductUpdateRequestDto
      */
-    'billingMethod': ProductUpdateRequestDtoBillingMethodEnum;
+    'billingMethod': BillingMethodEnum;
     /**
      * The number of days a client can postpone the deactivation of a product after its expiration. The expiration date remains unchanged, but the product\'s deactivation is delayed for the specified duration.
      * @type {number}
@@ -16212,6 +9928,12 @@ export interface ProductUpdateRequestDto {
      * @memberof ProductUpdateRequestDto
      */
     'postponeTimesPerYear': number;
+    /**
+     * Number of days from item start date during which refund can be requested. 0 disables window.
+     * @type {number}
+     * @memberof ProductUpdateRequestDto
+     */
+    'refundWindowDays': number;
     /**
      * A collection of price configurations, including duration-based and dynamic pricing options for the product.
      * @type {Array<PricesDto>}
@@ -16286,13 +10008,6 @@ export interface ProductUpdateRequestDto {
     'policyPrices': Array<PolicyPricesRequestDto>;
 }
 
-export const ProductUpdateRequestDtoBillingMethodEnum = {
-    SUBSCRIPTION: 'SUBSCRIPTION',
-    SNAPSHOT: 'SNAPSHOT',
-    PRORATA: 'PRORATA'
-} as const;
-
-export type ProductUpdateRequestDtoBillingMethodEnum = typeof ProductUpdateRequestDtoBillingMethodEnum[keyof typeof ProductUpdateRequestDtoBillingMethodEnum];
 
 /**
  * 
@@ -16410,6 +10125,44 @@ export interface RefreshSecret200Response {
 /**
  * 
  * @export
+ * @interface RefundItemDto
+ */
+export interface RefundItemDto {
+    /**
+     * The ID of the item to be refunded.
+     * @type {string}
+     * @memberof RefundItemDto
+     */
+    'item': string;
+    /**
+     * The price to be refunded. Omit for a full refund (item subtotal).
+     * @type {number}
+     * @memberof RefundItemDto
+     */
+    'price'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface RefundRequestDto
+ */
+export interface RefundRequestDto {
+    /**
+     * An array of items and prices to be refunded.
+     * @type {Array<RefundItemDto>}
+     * @memberof RefundRequestDto
+     */
+    'refundItems': Array<RefundItemDto>;
+    /**
+     * A comment to be added to the refund request.
+     * @type {string}
+     * @memberof RefundRequestDto
+     */
+    'comment'?: string;
+}
+/**
+ * 
+ * @export
  * @interface RegistryContactsDto
  */
 export interface RegistryContactsDto {
@@ -16439,6 +10192,86 @@ export interface RegistryContactsDto {
     'billingCode'?: string;
 }
 /**
+ * Indicates how renewal and expiration dates are handled when transferring to a different registrar.
+ * @export
+ * @enum {string}
+ */
+
+export const RenewalHandlingAfterTransferEnum = {
+    UNCHANGED: 'UNCHANGED',
+    EXTENDS: 'EXTENDS',
+    RESTARTS: 'RESTARTS'
+} as const;
+
+export type RenewalHandlingAfterTransferEnum = typeof RenewalHandlingAfterTransferEnum[keyof typeof RenewalHandlingAfterTransferEnum];
+
+
+/**
+ * A list of roles granted to the user, defining its permissions and access levels.
+ * @export
+ * @enum {string}
+ */
+
+export const RolesEnum = {
+    SIMPLE_USER: 'SIMPLE_USER',
+    FULL_ACCESS: 'FULL_ACCESS',
+    SUPER_ADMIN: 'SUPER_ADMIN',
+    ORDER_READ: 'ORDER_READ',
+    ORDER_WRITE: 'ORDER_WRITE',
+    ADDON_READ: 'ADDON_READ',
+    ADDON_WRITE: 'ADDON_WRITE',
+    AFFILIATE_READ: 'AFFILIATE_READ',
+    AFFILIATE_WRITE: 'AFFILIATE_WRITE',
+    COMPANY_READ: 'COMPANY_READ',
+    COMPANY_WRITE: 'COMPANY_WRITE',
+    TEMPLATE_READ: 'TEMPLATE_READ',
+    TEMPLATE_WRITE: 'TEMPLATE_WRITE',
+    COUPON_READ: 'COUPON_READ',
+    COUPON_WRITE: 'COUPON_WRITE',
+    DOMAIN_CATEGORY_READ: 'DOMAIN_CATEGORY_READ',
+    DOMAIN_CATEGORY_WRITE: 'DOMAIN_CATEGORY_WRITE',
+    DOMAIN_CONTACT_READ: 'DOMAIN_CONTACT_READ',
+    DOMAIN_CONTACT_WRITE: 'DOMAIN_CONTACT_WRITE',
+    DOMAIN_NAME_READ: 'DOMAIN_NAME_READ',
+    DOMAIN_NAME_WRITE: 'DOMAIN_NAME_WRITE',
+    INVOICE_CONTACT_READ: 'INVOICE_CONTACT_READ',
+    INVOICE_CONTACT_WRITE: 'INVOICE_CONTACT_WRITE',
+    INVOICE_READ: 'INVOICE_READ',
+    INVOICE_WRITE: 'INVOICE_WRITE',
+    IP_GROUPS_READ: 'IP_GROUPS_READ',
+    IP_GROUPS_WRITE: 'IP_GROUPS_WRITE',
+    IPS_READ: 'IPS_READ',
+    IPS_WRITE: 'IPS_WRITE',
+    ITEMS_READ: 'ITEMS_READ',
+    ITEMS_WRITE: 'ITEMS_WRITE',
+    ITEM_REFUND: 'ITEM_REFUND',
+    ORDERS_READ: 'ORDERS_READ',
+    ORDERS_WRITE: 'ORDERS_WRITE',
+    TRANSACTIONS_READ: 'TRANSACTIONS_READ',
+    TRANSACTIONS_WRITE: 'TRANSACTIONS_WRITE',
+    POLICIES_READ: 'POLICIES_READ',
+    POLICIES_WRITE: 'POLICIES_WRITE',
+    PRODUCT_CATEGORIES_READ: 'PRODUCT_CATEGORIES_READ',
+    PRODUCT_CATEGORIES_WRITE: 'PRODUCT_CATEGORIES_WRITE',
+    PRODUCTS_READ: 'PRODUCTS_READ',
+    PRODUCTS_WRITE: 'PRODUCTS_WRITE',
+    SETTINGS_READ: 'SETTINGS_READ',
+    SETTINGS_WRITE: 'SETTINGS_WRITE',
+    INTEGRATIONS_READ: 'INTEGRATIONS_READ',
+    INTEGRATIONS_WRITE: 'INTEGRATIONS_WRITE',
+    TLDS_READ: 'TLDS_READ',
+    TLDS_WRITE: 'TLDS_WRITE',
+    USERS_READ: 'USERS_READ',
+    USERS_WRITE: 'USERS_WRITE',
+    ISSUES_WRITE: 'ISSUES_WRITE',
+    ISSUES_READ: 'ISSUES_READ',
+    ACTION_LOGS_READ: 'ACTION_LOGS_READ'
+} as const;
+
+export type RolesEnum = typeof RolesEnum[keyof typeof RolesEnum];
+
+
+/**
  * 
  * @export
  * @interface RuleRequestDto
@@ -16446,22 +10279,22 @@ export interface RegistryContactsDto {
 export interface RuleRequestDto {
     /**
      * An array of actions on which the coupon rule applies. These actions define when the discount is triggered, such as on creation or renewal.
-     * @type {Array<string>}
+     * @type {Array<CouponActionsApplyEnum>}
      * @memberof RuleRequestDto
      */
-    'appliedOnActions': Array<RuleRequestDtoAppliedOnActionsEnum>;
+    'appliedOnActions': Array<CouponActionsApplyEnum>;
     /**
      * An array of durations on which the coupon rule applies. These durations define the billing periods for which the discount is valid.
-     * @type {Array<string>}
+     * @type {Array<DurationEnum>}
      * @memberof RuleRequestDto
      */
-    'appliedOnDurations': Array<RuleRequestDtoAppliedOnDurationsEnum>;
+    'appliedOnDurations': Array<DurationEnum>;
     /**
-     * The type of discount applied by this rule. It can be a fixed amount or a percentage-based discount.
-     * @type {string}
+     * 
+     * @type {CouponTypeEnum}
      * @memberof RuleRequestDto
      */
-    'discountType': RuleRequestDtoDiscountTypeEnum;
+    'discountType': CouponTypeEnum;
     /**
      * The discount value applied by this rule. If the discount type is PERCENTAGE, this represents the percentage off. If FIXED, it represents the fixed amount deducted.
      * @type {number}
@@ -16476,44 +10309,6 @@ export interface RuleRequestDto {
     'products': Array<string>;
 }
 
-export const RuleRequestDtoAppliedOnActionsEnum = {
-    CREATE: 'CREATE',
-    RENEW: 'RENEW',
-    SETUP: 'SETUP'
-} as const;
-
-export type RuleRequestDtoAppliedOnActionsEnum = typeof RuleRequestDtoAppliedOnActionsEnum[keyof typeof RuleRequestDtoAppliedOnActionsEnum];
-export const RuleRequestDtoAppliedOnDurationsEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
-
-export type RuleRequestDtoAppliedOnDurationsEnum = typeof RuleRequestDtoAppliedOnDurationsEnum[keyof typeof RuleRequestDtoAppliedOnDurationsEnum];
-export const RuleRequestDtoDiscountTypeEnum = {
-    PERCENTAGE: 'PERCENTAGE',
-    FIXED: 'FIXED'
-} as const;
-
-export type RuleRequestDtoDiscountTypeEnum = typeof RuleRequestDtoDiscountTypeEnum[keyof typeof RuleRequestDtoDiscountTypeEnum];
 
 /**
  * 
@@ -16522,11 +10317,11 @@ export type RuleRequestDtoDiscountTypeEnum = typeof RuleRequestDtoDiscountTypeEn
  */
 export interface RuleResponseDto {
     /**
-     * The condition operator of the rule.
-     * @type {string}
+     * 
+     * @type {ConditionOperatorsEnum}
      * @memberof RuleResponseDto
      */
-    'conditionOperator': RuleResponseDtoConditionOperatorEnum;
+    'conditionOperator': ConditionOperatorsEnum;
     /**
      * The value of the rule.
      * @type {number}
@@ -16541,95 +10336,6 @@ export interface RuleResponseDto {
     'products': Array<ProductRef>;
 }
 
-export const RuleResponseDtoConditionOperatorEnum = {
-    Less_Than: '<',
-    Greater_Than: '>',
-    Less_Than_Or_Equal_To: '<=',
-    Greater_Than_Or_Equal_To: '>=',
-    Equal: '='
-} as const;
-
-export type RuleResponseDtoConditionOperatorEnum = typeof RuleResponseDtoConditionOperatorEnum[keyof typeof RuleResponseDtoConditionOperatorEnum];
-
-/**
- * 
- * @export
- * @interface SelectFieldDto
- */
-export interface SelectFieldDto {
-    /**
-     * Discriminator literal — always \'SELECT\' for this DTO.
-     * @type {string}
-     * @memberof SelectFieldDto
-     */
-    'type': SelectFieldDtoTypeEnum;
-    /**
-     * Selected option.
-     * @type {FieldOptionDto}
-     * @memberof SelectFieldDto
-     */
-    'value'?: FieldOptionDto;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof SelectFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof SelectFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof SelectFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof SelectFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof SelectFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof SelectFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof SelectFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof SelectFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof SelectFieldDto
-     */
-    'downgradable'?: boolean;
-}
-
-export const SelectFieldDtoTypeEnum = {
-    SELECT: 'SELECT'
-} as const;
-
-export type SelectFieldDtoTypeEnum = typeof SelectFieldDtoTypeEnum[keyof typeof SelectFieldDtoTypeEnum];
 
 /**
  * 
@@ -16659,15 +10365,15 @@ export interface SelectedNotificationIntegrationsDto {
 /**
  * 
  * @export
- * @interface SetCompanyCreditBalanceRequest
+ * @interface SetAutoRefundsRequest
  */
-export interface SetCompanyCreditBalanceRequest {
+export interface SetAutoRefundsRequest {
     /**
-     * 
-     * @type {number}
-     * @memberof SetCompanyCreditBalanceRequest
+     * Enable or disable automatic refunds
+     * @type {boolean}
+     * @memberof SetAutoRefundsRequest
      */
-    'creditBalance'?: number;
+    'autoRefunds': boolean;
 }
 /**
  * 
@@ -16847,6 +10553,23 @@ export interface TabDto {
     'url': string;
 }
 /**
+ * The category of the template.
+ * @export
+ * @enum {string}
+ */
+
+export const TemplateCategoryEnum = {
+    clients: 'clients',
+    producs: 'producs',
+    orders: 'orders',
+    invoices: 'invoices',
+    support: 'support'
+} as const;
+
+export type TemplateCategoryEnum = typeof TemplateCategoryEnum[keyof typeof TemplateCategoryEnum];
+
+
+/**
  * @type TemplateRef
  * Either a populated TemplateResponseDto or its id string.
  * @export
@@ -16867,22 +10590,22 @@ export interface TemplateRequestDto {
     'name': string;
     /**
      * The notification type of the template.
-     * @type {Array<string>}
+     * @type {Array<NotificationTypeEnum>}
      * @memberof TemplateRequestDto
      */
-    'channels': Array<TemplateRequestDtoChannelsEnum>;
+    'channels': Array<NotificationTypeEnum>;
     /**
-     * The category of the template.
-     * @type {string}
+     * 
+     * @type {TemplateCategoryEnum}
      * @memberof TemplateRequestDto
      */
-    'category'?: TemplateRequestDtoCategoryEnum;
+    'category'?: TemplateCategoryEnum;
     /**
-     * The event associated with the template.
-     * @type {string}
+     * 
+     * @type {EventsEnum}
      * @memberof TemplateRequestDto
      */
-    'trigger'?: TemplateRequestDtoTriggerEnum;
+    'trigger'?: EventsEnum;
     /**
      * 
      * @type {EmailPayloadDto}
@@ -16909,204 +10632,6 @@ export interface TemplateRequestDto {
     'integrations'?: Array<string>;
 }
 
-export const TemplateRequestDtoChannelsEnum = {
-    email: 'email',
-    push: 'push',
-    sms: 'sms'
-} as const;
-
-export type TemplateRequestDtoChannelsEnum = typeof TemplateRequestDtoChannelsEnum[keyof typeof TemplateRequestDtoChannelsEnum];
-export const TemplateRequestDtoCategoryEnum = {
-    clients: 'clients',
-    producs: 'producs',
-    orders: 'orders',
-    invoices: 'invoices',
-    support: 'support'
-} as const;
-
-export type TemplateRequestDtoCategoryEnum = typeof TemplateRequestDtoCategoryEnum[keyof typeof TemplateRequestDtoCategoryEnum];
-export const TemplateRequestDtoTriggerEnum = {
-    user_created: 'user/created',
-    user_updated: 'user/updated',
-    user_deleted: 'user/deleted',
-    user_banned: 'user/banned',
-    user_unbanned: 'user/unbanned',
-    user_company_access_added: 'user/company/access/added',
-    user_company_access_removed: 'user/company/access/removed',
-    user_locked: 'user/locked',
-    user_credit_balance_updated: 'user/credit-balance/updated',
-    user_unlocked: 'user/unlocked',
-    user_password_updated: 'user/password/updated',
-    user_email_updated: 'user/email/updated',
-    user_currency_updated: 'user/currency/updated',
-    user_invoice_contact_updated: 'user/invoice-contact/updated',
-    user_policy_updated: 'user/policy/updated',
-    user_languages_updated: 'user/languages/updated',
-    user_custom_price_policies_updated: 'user/custom-price-policies/updated',
-    user_custom_addon_price_policies_updated: 'user/custom-addon-price-policies/updated',
-    user_custom_affiliate_added: 'user/custom-affiliate/added',
-    user_custom_affiliate_removed: 'user/custom-affiliate/removed',
-    user_invoice_interval_updated: 'user/invoice-interval/updated',
-    user_additional_notification_email_removed: 'user/additional-notification-email/removed',
-    user_additional_notification_email_added: 'user/additional-notification-email/added',
-    user_comment_added: 'user/comment/added',
-    user_comment_removed: 'user/comment/removed',
-    user_comment_updated: 'user/comment/updated',
-    user_tags_updated: 'user/tags/updated',
-    user_setting_added: 'user/setting/added',
-    user_setting_removed: 'user/setting/removed',
-    user_setting_updated: 'user/setting/updated',
-    user_start_selling: 'user/start-selling',
-    user_roles_updated: 'user/roles/updated',
-    user_roles_added: 'user/roles/added',
-    user_roles_deleted: 'user/roles/deleted',
-    message_created: 'message/created',
-    message_updated: 'message/updated',
-    message_deleted: 'message/deleted',
-    notification_sent: 'notification/sent',
-    policy_created: 'policy/created',
-    policy_updated: 'policy/updated',
-    policy_deleted: 'policy/deleted',
-    product_category_created: 'product-category/created',
-    product_category_updated: 'product-category/updated',
-    product_category_deleted: 'product-category/deleted',
-    invoice_contact_created: 'invoice-contact/created',
-    invoice_contact_updated: 'invoice-contact/updated',
-    invoice_contact_deleted: 'invoice-contact/deleted',
-    invoice_created: 'invoice/created',
-    invoice_updated: 'invoice/updated',
-    invoice_deleted: 'invoice/deleted',
-    currency_created: 'currency/created',
-    currency_updated: 'currency/updated',
-    currency_deleted: 'currency/deleted',
-    affiliate_created: 'affiliate/created',
-    affiliate_updated: 'affiliate/updated',
-    affiliate_deleted: 'affiliate/deleted',
-    company_created: 'company/created',
-    company_updated: 'company/updated',
-    company_deleted: 'company/deleted',
-    organization_integration_attached: 'organization/integration/attached',
-    organization_integration_detached: 'organization/integration/detached',
-    tld_created: 'tld/created',
-    tld_updated: 'tld/updated',
-    tld_deleted: 'tld/deleted',
-    integration_created: 'integration/created',
-    integration_updated: 'integration/updated',
-    integration_deleted: 'integration/deleted',
-    integration_installed: 'integration/installed',
-    integration_uninstalled: 'integration/uninstalled',
-    integration_activated: 'integration/activated',
-    integration_deactivated: 'integration/deactivated',
-    integration_maintenance_started: 'integration/maintenance-started',
-    integration_maintenance_finished: 'integration/maintenance-finished',
-    domain_contact_created: 'domain-contact/created',
-    domain_contact_updated: 'domain-contact/updated',
-    domain_contact_deleted: 'domain-contact/deleted',
-    domain_category_created: 'domain-category/created',
-    domain_category_updated: 'domain-category/updated',
-    domain_category_deleted: 'domain-category/deleted',
-    addon_created: 'addon/created',
-    addon_updated: 'addon/updated',
-    addon_deleted: 'addon/deleted',
-    transaction_created: 'transaction/created',
-    transaction_canceled: 'transaction/canceled',
-    transaction_failed: 'transaction/failed',
-    transaction_subscribed: 'transaction/subscribed',
-    transaction_unsubscribed: 'transaction/unsubscribed',
-    transaction_updated: 'transaction/updated',
-    transaction_deleted: 'transaction/deleted',
-    transaction_completed: 'transaction/completed',
-    transaction_refunded: 'transaction/refunded',
-    template_created: 'template/created',
-    template_updated: 'template/updated',
-    template_deleted: 'template/deleted',
-    coupon_created: 'coupon/created',
-    coupon_updated: 'coupon/updated',
-    coupon_deleted: 'coupon/deleted',
-    template_integration_created: 'template-integration/created',
-    template_integration_updated: 'template-integration/updated',
-    template_integration_deleted: 'template-integration/deleted',
-    order_created: 'order/created',
-    order_status_in_progress: 'order/status/in-progress',
-    order_status_completed: 'order/status/completed',
-    order_status_canceled: 'order/status/canceled',
-    order_status_pending: 'order/status/pending',
-    order_status_archived: 'order/status/archived',
-    order_insufficient_balance: 'order/insufficient-balance',
-    order_item_detached: 'order/item-detached',
-    order_invoice_contact_changed: 'order/invoice-contact-changed',
-    order_updated: 'order/updated',
-    order_deleted: 'order/deleted',
-    setting_created: 'setting/created',
-    setting_updated: 'setting/updated',
-    setting_deleted: 'setting/deleted',
-    issue_created: 'issue/created',
-    issue_updated: 'issue/updated',
-    issue_deleted: 'issue/deleted',
-    task_created: 'task/created',
-    task_updated: 'task/updated',
-    task_deleted: 'task/deleted',
-    task_canceled: 'task/canceled',
-    task_in_progress: 'task/in-progress',
-    task_completed: 'task/completed',
-    task_percentage_updated: 'task/percentage/updated',
-    product_created: 'product/created',
-    product_updated: 'product/updated',
-    product_deleted: 'product/deleted',
-    product_auto_renew_updated: 'product/auto-renew/updated',
-    product_enabled: 'product/enabled',
-    product_disabled: 'product/disabled',
-    product_version_created: 'product/version-created',
-    ip_group_created: 'ip-group/created',
-    ip_group_updated: 'ip-group/updated',
-    ip_group_deleted: 'ip-group/deleted',
-    ip_created: 'ip/created',
-    ip_updated: 'ip/updated',
-    ip_deleted: 'ip/deleted',
-    domain_name_created: 'domain-name/created',
-    domain_name_updated: 'domain-name/updated',
-    domain_name_deleted: 'domain-name/deleted',
-    domain_name_locked: 'domain-name/locked',
-    domain_name_unlocked: 'domain-name/unlocked',
-    domain_name_idshield_activated: 'domain-name/idshield-activated',
-    domain_name_idshield_deactivated: 'domain-name/idshield-deactivated',
-    domain_name_bundle_added: 'domain-name/bundle-added',
-    domain_name_bundle_removed: 'domain-name/bundle-removed',
-    domain_name_registrant_updated: 'domain-name/registrant-updated',
-    domain_name_admin_updated: 'domain-name/admin-updated',
-    domain_name_tech_updated: 'domain-name/tech-updated',
-    domain_name_billing_updated: 'domain-name/billing-updated',
-    domain_name_additional_updated: 'domain-name/additional-updated',
-    item_created: 'item/created',
-    item_updated: 'item/updated',
-    item_deleted: 'item/deleted',
-    item_renewed: 'item/renewed',
-    item_upgraded: 'item/upgraded',
-    item_downgraded: 'item/downgraded',
-    item_ip_attached: 'item/ip-attached',
-    item_ip_detached: 'item/ip-detached',
-    item_detached_from_order: 'item/detached-from-order',
-    item_postponed: 'item/postponed',
-    item_transferred_in: 'item/transferred-in',
-    item_canceled: 'item/canceled',
-    item_suspended: 'item/suspended',
-    item_unsuspended: 'item/unsuspended',
-    item_affiliate_added: 'item/affiliate/added',
-    item_bundle_attached: 'item/bundle/attached',
-    item_bundle_detached: 'item/bundle/detached',
-    item_activated: 'item/activated',
-    item_set_inactive: 'item/set-inactive',
-    item_processed: 'item/processed',
-    item_refund_requested: 'item/refund-requested',
-    item_refund_accepted: 'item/refund-accepted',
-    item_refund_rejected: 'item/refund-rejected',
-    order_paid: 'order/paid',
-    test: 'test',
-    dead_lettering: 'dead-lettering',
-    core_queue: 'core-queue'
-} as const;
-
-export type TemplateRequestDtoTriggerEnum = typeof TemplateRequestDtoTriggerEnum[keyof typeof TemplateRequestDtoTriggerEnum];
 
 /**
  * 
@@ -17122,22 +10647,22 @@ export interface TemplateResponseDto {
     'name': string;
     /**
      * The notification type of the template.
-     * @type {Array<string>}
+     * @type {Array<NotificationTypeEnum>}
      * @memberof TemplateResponseDto
      */
-    'channels': Array<TemplateResponseDtoChannelsEnum>;
+    'channels': Array<NotificationTypeEnum>;
     /**
-     * The category of the template.
-     * @type {string}
+     * 
+     * @type {TemplateCategoryEnum}
      * @memberof TemplateResponseDto
      */
-    'category'?: TemplateResponseDtoCategoryEnum;
+    'category'?: TemplateCategoryEnum;
     /**
-     * The event associated with the template.
-     * @type {string}
+     * 
+     * @type {EventsEnum}
      * @memberof TemplateResponseDto
      */
-    'trigger'?: TemplateResponseDtoTriggerEnum;
+    'trigger'?: EventsEnum;
     /**
      * 
      * @type {EmailPayloadDto}
@@ -17206,412 +10731,6 @@ export interface TemplateResponseDto {
     'updatedAt'?: string;
 }
 
-export const TemplateResponseDtoChannelsEnum = {
-    email: 'email',
-    push: 'push',
-    sms: 'sms'
-} as const;
-
-export type TemplateResponseDtoChannelsEnum = typeof TemplateResponseDtoChannelsEnum[keyof typeof TemplateResponseDtoChannelsEnum];
-export const TemplateResponseDtoCategoryEnum = {
-    clients: 'clients',
-    producs: 'producs',
-    orders: 'orders',
-    invoices: 'invoices',
-    support: 'support'
-} as const;
-
-export type TemplateResponseDtoCategoryEnum = typeof TemplateResponseDtoCategoryEnum[keyof typeof TemplateResponseDtoCategoryEnum];
-export const TemplateResponseDtoTriggerEnum = {
-    user_created: 'user/created',
-    user_updated: 'user/updated',
-    user_deleted: 'user/deleted',
-    user_banned: 'user/banned',
-    user_unbanned: 'user/unbanned',
-    user_company_access_added: 'user/company/access/added',
-    user_company_access_removed: 'user/company/access/removed',
-    user_locked: 'user/locked',
-    user_credit_balance_updated: 'user/credit-balance/updated',
-    user_unlocked: 'user/unlocked',
-    user_password_updated: 'user/password/updated',
-    user_email_updated: 'user/email/updated',
-    user_currency_updated: 'user/currency/updated',
-    user_invoice_contact_updated: 'user/invoice-contact/updated',
-    user_policy_updated: 'user/policy/updated',
-    user_languages_updated: 'user/languages/updated',
-    user_custom_price_policies_updated: 'user/custom-price-policies/updated',
-    user_custom_addon_price_policies_updated: 'user/custom-addon-price-policies/updated',
-    user_custom_affiliate_added: 'user/custom-affiliate/added',
-    user_custom_affiliate_removed: 'user/custom-affiliate/removed',
-    user_invoice_interval_updated: 'user/invoice-interval/updated',
-    user_additional_notification_email_removed: 'user/additional-notification-email/removed',
-    user_additional_notification_email_added: 'user/additional-notification-email/added',
-    user_comment_added: 'user/comment/added',
-    user_comment_removed: 'user/comment/removed',
-    user_comment_updated: 'user/comment/updated',
-    user_tags_updated: 'user/tags/updated',
-    user_setting_added: 'user/setting/added',
-    user_setting_removed: 'user/setting/removed',
-    user_setting_updated: 'user/setting/updated',
-    user_start_selling: 'user/start-selling',
-    user_roles_updated: 'user/roles/updated',
-    user_roles_added: 'user/roles/added',
-    user_roles_deleted: 'user/roles/deleted',
-    message_created: 'message/created',
-    message_updated: 'message/updated',
-    message_deleted: 'message/deleted',
-    notification_sent: 'notification/sent',
-    policy_created: 'policy/created',
-    policy_updated: 'policy/updated',
-    policy_deleted: 'policy/deleted',
-    product_category_created: 'product-category/created',
-    product_category_updated: 'product-category/updated',
-    product_category_deleted: 'product-category/deleted',
-    invoice_contact_created: 'invoice-contact/created',
-    invoice_contact_updated: 'invoice-contact/updated',
-    invoice_contact_deleted: 'invoice-contact/deleted',
-    invoice_created: 'invoice/created',
-    invoice_updated: 'invoice/updated',
-    invoice_deleted: 'invoice/deleted',
-    currency_created: 'currency/created',
-    currency_updated: 'currency/updated',
-    currency_deleted: 'currency/deleted',
-    affiliate_created: 'affiliate/created',
-    affiliate_updated: 'affiliate/updated',
-    affiliate_deleted: 'affiliate/deleted',
-    company_created: 'company/created',
-    company_updated: 'company/updated',
-    company_deleted: 'company/deleted',
-    organization_integration_attached: 'organization/integration/attached',
-    organization_integration_detached: 'organization/integration/detached',
-    tld_created: 'tld/created',
-    tld_updated: 'tld/updated',
-    tld_deleted: 'tld/deleted',
-    integration_created: 'integration/created',
-    integration_updated: 'integration/updated',
-    integration_deleted: 'integration/deleted',
-    integration_installed: 'integration/installed',
-    integration_uninstalled: 'integration/uninstalled',
-    integration_activated: 'integration/activated',
-    integration_deactivated: 'integration/deactivated',
-    integration_maintenance_started: 'integration/maintenance-started',
-    integration_maintenance_finished: 'integration/maintenance-finished',
-    domain_contact_created: 'domain-contact/created',
-    domain_contact_updated: 'domain-contact/updated',
-    domain_contact_deleted: 'domain-contact/deleted',
-    domain_category_created: 'domain-category/created',
-    domain_category_updated: 'domain-category/updated',
-    domain_category_deleted: 'domain-category/deleted',
-    addon_created: 'addon/created',
-    addon_updated: 'addon/updated',
-    addon_deleted: 'addon/deleted',
-    transaction_created: 'transaction/created',
-    transaction_canceled: 'transaction/canceled',
-    transaction_failed: 'transaction/failed',
-    transaction_subscribed: 'transaction/subscribed',
-    transaction_unsubscribed: 'transaction/unsubscribed',
-    transaction_updated: 'transaction/updated',
-    transaction_deleted: 'transaction/deleted',
-    transaction_completed: 'transaction/completed',
-    transaction_refunded: 'transaction/refunded',
-    template_created: 'template/created',
-    template_updated: 'template/updated',
-    template_deleted: 'template/deleted',
-    coupon_created: 'coupon/created',
-    coupon_updated: 'coupon/updated',
-    coupon_deleted: 'coupon/deleted',
-    template_integration_created: 'template-integration/created',
-    template_integration_updated: 'template-integration/updated',
-    template_integration_deleted: 'template-integration/deleted',
-    order_created: 'order/created',
-    order_status_in_progress: 'order/status/in-progress',
-    order_status_completed: 'order/status/completed',
-    order_status_canceled: 'order/status/canceled',
-    order_status_pending: 'order/status/pending',
-    order_status_archived: 'order/status/archived',
-    order_insufficient_balance: 'order/insufficient-balance',
-    order_item_detached: 'order/item-detached',
-    order_invoice_contact_changed: 'order/invoice-contact-changed',
-    order_updated: 'order/updated',
-    order_deleted: 'order/deleted',
-    setting_created: 'setting/created',
-    setting_updated: 'setting/updated',
-    setting_deleted: 'setting/deleted',
-    issue_created: 'issue/created',
-    issue_updated: 'issue/updated',
-    issue_deleted: 'issue/deleted',
-    task_created: 'task/created',
-    task_updated: 'task/updated',
-    task_deleted: 'task/deleted',
-    task_canceled: 'task/canceled',
-    task_in_progress: 'task/in-progress',
-    task_completed: 'task/completed',
-    task_percentage_updated: 'task/percentage/updated',
-    product_created: 'product/created',
-    product_updated: 'product/updated',
-    product_deleted: 'product/deleted',
-    product_auto_renew_updated: 'product/auto-renew/updated',
-    product_enabled: 'product/enabled',
-    product_disabled: 'product/disabled',
-    product_version_created: 'product/version-created',
-    ip_group_created: 'ip-group/created',
-    ip_group_updated: 'ip-group/updated',
-    ip_group_deleted: 'ip-group/deleted',
-    ip_created: 'ip/created',
-    ip_updated: 'ip/updated',
-    ip_deleted: 'ip/deleted',
-    domain_name_created: 'domain-name/created',
-    domain_name_updated: 'domain-name/updated',
-    domain_name_deleted: 'domain-name/deleted',
-    domain_name_locked: 'domain-name/locked',
-    domain_name_unlocked: 'domain-name/unlocked',
-    domain_name_idshield_activated: 'domain-name/idshield-activated',
-    domain_name_idshield_deactivated: 'domain-name/idshield-deactivated',
-    domain_name_bundle_added: 'domain-name/bundle-added',
-    domain_name_bundle_removed: 'domain-name/bundle-removed',
-    domain_name_registrant_updated: 'domain-name/registrant-updated',
-    domain_name_admin_updated: 'domain-name/admin-updated',
-    domain_name_tech_updated: 'domain-name/tech-updated',
-    domain_name_billing_updated: 'domain-name/billing-updated',
-    domain_name_additional_updated: 'domain-name/additional-updated',
-    item_created: 'item/created',
-    item_updated: 'item/updated',
-    item_deleted: 'item/deleted',
-    item_renewed: 'item/renewed',
-    item_upgraded: 'item/upgraded',
-    item_downgraded: 'item/downgraded',
-    item_ip_attached: 'item/ip-attached',
-    item_ip_detached: 'item/ip-detached',
-    item_detached_from_order: 'item/detached-from-order',
-    item_postponed: 'item/postponed',
-    item_transferred_in: 'item/transferred-in',
-    item_canceled: 'item/canceled',
-    item_suspended: 'item/suspended',
-    item_unsuspended: 'item/unsuspended',
-    item_affiliate_added: 'item/affiliate/added',
-    item_bundle_attached: 'item/bundle/attached',
-    item_bundle_detached: 'item/bundle/detached',
-    item_activated: 'item/activated',
-    item_set_inactive: 'item/set-inactive',
-    item_processed: 'item/processed',
-    item_refund_requested: 'item/refund-requested',
-    item_refund_accepted: 'item/refund-accepted',
-    item_refund_rejected: 'item/refund-rejected',
-    order_paid: 'order/paid',
-    test: 'test',
-    dead_lettering: 'dead-lettering',
-    core_queue: 'core-queue'
-} as const;
-
-export type TemplateResponseDtoTriggerEnum = typeof TemplateResponseDtoTriggerEnum[keyof typeof TemplateResponseDtoTriggerEnum];
-
-/**
- * 
- * @export
- * @interface TextFieldDto
- */
-export interface TextFieldDto {
-    /**
-     * Discriminator literal — always \'TEXT\' for this DTO.
-     * @type {string}
-     * @memberof TextFieldDto
-     */
-    'type': TextFieldDtoTypeEnum;
-    /**
-     * Text value of the field.
-     * @type {string}
-     * @memberof TextFieldDto
-     */
-    'value'?: string;
-    /**
-     * Minimum allowed character length.
-     * @type {number}
-     * @memberof TextFieldDto
-     */
-    'minLength'?: number;
-    /**
-     * Maximum allowed character length.
-     * @type {number}
-     * @memberof TextFieldDto
-     */
-    'maxLength'?: number;
-    /**
-     * Optional regex to validate input.
-     * @type {string}
-     * @memberof TextFieldDto
-     */
-    'regexValidation'?: string;
-    /**
-     * Localized error message shown when regex validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof TextFieldDto
-     */
-    'regexValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof TextFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof TextFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof TextFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof TextFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof TextFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof TextFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof TextFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof TextFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof TextFieldDto
-     */
-    'downgradable'?: boolean;
-}
-
-export const TextFieldDtoTypeEnum = {
-    TEXT: 'TEXT'
-} as const;
-
-export type TextFieldDtoTypeEnum = typeof TextFieldDtoTypeEnum[keyof typeof TextFieldDtoTypeEnum];
-
-/**
- * 
- * @export
- * @interface TextareaFieldDto
- */
-export interface TextareaFieldDto {
-    /**
-     * Discriminator literal — always \'TEXTAREA\' for this DTO.
-     * @type {string}
-     * @memberof TextareaFieldDto
-     */
-    'type': TextareaFieldDtoTypeEnum;
-    /**
-     * Text value of the field.
-     * @type {string}
-     * @memberof TextareaFieldDto
-     */
-    'value'?: string;
-    /**
-     * Minimum allowed character length.
-     * @type {number}
-     * @memberof TextareaFieldDto
-     */
-    'minLength'?: number;
-    /**
-     * Maximum allowed character length.
-     * @type {number}
-     * @memberof TextareaFieldDto
-     */
-    'maxLength'?: number;
-    /**
-     * Optional regex to validate input.
-     * @type {string}
-     * @memberof TextareaFieldDto
-     */
-    'regexValidation'?: string;
-    /**
-     * Localized error message shown when regex validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof TextareaFieldDto
-     */
-    'regexValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof TextareaFieldDto
-     */
-    'id': string;
-    /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof TextareaFieldDto
-     */
-    'label': Array<MultilangTextDto>;
-    /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof TextareaFieldDto
-     */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof TextareaFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof TextareaFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof TextareaFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof TextareaFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof TextareaFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof TextareaFieldDto
-     */
-    'downgradable'?: boolean;
-}
-
-export const TextareaFieldDtoTypeEnum = {
-    TEXTAREA: 'TEXTAREA'
-} as const;
-
-export type TextareaFieldDtoTypeEnum = typeof TextareaFieldDtoTypeEnum[keyof typeof TextareaFieldDtoTypeEnum];
 
 /**
  * @type TldRef
@@ -17676,28 +10795,28 @@ export interface TldRequestDto {
     'authorizationCodeValidityHours': number;
     /**
      * A list of country codes specifying the countries where the registrant must reside to meet registration requirements.
-     * @type {Array<string>}
+     * @type {Array<CountryEnum>}
      * @memberof TldRequestDto
      */
-    'registrantContactCountryPresence'?: Array<TldRequestDtoRegistrantContactCountryPresenceEnum>;
+    'registrantContactCountryPresence'?: Array<CountryEnum>;
     /**
      * A list of country codes specifying the countries where the admin must reside to meet registration requirements.
-     * @type {Array<string>}
+     * @type {Array<CountryEnum>}
      * @memberof TldRequestDto
      */
-    'adminContactCountryPresence'?: Array<TldRequestDtoAdminContactCountryPresenceEnum>;
+    'adminContactCountryPresence'?: Array<CountryEnum>;
     /**
      * A list of country codes specifying the countries where the tech contact must reside to meet registration requirements.
-     * @type {Array<string>}
+     * @type {Array<CountryEnum>}
      * @memberof TldRequestDto
      */
-    'techContactCountryPresence'?: Array<TldRequestDtoTechContactCountryPresenceEnum>;
+    'techContactCountryPresence'?: Array<CountryEnum>;
     /**
      * A list of country codes specifying the countries where the billing contact must reside to meet registration requirements.
-     * @type {Array<string>}
+     * @type {Array<CountryEnum>}
      * @memberof TldRequestDto
      */
-    'billingContactCountryPresence'?: Array<TldRequestDtoBillingContactCountryPresenceEnum>;
+    'billingContactCountryPresence'?: Array<CountryEnum>;
     /**
      * Indicates whether the domain can be restored during the pending delete period before it is permanently deleted.
      * @type {boolean}
@@ -17771,17 +10890,17 @@ export interface TldRequestDto {
      */
     'sendEppCodeToOwner'?: boolean;
     /**
-     * Indicates how renewal and expiration dates are handled when transferring to a different registrar.
-     * @type {string}
+     * 
+     * @type {RenewalHandlingAfterTransferEnum}
      * @memberof TldRequestDto
      */
-    'renewalHandlingAfterTransfer': TldRequestDtoRenewalHandlingAfterTransferEnum;
+    'renewalHandlingAfterTransfer': RenewalHandlingAfterTransferEnum;
     /**
      * A list of supported durations for domain registrations. The user can only select from these durations when creating a domain name product, as specified by the TLD.
-     * @type {Array<string>}
+     * @type {Array<DurationEnum>}
      * @memberof TldRequestDto
      */
-    'supportedDurations': Array<TldRequestDtoSupportedDurationsEnum>;
+    'supportedDurations': Array<DurationEnum>;
     /**
      * Indicates if the TLD has a fee for the soft quarantine status or not. This determines if a renewal fee must be set during this period.
      * @type {boolean}
@@ -17801,17 +10920,17 @@ export interface TldRequestDto {
      */
     'transferWhileExpired': boolean;
     /**
-     * Specifies which additional data needs to be requested from the user for domains under this TLD.
-     * @type {string}
+     * 
+     * @type {DomainAdditionalDataEnum}
      * @memberof TldRequestDto
      */
-    'domainAdditionalData'?: TldRequestDtoDomainAdditionalDataEnum;
+    'domainAdditionalData'?: DomainAdditionalDataEnum;
     /**
-     * Specifies which additional data needs to be requested from the user for contacts associated with this TLD.
-     * @type {string}
+     * 
+     * @type {ContactAdditionalDataEnum}
      * @memberof TldRequestDto
      */
-    'contactAdditionalData'?: TldRequestDtoContactAdditionalDataEnum;
+    'contactAdditionalData'?: ContactAdditionalDataEnum;
     /**
      * An array of unique identifiers representing the categories to which this TLD belongs.
      * @type {Array<string>}
@@ -17820,1079 +10939,6 @@ export interface TldRequestDto {
     'categories': Array<string>;
 }
 
-export const TldRequestDtoRegistrantContactCountryPresenceEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type TldRequestDtoRegistrantContactCountryPresenceEnum = typeof TldRequestDtoRegistrantContactCountryPresenceEnum[keyof typeof TldRequestDtoRegistrantContactCountryPresenceEnum];
-export const TldRequestDtoAdminContactCountryPresenceEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type TldRequestDtoAdminContactCountryPresenceEnum = typeof TldRequestDtoAdminContactCountryPresenceEnum[keyof typeof TldRequestDtoAdminContactCountryPresenceEnum];
-export const TldRequestDtoTechContactCountryPresenceEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type TldRequestDtoTechContactCountryPresenceEnum = typeof TldRequestDtoTechContactCountryPresenceEnum[keyof typeof TldRequestDtoTechContactCountryPresenceEnum];
-export const TldRequestDtoBillingContactCountryPresenceEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type TldRequestDtoBillingContactCountryPresenceEnum = typeof TldRequestDtoBillingContactCountryPresenceEnum[keyof typeof TldRequestDtoBillingContactCountryPresenceEnum];
-export const TldRequestDtoRenewalHandlingAfterTransferEnum = {
-    UNCHANGED: 'UNCHANGED',
-    EXTENDS: 'EXTENDS',
-    RESTARTS: 'RESTARTS'
-} as const;
-
-export type TldRequestDtoRenewalHandlingAfterTransferEnum = typeof TldRequestDtoRenewalHandlingAfterTransferEnum[keyof typeof TldRequestDtoRenewalHandlingAfterTransferEnum];
-export const TldRequestDtoSupportedDurationsEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
-
-export type TldRequestDtoSupportedDurationsEnum = typeof TldRequestDtoSupportedDurationsEnum[keyof typeof TldRequestDtoSupportedDurationsEnum];
-export const TldRequestDtoDomainAdditionalDataEnum = {
-    CAT_PARAMETER: 'CAT_PARAMETER',
-    CHALLENGE_PARAMETER: 'CHALLENGE_PARAMETER',
-    CLAIMS_TOKEN: 'CLAIMS_TOKEN',
-    DONUTS_PRICE_CATEGORY: 'DONUTS_PRICE_CATEGORY',
-    INTENTED_USE: 'INTENTED_USE',
-    PREMIUM_PRICE_CATEGORY: 'PREMIUM_PRICE_CATEGORY',
-    PROXY_SERVICE: 'PROXY_SERVICE',
-    SUNRISE: 'SUNRISE',
-    UK_DIRECT: 'UK_DIRECT',
-    XXX_MEMBER: 'XXX_MEMBER'
-} as const;
-
-export type TldRequestDtoDomainAdditionalDataEnum = typeof TldRequestDtoDomainAdditionalDataEnum[keyof typeof TldRequestDtoDomainAdditionalDataEnum];
-export const TldRequestDtoContactAdditionalDataEnum = {
-    AFNIC: 'AFNIC',
-    CAT: 'CAT',
-    DE: 'DE',
-    ES: 'ES',
-    EU: 'EU',
-    IT: 'IT',
-    LV: 'LV',
-    NL: 'NL',
-    PRO: 'PRO',
-    UK: 'UK',
-    US: 'US'
-} as const;
-
-export type TldRequestDtoContactAdditionalDataEnum = typeof TldRequestDtoContactAdditionalDataEnum[keyof typeof TldRequestDtoContactAdditionalDataEnum];
 
 /**
  * 
@@ -18950,28 +10996,28 @@ export interface TldResponseDto {
     'authorizationCodeValidityHours': number;
     /**
      * A list of country codes specifying the countries where the registrant must reside to meet registration requirements.
-     * @type {Array<string>}
+     * @type {Array<CountryEnum>}
      * @memberof TldResponseDto
      */
-    'registrantContactCountryPresence'?: Array<TldResponseDtoRegistrantContactCountryPresenceEnum>;
+    'registrantContactCountryPresence'?: Array<CountryEnum>;
     /**
      * A list of country codes specifying the countries where the admin must reside to meet registration requirements.
-     * @type {Array<string>}
+     * @type {Array<CountryEnum>}
      * @memberof TldResponseDto
      */
-    'adminContactCountryPresence'?: Array<TldResponseDtoAdminContactCountryPresenceEnum>;
+    'adminContactCountryPresence'?: Array<CountryEnum>;
     /**
      * A list of country codes specifying the countries where the tech contact must reside to meet registration requirements.
-     * @type {Array<string>}
+     * @type {Array<CountryEnum>}
      * @memberof TldResponseDto
      */
-    'techContactCountryPresence'?: Array<TldResponseDtoTechContactCountryPresenceEnum>;
+    'techContactCountryPresence'?: Array<CountryEnum>;
     /**
      * A list of country codes specifying the countries where the billing contact must reside to meet registration requirements.
-     * @type {Array<string>}
+     * @type {Array<CountryEnum>}
      * @memberof TldResponseDto
      */
-    'billingContactCountryPresence'?: Array<TldResponseDtoBillingContactCountryPresenceEnum>;
+    'billingContactCountryPresence'?: Array<CountryEnum>;
     /**
      * Indicates whether the domain can be restored during the pending delete period before it is permanently deleted.
      * @type {boolean}
@@ -19045,17 +11091,17 @@ export interface TldResponseDto {
      */
     'sendEppCodeToOwner'?: boolean;
     /**
-     * Indicates how renewal and expiration dates are handled when transferring to a different registrar.
-     * @type {string}
+     * 
+     * @type {RenewalHandlingAfterTransferEnum}
      * @memberof TldResponseDto
      */
-    'renewalHandlingAfterTransfer': TldResponseDtoRenewalHandlingAfterTransferEnum;
+    'renewalHandlingAfterTransfer': RenewalHandlingAfterTransferEnum;
     /**
      * A list of supported durations for domain registrations. The user can only select from these durations when creating a domain name product, as specified by the TLD.
-     * @type {Array<string>}
+     * @type {Array<DurationEnum>}
      * @memberof TldResponseDto
      */
-    'supportedDurations': Array<TldResponseDtoSupportedDurationsEnum>;
+    'supportedDurations': Array<DurationEnum>;
     /**
      * Indicates if the TLD has a fee for the soft quarantine status or not. This determines if a renewal fee must be set during this period.
      * @type {boolean}
@@ -19075,17 +11121,17 @@ export interface TldResponseDto {
      */
     'transferWhileExpired': boolean;
     /**
-     * Specifies which additional data needs to be requested from the user for domains under this TLD.
-     * @type {string}
+     * 
+     * @type {DomainAdditionalDataEnum}
      * @memberof TldResponseDto
      */
-    'domainAdditionalData'?: TldResponseDtoDomainAdditionalDataEnum;
+    'domainAdditionalData'?: DomainAdditionalDataEnum;
     /**
-     * Specifies which additional data needs to be requested from the user for contacts associated with this TLD.
-     * @type {string}
+     * 
+     * @type {ContactAdditionalDataEnum}
      * @memberof TldResponseDto
      */
-    'contactAdditionalData'?: TldResponseDtoContactAdditionalDataEnum;
+    'contactAdditionalData'?: ContactAdditionalDataEnum;
     /**
      * The unique identifier for the tld.
      * @type {string}
@@ -19112,1079 +11158,6 @@ export interface TldResponseDto {
     'updatedAt'?: string;
 }
 
-export const TldResponseDtoRegistrantContactCountryPresenceEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type TldResponseDtoRegistrantContactCountryPresenceEnum = typeof TldResponseDtoRegistrantContactCountryPresenceEnum[keyof typeof TldResponseDtoRegistrantContactCountryPresenceEnum];
-export const TldResponseDtoAdminContactCountryPresenceEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type TldResponseDtoAdminContactCountryPresenceEnum = typeof TldResponseDtoAdminContactCountryPresenceEnum[keyof typeof TldResponseDtoAdminContactCountryPresenceEnum];
-export const TldResponseDtoTechContactCountryPresenceEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type TldResponseDtoTechContactCountryPresenceEnum = typeof TldResponseDtoTechContactCountryPresenceEnum[keyof typeof TldResponseDtoTechContactCountryPresenceEnum];
-export const TldResponseDtoBillingContactCountryPresenceEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-
-export type TldResponseDtoBillingContactCountryPresenceEnum = typeof TldResponseDtoBillingContactCountryPresenceEnum[keyof typeof TldResponseDtoBillingContactCountryPresenceEnum];
-export const TldResponseDtoRenewalHandlingAfterTransferEnum = {
-    UNCHANGED: 'UNCHANGED',
-    EXTENDS: 'EXTENDS',
-    RESTARTS: 'RESTARTS'
-} as const;
-
-export type TldResponseDtoRenewalHandlingAfterTransferEnum = typeof TldResponseDtoRenewalHandlingAfterTransferEnum[keyof typeof TldResponseDtoRenewalHandlingAfterTransferEnum];
-export const TldResponseDtoSupportedDurationsEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3',
-    _4: '4',
-    _5: '5',
-    _6: '6',
-    _7: '7',
-    _8: '8',
-    _9: '9',
-    _10: '10',
-    _11: '11',
-    _12: '12',
-    _24: '24',
-    _36: '36',
-    _48: '48',
-    _60: '60',
-    _72: '72',
-    _84: '84',
-    _96: '96',
-    _108: '108',
-    _120: '120'
-} as const;
-
-export type TldResponseDtoSupportedDurationsEnum = typeof TldResponseDtoSupportedDurationsEnum[keyof typeof TldResponseDtoSupportedDurationsEnum];
-export const TldResponseDtoDomainAdditionalDataEnum = {
-    CAT_PARAMETER: 'CAT_PARAMETER',
-    CHALLENGE_PARAMETER: 'CHALLENGE_PARAMETER',
-    CLAIMS_TOKEN: 'CLAIMS_TOKEN',
-    DONUTS_PRICE_CATEGORY: 'DONUTS_PRICE_CATEGORY',
-    INTENTED_USE: 'INTENTED_USE',
-    PREMIUM_PRICE_CATEGORY: 'PREMIUM_PRICE_CATEGORY',
-    PROXY_SERVICE: 'PROXY_SERVICE',
-    SUNRISE: 'SUNRISE',
-    UK_DIRECT: 'UK_DIRECT',
-    XXX_MEMBER: 'XXX_MEMBER'
-} as const;
-
-export type TldResponseDtoDomainAdditionalDataEnum = typeof TldResponseDtoDomainAdditionalDataEnum[keyof typeof TldResponseDtoDomainAdditionalDataEnum];
-export const TldResponseDtoContactAdditionalDataEnum = {
-    AFNIC: 'AFNIC',
-    CAT: 'CAT',
-    DE: 'DE',
-    ES: 'ES',
-    EU: 'EU',
-    IT: 'IT',
-    LV: 'LV',
-    NL: 'NL',
-    PRO: 'PRO',
-    UK: 'UK',
-    US: 'US'
-} as const;
-
-export type TldResponseDtoContactAdditionalDataEnum = typeof TldResponseDtoContactAdditionalDataEnum[keyof typeof TldResponseDtoContactAdditionalDataEnum];
 
 /**
  * 
@@ -20244,17 +11217,17 @@ export type TransactionRef = TransactionResponseDto | string;
  */
 export interface TransactionRequestDto {
     /**
-     * The type of balance associated with the transaction. This field indicates whether the transaction is related to the users credit or discount balance.
-     * @type {string}
+     * 
+     * @type {BalanceTypeEnum}
      * @memberof TransactionRequestDto
      */
-    'balanceType': TransactionRequestDtoBalanceTypeEnum;
+    'balanceType': BalanceTypeEnum;
     /**
-     * Specifies the nature of the transaction, indicating whether it is a deposit (adding funds), a withdrawal (removing funds).
-     * @type {string}
+     * 
+     * @type {TransactionTypeEnum}
      * @memberof TransactionRequestDto
      */
-    'type': TransactionRequestDtoTypeEnum;
+    'type': TransactionTypeEnum;
     /**
      * The full name of the user associated with the transaction.
      * @type {string}
@@ -20274,11 +11247,11 @@ export interface TransactionRequestDto {
      */
     'integrationTitle'?: string;
     /**
-     * The current status of the transaction.  This field indicates the progress and state of the transaction, such as whether it is pending, processing, successful, or failed.
-     * @type {string}
+     * 
+     * @type {TransactionStatusEnum}
      * @memberof TransactionRequestDto
      */
-    'status': TransactionRequestDtoStatusEnum;
+    'status': TransactionStatusEnum;
     /**
      * The total amount of the transaction. This value represents the monetary amount that will be added to or subtracted from the user\'s balance.
      * @type {number}
@@ -20335,29 +11308,6 @@ export interface TransactionRequestDto {
     'integration'?: string;
 }
 
-export const TransactionRequestDtoBalanceTypeEnum = {
-    BALANCE: 'BALANCE',
-    RESERVED_BALANCE: 'RESERVED_BALANCE',
-    DISCOUNT_BALANCE: 'DISCOUNT_BALANCE'
-} as const;
-
-export type TransactionRequestDtoBalanceTypeEnum = typeof TransactionRequestDtoBalanceTypeEnum[keyof typeof TransactionRequestDtoBalanceTypeEnum];
-export const TransactionRequestDtoTypeEnum = {
-    WITHDRAW: 'WITHDRAW',
-    DEPOSIT: 'DEPOSIT',
-    REFUND: 'REFUND'
-} as const;
-
-export type TransactionRequestDtoTypeEnum = typeof TransactionRequestDtoTypeEnum[keyof typeof TransactionRequestDtoTypeEnum];
-export const TransactionRequestDtoStatusEnum = {
-    PENDING: 'PENDING',
-    PROCESSING: 'PROCESSING',
-    COMPLETED: 'COMPLETED',
-    CANCEL: 'CANCEL',
-    ERROR: 'ERROR'
-} as const;
-
-export type TransactionRequestDtoStatusEnum = typeof TransactionRequestDtoStatusEnum[keyof typeof TransactionRequestDtoStatusEnum];
 
 /**
  * 
@@ -20366,17 +11316,17 @@ export type TransactionRequestDtoStatusEnum = typeof TransactionRequestDtoStatus
  */
 export interface TransactionResponseDto {
     /**
-     * The type of balance associated with the transaction. This field indicates whether the transaction is related to the users credit or discount balance.
-     * @type {string}
+     * 
+     * @type {BalanceTypeEnum}
      * @memberof TransactionResponseDto
      */
-    'balanceType': TransactionResponseDtoBalanceTypeEnum;
+    'balanceType': BalanceTypeEnum;
     /**
-     * Specifies the nature of the transaction, indicating whether it is a deposit (adding funds), a withdrawal (removing funds).
-     * @type {string}
+     * 
+     * @type {TransactionTypeEnum}
      * @memberof TransactionResponseDto
      */
-    'type': TransactionResponseDtoTypeEnum;
+    'type': TransactionTypeEnum;
     /**
      * The full name of the user associated with the transaction.
      * @type {string}
@@ -20396,11 +11346,11 @@ export interface TransactionResponseDto {
      */
     'integrationTitle'?: string;
     /**
-     * The current status of the transaction.  This field indicates the progress and state of the transaction, such as whether it is pending, processing, successful, or failed.
-     * @type {string}
+     * 
+     * @type {TransactionStatusEnum}
      * @memberof TransactionResponseDto
      */
-    'status': TransactionResponseDtoStatusEnum;
+    'status': TransactionStatusEnum;
     /**
      * The total amount of the transaction. This value represents the monetary amount that will be added to or subtracted from the user\'s balance.
      * @type {number}
@@ -20481,21 +11431,14 @@ export interface TransactionResponseDto {
     'updatedAt'?: string;
 }
 
-export const TransactionResponseDtoBalanceTypeEnum = {
-    BALANCE: 'BALANCE',
-    RESERVED_BALANCE: 'RESERVED_BALANCE',
-    DISCOUNT_BALANCE: 'DISCOUNT_BALANCE'
-} as const;
 
-export type TransactionResponseDtoBalanceTypeEnum = typeof TransactionResponseDtoBalanceTypeEnum[keyof typeof TransactionResponseDtoBalanceTypeEnum];
-export const TransactionResponseDtoTypeEnum = {
-    WITHDRAW: 'WITHDRAW',
-    DEPOSIT: 'DEPOSIT',
-    REFUND: 'REFUND'
-} as const;
+/**
+ * The current status of the transaction.  This field indicates the progress and state of the transaction, such as whether it is pending, processing, successful, or failed.
+ * @export
+ * @enum {string}
+ */
 
-export type TransactionResponseDtoTypeEnum = typeof TransactionResponseDtoTypeEnum[keyof typeof TransactionResponseDtoTypeEnum];
-export const TransactionResponseDtoStatusEnum = {
+export const TransactionStatusEnum = {
     PENDING: 'PENDING',
     PROCESSING: 'PROCESSING',
     COMPLETED: 'COMPLETED',
@@ -20503,7 +11446,23 @@ export const TransactionResponseDtoStatusEnum = {
     ERROR: 'ERROR'
 } as const;
 
-export type TransactionResponseDtoStatusEnum = typeof TransactionResponseDtoStatusEnum[keyof typeof TransactionResponseDtoStatusEnum];
+export type TransactionStatusEnum = typeof TransactionStatusEnum[keyof typeof TransactionStatusEnum];
+
+
+/**
+ * Specifies the nature of the transaction, indicating whether it is a deposit (adding funds), a withdrawal (removing funds).
+ * @export
+ * @enum {string}
+ */
+
+export const TransactionTypeEnum = {
+    WITHDRAW: 'WITHDRAW',
+    DEPOSIT: 'DEPOSIT',
+    REFUND: 'REFUND'
+} as const;
+
+export type TransactionTypeEnum = typeof TransactionTypeEnum[keyof typeof TransactionTypeEnum];
+
 
 /**
  * @type TransferredFromUser
@@ -20539,11 +11498,11 @@ export interface UKDirectDataDto {
  */
 export interface UkAdditionalDataDto {
     /**
-     * The category of the type of organization that the registration is being made for, e.g., LTD, PLC, LLP, SCH, RCHAR.
-     * @type {string}
+     * 
+     * @type {UkRegistrantTypeEnum}
      * @memberof UkAdditionalDataDto
      */
-    'registrantType': UkAdditionalDataDtoRegistrantTypeEnum;
+    'registrantType': UkRegistrantTypeEnum;
     /**
      * For Registration Types LTD, PLC, LLP, IP, you should enter the registrant’s Companies House Registration Number.     For Registrant Type SCH, you should enter the DfES UK School number.     For Registrant Type RCHAR, you should enter the registrant\'s Registered Charity Number.
      * @type {string}
@@ -20564,7 +11523,14 @@ export interface UkAdditionalDataDto {
     'whoisOptOut'?: boolean;
 }
 
-export const UkAdditionalDataDtoRegistrantTypeEnum = {
+
+/**
+ * The category of the type of organization that the registration is being made for, e.g., LTD, PLC, LLP, SCH, RCHAR.
+ * @export
+ * @enum {string}
+ */
+
+export const UkRegistrantTypeEnum = {
     TLD: 'TLD',
     PLC: 'PLC',
     PTNR: 'PTNR',
@@ -20583,7 +11549,8 @@ export const UkAdditionalDataDtoRegistrantTypeEnum = {
     FOTHER: 'FOTHER'
 } as const;
 
-export type UkAdditionalDataDtoRegistrantTypeEnum = typeof UkAdditionalDataDtoRegistrantTypeEnum[keyof typeof UkAdditionalDataDtoRegistrantTypeEnum];
+export type UkRegistrantTypeEnum = typeof UkRegistrantTypeEnum[keyof typeof UkRegistrantTypeEnum];
+
 
 /**
  * 
@@ -20666,136 +11633,13 @@ export interface UpdateClientRequestDto {
  */
 export interface UpdateCompanyCurrencyRequest {
     /**
-     * The currency code to set for the company.
-     * @type {string}
+     * 
+     * @type {CurrencyCodeEnum}
      * @memberof UpdateCompanyCurrencyRequest
      */
-    'currency': UpdateCompanyCurrencyRequestCurrencyEnum;
+    'currency': CurrencyCodeEnum;
 }
 
-export const UpdateCompanyCurrencyRequestCurrencyEnum = {
-    USD: 'USD',
-    CAD: 'CAD',
-    EUR: 'EUR',
-    AED: 'AED',
-    AFN: 'AFN',
-    ALL: 'ALL',
-    AMD: 'AMD',
-    ARS: 'ARS',
-    AUD: 'AUD',
-    AZN: 'AZN',
-    BAM: 'BAM',
-    BDT: 'BDT',
-    BGN: 'BGN',
-    BHD: 'BHD',
-    BIF: 'BIF',
-    BND: 'BND',
-    BOB: 'BOB',
-    BRL: 'BRL',
-    BWP: 'BWP',
-    BYN: 'BYN',
-    BZD: 'BZD',
-    CDF: 'CDF',
-    CHF: 'CHF',
-    CLP: 'CLP',
-    CNY: 'CNY',
-    COP: 'COP',
-    CRC: 'CRC',
-    CVE: 'CVE',
-    CZK: 'CZK',
-    DJF: 'DJF',
-    DKK: 'DKK',
-    DOP: 'DOP',
-    DZD: 'DZD',
-    EEK: 'EEK',
-    EGP: 'EGP',
-    ERN: 'ERN',
-    ETB: 'ETB',
-    GBP: 'GBP',
-    GEL: 'GEL',
-    GHS: 'GHS',
-    GNF: 'GNF',
-    GTQ: 'GTQ',
-    HKD: 'HKD',
-    HNL: 'HNL',
-    HRK: 'HRK',
-    HUF: 'HUF',
-    IDR: 'IDR',
-    ILS: 'ILS',
-    INR: 'INR',
-    IQD: 'IQD',
-    IRR: 'IRR',
-    ISK: 'ISK',
-    JMD: 'JMD',
-    JOD: 'JOD',
-    JPY: 'JPY',
-    KES: 'KES',
-    KHR: 'KHR',
-    KMF: 'KMF',
-    KRW: 'KRW',
-    KWD: 'KWD',
-    KZT: 'KZT',
-    LBP: 'LBP',
-    LKR: 'LKR',
-    LTL: 'LTL',
-    LVL: 'LVL',
-    LYD: 'LYD',
-    MAD: 'MAD',
-    MDL: 'MDL',
-    MGA: 'MGA',
-    MKD: 'MKD',
-    MMK: 'MMK',
-    MOP: 'MOP',
-    MUR: 'MUR',
-    MXN: 'MXN',
-    MYR: 'MYR',
-    MZN: 'MZN',
-    NAD: 'NAD',
-    NGN: 'NGN',
-    NIO: 'NIO',
-    NOK: 'NOK',
-    NPR: 'NPR',
-    NZD: 'NZD',
-    OMR: 'OMR',
-    PAB: 'PAB',
-    PEN: 'PEN',
-    PHP: 'PHP',
-    PKR: 'PKR',
-    PLN: 'PLN',
-    PYG: 'PYG',
-    QAR: 'QAR',
-    RON: 'RON',
-    RSD: 'RSD',
-    RUB: 'RUB',
-    RWF: 'RWF',
-    SAR: 'SAR',
-    SDG: 'SDG',
-    SEK: 'SEK',
-    SGD: 'SGD',
-    SOS: 'SOS',
-    SYP: 'SYP',
-    THB: 'THB',
-    TND: 'TND',
-    TOP: 'TOP',
-    TRY: 'TRY',
-    TTD: 'TTD',
-    TWD: 'TWD',
-    TZS: 'TZS',
-    UAH: 'UAH',
-    UGX: 'UGX',
-    UYU: 'UYU',
-    UZS: 'UZS',
-    VEF: 'VEF',
-    VND: 'VND',
-    XAF: 'XAF',
-    XOF: 'XOF',
-    YER: 'YER',
-    ZAR: 'ZAR',
-    ZMK: 'ZMK',
-    ZWL: 'ZWL'
-} as const;
-
-export type UpdateCompanyCurrencyRequestCurrencyEnum = typeof UpdateCompanyCurrencyRequestCurrencyEnum[keyof typeof UpdateCompanyCurrencyRequestCurrencyEnum];
 
 /**
  * 
@@ -20805,51 +11649,11 @@ export type UpdateCompanyCurrencyRequestCurrencyEnum = typeof UpdateCompanyCurre
 export interface UpdateCompanyPaymentMethodsRequest {
     /**
      * Array of payment methods to set for the company.
-     * @type {Array<string>}
+     * @type {Array<PaymentMethodsEnum>}
      * @memberof UpdateCompanyPaymentMethodsRequest
      */
-    'paymentMethods': Array<UpdateCompanyPaymentMethodsRequestPaymentMethodsEnum>;
+    'paymentMethods': Array<PaymentMethodsEnum>;
 }
-
-export const UpdateCompanyPaymentMethodsRequestPaymentMethodsEnum = {
-    card: 'card',
-    us_bank_account: 'us_bank_account',
-    bacs_debit: 'bacs_debit',
-    au_becs_debit: 'au_becs_debit',
-    nz_bank_account: 'nz_bank_account',
-    sepa_debit: 'sepa_debit',
-    acss_debit: 'acss_debit',
-    bancontact: 'bancontact',
-    blik: 'blik',
-    eps: 'eps',
-    fpx: 'fpx',
-    ideal: 'ideal',
-    p24: 'p24',
-    pay_by_bank: 'pay_by_bank',
-    twint: 'twint',
-    customer_balance: 'customer_balance',
-    affirm: 'affirm',
-    afterpay_clearpay: 'afterpay_clearpay',
-    alma: 'alma',
-    klarna: 'klarna',
-    boleto: 'boleto',
-    konbini: 'konbini',
-    multibanco: 'multibanco',
-    oxxo: 'oxxo',
-    alipay: 'alipay',
-    apple_pay: 'apple_pay',
-    google_pay: 'google_pay',
-    cashapp: 'cashapp',
-    grabpay: 'grabpay',
-    mobilepay: 'mobilepay',
-    paypal: 'paypal',
-    revolut_pay: 'revolut_pay',
-    vipps: 'vipps',
-    wechat_pay: 'wechat_pay'
-} as const;
-
-export type UpdateCompanyPaymentMethodsRequestPaymentMethodsEnum = typeof UpdateCompanyPaymentMethodsRequestPaymentMethodsEnum[keyof typeof UpdateCompanyPaymentMethodsRequestPaymentMethodsEnum];
-
 /**
  * 
  * @export
@@ -20929,82 +11733,41 @@ export interface UpdateUserTagsRequest {
 /**
  * 
  * @export
- * @interface UrlFieldDto
+ * @interface UpgradeDowngradePriceDto
  */
-export interface UrlFieldDto {
+export interface UpgradeDowngradePriceDto {
     /**
-     * Discriminator literal — always \'URL\' for this DTO.
-     * @type {string}
-     * @memberof UrlFieldDto
+     * 
+     * @type {DurationEnum}
+     * @memberof UpgradeDowngradePriceDto
      */
-    'type': UrlFieldDtoTypeEnum;
+    'duration': DurationEnum;
     /**
-     * URL.
-     * @type {string}
-     * @memberof UrlFieldDto
+     * The base price of the target product for this duration.
+     * @type {number}
+     * @memberof UpgradeDowngradePriceDto
      */
-    'value'?: string;
+    'basePrice': number;
     /**
-     * Unique identifier for the field.
-     * @type {string}
-     * @memberof UrlFieldDto
+     * The setup fee of the target product for this duration.
+     * @type {number}
+     * @memberof UpgradeDowngradePriceDto
      */
-    'id': string;
+    'setupFee': number;
     /**
-     * Multilingual label for the field.
-     * @type {Array<MultilangTextDto>}
-     * @memberof UrlFieldDto
+     * The unused value from the source item credited during upgrade/downgrade.
+     * @type {number}
+     * @memberof UpgradeDowngradePriceDto
      */
-    'label': Array<MultilangTextDto>;
+    'upgradeRemainder': number;
     /**
-     * Whether the field is required.
-     * @type {boolean}
-     * @memberof UrlFieldDto
+     * The final subtotal after applying the upgrade remainder credit (basePrice + setupFee - upgradeRemainder).
+     * @type {number}
+     * @memberof UpgradeDowngradePriceDto
      */
-    'required': boolean;
-    /**
-     * Whether the field is disabled.
-     * @type {boolean}
-     * @memberof UrlFieldDto
-     */
-    'disabled': boolean;
-    /**
-     * Whether the field is hidden.
-     * @type {boolean}
-     * @memberof UrlFieldDto
-     */
-    'hidden'?: boolean;
-    /**
-     * Whether remote validation should be triggered for this field.
-     * @type {boolean}
-     * @memberof UrlFieldDto
-     */
-    'triggersRemoteValidation'?: boolean;
-    /**
-     * Localized error message shown when remote validation fails.
-     * @type {Array<MultilangTextDto>}
-     * @memberof UrlFieldDto
-     */
-    'remoteValidationErrorMessage'?: Array<MultilangTextDto>;
-    /**
-     * Whether the item attribute is upgradable by the user.
-     * @type {boolean}
-     * @memberof UrlFieldDto
-     */
-    'upgradable'?: boolean;
-    /**
-     * Whether the item attribute is downgradable by the user.
-     * @type {boolean}
-     * @memberof UrlFieldDto
-     */
-    'downgradable'?: boolean;
+    'subtotal': number;
 }
 
-export const UrlFieldDtoTypeEnum = {
-    URL: 'URL'
-} as const;
-
-export type UrlFieldDtoTypeEnum = typeof UrlFieldDtoTypeEnum[keyof typeof UrlFieldDtoTypeEnum];
 
 /**
  * 
@@ -21013,20 +11776,27 @@ export type UrlFieldDtoTypeEnum = typeof UrlFieldDtoTypeEnum[keyof typeof UrlFie
  */
 export interface UsAdditionalDataDto {
     /**
-     * The purpose of the domain application. Possible values include:     - P1 (Business use for profit)     - P2 (Non-profit business, club, association, etc.)     - P3 (Personal use)     - P4 (Education purposes)     - P5 (Government purposes)
-     * @type {string}
+     * 
+     * @type {UsAppPurposeEnum}
      * @memberof UsAdditionalDataDto
      */
-    'appPurpose': UsAdditionalDataDtoAppPurposeEnum;
+    'appPurpose': UsAppPurposeEnum;
     /**
-     * The category of the registrant. Possible values include:     - C11 (A natural person who is a United States citizen)     - C12 (A natural person who is a permanent resident of the United States of America, or     any of its possessions or territories)     - C21 (A US-based organization or company formed within one of the fifty (50) U.S. states,     the District of Columbia, or any of the United States possessions or territories, or organized     or otherwise constituted under the laws of a state of the United States of America, the     District of Columbia, or any of its possessions or territories or a U.S. federal, state, or local     government entity or a political subdivision thereof.)     - C31 (A foreign entity or organization that has a bona fide presence in the United States     of America or any of its possessions or territories who regularly engages in lawful activities     (sales of goods or services or other business, commercial or non-commercial, including     not-for-profit relations in the United States).)     - C32 (A foreign entity or organization that has an office or other facility in the United     States.)
-     * @type {string}
+     * 
+     * @type {UsCategoryEnum}
      * @memberof UsAdditionalDataDto
      */
-    'category': UsAdditionalDataDtoCategoryEnum;
+    'category': UsCategoryEnum;
 }
 
-export const UsAdditionalDataDtoAppPurposeEnum = {
+
+/**
+ * The purpose of the domain application. Possible values include:     - P1 (Business use for profit)     - P2 (Non-profit business, club, association, etc.)     - P3 (Personal use)     - P4 (Education purposes)     - P5 (Government purposes)
+ * @export
+ * @enum {string}
+ */
+
+export const UsAppPurposeEnum = {
     P1: 'P1',
     P2: 'P2',
     P3: 'P3',
@@ -21034,8 +11804,16 @@ export const UsAdditionalDataDtoAppPurposeEnum = {
     P5: 'P5'
 } as const;
 
-export type UsAdditionalDataDtoAppPurposeEnum = typeof UsAdditionalDataDtoAppPurposeEnum[keyof typeof UsAdditionalDataDtoAppPurposeEnum];
-export const UsAdditionalDataDtoCategoryEnum = {
+export type UsAppPurposeEnum = typeof UsAppPurposeEnum[keyof typeof UsAppPurposeEnum];
+
+
+/**
+ * The category of the registrant. Possible values include:     - C11 (A natural person who is a United States citizen)     - C12 (A natural person who is a permanent resident of the United States of America, or     any of its possessions or territories)     - C21 (A US-based organization or company formed within one of the fifty (50) U.S. states,     the District of Columbia, or any of the United States possessions or territories, or organized     or otherwise constituted under the laws of a state of the United States of America, the     District of Columbia, or any of its possessions or territories or a U.S. federal, state, or local     government entity or a political subdivision thereof.)     - C31 (A foreign entity or organization that has a bona fide presence in the United States     of America or any of its possessions or territories who regularly engages in lawful activities     (sales of goods or services or other business, commercial or non-commercial, including     not-for-profit relations in the United States).)     - C32 (A foreign entity or organization that has an office or other facility in the United     States.)
+ * @export
+ * @enum {string}
+ */
+
+export const UsCategoryEnum = {
     C11: 'C11',
     C12: 'C12',
     C21: 'C21',
@@ -21043,7 +11821,8 @@ export const UsAdditionalDataDtoCategoryEnum = {
     C32: 'C32'
 } as const;
 
-export type UsAdditionalDataDtoCategoryEnum = typeof UsAdditionalDataDtoCategoryEnum[keyof typeof UsAdditionalDataDtoCategoryEnum];
+export type UsCategoryEnum = typeof UsCategoryEnum[keyof typeof UsCategoryEnum];
+
 
 /**
  * @type User
@@ -21115,11 +11894,11 @@ export interface UserResponseDto {
      */
     'comments'?: Array<string>;
     /**
-     * Indicates the invoice frequency. If not set, the company\'s default invoice interval will be used when the value is null.
-     * @type {string}
+     * 
+     * @type {InvoiceIntervalEnum}
      * @memberof UserResponseDto
      */
-    'invoiceInterval'?: UserResponseDtoInvoiceIntervalEnum;
+    'invoiceInterval'?: InvoiceIntervalEnum;
     /**
      * 
      * @type {AcceptedNotificationMethodsDto}
@@ -21193,11 +11972,11 @@ export interface UserResponseDto {
      */
     'id'?: string;
     /**
-     * Specifies the user\'s preferred default language, primarily used for localization of notifications and user-facing content.
-     * @type {string}
+     * 
+     * @type {LanguageEnum}
      * @memberof UserResponseDto
      */
-    'defaultLanguage'?: UserResponseDtoDefaultLanguageEnum;
+    'defaultLanguage'?: LanguageEnum;
     /**
      * 
      * @type {CompanyRoleResponseDto}
@@ -21248,202 +12027,6 @@ export interface UserResponseDto {
     'updatedAt'?: string;
 }
 
-export const UserResponseDtoInvoiceIntervalEnum = {
-    instant: 'instant',
-    weekly: 'weekly',
-    monthly: 'monthly',
-    per_request: 'per request'
-} as const;
-
-export type UserResponseDtoInvoiceIntervalEnum = typeof UserResponseDtoInvoiceIntervalEnum[keyof typeof UserResponseDtoInvoiceIntervalEnum];
-export const UserResponseDtoDefaultLanguageEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-
-export type UserResponseDtoDefaultLanguageEnum = typeof UserResponseDtoDefaultLanguageEnum[keyof typeof UserResponseDtoDefaultLanguageEnum];
 
 /**
  * 
@@ -21472,10 +12055,10 @@ export interface ValidateTIN200Response {
 }
 /**
  * @type Value
- * ISO 8601 date or date-time string.
+ * Value of the field. String/Number, or FieldOptionDto/FieldOptionDto[] depending on type.
  * @export
  */
-export type Value = string;
+export type Value = FieldOptionDto | any | number | string;
 
 /**
  * 
@@ -22424,6 +13007,46 @@ export class ClientInvoiceContactsApi extends BaseAPI {
 export const ClientItemsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Allows a client to request a full refund for one or more of their items.
+         * @summary Request refund for one or more client items
+         * @param {ClientRefundRequestDto} clientRefundRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clientItemRefund: async (clientRefundRequestDto: ClientRefundRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'clientRefundRequestDto' is not null or undefined
+            assertParamExists('clientItemRefund', 'clientRefundRequestDto', clientRefundRequestDto)
+            const localVarPath = `/client/items/request-refund`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(clientRefundRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -22681,6 +13304,19 @@ export const ClientItemsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ClientItemsApiAxiosParamCreator(configuration)
     return {
         /**
+         * Allows a client to request a full refund for one or more of their items.
+         * @summary Request refund for one or more client items
+         * @param {ClientRefundRequestDto} clientRefundRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async clientItemRefund(clientRefundRequestDto: ClientRefundRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.clientItemRefund(clientRefundRequestDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientItemsApi.clientItemRefund']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -22772,6 +13408,16 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
     const localVarFp = ClientItemsApiFp(configuration)
     return {
         /**
+         * Allows a client to request a full refund for one or more of their items.
+         * @summary Request refund for one or more client items
+         * @param {ClientRefundRequestDto} clientRefundRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        clientItemRefund(clientRefundRequestDto: ClientRefundRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.clientItemRefund(clientRefundRequestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
          * @summary Get Client Item
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retrieve.
@@ -22844,6 +13490,18 @@ export const ClientItemsApiFactory = function (configuration?: Configuration, ba
  * @extends {BaseAPI}
  */
 export class ClientItemsApi extends BaseAPI {
+    /**
+     * Allows a client to request a full refund for one or more of their items.
+     * @summary Request refund for one or more client items
+     * @param {ClientRefundRequestDto} clientRefundRequestDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ClientItemsApi
+     */
+    public clientItemRefund(clientRefundRequestDto: ClientRefundRequestDto, options?: RawAxiosRequestConfig) {
+        return ClientItemsApiFp(this.configuration).clientItemRefund(clientRefundRequestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Retrieve a specific item for a client by its unique ID. Returns the item details if found and belongs to the authenticated user.
      * @summary Get Client Item
@@ -23053,13 +13711,13 @@ export const ClientOrdersApiAxiosParamCreator = function (configuration?: Config
          * @summary Get client orders
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
-         * @param {GetClientOrdersStatusEnum} [status] Filter by order status
+         * @param {OrderStatusEnum} [status] Filter by order status
          * @param {number} [orderNumber] Filter by order number
          * @param {boolean} [archived] Filter by archived status
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getClientOrders: async (currentPage?: number, perPage?: number, status?: GetClientOrdersStatusEnum, orderNumber?: number, archived?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getClientOrders: async (currentPage?: number, perPage?: number, status?: OrderStatusEnum, orderNumber?: number, archived?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/client/orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -23162,13 +13820,13 @@ export const ClientOrdersApiFp = function(configuration?: Configuration) {
          * @summary Get client orders
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
-         * @param {GetClientOrdersStatusEnum} [status] Filter by order status
+         * @param {OrderStatusEnum} [status] Filter by order status
          * @param {number} [orderNumber] Filter by order number
          * @param {boolean} [archived] Filter by archived status
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getClientOrders(currentPage?: number, perPage?: number, status?: GetClientOrdersStatusEnum, orderNumber?: number, archived?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetClientOrders200Response>> {
+        async getClientOrders(currentPage?: number, perPage?: number, status?: OrderStatusEnum, orderNumber?: number, archived?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetClientOrders200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getClientOrders(currentPage, perPage, status, orderNumber, archived, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ClientOrdersApi.getClientOrders']?.[localVarOperationServerIndex]?.url;
@@ -23220,13 +13878,13 @@ export const ClientOrdersApiFactory = function (configuration?: Configuration, b
          * @summary Get client orders
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
-         * @param {GetClientOrdersStatusEnum} [status] Filter by order status
+         * @param {OrderStatusEnum} [status] Filter by order status
          * @param {number} [orderNumber] Filter by order number
          * @param {boolean} [archived] Filter by archived status
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getClientOrders(currentPage?: number, perPage?: number, status?: GetClientOrdersStatusEnum, orderNumber?: number, archived?: boolean, options?: any): AxiosPromise<GetClientOrders200Response> {
+        getClientOrders(currentPage?: number, perPage?: number, status?: OrderStatusEnum, orderNumber?: number, archived?: boolean, options?: any): AxiosPromise<GetClientOrders200Response> {
             return localVarFp.getClientOrders(currentPage, perPage, status, orderNumber, archived, options).then((request) => request(axios, basePath));
         },
     };
@@ -23281,30 +13939,18 @@ export class ClientOrdersApi extends BaseAPI {
      * @summary Get client orders
      * @param {number} [currentPage] current page
      * @param {number} [perPage] per Page 
-     * @param {GetClientOrdersStatusEnum} [status] Filter by order status
+     * @param {OrderStatusEnum} [status] Filter by order status
      * @param {number} [orderNumber] Filter by order number
      * @param {boolean} [archived] Filter by archived status
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ClientOrdersApi
      */
-    public getClientOrders(currentPage?: number, perPage?: number, status?: GetClientOrdersStatusEnum, orderNumber?: number, archived?: boolean, options?: RawAxiosRequestConfig) {
+    public getClientOrders(currentPage?: number, perPage?: number, status?: OrderStatusEnum, orderNumber?: number, archived?: boolean, options?: RawAxiosRequestConfig) {
         return ClientOrdersApiFp(this.configuration).getClientOrders(currentPage, perPage, status, orderNumber, archived, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
-export const GetClientOrdersStatusEnum = {
-    idle: 'idle',
-    inprogress: 'inprogress',
-    completed: 'completed',
-    canceled: 'canceled',
-    archived: 'archived',
-    refunded: 'refunded'
-} as const;
-export type GetClientOrdersStatusEnum = typeof GetClientOrdersStatusEnum[keyof typeof GetClientOrdersStatusEnum];
 
 
 /**
@@ -23612,11 +14258,11 @@ export const ClientUsersApiAxiosParamCreator = function (configuration?: Configu
         /**
          * Updates the default language for the authenticated client user and returns a boolean indicating success.
          * @summary Update Client User Default Language
-         * @param {UpdateClientUserDefaultLanguageLanguageEnum} language The language to set as default.
+         * @param {LanguageEnum} language The language to set as default.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateClientUserDefaultLanguage: async (language: UpdateClientUserDefaultLanguageLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateClientUserDefaultLanguage: async (language: LanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'language' is not null or undefined
             assertParamExists('updateClientUserDefaultLanguage', 'language', language)
             const localVarPath = `/client/users/languages`;
@@ -23694,11 +14340,11 @@ export const ClientUsersApiAxiosParamCreator = function (configuration?: Configu
         /**
          * Updates the invoice interval for the authenticated client user and returns a boolean indicating success.
          * @summary Update Client User Invoice Interval
-         * @param {UpdateClientUserInvoiceIntervalInvoiceIntervalEnum} invoiceInterval The invoice interval to set.
+         * @param {InvoiceIntervalEnum} invoiceInterval The invoice interval to set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateClientUserInvoiceInterval: async (invoiceInterval: UpdateClientUserInvoiceIntervalInvoiceIntervalEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateClientUserInvoiceInterval: async (invoiceInterval: InvoiceIntervalEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'invoiceInterval' is not null or undefined
             assertParamExists('updateClientUserInvoiceInterval', 'invoiceInterval', invoiceInterval)
             const localVarPath = `/client/users/invoice-interval`;
@@ -23844,11 +14490,11 @@ export const ClientUsersApiFp = function(configuration?: Configuration) {
         /**
          * Updates the default language for the authenticated client user and returns a boolean indicating success.
          * @summary Update Client User Default Language
-         * @param {UpdateClientUserDefaultLanguageLanguageEnum} language The language to set as default.
+         * @param {LanguageEnum} language The language to set as default.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateClientUserDefaultLanguage(language: UpdateClientUserDefaultLanguageLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+        async updateClientUserDefaultLanguage(language: LanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateClientUserDefaultLanguage(language, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ClientUsersApi.updateClientUserDefaultLanguage']?.[localVarOperationServerIndex]?.url;
@@ -23870,11 +14516,11 @@ export const ClientUsersApiFp = function(configuration?: Configuration) {
         /**
          * Updates the invoice interval for the authenticated client user and returns a boolean indicating success.
          * @summary Update Client User Invoice Interval
-         * @param {UpdateClientUserInvoiceIntervalInvoiceIntervalEnum} invoiceInterval The invoice interval to set.
+         * @param {InvoiceIntervalEnum} invoiceInterval The invoice interval to set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateClientUserInvoiceInterval(invoiceInterval: UpdateClientUserInvoiceIntervalInvoiceIntervalEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+        async updateClientUserInvoiceInterval(invoiceInterval: InvoiceIntervalEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateClientUserInvoiceInterval(invoiceInterval, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ClientUsersApi.updateClientUserInvoiceInterval']?.[localVarOperationServerIndex]?.url;
@@ -23968,11 +14614,11 @@ export const ClientUsersApiFactory = function (configuration?: Configuration, ba
         /**
          * Updates the default language for the authenticated client user and returns a boolean indicating success.
          * @summary Update Client User Default Language
-         * @param {UpdateClientUserDefaultLanguageLanguageEnum} language The language to set as default.
+         * @param {LanguageEnum} language The language to set as default.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateClientUserDefaultLanguage(language: UpdateClientUserDefaultLanguageLanguageEnum, options?: any): AxiosPromise<UpdateIntegration200Response> {
+        updateClientUserDefaultLanguage(language: LanguageEnum, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.updateClientUserDefaultLanguage(language, options).then((request) => request(axios, basePath));
         },
         /**
@@ -23988,11 +14634,11 @@ export const ClientUsersApiFactory = function (configuration?: Configuration, ba
         /**
          * Updates the invoice interval for the authenticated client user and returns a boolean indicating success.
          * @summary Update Client User Invoice Interval
-         * @param {UpdateClientUserInvoiceIntervalInvoiceIntervalEnum} invoiceInterval The invoice interval to set.
+         * @param {InvoiceIntervalEnum} invoiceInterval The invoice interval to set.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateClientUserInvoiceInterval(invoiceInterval: UpdateClientUserInvoiceIntervalInvoiceIntervalEnum, options?: any): AxiosPromise<UpdateIntegration200Response> {
+        updateClientUserInvoiceInterval(invoiceInterval: InvoiceIntervalEnum, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.updateClientUserInvoiceInterval(invoiceInterval, options).then((request) => request(axios, basePath));
         },
     };
@@ -24099,12 +14745,12 @@ export class ClientUsersApi extends BaseAPI {
     /**
      * Updates the default language for the authenticated client user and returns a boolean indicating success.
      * @summary Update Client User Default Language
-     * @param {UpdateClientUserDefaultLanguageLanguageEnum} language The language to set as default.
+     * @param {LanguageEnum} language The language to set as default.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ClientUsersApi
      */
-    public updateClientUserDefaultLanguage(language: UpdateClientUserDefaultLanguageLanguageEnum, options?: RawAxiosRequestConfig) {
+    public updateClientUserDefaultLanguage(language: LanguageEnum, options?: RawAxiosRequestConfig) {
         return ClientUsersApiFp(this.configuration).updateClientUserDefaultLanguage(language, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -24123,216 +14769,16 @@ export class ClientUsersApi extends BaseAPI {
     /**
      * Updates the invoice interval for the authenticated client user and returns a boolean indicating success.
      * @summary Update Client User Invoice Interval
-     * @param {UpdateClientUserInvoiceIntervalInvoiceIntervalEnum} invoiceInterval The invoice interval to set.
+     * @param {InvoiceIntervalEnum} invoiceInterval The invoice interval to set.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ClientUsersApi
      */
-    public updateClientUserInvoiceInterval(invoiceInterval: UpdateClientUserInvoiceIntervalInvoiceIntervalEnum, options?: RawAxiosRequestConfig) {
+    public updateClientUserInvoiceInterval(invoiceInterval: InvoiceIntervalEnum, options?: RawAxiosRequestConfig) {
         return ClientUsersApiFp(this.configuration).updateClientUserInvoiceInterval(invoiceInterval, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
-export const UpdateClientUserDefaultLanguageLanguageEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-export type UpdateClientUserDefaultLanguageLanguageEnum = typeof UpdateClientUserDefaultLanguageLanguageEnum[keyof typeof UpdateClientUserDefaultLanguageLanguageEnum];
-/**
- * @export
- */
-export const UpdateClientUserInvoiceIntervalInvoiceIntervalEnum = {
-    instant: 'instant',
-    weekly: 'weekly',
-    monthly: 'monthly',
-    per_request: 'per request'
-} as const;
-export type UpdateClientUserInvoiceIntervalInvoiceIntervalEnum = typeof UpdateClientUserInvoiceIntervalInvoiceIntervalEnum[keyof typeof UpdateClientUserInvoiceIntervalInvoiceIntervalEnum];
 
 
 /**
@@ -24522,7 +14968,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Edits the comment for a specified company. Returns a boolean indicating success.
+         * Edits the comment for a specified company. Returns a boolean indicating success. Super-admin only.
          * @summary Edit Company Comment
          * @param {string} companyId A unique identifier for the company.
          * @param {EditCompanyCommentRequest} editCompanyCommentRequest 
@@ -24821,7 +15267,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Locks a company, preventing any modifications. Returns a boolean indicating success.
+         * Locks a company, preventing any modifications. Returns a boolean indicating success. Super-admin only.
          * @summary Lock Company
          * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
@@ -24862,19 +15308,19 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Sets the credit balance for a specified company. Returns a boolean indicating success.
-         * @summary Set Company Credit Balance
+         * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
+         * @summary Set Automatic Refunds
          * @param {string} companyId A unique identifier for the company.
-         * @param {SetCompanyCreditBalanceRequest} setCompanyCreditBalanceRequest 
+         * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setCompanyCreditBalance: async (companyId: string, setCompanyCreditBalanceRequest: SetCompanyCreditBalanceRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        setAutoRefunds: async (companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('setCompanyCreditBalance', 'companyId', companyId)
-            // verify required parameter 'setCompanyCreditBalanceRequest' is not null or undefined
-            assertParamExists('setCompanyCreditBalance', 'setCompanyCreditBalanceRequest', setCompanyCreditBalanceRequest)
-            const localVarPath = `/companies/set-credit-balance`;
+            assertParamExists('setAutoRefunds', 'companyId', companyId)
+            // verify required parameter 'setAutoRefundsRequest' is not null or undefined
+            assertParamExists('setAutoRefunds', 'setAutoRefundsRequest', setAutoRefundsRequest)
+            const localVarPath = `/Companies/set-autorefunds`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -24901,7 +15347,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(setCompanyCreditBalanceRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(setAutoRefundsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -25046,7 +15492,7 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Unlocks a company, allowing modifications. Returns a boolean indicating success.
+         * Unlocks a company, allowing modifications. Returns a boolean indicating success. Super-admin only.
          * @summary Unlock Company
          * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
@@ -25528,7 +15974,7 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Edits the comment for a specified company. Returns a boolean indicating success.
+         * Edits the comment for a specified company. Returns a boolean indicating success. Super-admin only.
          * @summary Edit Company Comment
          * @param {string} companyId A unique identifier for the company.
          * @param {EditCompanyCommentRequest} editCompanyCommentRequest 
@@ -25624,7 +16070,7 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Locks a company, preventing any modifications. Returns a boolean indicating success.
+         * Locks a company, preventing any modifications. Returns a boolean indicating success. Super-admin only.
          * @summary Lock Company
          * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
@@ -25637,17 +16083,17 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Sets the credit balance for a specified company. Returns a boolean indicating success.
-         * @summary Set Company Credit Balance
+         * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
+         * @summary Set Automatic Refunds
          * @param {string} companyId A unique identifier for the company.
-         * @param {SetCompanyCreditBalanceRequest} setCompanyCreditBalanceRequest 
+         * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async setCompanyCreditBalance(companyId: string, setCompanyCreditBalanceRequest: SetCompanyCreditBalanceRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.setCompanyCreditBalance(companyId, setCompanyCreditBalanceRequest, options);
+        async setAutoRefunds(companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.setAutoRefunds(companyId, setAutoRefundsRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.setCompanyCreditBalance']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.setAutoRefunds']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -25693,7 +16139,7 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Unlocks a company, allowing modifications. Returns a boolean indicating success.
+         * Unlocks a company, allowing modifications. Returns a boolean indicating success. Super-admin only.
          * @summary Unlock Company
          * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
@@ -25871,7 +16317,7 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
             return localVarFp.deleteCompany(companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Edits the comment for a specified company. Returns a boolean indicating success.
+         * Edits the comment for a specified company. Returns a boolean indicating success. Super-admin only.
          * @summary Edit Company Comment
          * @param {string} companyId A unique identifier for the company.
          * @param {EditCompanyCommentRequest} editCompanyCommentRequest 
@@ -25946,7 +16392,7 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
             return localVarFp.installCompanyIntegration(companyId, integrationId, installCompanyIntegrationRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Locks a company, preventing any modifications. Returns a boolean indicating success.
+         * Locks a company, preventing any modifications. Returns a boolean indicating success. Super-admin only.
          * @summary Lock Company
          * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
@@ -25956,15 +16402,15 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
             return localVarFp.lockCompany(companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Sets the credit balance for a specified company. Returns a boolean indicating success.
-         * @summary Set Company Credit Balance
+         * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
+         * @summary Set Automatic Refunds
          * @param {string} companyId A unique identifier for the company.
-         * @param {SetCompanyCreditBalanceRequest} setCompanyCreditBalanceRequest 
+         * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setCompanyCreditBalance(companyId: string, setCompanyCreditBalanceRequest: SetCompanyCreditBalanceRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.setCompanyCreditBalance(companyId, setCompanyCreditBalanceRequest, options).then((request) => request(axios, basePath));
+        setAutoRefunds(companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
+            return localVarFp.setAutoRefunds(companyId, setAutoRefundsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Sets the invoice integration for a specified company. Returns a boolean indicating success.
@@ -26000,7 +16446,7 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
             return localVarFp.uninstallCompanyIntegration(companyId, integrationId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Unlocks a company, allowing modifications. Returns a boolean indicating success.
+         * Unlocks a company, allowing modifications. Returns a boolean indicating success. Super-admin only.
          * @summary Unlock Company
          * @param {string} companyId A unique identifier for the company.
          * @param {*} [options] Override http request option.
@@ -26159,7 +16605,7 @@ export class CompaniesApi extends BaseAPI {
     }
 
     /**
-     * Edits the comment for a specified company. Returns a boolean indicating success.
+     * Edits the comment for a specified company. Returns a boolean indicating success. Super-admin only.
      * @summary Edit Company Comment
      * @param {string} companyId A unique identifier for the company.
      * @param {EditCompanyCommentRequest} editCompanyCommentRequest 
@@ -26248,7 +16694,7 @@ export class CompaniesApi extends BaseAPI {
     }
 
     /**
-     * Locks a company, preventing any modifications. Returns a boolean indicating success.
+     * Locks a company, preventing any modifications. Returns a boolean indicating success. Super-admin only.
      * @summary Lock Company
      * @param {string} companyId A unique identifier for the company.
      * @param {*} [options] Override http request option.
@@ -26260,16 +16706,16 @@ export class CompaniesApi extends BaseAPI {
     }
 
     /**
-     * Sets the credit balance for a specified company. Returns a boolean indicating success.
-     * @summary Set Company Credit Balance
+     * Enables or disables automatic refunds for a company. Returns a boolean indicating success.
+     * @summary Set Automatic Refunds
      * @param {string} companyId A unique identifier for the company.
-     * @param {SetCompanyCreditBalanceRequest} setCompanyCreditBalanceRequest 
+     * @param {SetAutoRefundsRequest} setAutoRefundsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public setCompanyCreditBalance(companyId: string, setCompanyCreditBalanceRequest: SetCompanyCreditBalanceRequest, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).setCompanyCreditBalance(companyId, setCompanyCreditBalanceRequest, options).then((request) => request(this.axios, this.basePath));
+    public setAutoRefunds(companyId: string, setAutoRefundsRequest: SetAutoRefundsRequest, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).setAutoRefunds(companyId, setAutoRefundsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -26312,7 +16758,7 @@ export class CompaniesApi extends BaseAPI {
     }
 
     /**
-     * Unlocks a company, allowing modifications. Returns a boolean indicating success.
+     * Unlocks a company, allowing modifications. Returns a boolean indicating success. Super-admin only.
      * @summary Unlock Company
      * @param {string} companyId A unique identifier for the company.
      * @param {*} [options] Override http request option.
@@ -27715,14 +18161,14 @@ export const DomainContactsApiAxiosParamCreator = function (configuration?: Conf
          * @summary Get List of All Domain Contacts
          * @param {string} companyId A unique identifier for the company.
          * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
-         * @param {FindDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
+         * @param {CountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
          * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findDomainContacts: async (companyId: string, query?: string, country?: FindDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        findDomainContacts: async (companyId: string, query?: string, country?: CountryEnum, userId?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('findDomainContacts', 'companyId', companyId)
             const localVarPath = `/domain-contacts`;
@@ -28476,14 +18922,14 @@ export const DomainContactsApiFp = function(configuration?: Configuration) {
          * @summary Get List of All Domain Contacts
          * @param {string} companyId A unique identifier for the company.
          * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
-         * @param {FindDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
+         * @param {CountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
          * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findDomainContacts(companyId: string, query?: string, country?: FindDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindDomainContacts200Response>> {
+        async findDomainContacts(companyId: string, query?: string, country?: CountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindDomainContacts200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.findDomainContacts(companyId, query, country, userId, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DomainContactsApi.findDomainContacts']?.[localVarOperationServerIndex]?.url;
@@ -28720,14 +19166,14 @@ export const DomainContactsApiFactory = function (configuration?: Configuration,
          * @summary Get List of All Domain Contacts
          * @param {string} companyId A unique identifier for the company.
          * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
-         * @param {FindDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
+         * @param {CountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
          * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findDomainContacts(companyId: string, query?: string, country?: FindDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindDomainContacts200Response> {
+        findDomainContacts(companyId: string, query?: string, country?: CountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindDomainContacts200Response> {
             return localVarFp.findDomainContacts(companyId, query, country, userId, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -28926,7 +19372,7 @@ export class DomainContactsApi extends BaseAPI {
      * @summary Get List of All Domain Contacts
      * @param {string} companyId A unique identifier for the company.
      * @param {string} [query] A query string for searching domain contacts by name, street, postcode, organization, city, state, telephone, fax, or email. (Optional)
-     * @param {FindDomainContactsCountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
+     * @param {CountryEnum} [country] Filter domain contacts by the ISO 3166-1-alpha-2 country code. (Optional)
      * @param {string} [userId] Filter by the ID of the parent domain contact. (Optional)
      * @param {number} [currentPage] current page
      * @param {number} [perPage] per Page 
@@ -28934,7 +19380,7 @@ export class DomainContactsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DomainContactsApi
      */
-    public findDomainContacts(companyId: string, query?: string, country?: FindDomainContactsCountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+    public findDomainContacts(companyId: string, query?: string, country?: CountryEnum, userId?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
         return DomainContactsApiFp(this.configuration).findDomainContacts(companyId, query, country, userId, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -29120,261 +19566,6 @@ export class DomainContactsApi extends BaseAPI {
     }
 }
 
-/**
- * @export
- */
-export const FindDomainContactsCountryEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-export type FindDomainContactsCountryEnum = typeof FindDomainContactsCountryEnum[keyof typeof FindDomainContactsCountryEnum];
 
 
 /**
@@ -31501,12 +21692,12 @@ export const InvoiceContactsApiAxiosParamCreator = function (configuration?: Con
          * @param {boolean} isCompany 
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
-         * @param {FindInvoiceContactsCountryEnum} [country] 
+         * @param {CountryEnum} [country] 
          * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findInvoiceContacts: async (companyId: string, userId: string, isCompany: boolean, currentPage?: number, perPage?: number, country?: FindInvoiceContactsCountryEnum, query?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        findInvoiceContacts: async (companyId: string, userId: string, isCompany: boolean, currentPage?: number, perPage?: number, country?: CountryEnum, query?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('findInvoiceContacts', 'companyId', companyId)
             // verify required parameter 'userId' is not null or undefined
@@ -31806,12 +21997,12 @@ export const InvoiceContactsApiFp = function(configuration?: Configuration) {
          * @param {boolean} isCompany 
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
-         * @param {FindInvoiceContactsCountryEnum} [country] 
+         * @param {CountryEnum} [country] 
          * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findInvoiceContacts(companyId: string, userId: string, isCompany: boolean, currentPage?: number, perPage?: number, country?: FindInvoiceContactsCountryEnum, query?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindInvoiceContacts200Response>> {
+        async findInvoiceContacts(companyId: string, userId: string, isCompany: boolean, currentPage?: number, perPage?: number, country?: CountryEnum, query?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindInvoiceContacts200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.findInvoiceContacts(companyId, userId, isCompany, currentPage, perPage, country, query, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['InvoiceContactsApi.findInvoiceContacts']?.[localVarOperationServerIndex]?.url;
@@ -31915,12 +22106,12 @@ export const InvoiceContactsApiFactory = function (configuration?: Configuration
          * @param {boolean} isCompany 
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
-         * @param {FindInvoiceContactsCountryEnum} [country] 
+         * @param {CountryEnum} [country] 
          * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findInvoiceContacts(companyId: string, userId: string, isCompany: boolean, currentPage?: number, perPage?: number, country?: FindInvoiceContactsCountryEnum, query?: string, options?: any): AxiosPromise<FindInvoiceContacts200Response> {
+        findInvoiceContacts(companyId: string, userId: string, isCompany: boolean, currentPage?: number, perPage?: number, country?: CountryEnum, query?: string, options?: any): AxiosPromise<FindInvoiceContacts200Response> {
             return localVarFp.findInvoiceContacts(companyId, userId, isCompany, currentPage, perPage, country, query, options).then((request) => request(axios, basePath));
         },
         /**
@@ -32013,13 +22204,13 @@ export class InvoiceContactsApi extends BaseAPI {
      * @param {boolean} isCompany 
      * @param {number} [currentPage] current page
      * @param {number} [perPage] per Page 
-     * @param {FindInvoiceContactsCountryEnum} [country] 
+     * @param {CountryEnum} [country] 
      * @param {string} [query] Query search for Name, Street, Postcode, Org, City, State, telephone, fax, email
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InvoiceContactsApi
      */
-    public findInvoiceContacts(companyId: string, userId: string, isCompany: boolean, currentPage?: number, perPage?: number, country?: FindInvoiceContactsCountryEnum, query?: string, options?: RawAxiosRequestConfig) {
+    public findInvoiceContacts(companyId: string, userId: string, isCompany: boolean, currentPage?: number, perPage?: number, country?: CountryEnum, query?: string, options?: RawAxiosRequestConfig) {
         return InvoiceContactsApiFp(this.configuration).findInvoiceContacts(companyId, userId, isCompany, currentPage, perPage, country, query, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -32078,261 +22269,6 @@ export class InvoiceContactsApi extends BaseAPI {
     }
 }
 
-/**
- * @export
- */
-export const FindInvoiceContactsCountryEnum = {
-    AF: 'AF',
-    AX: 'AX',
-    AL: 'AL',
-    DZ: 'DZ',
-    AS: 'AS',
-    AD: 'AD',
-    AO: 'AO',
-    AI: 'AI',
-    AQ: 'AQ',
-    AG: 'AG',
-    AR: 'AR',
-    AM: 'AM',
-    AW: 'AW',
-    AU: 'AU',
-    AT: 'AT',
-    AZ: 'AZ',
-    BS: 'BS',
-    BH: 'BH',
-    BD: 'BD',
-    BB: 'BB',
-    BY: 'BY',
-    BE: 'BE',
-    BZ: 'BZ',
-    BJ: 'BJ',
-    BM: 'BM',
-    BT: 'BT',
-    BO: 'BO',
-    BQ: 'BQ',
-    BA: 'BA',
-    BW: 'BW',
-    BV: 'BV',
-    BR: 'BR',
-    IO: 'IO',
-    BN: 'BN',
-    BG: 'BG',
-    BF: 'BF',
-    BI: 'BI',
-    KH: 'KH',
-    CM: 'CM',
-    CA: 'CA',
-    CV: 'CV',
-    KY: 'KY',
-    CF: 'CF',
-    TD: 'TD',
-    CL: 'CL',
-    CN: 'CN',
-    CX: 'CX',
-    CC: 'CC',
-    CO: 'CO',
-    KM: 'KM',
-    CG: 'CG',
-    CD: 'CD',
-    CK: 'CK',
-    CR: 'CR',
-    CI: 'CI',
-    HR: 'HR',
-    CU: 'CU',
-    CW: 'CW',
-    CY: 'CY',
-    CZ: 'CZ',
-    DK: 'DK',
-    DJ: 'DJ',
-    DM: 'DM',
-    DO: 'DO',
-    EC: 'EC',
-    EG: 'EG',
-    SV: 'SV',
-    GQ: 'GQ',
-    ER: 'ER',
-    EE: 'EE',
-    ET: 'ET',
-    FK: 'FK',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    GF: 'GF',
-    PF: 'PF',
-    TF: 'TF',
-    GA: 'GA',
-    GM: 'GM',
-    GE: 'GE',
-    DE: 'DE',
-    GH: 'GH',
-    GI: 'GI',
-    GR: 'GR',
-    GL: 'GL',
-    GD: 'GD',
-    GP: 'GP',
-    GU: 'GU',
-    GT: 'GT',
-    GG: 'GG',
-    GN: 'GN',
-    GW: 'GW',
-    GY: 'GY',
-    HT: 'HT',
-    HM: 'HM',
-    VA: 'VA',
-    HN: 'HN',
-    HK: 'HK',
-    HU: 'HU',
-    IS: 'IS',
-    IN: 'IN',
-    ID: 'ID',
-    IR: 'IR',
-    IQ: 'IQ',
-    IE: 'IE',
-    IM: 'IM',
-    IL: 'IL',
-    IT: 'IT',
-    JM: 'JM',
-    JP: 'JP',
-    JE: 'JE',
-    JO: 'JO',
-    KZ: 'KZ',
-    KE: 'KE',
-    KI: 'KI',
-    KP: 'KP',
-    KR: 'KR',
-    KW: 'KW',
-    KG: 'KG',
-    LA: 'LA',
-    LV: 'LV',
-    LB: 'LB',
-    LS: 'LS',
-    LR: 'LR',
-    LY: 'LY',
-    LI: 'LI',
-    LT: 'LT',
-    LU: 'LU',
-    MO: 'MO',
-    MK: 'MK',
-    MG: 'MG',
-    MW: 'MW',
-    MY: 'MY',
-    MV: 'MV',
-    ML: 'ML',
-    MT: 'MT',
-    MH: 'MH',
-    MQ: 'MQ',
-    MR: 'MR',
-    MU: 'MU',
-    TN: 'TN',
-    TR: 'TR',
-    TM: 'TM',
-    TC: 'TC',
-    TV: 'TV',
-    UG: 'UG',
-    UA: 'UA',
-    AE: 'AE',
-    GB: 'GB',
-    US: 'US',
-    UM: 'UM',
-    UY: 'UY',
-    UZ: 'UZ',
-    VU: 'VU',
-    VE: 'VE',
-    VN: 'VN',
-    VG: 'VG',
-    VI: 'VI',
-    WF: 'WF',
-    EH: 'EH',
-    YE: 'YE',
-    ZM: 'ZM',
-    ZW: 'ZW',
-    YT: 'YT',
-    MX: 'MX',
-    FM: 'FM',
-    MD: 'MD',
-    MC: 'MC',
-    MN: 'MN',
-    ME: 'ME',
-    MS: 'MS',
-    MA: 'MA',
-    MZ: 'MZ',
-    MM: 'MM',
-    NA: 'NA',
-    NR: 'NR',
-    NP: 'NP',
-    NL: 'NL',
-    NC: 'NC',
-    NZ: 'NZ',
-    NI: 'NI',
-    NE: 'NE',
-    NG: 'NG',
-    NU: 'NU',
-    NF: 'NF',
-    MP: 'MP',
-    NO: 'NO',
-    OM: 'OM',
-    PK: 'PK',
-    PW: 'PW',
-    PS: 'PS',
-    PA: 'PA',
-    PG: 'PG',
-    PY: 'PY',
-    PE: 'PE',
-    PH: 'PH',
-    PN: 'PN',
-    PL: 'PL',
-    PT: 'PT',
-    PR: 'PR',
-    QA: 'QA',
-    RE: 'RE',
-    RO: 'RO',
-    RU: 'RU',
-    RW: 'RW',
-    BL: 'BL',
-    SH: 'SH',
-    KN: 'KN',
-    LC: 'LC',
-    MF: 'MF',
-    PM: 'PM',
-    VC: 'VC',
-    WS: 'WS',
-    SM: 'SM',
-    ST: 'ST',
-    SA: 'SA',
-    SN: 'SN',
-    RS: 'RS',
-    SC: 'SC',
-    SL: 'SL',
-    SG: 'SG',
-    SX: 'SX',
-    SK: 'SK',
-    SI: 'SI',
-    SB: 'SB',
-    SO: 'SO',
-    ZA: 'ZA',
-    GS: 'GS',
-    SS: 'SS',
-    ES: 'ES',
-    LK: 'LK',
-    SD: 'SD',
-    SR: 'SR',
-    SJ: 'SJ',
-    SZ: 'SZ',
-    SE: 'SE',
-    CH: 'CH',
-    SY: 'SY',
-    TW: 'TW',
-    TJ: 'TJ',
-    TZ: 'TZ',
-    TH: 'TH',
-    TL: 'TL',
-    TG: 'TG',
-    TK: 'TK',
-    TO: 'TO',
-    TT: 'TT'
-} as const;
-export type FindInvoiceContactsCountryEnum = typeof FindInvoiceContactsCountryEnum[keyof typeof FindInvoiceContactsCountryEnum];
 
 
 /**
@@ -32424,13 +22360,13 @@ export const InvoicesApiAxiosParamCreator = function (configuration?: Configurat
          * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
          * @summary Get list of all invoices
          * @param {string} companyId A unique identifier for the company.
-         * @param {FindInvoicesStatusEnum} [status] Filter invoices by status (optional).
+         * @param {InvoiceStatusEnum} [status] Filter invoices by status (optional).
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findInvoices: async (companyId: string, status?: FindInvoicesStatusEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        findInvoices: async (companyId: string, status?: InvoiceStatusEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('findInvoices', 'companyId', companyId)
             const localVarPath = `/invoices`;
@@ -32612,13 +22548,13 @@ export const InvoicesApiFp = function(configuration?: Configuration) {
          * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
          * @summary Get list of all invoices
          * @param {string} companyId A unique identifier for the company.
-         * @param {FindInvoicesStatusEnum} [status] Filter invoices by status (optional).
+         * @param {InvoiceStatusEnum} [status] Filter invoices by status (optional).
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findInvoices(companyId: string, status?: FindInvoicesStatusEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindInvoices200Response>> {
+        async findInvoices(companyId: string, status?: InvoiceStatusEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindInvoices200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.findInvoices(companyId, status, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['InvoicesApi.findInvoices']?.[localVarOperationServerIndex]?.url;
@@ -32686,13 +22622,13 @@ export const InvoicesApiFactory = function (configuration?: Configuration, baseP
          * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
          * @summary Get list of all invoices
          * @param {string} companyId A unique identifier for the company.
-         * @param {FindInvoicesStatusEnum} [status] Filter invoices by status (optional).
+         * @param {InvoiceStatusEnum} [status] Filter invoices by status (optional).
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findInvoices(companyId: string, status?: FindInvoicesStatusEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindInvoices200Response> {
+        findInvoices(companyId: string, status?: InvoiceStatusEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindInvoices200Response> {
             return localVarFp.findInvoices(companyId, status, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -32755,14 +22691,14 @@ export class InvoicesApi extends BaseAPI {
      * Retrieve a list of all invoices for a specific company based on various filter options and pagination.
      * @summary Get list of all invoices
      * @param {string} companyId A unique identifier for the company.
-     * @param {FindInvoicesStatusEnum} [status] Filter invoices by status (optional).
+     * @param {InvoiceStatusEnum} [status] Filter invoices by status (optional).
      * @param {number} [currentPage] current page
      * @param {number} [perPage] per Page 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InvoicesApi
      */
-    public findInvoices(companyId: string, status?: FindInvoicesStatusEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+    public findInvoices(companyId: string, status?: InvoiceStatusEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
         return InvoicesApiFp(this.configuration).findInvoices(companyId, status, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -32793,16 +22729,6 @@ export class InvoicesApi extends BaseAPI {
     }
 }
 
-/**
- * @export
- */
-export const FindInvoicesStatusEnum = {
-    PENDING: 'PENDING',
-    SUCCESS: 'SUCCESS',
-    FAILED: 'FAILED',
-    REQUESTED: 'REQUESTED'
-} as const;
-export type FindInvoicesStatusEnum = typeof FindInvoicesStatusEnum[keyof typeof FindInvoicesStatusEnum];
 
 
 /**
@@ -32910,13 +22836,13 @@ export const IssuesApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} [title] 
          * @param {string} [description] 
          * @param {boolean} [resolved] 
-         * @param {FindIssuesIssueCategoryEnum} [issueCategory] 
+         * @param {IssueCategoryEnum} [issueCategory] 
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findIssues: async (companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: FindIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        findIssues: async (companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: IssueCategoryEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('findIssues', 'companyId', companyId)
             const localVarPath = `/issues`;
@@ -33169,13 +23095,13 @@ export const IssuesApiFp = function(configuration?: Configuration) {
          * @param {string} [title] 
          * @param {string} [description] 
          * @param {boolean} [resolved] 
-         * @param {FindIssuesIssueCategoryEnum} [issueCategory] 
+         * @param {IssueCategoryEnum} [issueCategory] 
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: FindIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindIssues200Response>> {
+        async findIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: IssueCategoryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindIssues200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.findIssues(companyId, title, description, resolved, issueCategory, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['IssuesApi.findIssues']?.[localVarOperationServerIndex]?.url;
@@ -33263,13 +23189,13 @@ export const IssuesApiFactory = function (configuration?: Configuration, basePat
          * @param {string} [title] 
          * @param {string} [description] 
          * @param {boolean} [resolved] 
-         * @param {FindIssuesIssueCategoryEnum} [issueCategory] 
+         * @param {IssueCategoryEnum} [issueCategory] 
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: FindIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindIssues200Response> {
+        findIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: IssueCategoryEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindIssues200Response> {
             return localVarFp.findIssues(companyId, title, description, resolved, issueCategory, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -33349,14 +23275,14 @@ export class IssuesApi extends BaseAPI {
      * @param {string} [title] 
      * @param {string} [description] 
      * @param {boolean} [resolved] 
-     * @param {FindIssuesIssueCategoryEnum} [issueCategory] 
+     * @param {IssueCategoryEnum} [issueCategory] 
      * @param {number} [currentPage] current page
      * @param {number} [perPage] per Page 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof IssuesApi
      */
-    public findIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: FindIssuesIssueCategoryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+    public findIssues(companyId: string, title?: string, description?: string, resolved?: boolean, issueCategory?: IssueCategoryEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
         return IssuesApiFp(this.configuration).findIssues(companyId, title, description, resolved, issueCategory, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -33401,15 +23327,447 @@ export class IssuesApi extends BaseAPI {
     }
 }
 
+
+
 /**
+ * ItemActionsApi - axios parameter creator
  * @export
  */
-export const FindIssuesIssueCategoryEnum = {
-    order: 'order',
-    order_item: 'order_item',
-    other: 'other'
-} as const;
-export type FindIssuesIssueCategoryEnum = typeof FindIssuesIssueCategoryEnum[keyof typeof FindIssuesIssueCategoryEnum];
+export const ItemActionsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerCreate: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerCreate', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/create`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerDowngrade: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerDowngrade', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/downgrade`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerRenew: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerRenew', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/renew`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerSuspend: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerSuspend', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/suspend`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerUnsuspend: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerUnsuspend', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/unsuspend`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerUpgrade: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'integrationResponseDto' is not null or undefined
+            assertParamExists('itemActionsControllerUpgrade', 'integrationResponseDto', integrationResponseDto)
+            const localVarPath = `/items/actions/upgrade`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ItemActionsApi - functional programming interface
+ * @export
+ */
+export const ItemActionsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ItemActionsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerCreate(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerCreate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerDowngrade(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerDowngrade']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerRenew(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerRenew']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerSuspend(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerSuspend']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUnsuspend(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerUnsuspend']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUpgrade(integrationResponseDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerUpgrade']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ItemActionsApi - factory interface
+ * @export
+ */
+export const ItemActionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ItemActionsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerCreate(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerDowngrade(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerRenew(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerSuspend(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerUnsuspend(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {IntegrationResponseDto} integrationResponseDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerUpgrade(integrationResponseDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ItemActionsApi - object-oriented interface
+ * @export
+ * @class ItemActionsApi
+ * @extends {BaseAPI}
+ */
+export class ItemActionsApi extends BaseAPI {
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerCreate(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerDowngrade(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerRenew(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerSuspend(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerUnsuspend(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {IntegrationResponseDto} integrationResponseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemActionsApi
+     */
+    public itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerUpgrade(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 
 /**
@@ -33418,6 +23776,51 @@ export type FindIssuesIssueCategoryEnum = typeof FindIssuesIssueCategoryEnum[key
  */
 export const ItemsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Marks a refund request as accepted and sets item status to refunded.
+         * @summary Accept refund for item
+         * @param {string} id A unique identifier for the item to accept refund.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        acceptItemRefund: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('acceptItemRefund', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('acceptItemRefund', 'companyId', companyId)
+            const localVarPath = `/items/{id}/refund/accept`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
@@ -33450,6 +23853,110 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns downgrade prices for every duration of the target product when downgrading from the source item. Uses the user\'s price policy if available, falling back to the closest smaller priority policy and finally to base prices.
+         * @summary Get downgrade prices for all durations
+         * @param {string} sourceItemId A unique identifier for the source item.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} targetProduct A unique identifier for the target product to downgrade to.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getItemDowngradePrices: async (sourceItemId: string, companyId: string, targetProduct: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'sourceItemId' is not null or undefined
+            assertParamExists('getItemDowngradePrices', 'sourceItemId', sourceItemId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getItemDowngradePrices', 'companyId', companyId)
+            // verify required parameter 'targetProduct' is not null or undefined
+            assertParamExists('getItemDowngradePrices', 'targetProduct', targetProduct)
+            const localVarPath = `/items/{sourceItemId}/downgrade-prices`
+                .replace(`{${"sourceItemId"}}`, encodeURIComponent(String(sourceItemId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (targetProduct !== undefined) {
+                localVarQueryParameter['targetProduct'] = targetProduct;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns upgrade prices for every duration of the target product when upgrading from the source item. Uses the user\'s price policy if available, falling back to the closest smaller priority policy and finally to base prices.
+         * @summary Get upgrade prices for all durations
+         * @param {string} sourceItemId A unique identifier for the source item.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} targetProduct A unique identifier for the target product to upgrade to.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getItemUpgradePrices: async (sourceItemId: string, companyId: string, targetProduct: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'sourceItemId' is not null or undefined
+            assertParamExists('getItemUpgradePrices', 'sourceItemId', sourceItemId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getItemUpgradePrices', 'companyId', companyId)
+            // verify required parameter 'targetProduct' is not null or undefined
+            assertParamExists('getItemUpgradePrices', 'targetProduct', targetProduct)
+            const localVarPath = `/items/{sourceItemId}/upgrade-prices`
+                .replace(`{${"sourceItemId"}}`, encodeURIComponent(String(sourceItemId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (targetProduct !== undefined) {
+                localVarQueryParameter['targetProduct'] = targetProduct;
             }
 
 
@@ -33676,17 +24183,17 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Item Attach To Bundle
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
          * @param {string} companyId A unique identifier for the company.
-         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
+         * @param {string} parentId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemAttachToBundle: async (id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        itemAttachToBundle: async (id: string, companyId: string, parentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('itemAttachToBundle', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('itemAttachToBundle', 'companyId', companyId)
-            // verify required parameter 'itemAttachToBundleRequest' is not null or undefined
-            assertParamExists('itemAttachToBundle', 'itemAttachToBundleRequest', itemAttachToBundleRequest)
+            // verify required parameter 'parentId' is not null or undefined
+            assertParamExists('itemAttachToBundle', 'parentId', parentId)
             const localVarPath = `/items/{id}/bundles/attach`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -33708,14 +24215,15 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['companyId'] = companyId;
             }
 
+            if (parentId !== undefined) {
+                localVarQueryParameter['parentId'] = parentId;
+            }
+
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(itemAttachToBundleRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -33812,56 +24320,7 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * 
-         * @summary Transfer an item to another user
-         * @param {string} id 
-         * @param {string} userId 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemControllerItemTransfer: async (id: string, userId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('itemControllerItemTransfer', 'id', id)
-            // verify required parameter 'userId' is not null or undefined
-            assertParamExists('itemControllerItemTransfer', 'userId', userId)
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('itemControllerItemTransfer', 'companyId', companyId)
-            const localVarPath = `/items/{id}/transfer/{userId}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
+         * Delete an item. The item must be in idle, suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
          * @summary Item Delete
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
          * @param {string} companyId A unique identifier for the company.
@@ -33996,6 +24455,53 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Marks one or more items as refund requested. Each item may specify an optional refund value; omitting it defaults to a full refund (item subtotal).
+         * @summary Request refund for one or more items
+         * @param {string} companyId A unique identifier for the company.
+         * @param {RefundRequestDto} refundRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemRefund: async (companyId: string, refundRequestDto: RefundRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('itemRefund', 'companyId', companyId)
+            // verify required parameter 'refundRequestDto' is not null or undefined
+            assertParamExists('itemRefund', 'refundRequestDto', refundRequestDto)
+            const localVarPath = `/items/refund`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(refundRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
          * @summary Item Retry
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -34055,6 +24561,55 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             assertParamExists('itemSuspend', 'companyId', companyId)
             const localVarPath = `/items/{id}/suspend`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Initiate the transfer of an item to another user in the same company. Preventive authorization guards only — the real transfer flow is not yet implemented.
+         * @summary Item Transfer
+         * @param {string} id A unique identifier for the item to be transferred.
+         * @param {string} userId A unique identifier for the user that should receive the item.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemTransfer: async (id: string, userId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('itemTransfer', 'id', id)
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('itemTransfer', 'userId', userId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('itemTransfer', 'companyId', companyId)
+            const localVarPath = `/items/{id}/transfer/{userId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -34182,6 +24737,51 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Rejects a refund request and clears refundRequested flag (handles bundles).
+         * @summary Reject refund for item
+         * @param {string} id A unique identifier for the item to reject refund.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rejectItemRefund: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('rejectItemRefund', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('rejectItemRefund', 'companyId', companyId)
+            const localVarPath = `/items/{id}/refund/reject`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Restore the original price for an item. The item and order must be in idle status. Returns a boolean indicating success.
          * @summary Restore Item Price
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to restore price for.
@@ -34288,6 +24888,20 @@ export const ItemsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ItemsApiAxiosParamCreator(configuration)
     return {
         /**
+         * Marks a refund request as accepted and sets item status to refunded.
+         * @summary Accept refund for item
+         * @param {string} id A unique identifier for the item to accept refund.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async acceptItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.acceptItemRefund(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.acceptItemRefund']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
          * @param {string} companyId A unique identifier for the company.
@@ -34299,6 +24913,36 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getItem(companyId, id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.getItem']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns downgrade prices for every duration of the target product when downgrading from the source item. Uses the user\'s price policy if available, falling back to the closest smaller priority policy and finally to base prices.
+         * @summary Get downgrade prices for all durations
+         * @param {string} sourceItemId A unique identifier for the source item.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} targetProduct A unique identifier for the target product to downgrade to.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getItemDowngradePrices(sourceItemId: string, companyId: string, targetProduct: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<UpgradeDowngradePriceDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getItemDowngradePrices(sourceItemId, companyId, targetProduct, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.getItemDowngradePrices']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns upgrade prices for every duration of the target product when upgrading from the source item. Uses the user\'s price policy if available, falling back to the closest smaller priority policy and finally to base prices.
+         * @summary Get upgrade prices for all durations
+         * @param {string} sourceItemId A unique identifier for the source item.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} targetProduct A unique identifier for the target product to upgrade to.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getItemUpgradePrices(sourceItemId: string, companyId: string, targetProduct: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<UpgradeDowngradePriceDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getItemUpgradePrices(sourceItemId, companyId, targetProduct, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.getItemUpgradePrices']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -34358,12 +25002,12 @@ export const ItemsApiFp = function(configuration?: Configuration) {
          * @summary Item Attach To Bundle
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
          * @param {string} companyId A unique identifier for the company.
-         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
+         * @param {string} parentId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options);
+        async itemAttachToBundle(id: string, companyId: string, parentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemAttachToBundle(id, companyId, parentId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemAttachToBundle']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -34396,22 +25040,7 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * 
-         * @summary Transfer an item to another user
-         * @param {string} id 
-         * @param {string} userId 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async itemControllerItemTransfer(id: string, userId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemControllerItemTransfer(id, userId, companyId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemControllerItemTransfer']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
+         * Delete an item. The item must be in idle, suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
          * @summary Item Delete
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
          * @param {string} companyId A unique identifier for the company.
@@ -34453,6 +25082,20 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Marks one or more items as refund requested. Each item may specify an optional refund value; omitting it defaults to a full refund (item subtotal).
+         * @summary Request refund for one or more items
+         * @param {string} companyId A unique identifier for the company.
+         * @param {RefundRequestDto} refundRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemRefund(companyId: string, refundRequestDto: RefundRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemRefund(companyId, refundRequestDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemRefund']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
          * @summary Item Retry
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -34478,6 +25121,21 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.itemSuspend(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemSuspend']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Initiate the transfer of an item to another user in the same company. Preventive authorization guards only — the real transfer flow is not yet implemented.
+         * @summary Item Transfer
+         * @param {string} id A unique identifier for the item to be transferred.
+         * @param {string} userId A unique identifier for the user that should receive the item.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async itemTransfer(id: string, userId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemTransfer(id, userId, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemTransfer']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -34507,6 +25165,20 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.itemUpdate(id, companyId, itemUpdateRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemsApi.itemUpdate']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Rejects a refund request and clears refundRequested flag (handles bundles).
+         * @summary Reject refund for item
+         * @param {string} id A unique identifier for the item to reject refund.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rejectItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rejectItemRefund(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ItemsApi.rejectItemRefund']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -34549,6 +25221,17 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
     const localVarFp = ItemsApiFp(configuration)
     return {
         /**
+         * Marks a refund request as accepted and sets item status to refunded.
+         * @summary Accept refund for item
+         * @param {string} id A unique identifier for the item to accept refund.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        acceptItemRefund(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.acceptItemRefund(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieve a specific item by its unique ID within a company. Returns the item details.
          * @summary Get Item
          * @param {string} companyId A unique identifier for the company.
@@ -34558,6 +25241,30 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         getItem(companyId: string, id: string, options?: any): AxiosPromise<GetItem200Response> {
             return localVarFp.getItem(companyId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns downgrade prices for every duration of the target product when downgrading from the source item. Uses the user\'s price policy if available, falling back to the closest smaller priority policy and finally to base prices.
+         * @summary Get downgrade prices for all durations
+         * @param {string} sourceItemId A unique identifier for the source item.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} targetProduct A unique identifier for the target product to downgrade to.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getItemDowngradePrices(sourceItemId: string, companyId: string, targetProduct: string, options?: any): AxiosPromise<Array<UpgradeDowngradePriceDto>> {
+            return localVarFp.getItemDowngradePrices(sourceItemId, companyId, targetProduct, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns upgrade prices for every duration of the target product when upgrading from the source item. Uses the user\'s price policy if available, falling back to the closest smaller priority policy and finally to base prices.
+         * @summary Get upgrade prices for all durations
+         * @param {string} sourceItemId A unique identifier for the source item.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {string} targetProduct A unique identifier for the target product to upgrade to.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getItemUpgradePrices(sourceItemId: string, companyId: string, targetProduct: string, options?: any): AxiosPromise<Array<UpgradeDowngradePriceDto>> {
+            return localVarFp.getItemUpgradePrices(sourceItemId, companyId, targetProduct, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items.
@@ -34607,12 +25314,12 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          * @summary Item Attach To Bundle
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
          * @param {string} companyId A unique identifier for the company.
-         * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
+         * @param {string} parentId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options).then((request) => request(axios, basePath));
+        itemAttachToBundle(id: string, companyId: string, parentId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.itemAttachToBundle(id, companyId, parentId, options).then((request) => request(axios, basePath));
         },
         /**
          * Cancel an item. The item must be in idle status and cannot be a bundled child item. Returns a boolean indicating success.
@@ -34636,19 +25343,7 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.itemControllerItemOwnershipCertificate(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @summary Transfer an item to another user
-         * @param {string} id 
-         * @param {string} userId 
-         * @param {string} companyId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        itemControllerItemTransfer(id: string, userId: string, companyId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.itemControllerItemTransfer(id, userId, companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
+         * Delete an item. The item must be in idle, suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
          * @summary Item Delete
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
          * @param {string} companyId A unique identifier for the company.
@@ -34681,6 +25376,17 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.itemPostpone(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Marks one or more items as refund requested. Each item may specify an optional refund value; omitting it defaults to a full refund (item subtotal).
+         * @summary Request refund for one or more items
+         * @param {string} companyId A unique identifier for the company.
+         * @param {RefundRequestDto} refundRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemRefund(companyId: string, refundRequestDto: RefundRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.itemRefund(companyId, refundRequestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
          * @summary Item Retry
          * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -34701,6 +25407,18 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         itemSuspend(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.itemSuspend(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Initiate the transfer of an item to another user in the same company. Preventive authorization guards only — the real transfer flow is not yet implemented.
+         * @summary Item Transfer
+         * @param {string} id A unique identifier for the item to be transferred.
+         * @param {string} userId A unique identifier for the user that should receive the item.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        itemTransfer(id: string, userId: string, companyId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.itemTransfer(id, userId, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Unsuspend an item. The item must be in suspended status and cannot be a bundled child item. Returns a boolean indicating success.
@@ -34724,6 +25442,17 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
          */
         itemUpdate(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.itemUpdate(id, companyId, itemUpdateRequestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Rejects a refund request and clears refundRequested flag (handles bundles).
+         * @summary Reject refund for item
+         * @param {string} id A unique identifier for the item to reject refund.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rejectItemRefund(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.rejectItemRefund(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Restore the original price for an item. The item and order must be in idle status. Returns a boolean indicating success.
@@ -34759,6 +25488,19 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
  */
 export class ItemsApi extends BaseAPI {
     /**
+     * Marks a refund request as accepted and sets item status to refunded.
+     * @summary Accept refund for item
+     * @param {string} id A unique identifier for the item to accept refund.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public acceptItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).acceptItemRefund(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Retrieve a specific item by its unique ID within a company. Returns the item details.
      * @summary Get Item
      * @param {string} companyId A unique identifier for the company.
@@ -34769,6 +25511,34 @@ export class ItemsApi extends BaseAPI {
      */
     public getItem(companyId: string, id: string, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).getItem(companyId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns downgrade prices for every duration of the target product when downgrading from the source item. Uses the user\'s price policy if available, falling back to the closest smaller priority policy and finally to base prices.
+     * @summary Get downgrade prices for all durations
+     * @param {string} sourceItemId A unique identifier for the source item.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {string} targetProduct A unique identifier for the target product to downgrade to.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public getItemDowngradePrices(sourceItemId: string, companyId: string, targetProduct: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).getItemDowngradePrices(sourceItemId, companyId, targetProduct, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns upgrade prices for every duration of the target product when upgrading from the source item. Uses the user\'s price policy if available, falling back to the closest smaller priority policy and finally to base prices.
+     * @summary Get upgrade prices for all durations
+     * @param {string} sourceItemId A unique identifier for the source item.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {string} targetProduct A unique identifier for the target product to upgrade to.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public getItemUpgradePrices(sourceItemId: string, companyId: string, targetProduct: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).getItemUpgradePrices(sourceItemId, companyId, targetProduct, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -34825,13 +25595,13 @@ export class ItemsApi extends BaseAPI {
      * @summary Item Attach To Bundle
      * @param {string} id A unique identifier for the item. Use this parameter to specify which item to attach to bundle.
      * @param {string} companyId A unique identifier for the company.
-     * @param {ItemAttachToBundleRequest} itemAttachToBundleRequest 
+     * @param {string} parentId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemsApi
      */
-    public itemAttachToBundle(id: string, companyId: string, itemAttachToBundleRequest: ItemAttachToBundleRequest, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemAttachToBundle(id, companyId, itemAttachToBundleRequest, options).then((request) => request(this.axios, this.basePath));
+    public itemAttachToBundle(id: string, companyId: string, parentId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).itemAttachToBundle(id, companyId, parentId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -34860,21 +25630,7 @@ export class ItemsApi extends BaseAPI {
     }
 
     /**
-     * 
-     * @summary Transfer an item to another user
-     * @param {string} id 
-     * @param {string} userId 
-     * @param {string} companyId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemsApi
-     */
-    public itemControllerItemTransfer(id: string, userId: string, companyId: string, options?: RawAxiosRequestConfig) {
-        return ItemsApiFp(this.configuration).itemControllerItemTransfer(id, userId, companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Delete an item. The item must be in suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
+     * Delete an item. The item must be in idle, suspended, soft_deleted, error, canceled, or refunded status and cannot be a bundled child item. Returns no content.
      * @summary Item Delete
      * @param {string} id A unique identifier for the item. Use this parameter to specify which item to delete.
      * @param {string} companyId A unique identifier for the company.
@@ -34913,6 +25669,19 @@ export class ItemsApi extends BaseAPI {
     }
 
     /**
+     * Marks one or more items as refund requested. Each item may specify an optional refund value; omitting it defaults to a full refund (item subtotal).
+     * @summary Request refund for one or more items
+     * @param {string} companyId A unique identifier for the company.
+     * @param {RefundRequestDto} refundRequestDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public itemRefund(companyId: string, refundRequestDto: RefundRequestDto, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).itemRefund(companyId, refundRequestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Retry the action for an item that is in error status. The item status must be error. Returns a boolean indicating success.
      * @summary Item Retry
      * @param {string} id A unique identifier for the item. Use this parameter to specify which item to retry.
@@ -34936,6 +25705,20 @@ export class ItemsApi extends BaseAPI {
      */
     public itemSuspend(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).itemSuspend(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Initiate the transfer of an item to another user in the same company. Preventive authorization guards only — the real transfer flow is not yet implemented.
+     * @summary Item Transfer
+     * @param {string} id A unique identifier for the item to be transferred.
+     * @param {string} userId A unique identifier for the user that should receive the item.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public itemTransfer(id: string, userId: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).itemTransfer(id, userId, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -34963,6 +25746,19 @@ export class ItemsApi extends BaseAPI {
      */
     public itemUpdate(id: string, companyId: string, itemUpdateRequestDto: ItemUpdateRequestDto, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).itemUpdate(id, companyId, itemUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Rejects a refund request and clears refundRequested flag (handles bundles).
+     * @summary Reject refund for item
+     * @param {string} id A unique identifier for the item to reject refund.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemsApi
+     */
+    public rejectItemRefund(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ItemsApiFp(this.configuration).rejectItemRefund(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -38427,13 +29223,13 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
          * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
          * @summary List templates for a company
          * @param {string} companyId A unique identifier for the company.
-         * @param {GetPaginatedTemplatesChannelEnum} channel Filter templates by notification channel.
+         * @param {NotificationTypeEnum} channel Filter templates by notification channel.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatedTemplates: async (companyId: string, channel: GetPaginatedTemplatesChannelEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPaginatedTemplates: async (companyId: string, channel: NotificationTypeEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('getPaginatedTemplates', 'companyId', companyId)
             // verify required parameter 'channel' is not null or undefined
@@ -38619,13 +29415,13 @@ export const TemplatesApiFp = function(configuration?: Configuration) {
          * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
          * @summary List templates for a company
          * @param {string} companyId A unique identifier for the company.
-         * @param {GetPaginatedTemplatesChannelEnum} channel Filter templates by notification channel.
+         * @param {NotificationTypeEnum} channel Filter templates by notification channel.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPaginatedTemplates(companyId: string, channel: GetPaginatedTemplatesChannelEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedTemplates200Response>> {
+        async getPaginatedTemplates(companyId: string, channel: NotificationTypeEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedTemplates200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatedTemplates(companyId, channel, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TemplatesApi.getPaginatedTemplates']?.[localVarOperationServerIndex]?.url;
@@ -38696,13 +29492,13 @@ export const TemplatesApiFactory = function (configuration?: Configuration, base
          * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
          * @summary List templates for a company
          * @param {string} companyId A unique identifier for the company.
-         * @param {GetPaginatedTemplatesChannelEnum} channel Filter templates by notification channel.
+         * @param {NotificationTypeEnum} channel Filter templates by notification channel.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatedTemplates(companyId: string, channel: GetPaginatedTemplatesChannelEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetPaginatedTemplates200Response> {
+        getPaginatedTemplates(companyId: string, channel: NotificationTypeEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetPaginatedTemplates200Response> {
             return localVarFp.getPaginatedTemplates(companyId, channel, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -38768,14 +29564,14 @@ export class TemplatesApi extends BaseAPI {
      * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
      * @summary List templates for a company
      * @param {string} companyId A unique identifier for the company.
-     * @param {GetPaginatedTemplatesChannelEnum} channel Filter templates by notification channel.
+     * @param {NotificationTypeEnum} channel Filter templates by notification channel.
      * @param {number} [currentPage] current page
      * @param {number} [perPage] per Page 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TemplatesApi
      */
-    public getPaginatedTemplates(companyId: string, channel: GetPaginatedTemplatesChannelEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+    public getPaginatedTemplates(companyId: string, channel: NotificationTypeEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
         return TemplatesApiFp(this.configuration).getPaginatedTemplates(companyId, channel, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -38807,15 +29603,6 @@ export class TemplatesApi extends BaseAPI {
     }
 }
 
-/**
- * @export
- */
-export const GetPaginatedTemplatesChannelEnum = {
-    email: 'email',
-    push: 'push',
-    sms: 'sms'
-} as const;
-export type GetPaginatedTemplatesChannelEnum = typeof GetPaginatedTemplatesChannelEnum[keyof typeof GetPaginatedTemplatesChannelEnum];
 
 
 /**
@@ -39449,9 +30236,9 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
          * @summary Get list of all transactions
          * @param {string} companyId A unique identifier for the company.
          * @param {string} userId 
-         * @param {FindTransactionsTypeEnum} [type] Filter transactions by type.
+         * @param {PaymentTypeEnum} [type] Filter transactions by type.
          * @param {string} [integration] Filter transactions by service integration ID or title.
-         * @param {FindTransactionsStatusEnum} [status] Filter transactions by status.
+         * @param {TransactionStatusEnum} [status] Filter transactions by status.
          * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
          * @param {number} [toValue] Filter transactions with values less than or equal to this value.
          * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
@@ -39461,7 +30248,7 @@ export const TransactionsApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findTransactions: async (companyId: string, userId: string, type?: FindTransactionsTypeEnum, integration?: string, status?: FindTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        findTransactions: async (companyId: string, userId: string, type?: PaymentTypeEnum, integration?: string, status?: TransactionStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('findTransactions', 'companyId', companyId)
             // verify required parameter 'userId' is not null or undefined
@@ -39694,9 +30481,9 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @summary Get list of all transactions
          * @param {string} companyId A unique identifier for the company.
          * @param {string} userId 
-         * @param {FindTransactionsTypeEnum} [type] Filter transactions by type.
+         * @param {PaymentTypeEnum} [type] Filter transactions by type.
          * @param {string} [integration] Filter transactions by service integration ID or title.
-         * @param {FindTransactionsStatusEnum} [status] Filter transactions by status.
+         * @param {TransactionStatusEnum} [status] Filter transactions by status.
          * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
          * @param {number} [toValue] Filter transactions with values less than or equal to this value.
          * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
@@ -39706,7 +30493,7 @@ export const TransactionsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findTransactions(companyId: string, userId: string, type?: FindTransactionsTypeEnum, integration?: string, status?: FindTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindTransactions200Response>> {
+        async findTransactions(companyId: string, userId: string, type?: PaymentTypeEnum, integration?: string, status?: TransactionStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindTransactions200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.findTransactions(companyId, userId, type, integration, status, fromValue, toValue, fromDate, toDate, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TransactionsApi.findTransactions']?.[localVarOperationServerIndex]?.url;
@@ -39789,9 +30576,9 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
          * @summary Get list of all transactions
          * @param {string} companyId A unique identifier for the company.
          * @param {string} userId 
-         * @param {FindTransactionsTypeEnum} [type] Filter transactions by type.
+         * @param {PaymentTypeEnum} [type] Filter transactions by type.
          * @param {string} [integration] Filter transactions by service integration ID or title.
-         * @param {FindTransactionsStatusEnum} [status] Filter transactions by status.
+         * @param {TransactionStatusEnum} [status] Filter transactions by status.
          * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
          * @param {number} [toValue] Filter transactions with values less than or equal to this value.
          * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
@@ -39801,7 +30588,7 @@ export const TransactionsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findTransactions(companyId: string, userId: string, type?: FindTransactionsTypeEnum, integration?: string, status?: FindTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindTransactions200Response> {
+        findTransactions(companyId: string, userId: string, type?: PaymentTypeEnum, integration?: string, status?: TransactionStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<FindTransactions200Response> {
             return localVarFp.findTransactions(companyId, userId, type, integration, status, fromValue, toValue, fromDate, toDate, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -39881,9 +30668,9 @@ export class TransactionsApi extends BaseAPI {
      * @summary Get list of all transactions
      * @param {string} companyId A unique identifier for the company.
      * @param {string} userId 
-     * @param {FindTransactionsTypeEnum} [type] Filter transactions by type.
+     * @param {PaymentTypeEnum} [type] Filter transactions by type.
      * @param {string} [integration] Filter transactions by service integration ID or title.
-     * @param {FindTransactionsStatusEnum} [status] Filter transactions by status.
+     * @param {TransactionStatusEnum} [status] Filter transactions by status.
      * @param {number} [fromValue] Filter transactions with values greater than or equal to this value.
      * @param {number} [toValue] Filter transactions with values less than or equal to this value.
      * @param {string} [fromDate] Filter transactions with dates on or after this date (in ISO 8601 format).
@@ -39894,7 +30681,7 @@ export class TransactionsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TransactionsApi
      */
-    public findTransactions(companyId: string, userId: string, type?: FindTransactionsTypeEnum, integration?: string, status?: FindTransactionsStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+    public findTransactions(companyId: string, userId: string, type?: PaymentTypeEnum, integration?: string, status?: TransactionStatusEnum, fromValue?: number, toValue?: number, fromDate?: string, toDate?: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
         return TransactionsApiFp(this.configuration).findTransactions(companyId, userId, type, integration, status, fromValue, toValue, fromDate, toDate, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -39926,25 +30713,6 @@ export class TransactionsApi extends BaseAPI {
     }
 }
 
-/**
- * @export
- */
-export const FindTransactionsTypeEnum = {
-    ORDER: 'ORDER',
-    CREDITS: 'CREDITS'
-} as const;
-export type FindTransactionsTypeEnum = typeof FindTransactionsTypeEnum[keyof typeof FindTransactionsTypeEnum];
-/**
- * @export
- */
-export const FindTransactionsStatusEnum = {
-    PENDING: 'PENDING',
-    PROCESSING: 'PROCESSING',
-    COMPLETED: 'COMPLETED',
-    CANCEL: 'CANCEL',
-    ERROR: 'ERROR'
-} as const;
-export type FindTransactionsStatusEnum = typeof FindTransactionsStatusEnum[keyof typeof FindTransactionsStatusEnum];
 
 
 /**
@@ -40900,11 +31668,11 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Update invoice interval
          * @param {string} companyId A unique identifier for the company.
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user for whom you want to update the invoice interval within the specified company.
-         * @param {UpdateUserInvoiceIntervalInvoiceIntervalEnum} invoiceInterval The new invoice interval to be set for the user. Choose from available options.
+         * @param {InvoiceIntervalEnum} invoiceInterval The new invoice interval to be set for the user. Choose from available options.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUserInvoiceInterval: async (companyId: string, id: string, invoiceInterval: UpdateUserInvoiceIntervalInvoiceIntervalEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateUserInvoiceInterval: async (companyId: string, id: string, invoiceInterval: InvoiceIntervalEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('updateUserInvoiceInterval', 'companyId', companyId)
             // verify required parameter 'id' is not null or undefined
@@ -40952,11 +31720,11 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Update languages
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user whose preferred languages you want to update within the specified company.
          * @param {string} companyId A unique identifier for the company.
-         * @param {UpdateUserLanguagesLanguageEnum} language The new language preference for the user.
+         * @param {LanguageEnum} language The new language preference for the user.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUserLanguages: async (id: string, companyId: string, language: UpdateUserLanguagesLanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateUserLanguages: async (id: string, companyId: string, language: LanguageEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateUserLanguages', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
@@ -41351,11 +32119,11 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @summary Update invoice interval
          * @param {string} companyId A unique identifier for the company.
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user for whom you want to update the invoice interval within the specified company.
-         * @param {UpdateUserInvoiceIntervalInvoiceIntervalEnum} invoiceInterval The new invoice interval to be set for the user. Choose from available options.
+         * @param {InvoiceIntervalEnum} invoiceInterval The new invoice interval to be set for the user. Choose from available options.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateUserInvoiceInterval(companyId: string, id: string, invoiceInterval: UpdateUserInvoiceIntervalInvoiceIntervalEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+        async updateUserInvoiceInterval(companyId: string, id: string, invoiceInterval: InvoiceIntervalEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateUserInvoiceInterval(companyId, id, invoiceInterval, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UsersApi.updateUserInvoiceInterval']?.[localVarOperationServerIndex]?.url;
@@ -41366,11 +32134,11 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @summary Update languages
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user whose preferred languages you want to update within the specified company.
          * @param {string} companyId A unique identifier for the company.
-         * @param {UpdateUserLanguagesLanguageEnum} language The new language preference for the user.
+         * @param {LanguageEnum} language The new language preference for the user.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateUserLanguages(id: string, companyId: string, language: UpdateUserLanguagesLanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+        async updateUserLanguages(id: string, companyId: string, language: LanguageEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateUserLanguages(id, companyId, language, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UsersApi.updateUserLanguages']?.[localVarOperationServerIndex]?.url;
@@ -41632,11 +32400,11 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @summary Update invoice interval
          * @param {string} companyId A unique identifier for the company.
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user for whom you want to update the invoice interval within the specified company.
-         * @param {UpdateUserInvoiceIntervalInvoiceIntervalEnum} invoiceInterval The new invoice interval to be set for the user. Choose from available options.
+         * @param {InvoiceIntervalEnum} invoiceInterval The new invoice interval to be set for the user. Choose from available options.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUserInvoiceInterval(companyId: string, id: string, invoiceInterval: UpdateUserInvoiceIntervalInvoiceIntervalEnum, options?: any): AxiosPromise<UpdateIntegration200Response> {
+        updateUserInvoiceInterval(companyId: string, id: string, invoiceInterval: InvoiceIntervalEnum, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.updateUserInvoiceInterval(companyId, id, invoiceInterval, options).then((request) => request(axios, basePath));
         },
         /**
@@ -41644,11 +32412,11 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @summary Update languages
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user whose preferred languages you want to update within the specified company.
          * @param {string} companyId A unique identifier for the company.
-         * @param {UpdateUserLanguagesLanguageEnum} language The new language preference for the user.
+         * @param {LanguageEnum} language The new language preference for the user.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUserLanguages(id: string, companyId: string, language: UpdateUserLanguagesLanguageEnum, options?: any): AxiosPromise<UpdateIntegration200Response> {
+        updateUserLanguages(id: string, companyId: string, language: LanguageEnum, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.updateUserLanguages(id, companyId, language, options).then((request) => request(axios, basePath));
         },
         /**
@@ -41944,12 +32712,12 @@ export class UsersApi extends BaseAPI {
      * @summary Update invoice interval
      * @param {string} companyId A unique identifier for the company.
      * @param {string} id A unique identifier for the user. Use this parameter to specify the user for whom you want to update the invoice interval within the specified company.
-     * @param {UpdateUserInvoiceIntervalInvoiceIntervalEnum} invoiceInterval The new invoice interval to be set for the user. Choose from available options.
+     * @param {InvoiceIntervalEnum} invoiceInterval The new invoice interval to be set for the user. Choose from available options.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public updateUserInvoiceInterval(companyId: string, id: string, invoiceInterval: UpdateUserInvoiceIntervalInvoiceIntervalEnum, options?: RawAxiosRequestConfig) {
+    public updateUserInvoiceInterval(companyId: string, id: string, invoiceInterval: InvoiceIntervalEnum, options?: RawAxiosRequestConfig) {
         return UsersApiFp(this.configuration).updateUserInvoiceInterval(companyId, id, invoiceInterval, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -41958,12 +32726,12 @@ export class UsersApi extends BaseAPI {
      * @summary Update languages
      * @param {string} id A unique identifier for the user. Use this parameter to specify the user whose preferred languages you want to update within the specified company.
      * @param {string} companyId A unique identifier for the company.
-     * @param {UpdateUserLanguagesLanguageEnum} language The new language preference for the user.
+     * @param {LanguageEnum} language The new language preference for the user.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public updateUserLanguages(id: string, companyId: string, language: UpdateUserLanguagesLanguageEnum, options?: RawAxiosRequestConfig) {
+    public updateUserLanguages(id: string, companyId: string, language: LanguageEnum, options?: RawAxiosRequestConfig) {
         return UsersApiFp(this.configuration).updateUserLanguages(id, companyId, language, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -41982,205 +32750,5 @@ export class UsersApi extends BaseAPI {
     }
 }
 
-/**
- * @export
- */
-export const UpdateUserInvoiceIntervalInvoiceIntervalEnum = {
-    instant: 'instant',
-    weekly: 'weekly',
-    monthly: 'monthly',
-    per_request: 'per request'
-} as const;
-export type UpdateUserInvoiceIntervalInvoiceIntervalEnum = typeof UpdateUserInvoiceIntervalInvoiceIntervalEnum[keyof typeof UpdateUserInvoiceIntervalInvoiceIntervalEnum];
-/**
- * @export
- */
-export const UpdateUserLanguagesLanguageEnum = {
-    AB: 'AB',
-    AA: 'AA',
-    AF: 'AF',
-    AK: 'AK',
-    SQ: 'SQ',
-    AM: 'AM',
-    AR: 'AR',
-    AN: 'AN',
-    HY: 'HY',
-    AS: 'AS',
-    AV: 'AV',
-    AE: 'AE',
-    AY: 'AY',
-    AZ: 'AZ',
-    BM: 'BM',
-    BA: 'BA',
-    EU: 'EU',
-    BE: 'BE',
-    BN: 'BN',
-    BI: 'BI',
-    BS: 'BS',
-    BR: 'BR',
-    BG: 'BG',
-    MY: 'MY',
-    CA: 'CA',
-    KM: 'KM',
-    CH: 'CH',
-    CE: 'CE',
-    NY: 'NY',
-    ZH: 'ZH',
-    CU: 'CU',
-    CV: 'CV',
-    KW: 'KW',
-    CO: 'CO',
-    CR: 'CR',
-    HR: 'HR',
-    CS: 'CS',
-    DA: 'DA',
-    DV: 'DV',
-    NL: 'NL',
-    DZ: 'DZ',
-    EN: 'EN',
-    EO: 'EO',
-    ET: 'ET',
-    EE: 'EE',
-    FO: 'FO',
-    FJ: 'FJ',
-    FI: 'FI',
-    FR: 'FR',
-    FF: 'FF',
-    GL: 'GL',
-    LG: 'LG',
-    KA: 'KA',
-    DE: 'DE',
-    EL: 'EL',
-    GN: 'GN',
-    GU: 'GU',
-    HT: 'HT',
-    HA: 'HA',
-    HE: 'HE',
-    HZ: 'HZ',
-    HI: 'HI',
-    HO: 'HO',
-    HU: 'HU',
-    IS: 'IS',
-    IO: 'IO',
-    IG: 'IG',
-    ID: 'ID',
-    IA: 'IA',
-    IE: 'IE',
-    IU: 'IU',
-    IK: 'IK',
-    GA: 'GA',
-    IT: 'IT',
-    JA: 'JA',
-    JV: 'JV',
-    KL: 'KL',
-    KN: 'KN',
-    KR: 'KR',
-    KS: 'KS',
-    KK: 'KK',
-    KI: 'KI',
-    RW: 'RW',
-    KY: 'KY',
-    KV: 'KV',
-    KG: 'KG',
-    KO: 'KO',
-    KJ: 'KJ',
-    KU: 'KU',
-    LO: 'LO',
-    LA: 'LA',
-    LV: 'LV',
-    LI: 'LI',
-    LN: 'LN',
-    LT: 'LT',
-    LU: 'LU',
-    LB: 'LB',
-    MK: 'MK',
-    MG: 'MG',
-    MS: 'MS',
-    ML: 'ML',
-    MT: 'MT',
-    GV: 'GV',
-    MI: 'MI',
-    MR: 'MR',
-    MH: 'MH',
-    MN: 'MN',
-    NA: 'NA',
-    NV: 'NV',
-    ND: 'ND',
-    NR: 'NR',
-    NG: 'NG',
-    NE: 'NE',
-    SE: 'SE',
-    NO: 'NO',
-    NB: 'NB',
-    NN: 'NN',
-    II: 'II',
-    OC: 'OC',
-    OJ: 'OJ',
-    OR: 'OR',
-    OM: 'OM',
-    OS: 'OS',
-    PI: 'PI',
-    PS: 'PS',
-    FA: 'FA',
-    PL: 'PL',
-    PT: 'PT',
-    PA: 'PA',
-    QU: 'QU',
-    RO: 'RO',
-    RM: 'RM',
-    RN: 'RN',
-    RU: 'RU',
-    SM: 'SM',
-    SG: 'SG',
-    SA: 'SA',
-    SC: 'SC',
-    GD: 'GD',
-    SR: 'SR',
-    SN: 'SN',
-    II2: 'II',
-    SD: 'SD',
-    SI: 'SI',
-    SK: 'SK',
-    SL: 'SL',
-    SO: 'SO',
-    ST: 'ST',
-    ES: 'ES',
-    SU: 'SU',
-    SW: 'SW',
-    SS: 'SS',
-    SV: 'SV',
-    TL: 'TL',
-    TY: 'TY',
-    TG: 'TG',
-    TA: 'TA',
-    TT: 'TT',
-    TE: 'TE',
-    TH: 'TH',
-    BO: 'BO',
-    TI: 'TI',
-    TO: 'TO',
-    TS: 'TS',
-    TN: 'TN',
-    TR: 'TR',
-    TK: 'TK',
-    TW: 'TW',
-    UG: 'UG',
-    UK: 'UK',
-    UR: 'UR',
-    UZ: 'UZ',
-    VE: 'VE',
-    VI: 'VI',
-    VO: 'VO',
-    WA: 'WA',
-    CY: 'CY',
-    FY: 'FY',
-    WO: 'WO',
-    XH: 'XH',
-    YI: 'YI',
-    YO: 'YO',
-    ZA: 'ZA',
-    ZU: 'ZU'
-} as const;
-export type UpdateUserLanguagesLanguageEnum = typeof UpdateUserLanguagesLanguageEnum[keyof typeof UpdateUserLanguagesLanguageEnum];
 
 
