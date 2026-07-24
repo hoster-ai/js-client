@@ -290,10 +290,10 @@ export interface AddonRequestDto {
     'iconUrl'?: string;
     /**
      * 
-     * @type {InputTypeEnum}
+     * @type {FieldTypeEnum}
      * @memberof AddonRequestDto
      */
-    'type': InputTypeEnum;
+    'type': FieldTypeEnum;
     /**
      * Indicates whether the addon is mandatory for the user to select or not.
      * @type {boolean}
@@ -341,10 +341,10 @@ export interface AddonResponseDto {
     'iconUrl'?: string;
     /**
      * 
-     * @type {InputTypeEnum}
+     * @type {FieldTypeEnum}
      * @memberof AddonResponseDto
      */
-    'type': InputTypeEnum;
+    'type': FieldTypeEnum;
     /**
      * Indicates whether the addon is mandatory for the user to select or not.
      * @type {boolean}
@@ -397,13 +397,13 @@ export interface AddonResponseDto {
  */
 export interface AdminPanelDto {
     /**
-     * Tab structure for Admin panel sections.
+     * 
      * @type {AdminPanelTabsDto}
      * @memberof AdminPanelDto
      */
     'tabs'?: AdminPanelTabsDto;
     /**
-     * Additional actions in Admin panel sections.
+     * 
      * @type {AdminPanelMoreActionsDto}
      * @memberof AdminPanelDto
      */
@@ -528,6 +528,31 @@ export interface AfnicAdditionalDataDto {
 }
 
 
+/**
+ * 
+ * @export
+ * @interface ArchiveOrder200Response
+ */
+export interface ArchiveOrder200Response {
+    /**
+     * The HTTP status code indicating the result of the operation.
+     * @type {any}
+     * @memberof ArchiveOrder200Response
+     */
+    'code': any;
+    /**
+     * A human-readable message providing more details about the response.
+     * @type {any}
+     * @memberof ArchiveOrder200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {OrderResponseDto}
+     * @memberof ArchiveOrder200Response
+     */
+    'data': OrderResponseDto;
+}
 /**
  * 
  * @export
@@ -767,7 +792,7 @@ export interface BaseMenuDto {
     'label': string;
 }
 /**
- * Specifies the method of billing for the product. The type indicates how the product is charged, whether it is billed per hour, per month, as a subscription, or based on a snapshot or prorated basis. The default value is InvoiceTypeEnum.SUBSCRIPTION.
+ * Specifies the method of billing for the product. The type indicates how the product is charged, whether it is billed per hour, per month, as a subscription, or based on a snapshot or prorated basis. The default value is BillingMethodEnum.SUBSCRIPTION.
  * @export
  * @enum {string}
  */
@@ -959,17 +984,110 @@ export type ClientCompany = CompanyResponseDto | string;
 /**
  * 
  * @export
+ * @interface ClientOrderResponseDto
+ */
+export interface ClientOrderResponseDto {
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof ClientOrderResponseDto
+     */
+    'user': UserRef;
+    /**
+     * Represents an auto-incremented order identifier that is unique within the associated company. If not provided, the numbering will continue automatically from the last value.
+     * @type {number}
+     * @memberof ClientOrderResponseDto
+     */
+    'orderNumber'?: number;
+    /**
+     * Indicates whether the customer has used credits to cover the difference in the order amount when the paid amount was less than the total. If true, the order was partially paid with credits.
+     * @type {boolean}
+     * @memberof ClientOrderResponseDto
+     */
+    'useCredits': boolean;
+    /**
+     * A unique identifier for tracking and managing a specific order.
+     * @type {string}
+     * @memberof ClientOrderResponseDto
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {InvoiceContactInfoResponseDto}
+     * @memberof ClientOrderResponseDto
+     */
+    'invoiceContact'?: InvoiceContactInfoResponseDto;
+    /**
+     * 
+     * @type {CouponRef}
+     * @memberof ClientOrderResponseDto
+     */
+    'coupon'?: CouponRef;
+    /**
+     * 
+     * @type {OrderStatusEnum}
+     * @memberof ClientOrderResponseDto
+     */
+    'status'?: OrderStatusEnum;
+    /**
+     * A list of invoice IDs associated with this order. If present, these invoices are linked to the order for billing purposes.
+     * @type {Array<InvoiceRef>}
+     * @memberof ClientOrderResponseDto
+     */
+    'invoices'?: Array<InvoiceRef>;
+    /**
+     * An array of payment details linked to this order, detailing the transactions used to settle the order\'s payment. Each entry includes the transaction ID and the corresponding payment amount.
+     * @type {Array<TransactionInfoDto>}
+     * @memberof ClientOrderResponseDto
+     */
+    'transactions'?: Array<TransactionInfoDto>;
+    /**
+     * An array of items included in the order. The order must contain at least one item.
+     * @type {Array<ItemRef>}
+     * @memberof ClientOrderResponseDto
+     */
+    'items': Array<ItemRef>;
+    /**
+     * 
+     * @type {PricesDto}
+     * @memberof ClientOrderResponseDto
+     */
+    'summary'?: PricesDto;
+    /**
+     * Indicates if the order has been fully paid. A value of true means the payment is completed, while false indicates the payment is pending or not yet made.
+     * @type {boolean}
+     * @memberof ClientOrderResponseDto
+     */
+    'paid'?: boolean;
+    /**
+     * Timestamp indicating when the order was created.
+     * @type {string}
+     * @memberof ClientOrderResponseDto
+     */
+    'createdAt'?: string;
+    /**
+     * Timestamp indicating when the order was last updated.
+     * @type {string}
+     * @memberof ClientOrderResponseDto
+     */
+    'updatedAt'?: string;
+}
+
+
+/**
+ * 
+ * @export
  * @interface ClientPanelDto
  */
 export interface ClientPanelDto {
     /**
-     * Tab structure for Client panel.
+     * 
      * @type {ClientPanelTabsDto}
      * @memberof ClientPanelDto
      */
     'tabs'?: ClientPanelTabsDto;
     /**
-     * Additional actions in Client panel.
+     * 
      * @type {ClientPanelMoreActionsDto}
      * @memberof ClientPanelDto
      */
@@ -1856,25 +1974,6 @@ export interface CompanyResponseDto {
 /**
  * 
  * @export
- * @interface CompanyRoleResponseDto
- */
-export interface CompanyRoleResponseDto {
-    /**
-     * A list of roles granted to the user, defining its permissions and access levels.
-     * @type {Array<RolesEnum>}
-     * @memberof CompanyRoleResponseDto
-     */
-    'roles': Array<RolesEnum>;
-    /**
-     * 
-     * @type {GroupRoleRef}
-     * @memberof CompanyRoleResponseDto
-     */
-    'groupRole'?: GroupRoleRef;
-}
-/**
- * 
- * @export
  * @interface CompanyUpdateUserRolesRequest
  */
 export interface CompanyUpdateUserRolesRequest {
@@ -2045,7 +2144,7 @@ export interface CountryDto {
 
 
 /**
- * The country where the contact is located.
+ * 
  * @export
  * @enum {string}
  */
@@ -2376,6 +2475,12 @@ export interface CouponRequestDto {
      */
     'excludeFromDiscountedProducts'?: boolean;
     /**
+     * Determines which eligible items receive the discount: all eligible items, only the cheapest, or only the most expensive.
+     * @type {string}
+     * @memberof CouponRequestDto
+     */
+    'discountTarget'?: CouponRequestDtoDiscountTargetEnum;
+    /**
      * The date and time from which the coupon becomes valid and can be applied.
      * @type {string}
      * @memberof CouponRequestDto
@@ -2400,6 +2505,15 @@ export interface CouponRequestDto {
      */
     'rules': Array<RuleRequestDto>;
 }
+
+export const CouponRequestDtoDiscountTargetEnum = {
+    ALL: 'ALL',
+    CHEAPEST: 'CHEAPEST',
+    MOST_EXPENSIVE: 'MOST_EXPENSIVE'
+} as const;
+
+export type CouponRequestDtoDiscountTargetEnum = typeof CouponRequestDtoDiscountTargetEnum[keyof typeof CouponRequestDtoDiscountTargetEnum];
+
 /**
  * 
  * @export
@@ -2449,6 +2563,12 @@ export interface CouponResponseDto {
      */
     'excludeFromDiscountedProducts'?: boolean;
     /**
+     * Determines which eligible items receive the discount: all eligible items, only the cheapest, or only the most expensive.
+     * @type {string}
+     * @memberof CouponResponseDto
+     */
+    'discountTarget'?: CouponResponseDtoDiscountTargetEnum;
+    /**
      * The date and time from which the coupon becomes valid and can be applied.
      * @type {string}
      * @memberof CouponResponseDto
@@ -2497,6 +2617,15 @@ export interface CouponResponseDto {
      */
     'updatedAt'?: string;
 }
+
+export const CouponResponseDtoDiscountTargetEnum = {
+    ALL: 'ALL',
+    CHEAPEST: 'CHEAPEST',
+    MOST_EXPENSIVE: 'MOST_EXPENSIVE'
+} as const;
+
+export type CouponResponseDtoDiscountTargetEnum = typeof CouponResponseDtoDiscountTargetEnum[keyof typeof CouponResponseDtoDiscountTargetEnum];
+
 /**
  * The type of discount applied by this rule. It can be a fixed amount or a percentage-based discount.
  * @export
@@ -2556,10 +2685,10 @@ export interface CreateClientOrder201Response {
     'message': any;
     /**
      * 
-     * @type {OrderResponseDto}
+     * @type {ClientOrderResponseDto}
      * @memberof CreateClientOrder201Response
      */
-    'data': OrderResponseDto;
+    'data': ClientOrderResponseDto;
 }
 /**
  * 
@@ -4118,7 +4247,7 @@ export type EuropeLanguageEnum = typeof EuropeLanguageEnum[keyof typeof EuropeLa
 
 
 /**
- * The event associated with the template.
+ * 
  * @export
  * @enum {string}
  */
@@ -4950,10 +5079,10 @@ export interface GetClientOrders200Response {
     'message': any;
     /**
      * 
-     * @type {Array<OrderResponseDto>}
+     * @type {Array<ClientOrderResponseDto>}
      * @memberof GetClientOrders200Response
      */
-    'data': Array<OrderResponseDto>;
+    'data': Array<ClientOrderResponseDto>;
     /**
      * 
      * @type {any}
@@ -5694,6 +5823,55 @@ export interface GetUserBalance200Response {
 /**
  * 
  * @export
+ * @interface GetUserTags200Response
+ */
+export interface GetUserTags200Response {
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserTags200Response
+     */
+    'code': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserTags200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {Array<TagResponseDto>}
+     * @memberof GetUserTags200Response
+     */
+    'data': Array<TagResponseDto>;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserTags200Response
+     */
+    'currentPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserTags200Response
+     */
+    'totalPages': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserTags200Response
+     */
+    'perPage': any;
+    /**
+     * 
+     * @type {any}
+     * @memberof GetUserTags200Response
+     */
+    'totalResults': any;
+}
+/**
+ * 
+ * @export
  * @interface GetUserTransactions200Response
  */
 export interface GetUserTransactions200Response {
@@ -5871,13 +6049,13 @@ export interface InfoDto {
      */
     'requiredRoles'?: Array<RolesEnum>;
     /**
-     * Admin UI links, tabs, and actions provided by the integration.
+     * 
      * @type {AdminPanelDto}
      * @memberof InfoDto
      */
     'adminPanel'?: AdminPanelDto;
     /**
-     * Client UI links, tabs, and actions provided by the integration.
+     * 
      * @type {ClientPanelDto}
      * @memberof InfoDto
      */
@@ -5895,24 +6073,6 @@ export interface InfoDto {
      */
     'setupAttributes'?: Array<FieldDto>;
 }
-/**
- * Defines the type of input element that the addon will display on the frontend. This determines how the addon will be presented to the user, such as a text box, checkbox, radio button, etc.
- * @export
- * @enum {string}
- */
-
-export const InputTypeEnum = {
-    TEXT_BOX: 'TEXT_BOX',
-    TEXT_AREA: 'TEXT_AREA',
-    LIST: 'LIST',
-    RADIO_BOX: 'RADIO_BOX',
-    CHECKBOX: 'CHECKBOX',
-    SLIDER: 'SLIDER'
-} as const;
-
-export type InputTypeEnum = typeof InputTypeEnum[keyof typeof InputTypeEnum];
-
-
 /**
  * 
  * @export
@@ -6775,10 +6935,10 @@ export interface InvoiceResponseDto {
     'linkType'?: InvoiceLinkTypeEnum;
     /**
      * 
-     * @type {InvoiceTypeEnum}
+     * @type {InvoiceTypesEnum}
      * @memberof InvoiceResponseDto
      */
-    'invoiceType': InvoiceTypeEnum;
+    'invoiceType': InvoiceTypesEnum;
     /**
      * An array of transaction IDs associated with the invoice.
      * @type {Array<TransactionRef>}
@@ -6829,18 +6989,18 @@ export type InvoiceStatusEnum = typeof InvoiceStatusEnum[keyof typeof InvoiceSta
 
 
 /**
- * The type of invoice: \'proforma\', \'invoice\', or \'credit_note\'.
+ * The type of invoice: \'proforma\', \'invoice\', or \'credit-note\'.
  * @export
  * @enum {string}
  */
 
-export const InvoiceTypeEnum = {
-    proforma: 'proforma',
+export const InvoiceTypesEnum = {
     invoice: 'invoice',
-    credit_note: 'credit_note'
+    credit_note: 'credit-note',
+    proforma: 'proforma'
 } as const;
 
-export type InvoiceTypeEnum = typeof InvoiceTypeEnum[keyof typeof InvoiceTypeEnum];
+export type InvoiceTypesEnum = typeof InvoiceTypesEnum[keyof typeof InvoiceTypesEnum];
 
 
 /**
@@ -7784,7 +7944,7 @@ export interface ItemUpdateRequestDto {
     'endDate': string;
 }
 /**
- * Specifies the user\'s preferred default language, primarily used for localization of notifications and user-facing content.
+ * 
  * @export
  * @enum {string}
  */
@@ -8239,10 +8399,10 @@ export type NlLegalTypeEnum = typeof NlLegalTypeEnum[keyof typeof NlLegalTypeEnu
 export interface NotificationInfoDto {
     /**
      * 
-     * @type {NotificationTypeEnum}
+     * @type {NotificationMessageTypeEnum}
      * @memberof NotificationInfoDto
      */
-    'type': NotificationTypeEnum;
+    'type': NotificationMessageTypeEnum;
     /**
      * Optional metering units for pay-per-use billing.
      * @type {Array<UnitDto>}
@@ -8286,13 +8446,13 @@ export interface NotificationInfoDto {
      */
     'requiredRoles'?: Array<RolesEnum>;
     /**
-     * Admin UI links, tabs, and actions provided by the integration.
+     * 
      * @type {AdminPanelDto}
      * @memberof NotificationInfoDto
      */
     'adminPanel'?: AdminPanelDto;
     /**
-     * Client UI links, tabs, and actions provided by the integration.
+     * 
      * @type {ClientPanelDto}
      * @memberof NotificationInfoDto
      */
@@ -8310,6 +8470,21 @@ export interface NotificationInfoDto {
      */
     'setupAttributes'?: Array<FieldDto>;
 }
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NotificationMessageTypeEnum = {
+    email: 'email',
+    sms: 'sms',
+    push: 'push'
+} as const;
+
+export type NotificationMessageTypeEnum = typeof NotificationMessageTypeEnum[keyof typeof NotificationMessageTypeEnum];
 
 
 /**
@@ -8434,21 +8609,6 @@ export interface NotificationTemplatesResponseDto {
      */
     'cancel'?: TemplateRef;
 }
-/**
- * The notification type of the template.
- * @export
- * @enum {string}
- */
-
-export const NotificationTypeEnum = {
-    email: 'email',
-    push: 'push',
-    sms: 'sms'
-} as const;
-
-export type NotificationTypeEnum = typeof NotificationTypeEnum[keyof typeof NotificationTypeEnum];
-
-
 /**
  * 
  * @export
@@ -8768,7 +8928,7 @@ export interface PolicyPricesRequestDto {
      */
     'setupPrice'?: number;
     /**
-     * Creates the price number for an offer.
+     * Creates the price number for an offer. Must be greater than 0 and less than createPrice.
      * @type {number}
      * @memberof PolicyPricesRequestDto
      */
@@ -8831,7 +8991,7 @@ export interface PolicyPricesResponseDto {
      */
     'setupPrice'?: number;
     /**
-     * Creates the price number for an offer.
+     * Creates the price number for an offer. Must be greater than 0 and less than createPrice.
      * @type {number}
      * @memberof PolicyPricesResponseDto
      */
@@ -9110,7 +9270,7 @@ export interface PricesDto {
      */
     'setupPrice'?: number;
     /**
-     * Creates the price number for an offer.
+     * Creates the price number for an offer. Must be greater than 0 and less than createPrice.
      * @type {number}
      * @memberof PricesDto
      */
@@ -9196,37 +9356,49 @@ export type ProductActionsEnum = typeof ProductActionsEnum[keyof typeof ProductA
 export type ProductCategory = ProductCategoryResponseDto | string;
 
 /**
- * 
- * @export
- * @interface ProductCategoryCreateRequestDto
- */
-export interface ProductCategoryCreateRequestDto {
-    /**
-     * Specifies the display names of the product category in various languages. These names are used to identify and present the product category in user interfaces, ensuring localization and clear understanding for users from different regions.
-     * @type {Array<Array<string>>}
-     * @memberof ProductCategoryCreateRequestDto
-     */
-    'name': Array<Array<string>>;
-    /**
-     * Contains the descriptions of the product category in multiple languages. These descriptions provide additional context and details about the product category, making it easier for users across different regions to understand its purpose or functionality.
-     * @type {Array<any>}
-     * @memberof ProductCategoryCreateRequestDto
-     */
-    'description'?: Array<any>;
-    /**
-     * Represents the URL of an icon associated with the product category. This icon visually identifies the category, enhancing its recognizability and providing a more intuitive user experience.
-     * @type {string}
-     * @memberof ProductCategoryCreateRequestDto
-     */
-    'iconUrl'?: string;
-}
-/**
  * @type ProductCategoryRef
  * Either a populated ProductCategoryResponseDto or its id string.
  * @export
  */
 export type ProductCategoryRef = ProductCategoryResponseDto | string;
 
+/**
+ * 
+ * @export
+ * @interface ProductCategoryRequestDto
+ */
+export interface ProductCategoryRequestDto {
+    /**
+     * Specifies the display names of the product category in various languages. These names are used to identify and present the product category in user interfaces, ensuring localization and clear understanding for users from different regions.
+     * @type {Array<Array<string>>}
+     * @memberof ProductCategoryRequestDto
+     */
+    'name': Array<Array<string>>;
+    /**
+     * Contains the descriptions of the product category in multiple languages. These descriptions provide additional context and details about the product category, making it easier for users across different regions to understand its purpose or functionality.
+     * @type {Array<any>}
+     * @memberof ProductCategoryRequestDto
+     */
+    'description'?: Array<any>;
+    /**
+     * Represents the URL of the page on the company\'s website where the products belonging to this category are displayed. An empty string clears it; omitting it on update has the same effect.
+     * @type {string}
+     * @memberof ProductCategoryRequestDto
+     */
+    'url'?: string;
+    /**
+     * Indicates whether the product category is publicly accessible or restricted.
+     * @type {boolean}
+     * @memberof ProductCategoryRequestDto
+     */
+    'isPublic': boolean;
+    /**
+     * Represents the URL of an icon associated with the product category. This icon visually identifies the category, enhancing its recognizability and providing a more intuitive user experience. An empty string clears it; omitting it on update has the same effect.
+     * @type {string}
+     * @memberof ProductCategoryRequestDto
+     */
+    'iconUrl'?: string;
+}
 /**
  * 
  * @export
@@ -9246,7 +9418,19 @@ export interface ProductCategoryResponseDto {
      */
     'description'?: Array<any>;
     /**
-     * Represents the URL of an icon associated with the product category. This icon visually identifies the category, enhancing its recognizability and providing a more intuitive user experience.
+     * Represents the URL of the page on the company\'s website where the products belonging to this category are displayed. An empty string clears it; omitting it on update has the same effect.
+     * @type {string}
+     * @memberof ProductCategoryResponseDto
+     */
+    'url'?: string;
+    /**
+     * Indicates whether the product category is publicly accessible or restricted.
+     * @type {boolean}
+     * @memberof ProductCategoryResponseDto
+     */
+    'isPublic': boolean;
+    /**
+     * Represents the URL of an icon associated with the product category. This icon visually identifies the category, enhancing its recognizability and providing a more intuitive user experience. An empty string clears it; omitting it on update has the same effect.
      * @type {string}
      * @memberof ProductCategoryResponseDto
      */
@@ -9264,6 +9448,12 @@ export interface ProductCategoryResponseDto {
      */
     'company': CompanyRef;
     /**
+     * Number of active-version products (activeVersion: true) in this product category. Note: unpublishing is blocked by a stricter criterion (products that are the active version OR activated), so a category with productsCount 0 may still refuse to unpublish.
+     * @type {number}
+     * @memberof ProductCategoryResponseDto
+     */
+    'productsCount': number;
+    /**
      * The date the product category created.
      * @type {string}
      * @memberof ProductCategoryResponseDto
@@ -9279,28 +9469,32 @@ export interface ProductCategoryResponseDto {
 /**
  * 
  * @export
- * @interface ProductCategoryUpdateRequestDto
+ * @enum {string}
  */
-export interface ProductCategoryUpdateRequestDto {
-    /**
-     * Specifies the display names of the product category in various languages. These names are used to identify and present the product category in user interfaces, ensuring localization and clear understanding for users from different regions.
-     * @type {Array<Array<string>>}
-     * @memberof ProductCategoryUpdateRequestDto
-     */
-    'name': Array<Array<string>>;
-    /**
-     * Contains the descriptions of the product category in multiple languages. These descriptions provide additional context and details about the product category, making it easier for users across different regions to understand its purpose or functionality.
-     * @type {Array<any>}
-     * @memberof ProductCategoryUpdateRequestDto
-     */
-    'description'?: Array<any>;
-    /**
-     * Represents the URL of an icon associated with the product category. This icon visually identifies the category, enhancing its recognizability and providing a more intuitive user experience.
-     * @type {string}
-     * @memberof ProductCategoryUpdateRequestDto
-     */
-    'iconUrl'?: string;
-}
+
+export const ProductCategorySortByEnum = {
+    productsCount: 'productsCount',
+    createdAt: 'createdAt',
+    isPublic: 'isPublic'
+} as const;
+
+export type ProductCategorySortByEnum = typeof ProductCategorySortByEnum[keyof typeof ProductCategorySortByEnum];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const ProductCategorySortOrderEnum = {
+    asc: 'asc',
+    desc: 'desc'
+} as const;
+
+export type ProductCategorySortOrderEnum = typeof ProductCategorySortOrderEnum[keyof typeof ProductCategorySortOrderEnum];
+
+
 /**
  * @type ProductId
  * A unique identifier for the specific product associated with this item.
@@ -9381,13 +9575,13 @@ export interface ProductInfoDto {
      */
     'requiredRoles'?: Array<RolesEnum>;
     /**
-     * Admin UI links, tabs, and actions provided by the integration.
+     * 
      * @type {AdminPanelDto}
      * @memberof ProductInfoDto
      */
     'adminPanel'?: AdminPanelDto;
     /**
-     * Client UI links, tabs, and actions provided by the integration.
+     * 
      * @type {ClientPanelDto}
      * @memberof ProductInfoDto
      */
@@ -9539,12 +9733,6 @@ export interface ProductRequestDto {
      */
     'stock'?: number;
     /**
-     * The tags array contains keywords or labels associated with the product for identification purposes. These can help categorize or describe the product, such as \'subscription\' or other relevant terms.
-     * @type {Array<string>}
-     * @memberof ProductRequestDto
-     */
-    'tags'?: Array<string>;
-    /**
      * The icon URL is a URL to an image that represents the product. This can be used to display an icon for the product in the user interface.
      * @type {string}
      * @memberof ProductRequestDto
@@ -9586,6 +9774,12 @@ export interface ProductRequestDto {
      * @memberof ProductRequestDto
      */
     'addons'?: Array<string>;
+    /**
+     * The tag IDs array holds the unique identifiers of the tags associated with the product for identification purposes.
+     * @type {Array<string>}
+     * @memberof ProductRequestDto
+     */
+    'tags'?: Array<string>;
     /**
      * Defines the prices per price policy for the product or domain. These policies include configurations for user-specific pricing, associated rules, dynamic price calculations, and fixed price details.
      * @type {Array<PolicyPricesRequestDto>}
@@ -9728,12 +9922,6 @@ export interface ProductResponseDto {
      */
     'stock'?: number;
     /**
-     * The tags array contains keywords or labels associated with the product for identification purposes. These can help categorize or describe the product, such as \'subscription\' or other relevant terms.
-     * @type {Array<string>}
-     * @memberof ProductResponseDto
-     */
-    'tags'?: Array<string>;
-    /**
      * The icon URL is a URL to an image that represents the product. This can be used to display an icon for the product in the user interface.
      * @type {string}
      * @memberof ProductResponseDto
@@ -9811,6 +9999,12 @@ export interface ProductResponseDto {
      * @memberof ProductResponseDto
      */
     'addons'?: Array<AddonRef>;
+    /**
+     * The tags array contains keywords or labels associated with the product for identification purposes. These can help categorize or describe the product, such as \'subscription\' or other relevant terms.
+     * @type {Array<TagRef>}
+     * @memberof ProductResponseDto
+     */
+    'tags'?: Array<TagRef>;
     /**
      * Indicates whether the product is archived or not.
      * @type {boolean}
@@ -9959,7 +10153,7 @@ export interface ProductUpdateRequestDto {
      */
     'stock': number;
     /**
-     * The tags array contains keywords or labels associated with the product for identification purposes. These can help categorize or describe the product, such as \'subscription\' or other relevant terms.
+     * The tag IDs array holds the unique identifiers of the tags associated with the product for identification purposes.
      * @type {Array<string>}
      * @memberof ProductUpdateRequestDto
      */
@@ -10207,15 +10401,13 @@ export type RenewalHandlingAfterTransferEnum = typeof RenewalHandlingAfterTransf
 
 
 /**
- * A list of roles granted to the user, defining its permissions and access levels.
+ * 
  * @export
  * @enum {string}
  */
 
 export const RolesEnum = {
-    SIMPLE_USER: 'SIMPLE_USER',
     FULL_ACCESS: 'FULL_ACCESS',
-    SUPER_ADMIN: 'SUPER_ADMIN',
     ORDER_READ: 'ORDER_READ',
     ORDER_WRITE: 'ORDER_WRITE',
     ADDON_READ: 'ADDON_READ',
@@ -10553,6 +10745,122 @@ export interface TabDto {
     'url': string;
 }
 /**
+ * 
+ * @export
+ * @interface TagAttachRequestDto
+ */
+export interface TagAttachRequestDto {
+    /**
+     * The id of an existing tag to attach (must belong to the company and match the :type path param). Mutually exclusive with name/color - omit both when id is given.
+     * @type {string}
+     * @memberof TagAttachRequestDto
+     */
+    'id'?: string;
+    /**
+     * The display name of the tag to create-or-reuse and attach. Required when id is not given; must be omitted when id is given. Matched by exact name within the company and entity type.
+     * @type {string}
+     * @memberof TagAttachRequestDto
+     */
+    'name'?: string;
+    /**
+     * Hex color used to display the tag in the UI. Only usable on the name path, and only applied when a new tag is created; ignored if a tag with this name already exists. Must be omitted when id is given.
+     * @type {string}
+     * @memberof TagAttachRequestDto
+     */
+    'color'?: string;
+}
+/**
+ * The entity type this tag is namespaced under (e.g. USER, PRODUCT).
+ * @export
+ * @enum {string}
+ */
+
+export const TagEntityEnum = {
+    USER: 'USER',
+    PRODUCT: 'PRODUCT'
+} as const;
+
+export type TagEntityEnum = typeof TagEntityEnum[keyof typeof TagEntityEnum];
+
+
+/**
+ * @type TagRef
+ * Either a populated TagResponseDto or its id string.
+ * @export
+ */
+export type TagRef = TagResponseDto | string;
+
+/**
+ * 
+ * @export
+ * @interface TagResponseDto
+ */
+export interface TagResponseDto {
+    /**
+     * 
+     * @type {TagEntityEnum}
+     * @memberof TagResponseDto
+     */
+    'type': TagEntityEnum;
+    /**
+     * The display name of the tag. Unique per company and type.
+     * @type {string}
+     * @memberof TagResponseDto
+     */
+    'name': string;
+    /**
+     * Hex color used to display the tag in the UI.
+     * @type {string}
+     * @memberof TagResponseDto
+     */
+    'color'?: string;
+    /**
+     * The unique identifier of the tag.
+     * @type {string}
+     * @memberof TagResponseDto
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {CompanyRef}
+     * @memberof TagResponseDto
+     */
+    'company': CompanyRef;
+    /**
+     * The date the tag was created.
+     * @type {string}
+     * @memberof TagResponseDto
+     */
+    'createdAt'?: string;
+    /**
+     * The date the tag was last updated.
+     * @type {string}
+     * @memberof TagResponseDto
+     */
+    'updatedAt'?: string;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface TagUpdateRequestDto
+ */
+export interface TagUpdateRequestDto {
+    /**
+     * The display name of the tag. Unique per company and type.
+     * @type {string}
+     * @memberof TagUpdateRequestDto
+     */
+    'name'?: string;
+    /**
+     * Hex color used to display the tag in the UI.
+     * @type {string}
+     * @memberof TagUpdateRequestDto
+     */
+    'color'?: string;
+}
+/**
  * The category of the template.
  * @export
  * @enum {string}
@@ -10590,10 +10898,10 @@ export interface TemplateRequestDto {
     'name': string;
     /**
      * The notification type of the template.
-     * @type {Array<NotificationTypeEnum>}
+     * @type {Array<NotificationMessageTypeEnum>}
      * @memberof TemplateRequestDto
      */
-    'channels': Array<NotificationTypeEnum>;
+    'channels': Array<NotificationMessageTypeEnum>;
     /**
      * 
      * @type {TemplateCategoryEnum}
@@ -10647,10 +10955,10 @@ export interface TemplateResponseDto {
     'name': string;
     /**
      * The notification type of the template.
-     * @type {Array<NotificationTypeEnum>}
+     * @type {Array<NotificationMessageTypeEnum>}
      * @memberof TemplateResponseDto
      */
-    'channels': Array<NotificationTypeEnum>;
+    'channels': Array<NotificationMessageTypeEnum>;
     /**
      * 
      * @type {TemplateCategoryEnum}
@@ -11720,11 +12028,36 @@ export interface UpdateUserCommentsRequest {
 /**
  * 
  * @export
+ * @interface UpdateUserTag200Response
+ */
+export interface UpdateUserTag200Response {
+    /**
+     * The HTTP status code indicating the result of the operation.
+     * @type {any}
+     * @memberof UpdateUserTag200Response
+     */
+    'code': any;
+    /**
+     * A human-readable message providing more details about the response.
+     * @type {any}
+     * @memberof UpdateUserTag200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {TagResponseDto}
+     * @memberof UpdateUserTag200Response
+     */
+    'data': TagResponseDto;
+}
+/**
+ * 
+ * @export
  * @interface UpdateUserTagsRequest
  */
 export interface UpdateUserTagsRequest {
     /**
-     * An array of tags to replace the existing tags on the user\'s profile.
+     * An array of tag IDs (from the tags collection, entity type USER) to replace the existing tags on the user\'s profile.
      * @type {Array<string>}
      * @memberof UpdateUserTagsRequest
      */
@@ -11912,12 +12245,6 @@ export interface UserResponseDto {
      */
     'persistentCart'?: UserBasketDto;
     /**
-     * A list of tags associated with the user. These tags are used for user filtering and can only be seen by users with the \'user read\' role. Users cannot see their own tags.
-     * @type {Array<string>}
-     * @memberof UserResponseDto
-     */
-    'tags'?: Array<string>;
-    /**
      * A list of additional email addresses to receive notifications. These emails are used to extend notification coverage to multiple recipients beyond the primary user.
      * @type {Array<string>}
      * @memberof UserResponseDto
@@ -11979,10 +12306,22 @@ export interface UserResponseDto {
     'defaultLanguage'?: LanguageEnum;
     /**
      * 
-     * @type {CompanyRoleResponseDto}
+     * @type {GroupRoleRef}
      * @memberof UserResponseDto
      */
-    'companyRole': CompanyRoleResponseDto;
+    'groupRole'?: GroupRoleRef;
+    /**
+     * List of company IDs owned by the user.
+     * @type {Array<string>}
+     * @memberof UserResponseDto
+     */
+    'ownedCompanies'?: Array<string>;
+    /**
+     * A list of tags associated with the user. These tags are used for user filtering and can only be seen by users with the \'user read\' role. Users cannot see their own tags.
+     * @type {Array<TagRef>}
+     * @memberof UserResponseDto
+     */
+    'tags'?: Array<TagRef>;
     /**
      * 
      * @type {CompanyRef}
@@ -22281,12 +22620,15 @@ export const InvoicesApiAxiosParamCreator = function (configuration?: Configurat
          * Cancel an invoice by its ID.
          * @summary Cancel an invoice
          * @param {string} id 
+         * @param {string} companyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelInvoice: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        cancelInvoice: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('cancelInvoice', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('cancelInvoice', 'companyId', companyId)
             const localVarPath = `/invoices/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -22303,6 +22645,10 @@ export const InvoicesApiAxiosParamCreator = function (configuration?: Configurat
             // authentication jwt required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
 
 
     
@@ -22522,11 +22868,12 @@ export const InvoicesApiFp = function(configuration?: Configuration) {
          * Cancel an invoice by its ID.
          * @summary Cancel an invoice
          * @param {string} id 
+         * @param {string} companyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async cancelInvoice(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelInvoice(id, options);
+        async cancelInvoice(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.cancelInvoice(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['InvoicesApi.cancelInvoice']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -22602,11 +22949,12 @@ export const InvoicesApiFactory = function (configuration?: Configuration, baseP
          * Cancel an invoice by its ID.
          * @summary Cancel an invoice
          * @param {string} id 
+         * @param {string} companyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelInvoice(id: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
-            return localVarFp.cancelInvoice(id, options).then((request) => request(axios, basePath));
+        cancelInvoice(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.cancelInvoice(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Export invoices for a company.
@@ -22667,12 +23015,13 @@ export class InvoicesApi extends BaseAPI {
      * Cancel an invoice by its ID.
      * @summary Cancel an invoice
      * @param {string} id 
+     * @param {string} companyId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InvoicesApi
      */
-    public cancelInvoice(id: string, options?: RawAxiosRequestConfig) {
-        return InvoicesApiFp(this.configuration).cancelInvoice(id, options).then((request) => request(this.axios, this.basePath));
+    public cancelInvoice(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return InvoicesApiFp(this.configuration).cancelInvoice(id, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -23337,13 +23686,10 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
     return {
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerCreate: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerCreate', 'integrationResponseDto', integrationResponseDto)
+        itemActionsControllerCreate: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/items/actions/create`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -23358,12 +23704,9 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -23372,13 +23715,10 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerDowngrade: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerDowngrade', 'integrationResponseDto', integrationResponseDto)
+        itemActionsControllerDowngrade: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/items/actions/downgrade`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -23393,12 +23733,9 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -23407,13 +23744,10 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerRenew: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerRenew', 'integrationResponseDto', integrationResponseDto)
+        itemActionsControllerRenew: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/items/actions/renew`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -23428,12 +23762,9 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -23442,13 +23773,10 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerSuspend: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerSuspend', 'integrationResponseDto', integrationResponseDto)
+        itemActionsControllerSuspend: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/items/actions/suspend`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -23463,12 +23791,9 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -23477,13 +23802,10 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerUnsuspend: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerUnsuspend', 'integrationResponseDto', integrationResponseDto)
+        itemActionsControllerUnsuspend: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/items/actions/unsuspend`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -23498,12 +23820,9 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -23512,13 +23831,10 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerUpgrade: async (integrationResponseDto: IntegrationResponseDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'integrationResponseDto' is not null or undefined
-            assertParamExists('itemActionsControllerUpgrade', 'integrationResponseDto', integrationResponseDto)
+        itemActionsControllerUpgrade: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/items/actions/upgrade`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -23533,12 +23849,9 @@ export const ItemActionsApiAxiosParamCreator = function (configuration?: Configu
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(integrationResponseDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -23557,72 +23870,66 @@ export const ItemActionsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerCreate(integrationResponseDto, options);
+        async itemActionsControllerCreate(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerCreate(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerCreate']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerDowngrade(integrationResponseDto, options);
+        async itemActionsControllerDowngrade(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerDowngrade(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerDowngrade']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerRenew(integrationResponseDto, options);
+        async itemActionsControllerRenew(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerRenew(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerRenew']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerSuspend(integrationResponseDto, options);
+        async itemActionsControllerSuspend(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerSuspend(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerSuspend']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUnsuspend(integrationResponseDto, options);
+        async itemActionsControllerUnsuspend(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUnsuspend(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerUnsuspend']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUpgrade(integrationResponseDto, options);
+        async itemActionsControllerUpgrade(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.itemActionsControllerUpgrade(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ItemActionsApi.itemActionsControllerUpgrade']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -23639,57 +23946,51 @@ export const ItemActionsApiFactory = function (configuration?: Configuration, ba
     return {
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerCreate(integrationResponseDto, options).then((request) => request(axios, basePath));
+        itemActionsControllerCreate(options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerCreate(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerDowngrade(integrationResponseDto, options).then((request) => request(axios, basePath));
+        itemActionsControllerDowngrade(options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerDowngrade(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerRenew(integrationResponseDto, options).then((request) => request(axios, basePath));
+        itemActionsControllerRenew(options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerRenew(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerSuspend(integrationResponseDto, options).then((request) => request(axios, basePath));
+        itemActionsControllerSuspend(options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerSuspend(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerUnsuspend(integrationResponseDto, options).then((request) => request(axios, basePath));
+        itemActionsControllerUnsuspend(options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerUnsuspend(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @param {IntegrationResponseDto} integrationResponseDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: any): AxiosPromise<void> {
-            return localVarFp.itemActionsControllerUpgrade(integrationResponseDto, options).then((request) => request(axios, basePath));
+        itemActionsControllerUpgrade(options?: any): AxiosPromise<void> {
+            return localVarFp.itemActionsControllerUpgrade(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -23703,68 +24004,62 @@ export const ItemActionsApiFactory = function (configuration?: Configuration, ba
 export class ItemActionsApi extends BaseAPI {
     /**
      * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemActionsApi
      */
-    public itemActionsControllerCreate(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerCreate(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    public itemActionsControllerCreate(options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerCreate(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemActionsApi
      */
-    public itemActionsControllerDowngrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerDowngrade(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    public itemActionsControllerDowngrade(options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerDowngrade(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemActionsApi
      */
-    public itemActionsControllerRenew(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerRenew(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    public itemActionsControllerRenew(options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerRenew(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemActionsApi
      */
-    public itemActionsControllerSuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerSuspend(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    public itemActionsControllerSuspend(options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerSuspend(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemActionsApi
      */
-    public itemActionsControllerUnsuspend(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerUnsuspend(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    public itemActionsControllerUnsuspend(options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerUnsuspend(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @param {IntegrationResponseDto} integrationResponseDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemActionsApi
      */
-    public itemActionsControllerUpgrade(integrationResponseDto: IntegrationResponseDto, options?: RawAxiosRequestConfig) {
-        return ItemActionsApiFp(this.configuration).itemActionsControllerUpgrade(integrationResponseDto, options).then((request) => request(this.axios, this.basePath));
+    public itemActionsControllerUpgrade(options?: RawAxiosRequestConfig) {
+        return ItemActionsApiFp(this.configuration).itemActionsControllerUpgrade(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -25914,7 +26209,7 @@ export const OrderCouponsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addCouponToOrder(id: string, couponId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+        async addCouponToOrder(id: string, couponId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ArchiveOrder200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addCouponToOrder(id, couponId, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrderCouponsApi.addCouponToOrder']?.[localVarOperationServerIndex]?.url;
@@ -25929,7 +26224,7 @@ export const OrderCouponsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeCouponFromOrder(id: string, couponId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+        async removeCouponFromOrder(id: string, couponId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ArchiveOrder200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeCouponFromOrder(id, couponId, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrderCouponsApi.removeCouponFromOrder']?.[localVarOperationServerIndex]?.url;
@@ -25954,7 +26249,7 @@ export const OrderCouponsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addCouponToOrder(id: string, couponId: string, companyId: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+        addCouponToOrder(id: string, couponId: string, companyId: string, options?: any): AxiosPromise<ArchiveOrder200Response> {
             return localVarFp.addCouponToOrder(id, couponId, companyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -25966,7 +26261,7 @@ export const OrderCouponsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeCouponFromOrder(id: string, couponId: string, companyId: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+        removeCouponFromOrder(id: string, couponId: string, companyId: string, options?: any): AxiosPromise<ArchiveOrder200Response> {
             return localVarFp.removeCouponFromOrder(id, couponId, companyId, options).then((request) => request(axios, basePath));
         },
     };
@@ -26583,7 +26878,7 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async archiveOrder(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+        async archiveOrder(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ArchiveOrder200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.archiveOrder(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.archiveOrder']?.[localVarOperationServerIndex]?.url;
@@ -26698,7 +26993,7 @@ export const OrdersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async restoreOrder(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateClientOrder201Response>> {
+        async restoreOrder(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ArchiveOrder200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.restoreOrder(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OrdersApi.restoreOrder']?.[localVarOperationServerIndex]?.url;
@@ -26746,7 +27041,7 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        archiveOrder(id: string, companyId: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+        archiveOrder(id: string, companyId: string, options?: any): AxiosPromise<ArchiveOrder200Response> {
             return localVarFp.archiveOrder(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -26837,7 +27132,7 @@ export const OrdersApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        restoreOrder(id: string, companyId: string, options?: any): AxiosPromise<CreateClientOrder201Response> {
+        restoreOrder(id: string, companyId: string, options?: any): AxiosPromise<ArchiveOrder200Response> {
             return localVarFp.restoreOrder(id, companyId, options).then((request) => request(axios, basePath));
         },
     };
@@ -27736,15 +28031,15 @@ export const ProductCategoriesApiAxiosParamCreator = function (configuration?: C
          * Creates a new product category for a company.
          * @summary Create a product category
          * @param {string} companyId A unique identifier for the company.
-         * @param {ProductCategoryCreateRequestDto} productCategoryCreateRequestDto 
+         * @param {ProductCategoryRequestDto} productCategoryRequestDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createProductCategory: async (companyId: string, productCategoryCreateRequestDto: ProductCategoryCreateRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createProductCategory: async (companyId: string, productCategoryRequestDto: ProductCategoryRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('createProductCategory', 'companyId', companyId)
-            // verify required parameter 'productCategoryCreateRequestDto' is not null or undefined
-            assertParamExists('createProductCategory', 'productCategoryCreateRequestDto', productCategoryCreateRequestDto)
+            // verify required parameter 'productCategoryRequestDto' is not null or undefined
+            assertParamExists('createProductCategory', 'productCategoryRequestDto', productCategoryRequestDto)
             const localVarPath = `/product-categories`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -27772,7 +28067,7 @@ export const ProductCategoriesApiAxiosParamCreator = function (configuration?: C
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(productCategoryCreateRequestDto, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(productCategoryRequestDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -27825,16 +28120,17 @@ export const ProductCategoriesApiAxiosParamCreator = function (configuration?: C
             };
         },
         /**
-         * Receive  the unique identifier of the company(companyId) and return all product categories associated with it. In the case of also recieving a query, these categories are filtered based on this query by title and/or description  
+         * Receive the unique identifier of the company (companyId) and return its paginated product categories, optionally sorted by sortBy/sortOrder (defaults: createdAt / desc).
          * @summary Get list of all product categories
          * @param {string} companyId A unique identifier for the company.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
-         * @param {string} [query] A search query to filter results by title and description
+         * @param {ProductCategorySortByEnum} [sortBy] Field to sort product categories by (createdAt | isPublic | productsCount). Defaults to createdAt.
+         * @param {ProductCategorySortOrderEnum} [sortOrder] Sort direction (asc | desc), applied literally to the field. Defaults to desc — newest first for createdAt, most products first for productsCount, public first for isPublic (true &gt; false).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findProductCategories: async (companyId: string, currentPage?: number, perPage?: number, query?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        findProductCategories: async (companyId: string, currentPage?: number, perPage?: number, sortBy?: ProductCategorySortByEnum, sortOrder?: ProductCategorySortOrderEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('findProductCategories', 'companyId', companyId)
             const localVarPath = `/product-categories`;
@@ -27865,8 +28161,12 @@ export const ProductCategoriesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['perPage'] = perPage;
             }
 
-            if (query !== undefined) {
-                localVarQueryParameter['query'] = query;
+            if (sortBy !== undefined) {
+                localVarQueryParameter['sortBy'] = sortBy;
+            }
+
+            if (sortOrder !== undefined) {
+                localVarQueryParameter['sortOrder'] = sortOrder;
             }
 
 
@@ -27926,21 +28226,111 @@ export const ProductCategoriesApiAxiosParamCreator = function (configuration?: C
             };
         },
         /**
-         *  Recieve the unique identifiers of a company(companyId) and a product category(id) as well as the updated Product category data. It then udates it and returns the updated product category information/data
-         * @summary Update a product category
+         *  Recieve the unique identifiers of a company(companyId) and the product category(id) and marks it as public. It then returns success or not
+         * @summary Publish a product category
          * @param {string} id Product Category ID
          * @param {string} companyId A unique identifier for the company.
-         * @param {ProductCategoryUpdateRequestDto} productCategoryUpdateRequestDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateProductCategory: async (id: string, companyId: string, productCategoryUpdateRequestDto: ProductCategoryUpdateRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        publishProductCategory: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('publishProductCategory', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('publishProductCategory', 'companyId', companyId)
+            const localVarPath = `/product-categories/{id}/publish`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *  Recieve the unique identifiers of a company(companyId) and the product category(id) and marks it as private. It then returns success or not
+         * @summary Unpublish a product category
+         * @param {string} id Product Category ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unpublishProductCategory: async (id: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('unpublishProductCategory', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('unpublishProductCategory', 'companyId', companyId)
+            const localVarPath = `/product-categories/{id}/unpublish`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *  Receive the unique identifiers of a company(companyId) and a product category(id) as well as the updated Product category data. It then updates it and returns success or not. Omitted url/iconUrl are cleared, they do not retain their previous value
+         * @summary Update a product category
+         * @param {string} id Product Category ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {ProductCategoryRequestDto} productCategoryRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateProductCategory: async (id: string, companyId: string, productCategoryRequestDto: ProductCategoryRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateProductCategory', 'id', id)
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('updateProductCategory', 'companyId', companyId)
-            // verify required parameter 'productCategoryUpdateRequestDto' is not null or undefined
-            assertParamExists('updateProductCategory', 'productCategoryUpdateRequestDto', productCategoryUpdateRequestDto)
+            // verify required parameter 'productCategoryRequestDto' is not null or undefined
+            assertParamExists('updateProductCategory', 'productCategoryRequestDto', productCategoryRequestDto)
             const localVarPath = `/product-categories/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -27969,7 +28359,7 @@ export const ProductCategoriesApiAxiosParamCreator = function (configuration?: C
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(productCategoryUpdateRequestDto, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(productCategoryRequestDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -27990,12 +28380,12 @@ export const ProductCategoriesApiFp = function(configuration?: Configuration) {
          * Creates a new product category for a company.
          * @summary Create a product category
          * @param {string} companyId A unique identifier for the company.
-         * @param {ProductCategoryCreateRequestDto} productCategoryCreateRequestDto 
+         * @param {ProductCategoryRequestDto} productCategoryRequestDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createProductCategory(companyId: string, productCategoryCreateRequestDto: ProductCategoryCreateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateProductCategory201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createProductCategory(companyId, productCategoryCreateRequestDto, options);
+        async createProductCategory(companyId: string, productCategoryRequestDto: ProductCategoryRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateProductCategory201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createProductCategory(companyId, productCategoryRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProductCategoriesApi.createProductCategory']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -28015,17 +28405,18 @@ export const ProductCategoriesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Receive  the unique identifier of the company(companyId) and return all product categories associated with it. In the case of also recieving a query, these categories are filtered based on this query by title and/or description  
+         * Receive the unique identifier of the company (companyId) and return its paginated product categories, optionally sorted by sortBy/sortOrder (defaults: createdAt / desc).
          * @summary Get list of all product categories
          * @param {string} companyId A unique identifier for the company.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
-         * @param {string} [query] A search query to filter results by title and description
+         * @param {ProductCategorySortByEnum} [sortBy] Field to sort product categories by (createdAt | isPublic | productsCount). Defaults to createdAt.
+         * @param {ProductCategorySortOrderEnum} [sortOrder] Sort direction (asc | desc), applied literally to the field. Defaults to desc — newest first for createdAt, most products first for productsCount, public first for isPublic (true &gt; false).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async findProductCategories(companyId: string, currentPage?: number, perPage?: number, query?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindProductCategories200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.findProductCategories(companyId, currentPage, perPage, query, options);
+        async findProductCategories(companyId: string, currentPage?: number, perPage?: number, sortBy?: ProductCategorySortByEnum, sortOrder?: ProductCategorySortOrderEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindProductCategories200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findProductCategories(companyId, currentPage, perPage, sortBy, sortOrder, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProductCategoriesApi.findProductCategories']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -28045,16 +28436,44 @@ export const ProductCategoriesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         *  Recieve the unique identifiers of a company(companyId) and a product category(id) as well as the updated Product category data. It then udates it and returns the updated product category information/data
-         * @summary Update a product category
+         *  Recieve the unique identifiers of a company(companyId) and the product category(id) and marks it as public. It then returns success or not
+         * @summary Publish a product category
          * @param {string} id Product Category ID
          * @param {string} companyId A unique identifier for the company.
-         * @param {ProductCategoryUpdateRequestDto} productCategoryUpdateRequestDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateProductCategory(id: string, companyId: string, productCategoryUpdateRequestDto: ProductCategoryUpdateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateProductCategory201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateProductCategory(id, companyId, productCategoryUpdateRequestDto, options);
+        async publishProductCategory(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.publishProductCategory(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProductCategoriesApi.publishProductCategory']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         *  Recieve the unique identifiers of a company(companyId) and the product category(id) and marks it as private. It then returns success or not
+         * @summary Unpublish a product category
+         * @param {string} id Product Category ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async unpublishProductCategory(id: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.unpublishProductCategory(id, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProductCategoriesApi.unpublishProductCategory']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         *  Receive the unique identifiers of a company(companyId) and a product category(id) as well as the updated Product category data. It then updates it and returns success or not. Omitted url/iconUrl are cleared, they do not retain their previous value
+         * @summary Update a product category
+         * @param {string} id Product Category ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {ProductCategoryRequestDto} productCategoryRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateProductCategory(id: string, companyId: string, productCategoryRequestDto: ProductCategoryRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateProductCategory(id, companyId, productCategoryRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProductCategoriesApi.updateProductCategory']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -28073,12 +28492,12 @@ export const ProductCategoriesApiFactory = function (configuration?: Configurati
          * Creates a new product category for a company.
          * @summary Create a product category
          * @param {string} companyId A unique identifier for the company.
-         * @param {ProductCategoryCreateRequestDto} productCategoryCreateRequestDto 
+         * @param {ProductCategoryRequestDto} productCategoryRequestDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createProductCategory(companyId: string, productCategoryCreateRequestDto: ProductCategoryCreateRequestDto, options?: any): AxiosPromise<CreateProductCategory201Response> {
-            return localVarFp.createProductCategory(companyId, productCategoryCreateRequestDto, options).then((request) => request(axios, basePath));
+        createProductCategory(companyId: string, productCategoryRequestDto: ProductCategoryRequestDto, options?: any): AxiosPromise<CreateProductCategory201Response> {
+            return localVarFp.createProductCategory(companyId, productCategoryRequestDto, options).then((request) => request(axios, basePath));
         },
         /**
          *  Recieve the unique identifiers of a company(companyId) and the product category(id) and deletes it. It then returns success or not
@@ -28092,17 +28511,18 @@ export const ProductCategoriesApiFactory = function (configuration?: Configurati
             return localVarFp.deleteProductCategory(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Receive  the unique identifier of the company(companyId) and return all product categories associated with it. In the case of also recieving a query, these categories are filtered based on this query by title and/or description  
+         * Receive the unique identifier of the company (companyId) and return its paginated product categories, optionally sorted by sortBy/sortOrder (defaults: createdAt / desc).
          * @summary Get list of all product categories
          * @param {string} companyId A unique identifier for the company.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
-         * @param {string} [query] A search query to filter results by title and description
+         * @param {ProductCategorySortByEnum} [sortBy] Field to sort product categories by (createdAt | isPublic | productsCount). Defaults to createdAt.
+         * @param {ProductCategorySortOrderEnum} [sortOrder] Sort direction (asc | desc), applied literally to the field. Defaults to desc — newest first for createdAt, most products first for productsCount, public first for isPublic (true &gt; false).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findProductCategories(companyId: string, currentPage?: number, perPage?: number, query?: string, options?: any): AxiosPromise<FindProductCategories200Response> {
-            return localVarFp.findProductCategories(companyId, currentPage, perPage, query, options).then((request) => request(axios, basePath));
+        findProductCategories(companyId: string, currentPage?: number, perPage?: number, sortBy?: ProductCategorySortByEnum, sortOrder?: ProductCategorySortOrderEnum, options?: any): AxiosPromise<FindProductCategories200Response> {
+            return localVarFp.findProductCategories(companyId, currentPage, perPage, sortBy, sortOrder, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves a single product category by its ID.
@@ -28116,16 +28536,38 @@ export const ProductCategoriesApiFactory = function (configuration?: Configurati
             return localVarFp.getProductCategory(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
-         *  Recieve the unique identifiers of a company(companyId) and a product category(id) as well as the updated Product category data. It then udates it and returns the updated product category information/data
-         * @summary Update a product category
+         *  Recieve the unique identifiers of a company(companyId) and the product category(id) and marks it as public. It then returns success or not
+         * @summary Publish a product category
          * @param {string} id Product Category ID
          * @param {string} companyId A unique identifier for the company.
-         * @param {ProductCategoryUpdateRequestDto} productCategoryUpdateRequestDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateProductCategory(id: string, companyId: string, productCategoryUpdateRequestDto: ProductCategoryUpdateRequestDto, options?: any): AxiosPromise<CreateProductCategory201Response> {
-            return localVarFp.updateProductCategory(id, companyId, productCategoryUpdateRequestDto, options).then((request) => request(axios, basePath));
+        publishProductCategory(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.publishProductCategory(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *  Recieve the unique identifiers of a company(companyId) and the product category(id) and marks it as private. It then returns success or not
+         * @summary Unpublish a product category
+         * @param {string} id Product Category ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unpublishProductCategory(id: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.unpublishProductCategory(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *  Receive the unique identifiers of a company(companyId) and a product category(id) as well as the updated Product category data. It then updates it and returns success or not. Omitted url/iconUrl are cleared, they do not retain their previous value
+         * @summary Update a product category
+         * @param {string} id Product Category ID
+         * @param {string} companyId A unique identifier for the company.
+         * @param {ProductCategoryRequestDto} productCategoryRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateProductCategory(id: string, companyId: string, productCategoryRequestDto: ProductCategoryRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.updateProductCategory(id, companyId, productCategoryRequestDto, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -28141,13 +28583,13 @@ export class ProductCategoriesApi extends BaseAPI {
      * Creates a new product category for a company.
      * @summary Create a product category
      * @param {string} companyId A unique identifier for the company.
-     * @param {ProductCategoryCreateRequestDto} productCategoryCreateRequestDto 
+     * @param {ProductCategoryRequestDto} productCategoryRequestDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductCategoriesApi
      */
-    public createProductCategory(companyId: string, productCategoryCreateRequestDto: ProductCategoryCreateRequestDto, options?: RawAxiosRequestConfig) {
-        return ProductCategoriesApiFp(this.configuration).createProductCategory(companyId, productCategoryCreateRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public createProductCategory(companyId: string, productCategoryRequestDto: ProductCategoryRequestDto, options?: RawAxiosRequestConfig) {
+        return ProductCategoriesApiFp(this.configuration).createProductCategory(companyId, productCategoryRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -28164,18 +28606,19 @@ export class ProductCategoriesApi extends BaseAPI {
     }
 
     /**
-     * Receive  the unique identifier of the company(companyId) and return all product categories associated with it. In the case of also recieving a query, these categories are filtered based on this query by title and/or description  
+     * Receive the unique identifier of the company (companyId) and return its paginated product categories, optionally sorted by sortBy/sortOrder (defaults: createdAt / desc).
      * @summary Get list of all product categories
      * @param {string} companyId A unique identifier for the company.
      * @param {number} [currentPage] current page
      * @param {number} [perPage] per Page 
-     * @param {string} [query] A search query to filter results by title and description
+     * @param {ProductCategorySortByEnum} [sortBy] Field to sort product categories by (createdAt | isPublic | productsCount). Defaults to createdAt.
+     * @param {ProductCategorySortOrderEnum} [sortOrder] Sort direction (asc | desc), applied literally to the field. Defaults to desc — newest first for createdAt, most products first for productsCount, public first for isPublic (true &gt; false).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductCategoriesApi
      */
-    public findProductCategories(companyId: string, currentPage?: number, perPage?: number, query?: string, options?: RawAxiosRequestConfig) {
-        return ProductCategoriesApiFp(this.configuration).findProductCategories(companyId, currentPage, perPage, query, options).then((request) => request(this.axios, this.basePath));
+    public findProductCategories(companyId: string, currentPage?: number, perPage?: number, sortBy?: ProductCategorySortByEnum, sortOrder?: ProductCategorySortOrderEnum, options?: RawAxiosRequestConfig) {
+        return ProductCategoriesApiFp(this.configuration).findProductCategories(companyId, currentPage, perPage, sortBy, sortOrder, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -28192,17 +28635,43 @@ export class ProductCategoriesApi extends BaseAPI {
     }
 
     /**
-     *  Recieve the unique identifiers of a company(companyId) and a product category(id) as well as the updated Product category data. It then udates it and returns the updated product category information/data
-     * @summary Update a product category
+     *  Recieve the unique identifiers of a company(companyId) and the product category(id) and marks it as public. It then returns success or not
+     * @summary Publish a product category
      * @param {string} id Product Category ID
      * @param {string} companyId A unique identifier for the company.
-     * @param {ProductCategoryUpdateRequestDto} productCategoryUpdateRequestDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductCategoriesApi
      */
-    public updateProductCategory(id: string, companyId: string, productCategoryUpdateRequestDto: ProductCategoryUpdateRequestDto, options?: RawAxiosRequestConfig) {
-        return ProductCategoriesApiFp(this.configuration).updateProductCategory(id, companyId, productCategoryUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
+    public publishProductCategory(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ProductCategoriesApiFp(this.configuration).publishProductCategory(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *  Recieve the unique identifiers of a company(companyId) and the product category(id) and marks it as private. It then returns success or not
+     * @summary Unpublish a product category
+     * @param {string} id Product Category ID
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductCategoriesApi
+     */
+    public unpublishProductCategory(id: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ProductCategoriesApiFp(this.configuration).unpublishProductCategory(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *  Receive the unique identifiers of a company(companyId) and a product category(id) as well as the updated Product category data. It then updates it and returns success or not. Omitted url/iconUrl are cleared, they do not retain their previous value
+     * @summary Update a product category
+     * @param {string} id Product Category ID
+     * @param {string} companyId A unique identifier for the company.
+     * @param {ProductCategoryRequestDto} productCategoryRequestDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductCategoriesApi
+     */
+    public updateProductCategory(id: string, companyId: string, productCategoryRequestDto: ProductCategoryRequestDto, options?: RawAxiosRequestConfig) {
+        return ProductCategoriesApiFp(this.configuration).updateProductCategory(id, companyId, productCategoryRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -28298,6 +28767,57 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Attaches a tag to a product. Provide EITHER an existing tag `id` (must belong to the company and be PRODUCT-type) OR `name` (+ optional `color`) to find-or-create the tag by name and attach it - the two are mutually exclusive. Re-attaching an already-attached tag is a no-op success. Returns a boolean indicating success.
+         * @summary Attach a tag to a product
+         * @param {string} id A unique identifier for the product to attach the tag to.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagAttachRequestDto} tagAttachRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachProductTag: async (id: string, companyId: string, tagAttachRequestDto: TagAttachRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('attachProductTag', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('attachProductTag', 'companyId', companyId)
+            // verify required parameter 'tagAttachRequestDto' is not null or undefined
+            assertParamExists('attachProductTag', 'tagAttachRequestDto', tagAttachRequestDto)
+            const localVarPath = `/products/{id}/tags`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(tagAttachRequestDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -28411,6 +28931,100 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             assertParamExists('deleteProduct', 'companyId', companyId)
             const localVarPath = `/products/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a PRODUCT-type tag from the company registry and removes it from any products currently tagged with it.
+         * @summary Delete a product tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteProductTag: async (tagId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'tagId' is not null or undefined
+            assertParamExists('deleteProductTag', 'tagId', tagId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('deleteProductTag', 'companyId', companyId)
+            const localVarPath = `/products/tags/{tagId}`
+                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Detaches a tag from a product. The tag registry entry itself is not deleted. Detaching a tag that isn\'t attached is a no-op success. Returns a boolean indicating success.
+         * @summary Detach a tag from a product
+         * @param {string} id A unique identifier for the product to detach the tag from.
+         * @param {string} tagId A unique identifier for the tag to detach.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detachProductTag: async (id: string, tagId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('detachProductTag', 'id', id)
+            // verify required parameter 'tagId' is not null or undefined
+            assertParamExists('detachProductTag', 'tagId', tagId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('detachProductTag', 'companyId', companyId)
+            const localVarPath = `/products/{id}/tags/{tagId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -28598,6 +29212,57 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Returns the paginated registry of PRODUCT-type tags belonging to the company. These are the tags available to attach to products.
+         * @summary Get product tags
+         * @param {string} companyId A unique identifier for the company.
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProductTags: async (companyId: string, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getProductTags', 'companyId', companyId)
+            const localVarPath = `/products/tags`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['currentPage'] = currentPage;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Restores an archived product.
          * @summary Restore an archived product
          * @param {string} id A unique identifier for the product.
@@ -28693,6 +29358,57 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Renames and/or recolors a PRODUCT-type tag in the company registry. The entity type and company cannot be changed.
+         * @summary Update a product tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagUpdateRequestDto} tagUpdateRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateProductTag: async (tagId: string, companyId: string, tagUpdateRequestDto: TagUpdateRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'tagId' is not null or undefined
+            assertParamExists('updateProductTag', 'tagId', tagId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('updateProductTag', 'companyId', companyId)
+            // verify required parameter 'tagUpdateRequestDto' is not null or undefined
+            assertParamExists('updateProductTag', 'tagUpdateRequestDto', tagUpdateRequestDto)
+            const localVarPath = `/products/tags/{tagId}`
+                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(tagUpdateRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -28729,6 +29445,21 @@ export const ProductsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.archiveProduct(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProductsApi.archiveProduct']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Attaches a tag to a product. Provide EITHER an existing tag `id` (must belong to the company and be PRODUCT-type) OR `name` (+ optional `color`) to find-or-create the tag by name and attach it - the two are mutually exclusive. Re-attaching an already-attached tag is a no-op success. Returns a boolean indicating success.
+         * @summary Attach a tag to a product
+         * @param {string} id A unique identifier for the product to attach the tag to.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagAttachRequestDto} tagAttachRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async attachProductTag(id: string, companyId: string, tagAttachRequestDto: TagAttachRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.attachProductTag(id, companyId, tagAttachRequestDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProductsApi.attachProductTag']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -28771,6 +29502,35 @@ export const ProductsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteProduct(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProductsApi.deleteProduct']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Deletes a PRODUCT-type tag from the company registry and removes it from any products currently tagged with it.
+         * @summary Delete a product tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteProductTag(tagId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteProductTag(tagId, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProductsApi.deleteProductTag']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Detaches a tag from a product. The tag registry entry itself is not deleted. Detaching a tag that isn\'t attached is a no-op success. Returns a boolean indicating success.
+         * @summary Detach a tag from a product
+         * @param {string} id A unique identifier for the product to detach the tag from.
+         * @param {string} tagId A unique identifier for the tag to detach.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async detachProductTag(id: string, tagId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.detachProductTag(id, tagId, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProductsApi.detachProductTag']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -28820,6 +29580,21 @@ export const ProductsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Returns the paginated registry of PRODUCT-type tags belonging to the company. These are the tags available to attach to products.
+         * @summary Get product tags
+         * @param {string} companyId A unique identifier for the company.
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProductTags(companyId: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserTags200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductTags(companyId, currentPage, perPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProductsApi.getProductTags']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Restores an archived product.
          * @summary Restore an archived product
          * @param {string} id A unique identifier for the product.
@@ -28846,6 +29621,21 @@ export const ProductsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateProduct(id, companyId, productUpdateRequestDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProductsApi.updateProduct']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Renames and/or recolors a PRODUCT-type tag in the company registry. The entity type and company cannot be changed.
+         * @summary Update a product tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagUpdateRequestDto} tagUpdateRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateProductTag(tagId: string, companyId: string, tagUpdateRequestDto: TagUpdateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateUserTag200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateProductTag(tagId, companyId, tagUpdateRequestDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProductsApi.updateProductTag']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -28881,6 +29671,18 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.archiveProduct(id, companyId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Attaches a tag to a product. Provide EITHER an existing tag `id` (must belong to the company and be PRODUCT-type) OR `name` (+ optional `color`) to find-or-create the tag by name and attach it - the two are mutually exclusive. Re-attaching an already-attached tag is a no-op success. Returns a boolean indicating success.
+         * @summary Attach a tag to a product
+         * @param {string} id A unique identifier for the product to attach the tag to.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagAttachRequestDto} tagAttachRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachProductTag(id: string, companyId: string, tagAttachRequestDto: TagAttachRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.attachProductTag(id, companyId, tagAttachRequestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Creates a new product for a company.
          * @summary Create a product
          * @param {string} companyId A unique identifier for the company.
@@ -28912,6 +29714,29 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          */
         deleteProduct(id: string, companyId: string, options?: any): AxiosPromise<void> {
             return localVarFp.deleteProduct(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes a PRODUCT-type tag from the company registry and removes it from any products currently tagged with it.
+         * @summary Delete a product tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteProductTag(tagId: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.deleteProductTag(tagId, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Detaches a tag from a product. The tag registry entry itself is not deleted. Detaching a tag that isn\'t attached is a no-op success. Returns a boolean indicating success.
+         * @summary Detach a tag from a product
+         * @param {string} id A unique identifier for the product to detach the tag from.
+         * @param {string} tagId A unique identifier for the tag to detach.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detachProductTag(id: string, tagId: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.detachProductTag(id, tagId, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves a paginated list of products for a specific company. Supports filtering by name and archived status.
@@ -28951,6 +29776,18 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.getProductCalculatedPrices(id, companyId, withAddons, options).then((request) => request(axios, basePath));
         },
         /**
+         * Returns the paginated registry of PRODUCT-type tags belonging to the company. These are the tags available to attach to products.
+         * @summary Get product tags
+         * @param {string} companyId A unique identifier for the company.
+         * @param {number} [currentPage] current page
+         * @param {number} [perPage] per Page 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProductTags(companyId: string, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetUserTags200Response> {
+            return localVarFp.getProductTags(companyId, currentPage, perPage, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Restores an archived product.
          * @summary Restore an archived product
          * @param {string} id A unique identifier for the product.
@@ -28972,6 +29809,18 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          */
         updateProduct(id: string, companyId: string, productUpdateRequestDto: ProductUpdateRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
             return localVarFp.updateProduct(id, companyId, productUpdateRequestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Renames and/or recolors a PRODUCT-type tag in the company registry. The entity type and company cannot be changed.
+         * @summary Update a product tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagUpdateRequestDto} tagUpdateRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateProductTag(tagId: string, companyId: string, tagUpdateRequestDto: TagUpdateRequestDto, options?: any): AxiosPromise<UpdateUserTag200Response> {
+            return localVarFp.updateProductTag(tagId, companyId, tagUpdateRequestDto, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -29007,6 +29856,20 @@ export class ProductsApi extends BaseAPI {
      */
     public archiveProduct(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).archiveProduct(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Attaches a tag to a product. Provide EITHER an existing tag `id` (must belong to the company and be PRODUCT-type) OR `name` (+ optional `color`) to find-or-create the tag by name and attach it - the two are mutually exclusive. Re-attaching an already-attached tag is a no-op success. Returns a boolean indicating success.
+     * @summary Attach a tag to a product
+     * @param {string} id A unique identifier for the product to attach the tag to.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {TagAttachRequestDto} tagAttachRequestDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductsApi
+     */
+    public attachProductTag(id: string, companyId: string, tagAttachRequestDto: TagAttachRequestDto, options?: RawAxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).attachProductTag(id, companyId, tagAttachRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -29046,6 +29909,33 @@ export class ProductsApi extends BaseAPI {
      */
     public deleteProduct(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).deleteProduct(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes a PRODUCT-type tag from the company registry and removes it from any products currently tagged with it.
+     * @summary Delete a product tag
+     * @param {string} tagId A unique identifier for the tag.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductsApi
+     */
+    public deleteProductTag(tagId: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).deleteProductTag(tagId, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Detaches a tag from a product. The tag registry entry itself is not deleted. Detaching a tag that isn\'t attached is a no-op success. Returns a boolean indicating success.
+     * @summary Detach a tag from a product
+     * @param {string} id A unique identifier for the product to detach the tag from.
+     * @param {string} tagId A unique identifier for the tag to detach.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductsApi
+     */
+    public detachProductTag(id: string, tagId: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).detachProductTag(id, tagId, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -29092,6 +29982,20 @@ export class ProductsApi extends BaseAPI {
     }
 
     /**
+     * Returns the paginated registry of PRODUCT-type tags belonging to the company. These are the tags available to attach to products.
+     * @summary Get product tags
+     * @param {string} companyId A unique identifier for the company.
+     * @param {number} [currentPage] current page
+     * @param {number} [perPage] per Page 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductsApi
+     */
+    public getProductTags(companyId: string, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).getProductTags(companyId, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Restores an archived product.
      * @summary Restore an archived product
      * @param {string} id A unique identifier for the product.
@@ -29116,6 +30020,20 @@ export class ProductsApi extends BaseAPI {
      */
     public updateProduct(id: string, companyId: string, productUpdateRequestDto: ProductUpdateRequestDto, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).updateProduct(id, companyId, productUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Renames and/or recolors a PRODUCT-type tag in the company registry. The entity type and company cannot be changed.
+     * @summary Update a product tag
+     * @param {string} tagId A unique identifier for the tag.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {TagUpdateRequestDto} tagUpdateRequestDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductsApi
+     */
+    public updateProductTag(tagId: string, companyId: string, tagUpdateRequestDto: TagUpdateRequestDto, options?: RawAxiosRequestConfig) {
+        return ProductsApiFp(this.configuration).updateProductTag(tagId, companyId, tagUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -29223,13 +30141,13 @@ export const TemplatesApiAxiosParamCreator = function (configuration?: Configura
          * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
          * @summary List templates for a company
          * @param {string} companyId A unique identifier for the company.
-         * @param {NotificationTypeEnum} channel Filter templates by notification channel.
+         * @param {NotificationMessageTypeEnum} channel Filter templates by notification channel.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatedTemplates: async (companyId: string, channel: NotificationTypeEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPaginatedTemplates: async (companyId: string, channel: NotificationMessageTypeEnum, currentPage?: number, perPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'companyId' is not null or undefined
             assertParamExists('getPaginatedTemplates', 'companyId', companyId)
             // verify required parameter 'channel' is not null or undefined
@@ -29415,13 +30333,13 @@ export const TemplatesApiFp = function(configuration?: Configuration) {
          * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
          * @summary List templates for a company
          * @param {string} companyId A unique identifier for the company.
-         * @param {NotificationTypeEnum} channel Filter templates by notification channel.
+         * @param {NotificationMessageTypeEnum} channel Filter templates by notification channel.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPaginatedTemplates(companyId: string, channel: NotificationTypeEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedTemplates200Response>> {
+        async getPaginatedTemplates(companyId: string, channel: NotificationMessageTypeEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedTemplates200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatedTemplates(companyId, channel, currentPage, perPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TemplatesApi.getPaginatedTemplates']?.[localVarOperationServerIndex]?.url;
@@ -29492,13 +30410,13 @@ export const TemplatesApiFactory = function (configuration?: Configuration, base
          * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
          * @summary List templates for a company
          * @param {string} companyId A unique identifier for the company.
-         * @param {NotificationTypeEnum} channel Filter templates by notification channel.
+         * @param {NotificationMessageTypeEnum} channel Filter templates by notification channel.
          * @param {number} [currentPage] current page
          * @param {number} [perPage] per Page 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatedTemplates(companyId: string, channel: NotificationTypeEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetPaginatedTemplates200Response> {
+        getPaginatedTemplates(companyId: string, channel: NotificationMessageTypeEnum, currentPage?: number, perPage?: number, options?: any): AxiosPromise<GetPaginatedTemplates200Response> {
             return localVarFp.getPaginatedTemplates(companyId, channel, currentPage, perPage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -29564,14 +30482,14 @@ export class TemplatesApi extends BaseAPI {
      * Retrieves a paginated list of templates for a specific company. Requires a valid channel filter.
      * @summary List templates for a company
      * @param {string} companyId A unique identifier for the company.
-     * @param {NotificationTypeEnum} channel Filter templates by notification channel.
+     * @param {NotificationMessageTypeEnum} channel Filter templates by notification channel.
      * @param {number} [currentPage] current page
      * @param {number} [perPage] per Page 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TemplatesApi
      */
-    public getPaginatedTemplates(companyId: string, channel: NotificationTypeEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
+    public getPaginatedTemplates(companyId: string, channel: NotificationMessageTypeEnum, currentPage?: number, perPage?: number, options?: RawAxiosRequestConfig) {
         return TemplatesApiFp(this.configuration).getPaginatedTemplates(companyId, channel, currentPage, perPage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -30825,6 +31743,57 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Attaches a tag to a user. Provide EITHER an existing tag `id` (must belong to the company and be USER-type) OR `name` (+ optional `color`) to find-or-create the tag by name and attach it - the two are mutually exclusive. Re-attaching an already-attached tag is a no-op success. Returns a boolean indicating success.
+         * @summary Attach a tag to a user
+         * @param {string} id A unique identifier for the user to attach the tag to.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagAttachRequestDto} tagAttachRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachUserTag: async (id: string, companyId: string, tagAttachRequestDto: TagAttachRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('attachUserTag', 'id', id)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('attachUserTag', 'companyId', companyId)
+            // verify required parameter 'tagAttachRequestDto' is not null or undefined
+            assertParamExists('attachUserTag', 'tagAttachRequestDto', tagAttachRequestDto)
+            const localVarPath = `/users/{id}/tags`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(tagAttachRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Activate a ban on a user within a specific company. You can specify the user by their unique ID and the company using its unique ID. Returns a boolean indicating success.
          * @summary Ban User
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user you want to ban within the specified company.
@@ -30925,6 +31894,100 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             assertParamExists('deleteUser', 'companyId', companyId)
             const localVarPath = `/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a USER-type tag from the company registry and removes it from any users currently tagged with it.
+         * @summary Delete a user tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteUserTag: async (tagId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'tagId' is not null or undefined
+            assertParamExists('deleteUserTag', 'tagId', tagId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('deleteUserTag', 'companyId', companyId)
+            const localVarPath = `/users/tags/{tagId}`
+                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Detaches a tag from a user. The tag registry entry itself is not deleted. Detaching a tag that isn\'t attached is a no-op success. Returns a boolean indicating success.
+         * @summary Detach a tag from a user
+         * @param {string} id A unique identifier for the user to detach the tag from.
+         * @param {string} tagId A unique identifier for the tag to detach.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detachUserTag: async (id: string, tagId: string, companyId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('detachUserTag', 'id', id)
+            // verify required parameter 'tagId' is not null or undefined
+            assertParamExists('detachUserTag', 'tagId', tagId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('detachUserTag', 'companyId', companyId)
+            const localVarPath = `/users/{id}/tags/{tagId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -31173,6 +32236,57 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
             if (companyId !== undefined) {
                 localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns the paginated registry of USER-type tags belonging to the company. These are the tags available to attach to users.
+         * @summary Get user tags
+         * @param {string} companyId A unique identifier for the company.
+         * @param {number} [perPage] per Page 
+         * @param {number} [currentPage] current page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserTags: async (companyId: string, perPage?: number, currentPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('getUserTags', 'companyId', companyId)
+            const localVarPath = `/users/tags`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+            if (perPage !== undefined) {
+                localVarQueryParameter['perPage'] = perPage;
+            }
+
+            if (currentPage !== undefined) {
+                localVarQueryParameter['currentPage'] = currentPage;
             }
 
 
@@ -31768,7 +32882,58 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Update the tags for a user within a specific company. Identify the user by their unique ID and the company by its unique ID. Provide an array of tags to replace the existing tags on the user\'s profile. Returns a boolean indicating success.
+         * Renames and/or recolors a USER-type tag in the company registry. The entity type and company cannot be changed.
+         * @summary Update a user tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagUpdateRequestDto} tagUpdateRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateUserTag: async (tagId: string, companyId: string, tagUpdateRequestDto: TagUpdateRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'tagId' is not null or undefined
+            assertParamExists('updateUserTag', 'tagId', tagId)
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('updateUserTag', 'companyId', companyId)
+            // verify required parameter 'tagUpdateRequestDto' is not null or undefined
+            assertParamExists('updateUserTag', 'tagUpdateRequestDto', tagUpdateRequestDto)
+            const localVarPath = `/users/tags/{tagId}`
+                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(tagUpdateRequestDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update the tags for a user within a specific company. Identify the user by their unique ID and the company by its unique ID. Provide an array of tag IDs (referencing the tags collection, entity type USER) to replace the existing tags on the user\'s profile. Returns a boolean indicating success.
          * @summary Update user tags
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user on whose profile you want to update the tags within the specified company.
          * @param {string} companyId A unique identifier for the company.
@@ -31859,6 +33024,21 @@ export const UsersApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Attaches a tag to a user. Provide EITHER an existing tag `id` (must belong to the company and be USER-type) OR `name` (+ optional `color`) to find-or-create the tag by name and attach it - the two are mutually exclusive. Re-attaching an already-attached tag is a no-op success. Returns a boolean indicating success.
+         * @summary Attach a tag to a user
+         * @param {string} id A unique identifier for the user to attach the tag to.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagAttachRequestDto} tagAttachRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async attachUserTag(id: string, companyId: string, tagAttachRequestDto: TagAttachRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.attachUserTag(id, companyId, tagAttachRequestDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.attachUserTag']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Activate a ban on a user within a specific company. You can specify the user by their unique ID and the company using its unique ID. Returns a boolean indicating success.
          * @summary Ban User
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user you want to ban within the specified company.
@@ -31897,6 +33077,35 @@ export const UsersApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteUser(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UsersApi.deleteUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Deletes a USER-type tag from the company registry and removes it from any users currently tagged with it.
+         * @summary Delete a user tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteUserTag(tagId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteUserTag(tagId, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.deleteUserTag']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Detaches a tag from a user. The tag registry entry itself is not deleted. Detaching a tag that isn\'t attached is a no-op success. Returns a boolean indicating success.
+         * @summary Detach a tag from a user
+         * @param {string} id A unique identifier for the user to detach the tag from.
+         * @param {string} tagId A unique identifier for the tag to detach.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async detachUserTag(id: string, tagId: string, companyId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateIntegration200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.detachUserTag(id, tagId, companyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.detachUserTag']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -31968,6 +33177,21 @@ export const UsersApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getUserComments(id, companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UsersApi.getUserComments']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Returns the paginated registry of USER-type tags belonging to the company. These are the tags available to attach to users.
+         * @summary Get user tags
+         * @param {string} companyId A unique identifier for the company.
+         * @param {number} [perPage] per Page 
+         * @param {number} [currentPage] current page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getUserTags(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserTags200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getUserTags(companyId, perPage, currentPage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.getUserTags']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -32145,7 +33369,22 @@ export const UsersApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Update the tags for a user within a specific company. Identify the user by their unique ID and the company by its unique ID. Provide an array of tags to replace the existing tags on the user\'s profile. Returns a boolean indicating success.
+         * Renames and/or recolors a USER-type tag in the company registry. The entity type and company cannot be changed.
+         * @summary Update a user tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagUpdateRequestDto} tagUpdateRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateUserTag(tagId: string, companyId: string, tagUpdateRequestDto: TagUpdateRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateUserTag200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateUserTag(tagId, companyId, tagUpdateRequestDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.updateUserTag']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Update the tags for a user within a specific company. Identify the user by their unique ID and the company by its unique ID. Provide an array of tag IDs (referencing the tags collection, entity type USER) to replace the existing tags on the user\'s profile. Returns a boolean indicating success.
          * @summary Update user tags
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user on whose profile you want to update the tags within the specified company.
          * @param {string} companyId A unique identifier for the company.
@@ -32194,6 +33433,18 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.addUserMinimumPricePolicy(companyId, id, addUserMinimumPricePolicyRequest, options).then((request) => request(axios, basePath));
         },
         /**
+         * Attaches a tag to a user. Provide EITHER an existing tag `id` (must belong to the company and be USER-type) OR `name` (+ optional `color`) to find-or-create the tag by name and attach it - the two are mutually exclusive. Re-attaching an already-attached tag is a no-op success. Returns a boolean indicating success.
+         * @summary Attach a tag to a user
+         * @param {string} id A unique identifier for the user to attach the tag to.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagAttachRequestDto} tagAttachRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachUserTag(id: string, companyId: string, tagAttachRequestDto: TagAttachRequestDto, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.attachUserTag(id, companyId, tagAttachRequestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Activate a ban on a user within a specific company. You can specify the user by their unique ID and the company using its unique ID. Returns a boolean indicating success.
          * @summary Ban User
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user you want to ban within the specified company.
@@ -32224,6 +33475,29 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          */
         deleteUser(id: string, companyId: string, options?: any): AxiosPromise<void> {
             return localVarFp.deleteUser(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes a USER-type tag from the company registry and removes it from any users currently tagged with it.
+         * @summary Delete a user tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteUserTag(tagId: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.deleteUserTag(tagId, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Detaches a tag from a user. The tag registry entry itself is not deleted. Detaching a tag that isn\'t attached is a no-op success. Returns a boolean indicating success.
+         * @summary Detach a tag from a user
+         * @param {string} id A unique identifier for the user to detach the tag from.
+         * @param {string} tagId A unique identifier for the tag to detach.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detachUserTag(id: string, tagId: string, companyId: string, options?: any): AxiosPromise<UpdateIntegration200Response> {
+            return localVarFp.detachUserTag(id, tagId, companyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a list of all users related to the specified company with optional filters applied. Returns an array of UserResponseDto objects.
@@ -32280,6 +33554,18 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          */
         getUserComments(id: string, companyId: string, options?: any): AxiosPromise<GetUserAdditionalNotificationEmails200Response> {
             return localVarFp.getUserComments(id, companyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns the paginated registry of USER-type tags belonging to the company. These are the tags available to attach to users.
+         * @summary Get user tags
+         * @param {string} companyId A unique identifier for the company.
+         * @param {number} [perPage] per Page 
+         * @param {number} [currentPage] current page
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserTags(companyId: string, perPage?: number, currentPage?: number, options?: any): AxiosPromise<GetUserTags200Response> {
+            return localVarFp.getUserTags(companyId, perPage, currentPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Get all payments of a user
@@ -32420,7 +33706,19 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.updateUserLanguages(id, companyId, language, options).then((request) => request(axios, basePath));
         },
         /**
-         * Update the tags for a user within a specific company. Identify the user by their unique ID and the company by its unique ID. Provide an array of tags to replace the existing tags on the user\'s profile. Returns a boolean indicating success.
+         * Renames and/or recolors a USER-type tag in the company registry. The entity type and company cannot be changed.
+         * @summary Update a user tag
+         * @param {string} tagId A unique identifier for the tag.
+         * @param {string} companyId A unique identifier for the company.
+         * @param {TagUpdateRequestDto} tagUpdateRequestDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateUserTag(tagId: string, companyId: string, tagUpdateRequestDto: TagUpdateRequestDto, options?: any): AxiosPromise<UpdateUserTag200Response> {
+            return localVarFp.updateUserTag(tagId, companyId, tagUpdateRequestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update the tags for a user within a specific company. Identify the user by their unique ID and the company by its unique ID. Provide an array of tag IDs (referencing the tags collection, entity type USER) to replace the existing tags on the user\'s profile. Returns a boolean indicating success.
          * @summary Update user tags
          * @param {string} id A unique identifier for the user. Use this parameter to specify the user on whose profile you want to update the tags within the specified company.
          * @param {string} companyId A unique identifier for the company.
@@ -32470,6 +33768,20 @@ export class UsersApi extends BaseAPI {
     }
 
     /**
+     * Attaches a tag to a user. Provide EITHER an existing tag `id` (must belong to the company and be USER-type) OR `name` (+ optional `color`) to find-or-create the tag by name and attach it - the two are mutually exclusive. Re-attaching an already-attached tag is a no-op success. Returns a boolean indicating success.
+     * @summary Attach a tag to a user
+     * @param {string} id A unique identifier for the user to attach the tag to.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {TagAttachRequestDto} tagAttachRequestDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public attachUserTag(id: string, companyId: string, tagAttachRequestDto: TagAttachRequestDto, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).attachUserTag(id, companyId, tagAttachRequestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Activate a ban on a user within a specific company. You can specify the user by their unique ID and the company using its unique ID. Returns a boolean indicating success.
      * @summary Ban User
      * @param {string} id A unique identifier for the user. Use this parameter to specify the user you want to ban within the specified company.
@@ -32505,6 +33817,33 @@ export class UsersApi extends BaseAPI {
      */
     public deleteUser(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return UsersApiFp(this.configuration).deleteUser(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Deletes a USER-type tag from the company registry and removes it from any users currently tagged with it.
+     * @summary Delete a user tag
+     * @param {string} tagId A unique identifier for the tag.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public deleteUserTag(tagId: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).deleteUserTag(tagId, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Detaches a tag from a user. The tag registry entry itself is not deleted. Detaching a tag that isn\'t attached is a no-op success. Returns a boolean indicating success.
+     * @summary Detach a tag from a user
+     * @param {string} id A unique identifier for the user to detach the tag from.
+     * @param {string} tagId A unique identifier for the tag to detach.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public detachUserTag(id: string, tagId: string, companyId: string, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).detachUserTag(id, tagId, companyId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -32571,6 +33910,20 @@ export class UsersApi extends BaseAPI {
      */
     public getUserComments(id: string, companyId: string, options?: RawAxiosRequestConfig) {
         return UsersApiFp(this.configuration).getUserComments(id, companyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns the paginated registry of USER-type tags belonging to the company. These are the tags available to attach to users.
+     * @summary Get user tags
+     * @param {string} companyId A unique identifier for the company.
+     * @param {number} [perPage] per Page 
+     * @param {number} [currentPage] current page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public getUserTags(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).getUserTags(companyId, perPage, currentPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -32736,7 +34089,21 @@ export class UsersApi extends BaseAPI {
     }
 
     /**
-     * Update the tags for a user within a specific company. Identify the user by their unique ID and the company by its unique ID. Provide an array of tags to replace the existing tags on the user\'s profile. Returns a boolean indicating success.
+     * Renames and/or recolors a USER-type tag in the company registry. The entity type and company cannot be changed.
+     * @summary Update a user tag
+     * @param {string} tagId A unique identifier for the tag.
+     * @param {string} companyId A unique identifier for the company.
+     * @param {TagUpdateRequestDto} tagUpdateRequestDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public updateUserTag(tagId: string, companyId: string, tagUpdateRequestDto: TagUpdateRequestDto, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).updateUserTag(tagId, companyId, tagUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update the tags for a user within a specific company. Identify the user by their unique ID and the company by its unique ID. Provide an array of tag IDs (referencing the tags collection, entity type USER) to replace the existing tags on the user\'s profile. Returns a boolean indicating success.
      * @summary Update user tags
      * @param {string} id A unique identifier for the user. Use this parameter to specify the user on whose profile you want to update the tags within the specified company.
      * @param {string} companyId A unique identifier for the company.
