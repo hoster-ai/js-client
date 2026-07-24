@@ -329,13 +329,15 @@ Methods for managing product categories.
 
 - `createProductCategory(companyId: string, ...)`: Creates a new product category.
 - `deleteProductCategory(id: string, ...)`: Deletes a product category.
-- `getProductCategories(companyId: string, ...)`: Lists all product categories.
+- `findProductCategories(companyId: string, currentPage?, perPage?, sortBy?, sortOrder?)`: Lists product categories. `sortBy` (`ProductCategorySortByEnum`: `createdAt` | `isPublic` | `productsCount`) and `sortOrder` (`ProductCategorySortOrderEnum`: `asc` | `desc`) control sorting.
 - `getProductCategory(id: string, ...)`: Retrieves a specific product category by ID.
-- `updateProductCategory(id: string, ...)`: Updates an existing product category.
+- `updateProductCategory(id: string, ...)`: Updates an existing product category. Returns `data: boolean`.
+- `publishProductCategory(id: string, ...)`: Publishes a product category. Returns `data: boolean`.
+- `unpublishProductCategory(id: string, ...)`: Unpublishes a product category. Returns `data: boolean`; responds `409` if the category has products that are an active version or activated.
 
 Example:
 ```js
-const categories = await api.admin.productCategories.getProductCategories("companyId");
+const categories = await api.admin.productCategories.findProductCategories("companyId", 1, 20, "productsCount", "desc");
 ```
 
 ### Products
