@@ -70,6 +70,8 @@ The client provides methods for interacting with all parts of the Hoster.AI API.
 
 ## Admin namespace (`api.admin.*`)
 
+> List endpoints `getUsers`, `getProducts`, `getPaginatedItems`, `getIssues` and the b2b/b2c order lists accept a repeatable `tags` query param (`tags=a&tags=b`, any-of, company-scoped). Non-numeric or non-integer `currentPage`/`perPage` now respond `400` on every paginated endpoint.
+
 ### Addons
 
 Methods for managing add-ons.
@@ -253,6 +255,12 @@ Methods for managing issues.
 - `getIssues(companyId: string, ...)`: Lists all issues.
 - `issuesControllerExportIssuesToCsv(companyId: string, ...)`: Exports issues to CSV.
 - `updateIssue(companyId: string, id: string, ...)`: Updates an existing issue.
+- `getIssueTags(companyId: string, currentPage?: number, perPage?: number)`: Lists the ISSUE-type tag registry of the company.
+- `getIssueTag(tagId: string, companyId: string)`: Retrieves a single ISSUE-type registry tag.
+- `updateIssueTag(tagId: string, companyId: string, body: TagUpdateRequestDto)`: Fully replaces a registry tag (`name` required; omitting `color` clears it). Responds `400` on a duplicate name.
+- `deleteIssueTag(tagId: string, companyId: string)`: Deletes a registry tag and detaches it from every issue. Responds `204`.
+- `attachIssueTag(id: string, companyId: string, body: TagAttachRequestDto)`: Attaches a tag to a issue — either an existing tag `id`, or `name` (+ optional `color`) to create a new tag; responds `400` if the name already exists.
+- `detachIssueTag(id: string, tagId: string, companyId: string)`: Detaches a tag from a issue. Responds `204`; a no-op when the tag is not attached.
 
 Example:
 ```js
@@ -282,6 +290,12 @@ Methods for managing items.
 - `suspendItem(id: string, ...)`: Suspends an item.
 - `unsuspendItem(id: string, ...)`: Unsuspends an item.
 - `updateItem(id: string, ...)`: Updates an existing item.
+- `getItemTags(companyId: string, currentPage?: number, perPage?: number)`: Lists the ITEM-type tag registry of the company.
+- `getItemTag(tagId: string, companyId: string)`: Retrieves a single ITEM-type registry tag.
+- `updateItemTag(tagId: string, companyId: string, body: TagUpdateRequestDto)`: Fully replaces a registry tag (`name` required; omitting `color` clears it). Responds `400` on a duplicate name.
+- `deleteItemTag(tagId: string, companyId: string)`: Deletes a registry tag and detaches it from every item. Responds `204`.
+- `attachItemTag(id: string, companyId: string, body: TagAttachRequestDto)`: Attaches a tag to a item — either an existing tag `id`, or `name` (+ optional `color`) to create a new tag; responds `400` if the name already exists.
+- `detachItemTag(id: string, tagId: string, companyId: string)`: Detaches a tag from a item. Responds `204`; a no-op when the tag is not attached.
 
 Example:
 ```js
@@ -302,6 +316,12 @@ Methods for managing orders.
 - `orderControllerRemoveItem(id: string, ...)`: Removes an item from an order.
 - `orderControllerResendOrderEmail(companyId: string, ...)`: Resends order email.
 - `orderControllerResendPaymentEmail(companyId: string, ...)`: Resends payment email.
+- `getOrderTags(companyId: string, currentPage?: number, perPage?: number)`: Lists the ORDER-type tag registry of the company.
+- `getOrderTag(tagId: string, companyId: string)`: Retrieves a single ORDER-type registry tag.
+- `updateOrderTag(tagId: string, companyId: string, body: TagUpdateRequestDto)`: Fully replaces a registry tag (`name` required; omitting `color` clears it). Responds `400` on a duplicate name.
+- `deleteOrderTag(tagId: string, companyId: string)`: Deletes a registry tag and detaches it from every order. Responds `204`.
+- `attachOrderTag(id: string, companyId: string, body: TagAttachRequestDto)`: Attaches a tag to a order — either an existing tag `id`, or `name` (+ optional `color`) to create a new tag; responds `400` if the name already exists.
+- `detachOrderTag(id: string, tagId: string, companyId: string)`: Detaches a tag from a order. Responds `204`; a no-op when the tag is not attached.
 
 Example:
 ```js
@@ -353,6 +373,12 @@ Methods for managing products.
 - `getProducts(companyId: string, ...)`: Lists all products.
 - `restoreArchivedProduct(id: string, ...)`: Restores an archived product.
 - `updateProduct(id: string, ...)`: Updates an existing product.
+- `getProductTags(companyId: string, currentPage?: number, perPage?: number)`: Lists the PRODUCT-type tag registry of the company.
+- `getProductTag(tagId: string, companyId: string)`: Retrieves a single PRODUCT-type registry tag.
+- `updateProductTag(tagId: string, companyId: string, body: TagUpdateRequestDto)`: Fully replaces a registry tag (`name` required; omitting `color` clears it). Responds `400` on a duplicate name.
+- `deleteProductTag(tagId: string, companyId: string)`: Deletes a registry tag and detaches it from every product. Responds `204`.
+- `attachProductTag(id: string, companyId: string, body: TagAttachRequestDto)`: Attaches a tag to a product — either an existing tag `id`, or `name` (+ optional `color`) to create a new tag; responds `400` if the name already exists.
+- `detachProductTag(id: string, tagId: string, companyId: string)`: Detaches a tag from a product. Responds `204`; a no-op when the tag is not attached.
 
 Example:
 ```js
@@ -427,7 +453,12 @@ Methods for managing users.
 - `updateUserInvoiceContact(companyId: string, userId: string, ...)`: Updates invoice contact for a user.
 - `updateUserInvoiceInterval(companyId: string, userId: string, ...)`: Updates invoice interval for a user.
 - `updateUserLanguages(id: string, ...)`: Updates languages for a user.
-- `updateUserTags(id: string, ...)`: Updates tags for a user.
+- `getUserTags(companyId: string, currentPage?: number, perPage?: number)`: Lists the USER-type tag registry of the company.
+- `getUserTag(tagId: string, companyId: string)`: Retrieves a single USER-type registry tag.
+- `updateUserTag(tagId: string, companyId: string, body: TagUpdateRequestDto)`: Fully replaces a registry tag (`name` required; omitting `color` clears it). Responds `400` on a duplicate name.
+- `deleteUserTag(tagId: string, companyId: string)`: Deletes a registry tag and detaches it from every user. Responds `204`.
+- `attachUserTag(id: string, companyId: string, body: TagAttachRequestDto)`: Attaches a tag to a user — either an existing tag `id`, or `name` (+ optional `color`) to create a new tag; responds `400` if the name already exists.
+- `detachUserTag(id: string, tagId: string, companyId: string)`: Detaches a tag from a user. Responds `204`; a no-op when the tag is not attached.
 
 Example:
 ```js
