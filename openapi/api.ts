@@ -571,10 +571,10 @@ export interface AddonResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof AddonResponseDto
      */
-    'company': CompanyRef;
+    'company': CompanyReferenceRef;
     /**
      * The date the addon created.
      * @type {string}
@@ -1177,25 +1177,6 @@ export const BooleanFieldDtoTypeEnum = {
 export type BooleanFieldDtoTypeEnum = typeof BooleanFieldDtoTypeEnum[keyof typeof BooleanFieldDtoTypeEnum];
 
 /**
- * 
- * @export
- * @interface BrandRequestDto
- */
-export interface BrandRequestDto {
-    /**
-     * The URL pointing to the company’s official logo. This logo is typically used for branding purposes on websites and documents.
-     * @type {string}
-     * @memberof BrandRequestDto
-     */
-    'logoUrl'?: string;
-    /**
-     * The URL pointing to the company’s official icon. This icon is typically used for small-scale branding, such as favicon or app icons.
-     * @type {string}
-     * @memberof BrandRequestDto
-     */
-    'iconUrl'?: string;
-}
-/**
  * @type BundledWithItem
  * Unique identifier for the primary item in the bundle under which other items were added.
  * @export
@@ -1457,7 +1438,7 @@ export interface ClientAddonResponseDto {
  * A unique identifier for the client company associated with this item, used to link the item to a specific client organization.
  * @export
  */
-export type ClientCompany = CompanyResponseDto | string;
+export type ClientCompany = CompanyReferenceResponseDto | string;
 
 /**
  * 
@@ -1844,7 +1825,7 @@ export interface CommentUpdateRequestDto {
  * A unique identifier for the company linked to the item, used to associate the item with a specific organization.
  * @export
  */
-export type Company = CompanyResponseDto | string;
+export type Company = CompanyReferenceResponseDto | string;
 
 /**
  * 
@@ -1921,11 +1902,11 @@ export interface CompanyClientResponseDto {
      */
     'emails'?: Array<string>;
     /**
-     * The URL pointing to the company’s official logo. This logo is typically used for branding purposes on websites and documents.
-     * @type {string}
+     * 
+     * @type {MediaDto}
      * @memberof CompanyClientResponseDto
      */
-    'logoUrl'?: string;
+    'logo'?: MediaDto;
     /**
      * The URL pointing to the company’s official icon. This icon is typically used for small-scale branding, such as favicon or app icons.
      * @type {string}
@@ -2156,34 +2137,198 @@ export interface CompanyCurrencyDto {
 /**
  * 
  * @export
- * @interface CompanyFindResponseDto
+ * @interface CompanyEmbeddedResponseDto
  */
-export interface CompanyFindResponseDto {
+export interface CompanyEmbeddedResponseDto {
     /**
-     * An array that contains objects with company informations.
-     * @type {Array<CompanyResponseDto>}
-     * @memberof CompanyFindResponseDto
+     * The name of the company. This is an optional field and represents the official title or identifier of the company.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
      */
-    'results'?: Array<CompanyResponseDto>;
+    'name'?: string;
     /**
-     * A number that indicates the current page being shown.
+     * The public phone number that users can use to contact the company. This is optional and should be in a valid phone number format.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'publicPhone'?: string;
+    /**
+     * The unique identifier of the currency document, from the platform-wide currencies catalog (GET /currencies).
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'currency'?: string;
+    /**
+     * The public email address that users can use to contact the company. This is optional and should be in a valid email format.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'publicEmail'?: string;
+    /**
+     * A custom url that the company can use to access its account on Hoster.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'customUrl'?: string;
+    /**
+     * The official website URL of the company.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'websiteUrl'?: string;
+    /**
+     * A list of email addresses used by the company for various purposes, such as support, inquiries, and general communication. Each email should be in a valid email format. This field is optional.
+     * @type {Array<string>}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'emails'?: Array<string>;
+    /**
+     * 
+     * @type {MediaDto}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'logo'?: MediaDto;
+    /**
+     * The URL pointing to the company’s official icon. This icon is typically used for small-scale branding, such as favicon or app icons.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'iconUrl'?: string;
+    /**
+     * The URL pointing to the company’s terms and conditions. This document outlines the terms and conditions for using the company’s services.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'termsAndConditionsUrl'?: string;
+    /**
+     * The URL pointing to the company’s privacy policy. This document outlines how the company handles user data and privacy concerns.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'privacyPolicyUrl'?: string;
+    /**
+     * 
+     * @type {SelectedNotificationIntegrationsDto}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'selectedNotificationIntegrations'?: SelectedNotificationIntegrationsDto;
+    /**
+     * The unique identifier of the invoice integration the company has chosen to use for sending invoice notifications.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'selectedInvoiceIntegration'?: string;
+    /**
+     * The payment method used by the company. This can be used for purchasing services or may reflect a pre-paid amount.
+     * @type {Array<PaymentMethodsEnum>}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'paymentMethods'?: Array<PaymentMethodsEnum>;
+    /**
+     * Indicates whether the company is restricted from making payments. When enabled, the company can manage their account and orders but cannot complete payment transactions.
+     * @type {boolean}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'locked': boolean;
+    /**
+     * When enabled, refund requests may be automatically approved based on business rules.
+     * @type {boolean}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'automaticRefunds'?: boolean;
+    /**
+     * An internal comment associated with the company, not visible to the company owner. This field is optional.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'comment'?: string;
+    /**
+     * 
+     * @type {LanguageEnum}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'defaultLanguage'?: LanguageEnum;
+    /**
+     * An array that specifies all the languages required for translations in multilingual fields. These languages determine the set of translations to be provided for product-related content or other fields that support multiple languages.
+     * @type {Array<LanguageEnum>}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'supportedLanguages': Array<LanguageEnum>;
+    /**
+     * A unique identifier for the company.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'id': string;
+    /**
+     * The subdomain of the company. This value must be unique and contain only lowercase letters, numbers, and dashes (-). It is also used as the first part of the URL for the company on Hoster, e.g., \'my-company.hoster.ai\'.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'hosterSubdomain': string;
+    /**
+     * 
+     * @type {CompanyInvoiceContactResponseDto}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'invoiceContact'?: CompanyInvoiceContactResponseDto;
+    /**
+     * The id of the user who owns the company. This field links the company to the individual responsible for its management and operations.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'owner': string;
+    /**
+     * The current balance of the company.
      * @type {number}
-     * @memberof CompanyFindResponseDto
+     * @memberof CompanyEmbeddedResponseDto
      */
-    'currentPage'?: number;
+    'balance': number;
     /**
-     * A number that indicates the number of results per page.
+     * The current balance of the company\'s wallet. This is the total amount of funds available to the company in their wallet.
      * @type {number}
-     * @memberof CompanyFindResponseDto
+     * @memberof CompanyEmbeddedResponseDto
      */
-    'perPage'?: number;
+    'walletBalance'?: number;
     /**
-     * A number that indicates the total pages will be shown.
-     * @type {number}
-     * @memberof CompanyFindResponseDto
+     * A unique identifier for the tenant associated with the company. This ID links the company to its tenant within a multi-tenant architecture or system, ensuring proper segregation and management of data and resources.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
      */
-    'totalPages'?: number;
+    'tenantId'?: string;
+    /**
+     * A list of the most popular TLDs for the company, ranked by priority.
+     * @type {Array<PopularTldResponseDto>}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'popularTlds'?: Array<PopularTldResponseDto>;
+    /**
+     * Computed flag: true only when EVERY internal onboarding milestone of the company is completed. Use GET /companies/{companyId}/status for the individual milestones.
+     * @type {boolean}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'onboardingStatus': boolean;
+    /**
+     * Computed flag: true only when EVERY getting-started step of the company is completed. Use GET /companies/{companyId}/status for the individual steps.
+     * @type {boolean}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'getStartedStatus': boolean;
+    /**
+     * The date a product created.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'createdAt'?: string;
+    /**
+     * The date a product updated.
+     * @type {string}
+     * @memberof CompanyEmbeddedResponseDto
+     */
+    'updatedAt'?: string;
 }
+
+
 /**
  * 
  * @export
@@ -2553,11 +2698,11 @@ export interface CompanyPublicInfoDto {
      */
     'state'?: string;
     /**
-     * The URL pointing to the company’s official logo. This logo is typically used for branding purposes on websites and documents.
-     * @type {string}
+     * 
+     * @type {MediaDto}
      * @memberof CompanyPublicInfoDto
      */
-    'logoUrl'?: string;
+    'logo'?: MediaDto;
     /**
      * The URL pointing to the company’s official icon. This icon is typically used for small-scale branding, such as favicon or app icons.
      * @type {string}
@@ -2598,11 +2743,140 @@ export interface CompanyPublicInfoDto {
 
 
 /**
- * @type CompanyRef
- * Either a populated CompanyResponseDto or its id string.
+ * @type CompanyReferenceRef
+ * Either a populated CompanyReferenceResponseDto or its id string.
  * @export
  */
-export type CompanyRef = CompanyResponseDto | string;
+export type CompanyReferenceRef = CompanyReferenceResponseDto | string;
+
+/**
+ * 
+ * @export
+ * @interface CompanyReferenceResponseDto
+ */
+export interface CompanyReferenceResponseDto {
+    /**
+     * The name of the company. This is an optional field and represents the official title or identifier of the company.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'name'?: string;
+    /**
+     * The public phone number that users can use to contact the company. This is optional and should be in a valid phone number format.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'publicPhone'?: string;
+    /**
+     * The unique identifier of the currency document, from the platform-wide currencies catalog (GET /currencies).
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'currency'?: string;
+    /**
+     * The public email address that users can use to contact the company. This is optional and should be in a valid email format.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'publicEmail'?: string;
+    /**
+     * A custom url that the company can use to access its account on Hoster.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'customUrl'?: string;
+    /**
+     * The official website URL of the company.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'websiteUrl'?: string;
+    /**
+     * A list of email addresses used by the company for various purposes, such as support, inquiries, and general communication. Each email should be in a valid email format. This field is optional.
+     * @type {Array<string>}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'emails'?: Array<string>;
+    /**
+     * 
+     * @type {MediaDto}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'logo'?: MediaDto;
+    /**
+     * The URL pointing to the company’s official icon. This icon is typically used for small-scale branding, such as favicon or app icons.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'iconUrl'?: string;
+    /**
+     * The URL pointing to the company’s terms and conditions. This document outlines the terms and conditions for using the company’s services.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'termsAndConditionsUrl'?: string;
+    /**
+     * The URL pointing to the company’s privacy policy. This document outlines how the company handles user data and privacy concerns.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'privacyPolicyUrl'?: string;
+    /**
+     * 
+     * @type {LanguageEnum}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'defaultLanguage'?: LanguageEnum;
+    /**
+     * An array that specifies all the languages required for translations in multilingual fields. These languages determine the set of translations to be provided for product-related content or other fields that support multiple languages.
+     * @type {Array<LanguageEnum>}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'supportedLanguages': Array<LanguageEnum>;
+    /**
+     * A unique identifier for the company.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'id': string;
+    /**
+     * The subdomain of the company. This value must be unique and contain only lowercase letters, numbers, and dashes (-). It is also used as the first part of the URL for the company on Hoster, e.g., \'my-company.hoster.ai\'.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'hosterSubdomain': string;
+    /**
+     * 
+     * @type {CompanyInvoiceContactResponseDto}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'invoiceContact'?: CompanyInvoiceContactResponseDto;
+    /**
+     * The id of the user who owns the company. This field links the company to the individual responsible for its management and operations.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'owner': string;
+    /**
+     * A list of the most popular TLDs for the company, ranked by priority.
+     * @type {Array<PopularTldResponseDto>}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'popularTlds'?: Array<PopularTldResponseDto>;
+    /**
+     * The date a product created.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'createdAt'?: string;
+    /**
+     * The date a product updated.
+     * @type {string}
+     * @memberof CompanyReferenceResponseDto
+     */
+    'updatedAt'?: string;
+}
+
 
 /**
  * 
@@ -2653,11 +2927,11 @@ export interface CompanyResponseDto {
      */
     'emails'?: Array<string>;
     /**
-     * The URL pointing to the company’s official logo. This logo is typically used for branding purposes on websites and documents.
-     * @type {string}
+     * 
+     * @type {MediaDto}
      * @memberof CompanyResponseDto
      */
-    'logoUrl'?: string;
+    'logo'?: MediaDto;
     /**
      * The URL pointing to the company’s official icon. This icon is typically used for small-scale branding, such as favicon or app icons.
      * @type {string}
@@ -2743,11 +3017,11 @@ export interface CompanyResponseDto {
      */
     'invoiceContact'?: CompanyInvoiceContactResponseDto;
     /**
-     * 
-     * @type {UserRef}
+     * The id of the user who owns the company. This field links the company to the individual responsible for its management and operations.
+     * @type {string}
      * @memberof CompanyResponseDto
      */
-    'owner': UserRef;
+    'owner': string;
     /**
      * This array contains unique identifiers for service integrations attached to the company, along with the roles the integration has access to. These roles define the permissions the integration has within the company system, specifying which actions or resources it can access.
      * @type {Array<IntegrationsInfoResponseDto>}
@@ -3506,10 +3780,10 @@ export interface CouponResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof CouponResponseDto
      */
-    'company'?: CompanyRef;
+    'company'?: CompanyReferenceRef;
     /**
      * An array of price policies to which this coupon applies. Each entry can be a fully populated price policy object or a price policy ID string.
      * @type {Array<PricePolicyRef>}
@@ -5060,10 +5334,10 @@ export interface DomainContactResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof DomainContactResponseDto
      */
-    'company': CompanyRef;
+    'company': CompanyReferenceRef;
     /**
      * A list of custom codes associated with the contact, organized by supplier or integration.
      * @type {Array<ContactCodeDto>}
@@ -5198,6 +5472,43 @@ export interface DomainNameDataResponseDto {
      * 
      * @type {TldRef}
      * @memberof DomainNameDataResponseDto
+     */
+    'tld': TldRef;
+}
+/**
+ * 
+ * @export
+ * @interface DomainNameDataTransferPreviewResponseDto
+ */
+export interface DomainNameDataTransferPreviewResponseDto {
+    /**
+     * A list of nameservers associated with the domain. Each nameserver includes the hostname and optional IP addresses.
+     * @type {Array<NameserverDto>}
+     * @memberof DomainNameDataTransferPreviewResponseDto
+     */
+    'nameservers'?: Array<NameserverDto>;
+    /**
+     * Indicates whether the domain is locked, preventing unauthorized changes or transfers. Typically used to secure the domain against malicious actions.
+     * @type {boolean}
+     * @memberof DomainNameDataTransferPreviewResponseDto
+     */
+    'locked'?: boolean;
+    /**
+     * Indicates whether the domain owner\'s (registrar\'s) information is hidden from public WHOIS records for privacy protection.
+     * @type {boolean}
+     * @memberof DomainNameDataTransferPreviewResponseDto
+     */
+    'idShield'?: boolean;
+    /**
+     * A list of domain names registered together as part of a single domain, typically for creating a comprehensive domain setup.
+     * @type {Array<DomainBundleDto>}
+     * @memberof DomainNameDataTransferPreviewResponseDto
+     */
+    'bundles'?: Array<DomainBundleDto>;
+    /**
+     * 
+     * @type {TldRef}
+     * @memberof DomainNameDataTransferPreviewResponseDto
      */
     'tld': TldRef;
 }
@@ -7143,10 +7454,10 @@ export interface GetItemsForTransfer200Response {
     'message': any;
     /**
      * 
-     * @type {Array<ItemResponseDto>}
+     * @type {Array<ItemTransferPreviewResponseDto>}
      * @memberof GetItemsForTransfer200Response
      */
-    'data': Array<ItemResponseDto>;
+    'data': Array<ItemTransferPreviewResponseDto>;
 }
 /**
  * 
@@ -7242,10 +7553,10 @@ export interface GetPaginatedCompanies200Response {
     'message': any;
     /**
      * 
-     * @type {Array<CompanyResponseDto>}
+     * @type {Array<CompanyEmbeddedResponseDto>}
      * @memberof GetPaginatedCompanies200Response
      */
-    'data': Array<CompanyResponseDto>;
+    'data': Array<CompanyEmbeddedResponseDto>;
     /**
      * 
      * @type {any}
@@ -7726,10 +8037,10 @@ export interface GroupRoleResponseDto {
     'id': string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof GroupRoleResponseDto
      */
-    'company': CompanyRef;
+    'company': CompanyReferenceRef;
     /**
      * The total number of users associated with the group role in the company.
      * @type {number}
@@ -7988,10 +8299,10 @@ export interface IntegrationResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof IntegrationResponseDto
      */
-    'createdByCompany': CompanyRef;
+    'createdByCompany': CompanyReferenceRef;
     /**
      * Indicates whether the integration is active or not.
      * @type {boolean}
@@ -8004,6 +8315,12 @@ export interface IntegrationResponseDto {
      * @memberof IntegrationResponseDto
      */
     'validationStatus': IntegrationValidationStatusEnum;
+    /**
+     * 
+     * @type {MediaDto}
+     * @memberof IntegrationResponseDto
+     */
+    'logo'?: MediaDto;
     /**
      * The date and time when the service integration was created.
      * @type {string}
@@ -8558,10 +8875,10 @@ export interface InvoiceContactResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof InvoiceContactResponseDto
      */
-    'company'?: CompanyRef;
+    'company'?: CompanyReferenceRef;
     /**
      * 
      * @type {UserRef}
@@ -9013,16 +9330,16 @@ export interface InvoiceResponseDto {
     'user'?: UserRef;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof InvoiceResponseDto
      */
-    'clientCompany'?: CompanyRef;
+    'clientCompany'?: CompanyReferenceRef;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof InvoiceResponseDto
      */
-    'company': CompanyRef;
+    'company': CompanyReferenceRef;
     /**
      * An array of order IDs associated with the invoice.
      * @type {Array<OrderRef>}
@@ -9318,10 +9635,10 @@ export interface IssueResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof IssueResponseDto
      */
-    'company'?: CompanyRef;
+    'company'?: CompanyReferenceRef;
     /**
      * 
      * @type {UserRef}
@@ -10281,6 +10598,237 @@ export type ItemStatusEnum = typeof ItemStatusEnum[keyof typeof ItemStatusEnum];
 /**
  * 
  * @export
+ * @interface ItemTransferPreviewResponseDto
+ */
+export interface ItemTransferPreviewResponseDto {
+    /**
+     * Represents the name of the item, such as a hosting domain, server IP, or the name of a domain.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'resourceName': string;
+    /**
+     * The date and time when the item will be postponed.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'postponedEndDate'?: string;
+    /**
+     * 
+     * @type {ItemActionsEnum}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'action': ItemActionsEnum;
+    /**
+     * Indicates whether the item will automatically renew. Default behavior follows the user\'s specified preference.
+     * @type {boolean}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'autorenew'?: boolean;
+    /**
+     * A comment associated with the item that can be accessed by all users.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'publicComment'?: string;
+    /**
+     * 
+     * @type {DurationEnum}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'duration'?: DurationEnum;
+    /**
+     * A unique identifier for the item, used for precise referencing within the system.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'id'?: string;
+    /**
+     * Stores the identifier of the primary item from which this item originates, in cases where it is not the original item.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'ancestorItemId'?: string;
+    /**
+     * 
+     * @type {ItemStatusEnum}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'status'?: ItemStatusEnum;
+    /**
+     * 
+     * @type {ProductId}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'product'?: ProductId;
+    /**
+     * An array of multilingual representations for the product\'s title. Each entry provides the title in a specific language.
+     * @type {Array<string>}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'productName'?: Array<string>;
+    /**
+     * The version number of the product used by the item. It helps track which specific version of the product is associated with the item in case the product is updated to a new version.
+     * @type {number}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'productVersion'?: number;
+    /**
+     * 
+     * @type {ProductCategory}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'productCategory'?: ProductCategory;
+    /**
+     * An array of multilingual representations for the product category\'s title. Each entry provides the title in a specific language.
+     * @type {Array<MultilangTextDto>}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'productCategoryTitle'?: Array<MultilangTextDto>;
+    /**
+     * Indicates whether the item has been transferred to a different registrar, such as when a domain is moved to another provider.
+     * @type {boolean}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'transferredOut'?: boolean;
+    /**
+     * 
+     * @type {ItemPricesDto}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'prices': ItemPricesDto;
+    /**
+     * Indicates whether the item should be excluded from coupon discounts.
+     * @type {boolean}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'excludeFromCoupon'?: boolean;
+    /**
+     * Indicates whether the item is currently under maintenance.
+     * @type {boolean}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'inMaintenance': boolean;
+    /**
+     * The date when the subscription for the item begins.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'startDate': string;
+    /**
+     * The date when the subscription for the item ends.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'endDate': string;
+    /**
+     * List of dates when the payment for the item was postponed. Each date represents when the payment was delayed.
+     * @type {Array<string>}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'postponedDates'?: Array<string>;
+    /**
+     * Indicates whether a refund has been requested for this item.
+     * @type {boolean}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'refundRequested'?: boolean;
+    /**
+     * The refund amount requested for this item.
+     * @type {number}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'refundValueRequested'?: number;
+    /**
+     * The date the item created.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'createdAt'?: string;
+    /**
+     * The date the item updated.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'updatedAt'?: string;
+    /**
+     * 
+     * @type {CompanyClientRef}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'company': CompanyClientRef;
+    /**
+     * 
+     * @type {CompanyClientRef}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'clientCompany'?: CompanyClientRef;
+    /**
+     * The addons the client picked for this item. One entry per chosen option — a MULTI_SELECT addon contributes several entries.
+     * @type {Array<ItemAddonClientResponseDto>}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'itemAddons'?: Array<ItemAddonClientResponseDto>;
+    /**
+     * A unique identifier for the user the item belongs to.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'user'?: string;
+    /**
+     * A unique identifier for the order linked to this item.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'order'?: string;
+    /**
+     * A unique identifier for the order from which this item was originally detached.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'detachedFromOrder'?: string;
+    /**
+     * A unique identifier for the item this item derives from.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'parentItem'?: string;
+    /**
+     * A unique identifier for the primary item of the bundle this item was added under.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'bundledWithItem'?: string;
+    /**
+     * A unique identifier for the user account the item was transferred from.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'transferredFromUser'?: string;
+    /**
+     * A unique identifier for the user account the item was transferred to.
+     * @type {string}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'transferredToUser'?: string;
+    /**
+     * 
+     * @type {DomainNameDataTransferPreviewResponseDto}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'domainNameData'?: DomainNameDataTransferPreviewResponseDto;
+    /**
+     * Items bundled with this item, transferred together with it, in the same preview shape.
+     * @type {Array<ItemTransferPreviewResponseDto>}
+     * @memberof ItemTransferPreviewResponseDto
+     */
+    'itemBundles'?: Array<ItemTransferPreviewResponseDto>;
+}
+
+
+/**
+ * 
+ * @export
  * @interface ItemUpdateRequestDto
  */
 export interface ItemUpdateRequestDto {
@@ -10606,6 +11154,31 @@ export interface LoginResponseDto {
 /**
  * 
  * @export
+ * @interface LogoUploadRequestResponseDto
+ */
+export interface LogoUploadRequestResponseDto {
+    /**
+     * The signed upload token the client posts to the upload worker together with the file. It is returned exactly once, carries the entity and its owning company, and the worker reads both from the token — never from the client\'s request.
+     * @type {string}
+     * @memberof LogoUploadRequestResponseDto
+     */
+    'token': string;
+    /**
+     * The moment the token stops being accepted by the upload worker.
+     * @type {string}
+     * @memberof LogoUploadRequestResponseDto
+     */
+    'expiresAt': string;
+    /**
+     * 
+     * @type {MediaUploadConstraintsDto}
+     * @memberof LogoUploadRequestResponseDto
+     */
+    'constraints': MediaUploadConstraintsDto;
+}
+/**
+ * 
+ * @export
  * @interface LvAdditionalDataDto
  */
 export interface LvAdditionalDataDto {
@@ -10621,6 +11194,104 @@ export interface LvAdditionalDataDto {
      * @memberof LvAdditionalDataDto
      */
     'vatNumber'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface MediaDto
+ */
+export interface MediaDto {
+    /**
+     * The unique identifier of the stored file.
+     * @type {string}
+     * @memberof MediaDto
+     */
+    'id': string;
+    /**
+     * 
+     * @type {MediaKindEnum}
+     * @memberof MediaDto
+     */
+    'kind': MediaKindEnum;
+    /**
+     * The public https url the file is served from.
+     * @type {string}
+     * @memberof MediaDto
+     */
+    'url': string;
+    /**
+     * The content type the file was stored with.
+     * @type {string}
+     * @memberof MediaDto
+     */
+    'mime': string;
+    /**
+     * The size of the stored file in bytes.
+     * @type {number}
+     * @memberof MediaDto
+     */
+    'size': number;
+    /**
+     * The date the file was first uploaded.
+     * @type {string}
+     * @memberof MediaDto
+     */
+    'createdAt'?: string;
+    /**
+     * The date the file was last replaced.
+     * @type {string}
+     * @memberof MediaDto
+     */
+    'updatedAt'?: string;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const MediaEntityEnum = {
+    company: 'company',
+    integration: 'integration'
+} as const;
+
+export type MediaEntityEnum = typeof MediaEntityEnum[keyof typeof MediaEntityEnum];
+
+
+/**
+ * The kind of file, which also says which entity owns it.
+ * @export
+ * @enum {string}
+ */
+
+export const MediaKindEnum = {
+    company_logo: 'company_logo',
+    integration_logo: 'integration_logo'
+} as const;
+
+export type MediaKindEnum = typeof MediaKindEnum[keyof typeof MediaKindEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface MediaUploadConstraintsDto
+ */
+export interface MediaUploadConstraintsDto {
+    /**
+     * The maximum size, in bytes, the upload worker accepts for the file.
+     * @type {number}
+     * @memberof MediaUploadConstraintsDto
+     */
+    'maxBytes': number;
+    /**
+     * The content types the upload worker accepts for the file.
+     * @type {Array<string>}
+     * @memberof MediaUploadConstraintsDto
+     */
+    'mimeTypes': Array<string>;
 }
 /**
  * @type Menu
@@ -11278,10 +11949,10 @@ export interface OrderResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof OrderResponseDto
      */
-    'company': CompanyRef;
+    'company': CompanyReferenceRef;
     /**
      * 
      * @type {InvoiceContactInfoResponseDto}
@@ -11290,10 +11961,10 @@ export interface OrderResponseDto {
     'invoiceContact'?: InvoiceContactInfoResponseDto;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof OrderResponseDto
      */
-    'clientCompany'?: CompanyRef;
+    'clientCompany'?: CompanyReferenceRef;
     /**
      * 
      * @type {CouponRef}
@@ -11984,10 +12655,10 @@ export interface PricePolicyResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof PricePolicyResponseDto
      */
-    'company': CompanyRef;
+    'company': CompanyReferenceRef;
     /**
      * Indicates the tier level or progression rank of the price policy. For example, a base tier might have priority 0, while an upgraded tier would have priority 1. Users progress through these tiers as they meet higher criteria.
      * @type {number}
@@ -12223,10 +12894,10 @@ export interface ProductCategoryResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof ProductCategoryResponseDto
      */
-    'company': CompanyRef;
+    'company': CompanyReferenceRef;
     /**
      * Number of active-version products (activeVersion: true) in this product category. Note: unpublishing is blocked by a stricter criterion (products that are the active version OR activated), so a category with productsCount 0 may still refuse to unpublish.
      * @type {number}
@@ -12715,10 +13386,10 @@ export interface ProductResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof ProductResponseDto
      */
-    'company'?: CompanyRef;
+    'company'?: CompanyReferenceRef;
     /**
      * A number that indicates the version of the product. Each version represents a specific state of the product, such as updated features, prices, or characteristics. The default value is 1.
      * @type {number}
@@ -13180,6 +13851,31 @@ export const RenewalHandlingAfterTransferEnum = {
 export type RenewalHandlingAfterTransferEnum = typeof RenewalHandlingAfterTransferEnum[keyof typeof RenewalHandlingAfterTransferEnum];
 
 
+/**
+ * 
+ * @export
+ * @interface RequestLogoUpload200Response
+ */
+export interface RequestLogoUpload200Response {
+    /**
+     * The HTTP status code indicating the result of the operation.
+     * @type {any}
+     * @memberof RequestLogoUpload200Response
+     */
+    'code': any;
+    /**
+     * A human-readable message providing more details about the response.
+     * @type {any}
+     * @memberof RequestLogoUpload200Response
+     */
+    'message': any;
+    /**
+     * 
+     * @type {LogoUploadRequestResponseDto}
+     * @memberof RequestLogoUpload200Response
+     */
+    'data': LogoUploadRequestResponseDto;
+}
 /**
  * 
  * @export
@@ -13681,11 +14377,11 @@ export interface TagResponseDto {
      */
     'id'?: string;
     /**
-     * 
-     * @type {CompanyRef}
+     * Uniquely identifies the company that owns this tag.
+     * @type {string}
      * @memberof TagResponseDto
      */
-    'company': CompanyRef;
+    'company': string;
     /**
      * The date the tag was created.
      * @type {string}
@@ -13857,10 +14553,10 @@ export interface TemplateResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof TemplateResponseDto
      */
-    'company'?: CompanyRef;
+    'company'?: CompanyReferenceRef;
     /**
      * 
      * @type {IntegrationRef}
@@ -14876,10 +15572,10 @@ export interface TransactionResponseDto {
     'id'?: string;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof TransactionResponseDto
      */
-    'company': CompanyRef;
+    'company': CompanyReferenceRef;
     /**
      * 
      * @type {UserRef}
@@ -14888,10 +15584,10 @@ export interface TransactionResponseDto {
     'user'?: UserRef;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof TransactionResponseDto
      */
-    'clientCompany'?: CompanyRef;
+    'clientCompany'?: CompanyReferenceRef;
     /**
      * 
      * @type {OrderRef}
@@ -15740,10 +16436,10 @@ export interface UserResponseDto {
     'tags'?: Array<TagRef>;
     /**
      * 
-     * @type {CompanyRef}
+     * @type {CompanyReferenceRef}
      * @memberof UserResponseDto
      */
-    'company'?: CompanyRef;
+    'company'?: CompanyReferenceRef;
     /**
      * 
      * @type {InvoiceContactRef}
@@ -19519,15 +20215,12 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Retrieves a paginated list of companies. Returns a paginated response with company data.
          * @summary Get Paginated Companies
-         * @param {string} companyId 
          * @param {number} [perPage] per Page 
          * @param {number} [currentPage] current page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatedCompanies: async (companyId: string, perPage?: number, currentPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('getPaginatedCompanies', 'companyId', companyId)
+        getPaginatedCompanies: async (perPage?: number, currentPage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/companies`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -19543,10 +20236,6 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             // authentication jwt required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
 
             if (perPage !== undefined) {
                 localVarQueryParameter['perPage'] = perPage;
@@ -19916,53 +20605,6 @@ export const CompaniesApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Updates the brand details (logo, icon) for a specified company. Returns a boolean indicating success.
-         * @summary Update Company Brand
-         * @param {string} companyId A unique identifier for the company.
-         * @param {BrandRequestDto} brandRequestDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateCompanyBrand: async (companyId: string, brandRequestDto: BrandRequestDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'companyId' is not null or undefined
-            assertParamExists('updateCompanyBrand', 'companyId', companyId)
-            // verify required parameter 'brandRequestDto' is not null or undefined
-            assertParamExists('updateCompanyBrand', 'brandRequestDto', brandRequestDto)
-            const localVarPath = `/Companies/update-brand`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication jwt required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (companyId !== undefined) {
-                localVarQueryParameter['companyId'] = companyId;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(brandRequestDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -20445,14 +21087,13 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
         /**
          * Retrieves a paginated list of companies. Returns a paginated response with company data.
          * @summary Get Paginated Companies
-         * @param {string} companyId 
          * @param {number} [perPage] per Page 
          * @param {number} [currentPage] current page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPaginatedCompanies(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedCompanies200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatedCompanies(companyId, perPage, currentPage, options);
+        async getPaginatedCompanies(perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPaginatedCompanies200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPaginatedCompanies(perPage, currentPage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CompaniesApi.getPaginatedCompanies']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -20565,20 +21206,6 @@ export const CompaniesApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unlockCompany(companyId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CompaniesApi.unlockCompany']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Updates the brand details (logo, icon) for a specified company. Returns a boolean indicating success.
-         * @summary Update Company Brand
-         * @param {string} companyId A unique identifier for the company.
-         * @param {BrandRequestDto} brandRequestDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async updateCompanyBrand(companyId: string, brandRequestDto: BrandRequestDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCompanyBrand(companyId, brandRequestDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['CompaniesApi.updateCompanyBrand']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -20796,14 +21423,13 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
         /**
          * Retrieves a paginated list of companies. Returns a paginated response with company data.
          * @summary Get Paginated Companies
-         * @param {string} companyId 
          * @param {number} [perPage] per Page 
          * @param {number} [currentPage] current page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaginatedCompanies(companyId: string, perPage?: number, currentPage?: number, options?: any): AxiosPromise<GetPaginatedCompanies200Response> {
-            return localVarFp.getPaginatedCompanies(companyId, perPage, currentPage, options).then((request) => request(axios, basePath));
+        getPaginatedCompanies(perPage?: number, currentPage?: number, options?: any): AxiosPromise<GetPaginatedCompanies200Response> {
+            return localVarFp.getPaginatedCompanies(perPage, currentPage, options).then((request) => request(axios, basePath));
         },
         /**
          * Installs an integration for a specified company. Returns a boolean indicating success.
@@ -20890,17 +21516,6 @@ export const CompaniesApiFactory = function (configuration?: Configuration, base
          */
         unlockCompany(companyId: string, options?: any): AxiosPromise<DeleteCurrency200Response> {
             return localVarFp.unlockCompany(companyId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Updates the brand details (logo, icon) for a specified company. Returns a boolean indicating success.
-         * @summary Update Company Brand
-         * @param {string} companyId A unique identifier for the company.
-         * @param {BrandRequestDto} brandRequestDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateCompanyBrand(companyId: string, brandRequestDto: BrandRequestDto, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
-            return localVarFp.updateCompanyBrand(companyId, brandRequestDto, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the currency for a specified company. Returns a boolean indicating success.
@@ -21116,15 +21731,14 @@ export class CompaniesApi extends BaseAPI {
     /**
      * Retrieves a paginated list of companies. Returns a paginated response with company data.
      * @summary Get Paginated Companies
-     * @param {string} companyId 
      * @param {number} [perPage] per Page 
      * @param {number} [currentPage] current page
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompaniesApi
      */
-    public getPaginatedCompanies(companyId: string, perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).getPaginatedCompanies(companyId, perPage, currentPage, options).then((request) => request(this.axios, this.basePath));
+    public getPaginatedCompanies(perPage?: number, currentPage?: number, options?: RawAxiosRequestConfig) {
+        return CompaniesApiFp(this.configuration).getPaginatedCompanies(perPage, currentPage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -21227,19 +21841,6 @@ export class CompaniesApi extends BaseAPI {
      */
     public unlockCompany(companyId: string, options?: RawAxiosRequestConfig) {
         return CompaniesApiFp(this.configuration).unlockCompany(companyId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Updates the brand details (logo, icon) for a specified company. Returns a boolean indicating success.
-     * @summary Update Company Brand
-     * @param {string} companyId A unique identifier for the company.
-     * @param {BrandRequestDto} brandRequestDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CompaniesApi
-     */
-    public updateCompanyBrand(companyId: string, brandRequestDto: BrandRequestDto, options?: RawAxiosRequestConfig) {
-        return CompaniesApiFp(this.configuration).updateCompanyBrand(companyId, brandRequestDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -29072,7 +29673,7 @@ export const ItemsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items.
+         * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items in the transfer preview shape: the client shape without the sender\'s auth code, registry contacts, item attributes and notification contacts.
          * @summary Get Items For Transfer
          * @param {string} companyid A unique identifier for the company.
          * @param {string} hash Security hash for validating the transfer request.
@@ -30176,7 +30777,7 @@ export const ItemsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items.
+         * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items in the transfer preview shape: the client shape without the sender\'s auth code, registry contacts, item attributes and notification contacts.
          * @summary Get Items For Transfer
          * @param {string} companyid A unique identifier for the company.
          * @param {string} hash Security hash for validating the transfer request.
@@ -30571,7 +31172,7 @@ export const ItemsApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.getItemUpgradePrices(sourceItemId, companyId, targetProduct, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items.
+         * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items in the transfer preview shape: the client shape without the sender\'s auth code, registry contacts, item attributes and notification contacts.
          * @summary Get Items For Transfer
          * @param {string} companyid A unique identifier for the company.
          * @param {string} hash Security hash for validating the transfer request.
@@ -30927,7 +31528,7 @@ export class ItemsApi extends BaseAPI {
     }
 
     /**
-     * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items.
+     * Retrieve items that are pending transfer. Validates the hash and checks permissions. Returns an array of items in the transfer preview shape: the client shape without the sender\'s auth code, registry contacts, item attributes and notification contacts.
      * @summary Get Items For Transfer
      * @param {string} companyid A unique identifier for the company.
      * @param {string} hash Security hash for validating the transfer request.
@@ -31186,6 +31787,225 @@ export class ItemsApi extends BaseAPI {
      */
     public updateItemTag(tagId: string, companyId: string, tagUpdateRequestDto: TagUpdateRequestDto, options?: RawAxiosRequestConfig) {
         return ItemsApiFp(this.configuration).updateItemTag(tagId, companyId, tagUpdateRequestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * MediaApi - axios parameter creator
+ * @export
+ */
+export const MediaApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Removes an entity\'s logo: the url is cleared from the entity and the stored file is deleted from the upload worker. The worker call is best-effort — a worker that is unavailable does not block the removal of the url. The role required is the one of the addressed entity: `COMPANY_WRITE` for a company, `INTEGRATIONS_WRITE` for an integration.
+         * @summary Delete a Logo
+         * @param {string} companyId A unique identifier for the company.
+         * @param {MediaEntityEnum} entity The kind of entity the logo belongs to.
+         * @param {string} entityId A unique identifier for the entity whose logo is removed.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLogo: async (companyId: string, entity: MediaEntityEnum, entityId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('deleteLogo', 'companyId', companyId)
+            // verify required parameter 'entity' is not null or undefined
+            assertParamExists('deleteLogo', 'entity', entity)
+            // verify required parameter 'entityId' is not null or undefined
+            assertParamExists('deleteLogo', 'entityId', entityId)
+            const localVarPath = `/media/{entity}/{entityId}/logo`
+                .replace(`{${"entity"}}`, encodeURIComponent(String(entity)))
+                .replace(`{${"entityId"}}`, encodeURIComponent(String(entityId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Issues a signed token that authorises the upload of an entity\'s logo to the upload worker. The file itself never passes through this API: the client posts it to the worker together with the token, and the worker reports the stored url back. The token carries the entity and its owning company, so neither can be chosen by the uploader; the worker verifies its signature and expiry before accepting a file. The role required is the one of the addressed entity: `COMPANY_WRITE` for a company, `INTEGRATIONS_WRITE` for an integration.
+         * @summary Request a Logo Upload
+         * @param {string} companyId A unique identifier for the company.
+         * @param {MediaEntityEnum} entity The kind of entity the logo belongs to.
+         * @param {string} entityId A unique identifier for the entity whose logo is uploaded.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        requestLogoUpload: async (companyId: string, entity: MediaEntityEnum, entityId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'companyId' is not null or undefined
+            assertParamExists('requestLogoUpload', 'companyId', companyId)
+            // verify required parameter 'entity' is not null or undefined
+            assertParamExists('requestLogoUpload', 'entity', entity)
+            // verify required parameter 'entityId' is not null or undefined
+            assertParamExists('requestLogoUpload', 'entityId', entityId)
+            const localVarPath = `/media/{entity}/{entityId}/logo/request-upload`
+                .replace(`{${"entity"}}`, encodeURIComponent(String(entity)))
+                .replace(`{${"entityId"}}`, encodeURIComponent(String(entityId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication jwt required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (companyId !== undefined) {
+                localVarQueryParameter['companyId'] = companyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * MediaApi - functional programming interface
+ * @export
+ */
+export const MediaApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MediaApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Removes an entity\'s logo: the url is cleared from the entity and the stored file is deleted from the upload worker. The worker call is best-effort — a worker that is unavailable does not block the removal of the url. The role required is the one of the addressed entity: `COMPANY_WRITE` for a company, `INTEGRATIONS_WRITE` for an integration.
+         * @summary Delete a Logo
+         * @param {string} companyId A unique identifier for the company.
+         * @param {MediaEntityEnum} entity The kind of entity the logo belongs to.
+         * @param {string} entityId A unique identifier for the entity whose logo is removed.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteLogo(companyId: string, entity: MediaEntityEnum, entityId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCompanyProfileSettings200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteLogo(companyId, entity, entityId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MediaApi.deleteLogo']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Issues a signed token that authorises the upload of an entity\'s logo to the upload worker. The file itself never passes through this API: the client posts it to the worker together with the token, and the worker reports the stored url back. The token carries the entity and its owning company, so neither can be chosen by the uploader; the worker verifies its signature and expiry before accepting a file. The role required is the one of the addressed entity: `COMPANY_WRITE` for a company, `INTEGRATIONS_WRITE` for an integration.
+         * @summary Request a Logo Upload
+         * @param {string} companyId A unique identifier for the company.
+         * @param {MediaEntityEnum} entity The kind of entity the logo belongs to.
+         * @param {string} entityId A unique identifier for the entity whose logo is uploaded.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async requestLogoUpload(companyId: string, entity: MediaEntityEnum, entityId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RequestLogoUpload200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.requestLogoUpload(companyId, entity, entityId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MediaApi.requestLogoUpload']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * MediaApi - factory interface
+ * @export
+ */
+export const MediaApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MediaApiFp(configuration)
+    return {
+        /**
+         * Removes an entity\'s logo: the url is cleared from the entity and the stored file is deleted from the upload worker. The worker call is best-effort — a worker that is unavailable does not block the removal of the url. The role required is the one of the addressed entity: `COMPANY_WRITE` for a company, `INTEGRATIONS_WRITE` for an integration.
+         * @summary Delete a Logo
+         * @param {string} companyId A unique identifier for the company.
+         * @param {MediaEntityEnum} entity The kind of entity the logo belongs to.
+         * @param {string} entityId A unique identifier for the entity whose logo is removed.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLogo(companyId: string, entity: MediaEntityEnum, entityId: string, options?: any): AxiosPromise<UpdateCompanyProfileSettings200Response> {
+            return localVarFp.deleteLogo(companyId, entity, entityId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Issues a signed token that authorises the upload of an entity\'s logo to the upload worker. The file itself never passes through this API: the client posts it to the worker together with the token, and the worker reports the stored url back. The token carries the entity and its owning company, so neither can be chosen by the uploader; the worker verifies its signature and expiry before accepting a file. The role required is the one of the addressed entity: `COMPANY_WRITE` for a company, `INTEGRATIONS_WRITE` for an integration.
+         * @summary Request a Logo Upload
+         * @param {string} companyId A unique identifier for the company.
+         * @param {MediaEntityEnum} entity The kind of entity the logo belongs to.
+         * @param {string} entityId A unique identifier for the entity whose logo is uploaded.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        requestLogoUpload(companyId: string, entity: MediaEntityEnum, entityId: string, options?: any): AxiosPromise<RequestLogoUpload200Response> {
+            return localVarFp.requestLogoUpload(companyId, entity, entityId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * MediaApi - object-oriented interface
+ * @export
+ * @class MediaApi
+ * @extends {BaseAPI}
+ */
+export class MediaApi extends BaseAPI {
+    /**
+     * Removes an entity\'s logo: the url is cleared from the entity and the stored file is deleted from the upload worker. The worker call is best-effort — a worker that is unavailable does not block the removal of the url. The role required is the one of the addressed entity: `COMPANY_WRITE` for a company, `INTEGRATIONS_WRITE` for an integration.
+     * @summary Delete a Logo
+     * @param {string} companyId A unique identifier for the company.
+     * @param {MediaEntityEnum} entity The kind of entity the logo belongs to.
+     * @param {string} entityId A unique identifier for the entity whose logo is removed.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MediaApi
+     */
+    public deleteLogo(companyId: string, entity: MediaEntityEnum, entityId: string, options?: RawAxiosRequestConfig) {
+        return MediaApiFp(this.configuration).deleteLogo(companyId, entity, entityId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Issues a signed token that authorises the upload of an entity\'s logo to the upload worker. The file itself never passes through this API: the client posts it to the worker together with the token, and the worker reports the stored url back. The token carries the entity and its owning company, so neither can be chosen by the uploader; the worker verifies its signature and expiry before accepting a file. The role required is the one of the addressed entity: `COMPANY_WRITE` for a company, `INTEGRATIONS_WRITE` for an integration.
+     * @summary Request a Logo Upload
+     * @param {string} companyId A unique identifier for the company.
+     * @param {MediaEntityEnum} entity The kind of entity the logo belongs to.
+     * @param {string} entityId A unique identifier for the entity whose logo is uploaded.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MediaApi
+     */
+    public requestLogoUpload(companyId: string, entity: MediaEntityEnum, entityId: string, options?: RawAxiosRequestConfig) {
+        return MediaApiFp(this.configuration).requestLogoUpload(companyId, entity, entityId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
